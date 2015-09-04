@@ -64213,14 +64213,18 @@ Ext.define('Ext.direct.Manager', {
                             }
                         });
                         userLocationStore.removeAll();
-                        userLocationStore.add({
-                            'latitude': latitude.toString(),
-                            'longitude': longitude.toString()
-                        });
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
                         Ext.Viewport.setActiveItem(view);
+                        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+                            var zipcode = json.postalCodes[0].postalCode;
+                            userLocationStore.add({
+                                'latitude': latitude.toString(),
+                                'longitude': longitude.toString(),
+                                'zipcode': zipcode
+                            });
+                        });
                     }, /*  var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('StoreCalculateDistances');
@@ -65701,19 +65705,23 @@ Ext.define('Ext.direct.Manager', {
         //analytics.trackEvent(record.get('customerId'), 'DealClick', record.get('dealName'));
         var showPosition;
         if (navigator.geolocation) {
-            //if you have the geolocation, run the showPosition function
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                console.log('Inside Analytics module: ' + latitude + "," + longitude);
-                // api call for postal code and track event
-                $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-                    //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
-                    //analytics.addCustomDimension('1', record.get('customerId'));
-                    analytics.trackEvent(record.get('dealName'), json.postalCodes[0].postalCode, record.get('customerId'));
-                });
-            });
-        } else {
+            //if you have the geolocation, get the zipcode from local store on app launch
+            //navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            // var latitude = position.coords.latitude;
+            // var longitude = position.coords.longitude;
+            var userLocationStore = Ext.getStore('UserLocation');
+            var zipcode = userLocationStore.getAt(0).get('zipcode');
+            var latitude = userLocationStore.getAt(0).get('latitude');
+            var longitude = userLocationStore.getAt(0).get('longitude');
+            console.log('LatestBuzz View Analytics' + latitude + "," + longitude + "," + zipcode);
+            // api call for postal code and track event
+            //  $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+            //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
+            //analytics.addCustomDimension('1', record.get('customerId'));
+            analytics.trackEvent(record.get('dealName'), zipcode, record.get('customerId'));
+        } else // });
+        // });
+        {
             //geolocation not happening
             console.log("Gelocation not working");
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
@@ -66043,19 +66051,23 @@ Ext.define('Ext.direct.Manager', {
         //analytics.trackEvent(record.get('customerId'), 'DealClick', record.get('dealName'));
         var showPosition;
         if (navigator.geolocation) {
-            //if you have the geolocation, run the showPosition function
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                console.log('LatestBuzz View Analytics' + latitude + "," + longitude);
-                // api call for postal code and track event
-                $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-                    //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
-                    //analytics.addCustomDimension('1', record.get('customerId'));
-                    analytics.trackEvent(record.get('dealName'), json.postalCodes[0].postalCode, record.get('customerId'));
-                });
-            });
-        } else {
+            //if you have the geolocation, get the zipcode from local store on app launch
+            //navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            // var latitude = position.coords.latitude;
+            // var longitude = position.coords.longitude;
+            var userLocationStore = Ext.getStore('UserLocation');
+            var zipcode = userLocationStore.getAt(0).get('zipcode');
+            var latitude = userLocationStore.getAt(0).get('latitude');
+            var longitude = userLocationStore.getAt(0).get('longitude');
+            console.log('LatestBuzz View Analytics' + latitude + "," + longitude + "," + zipcode);
+            // api call for postal code and track event
+            //  $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+            //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
+            //analytics.addCustomDimension('1', record.get('customerId'));
+            analytics.trackEvent(record.get('dealName'), zipcode, record.get('customerId'));
+        } else // });
+        // });
+        {
             //geolocation not happening
             console.log("Gelocation not working");
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
@@ -66201,8 +66213,7 @@ Ext.define('Ext.direct.Manager', {
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
-                        xtype: 'latestbuzz',
-                        styleHtmlContent: false
+                        xtype: 'latestbuzz'
                     }
                 ]
             },
