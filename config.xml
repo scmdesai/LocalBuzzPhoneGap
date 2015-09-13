@@ -2,10 +2,10 @@
 <widget id="com.appsonmobile.localbuzz" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>LocalBuzz</name>
     <description>
-        LocalBuzz App by AppsOnMobile.com
+        Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="scmdesai@gmail.com" href="http://www.appsonmobile.com">
-        AppsOnMobile Team
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        PhoneGap Team
     </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
@@ -81,5 +81,4 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="android" spec="^4.0.2" />
 </widget>

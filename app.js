@@ -63850,7 +63850,7 @@ Ext.define('Ext.direct.Manager', {
     onPhoneNumberFocus: function(textfield, e, eOpts) {
         console.log(textfield.getValue());
         numberToDial = textfield.getValue();
-        window.location = 'tel:numberToDial';
+        window.location = 'tel:' + numberToDial;
     },
     onAddressFocus: function(textfield, e, eOpts) {
         //console.log("Address Field value is:" + textfield.getValue()) ;
