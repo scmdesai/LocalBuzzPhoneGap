@@ -38,7 +38,7 @@ var app = {
 
 		function onBackKeyDown() {
 			// Handle the back button
-			 e.preventDefault();
+			 this.preventDefault();
 			 
 			 alert('back button pressed');
 			 
