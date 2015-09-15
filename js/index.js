@@ -34,16 +34,16 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-		document.addEventListener("backbutton", onBackKeyDown, false);
+		//document.addEventListener("backbutton", onBackKeyDown, false);
 		
     },
 	
 	
     // Handle the back button
     
-    function onBackKeyDown() {
+    /*function onBackKeyDown() {
 	alert('Back Button pressed!');
-    }
+    }*/
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);

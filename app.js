@@ -63145,6 +63145,11 @@ Ext.define('Ext.direct.Manager', {
                         text: 'Back'
                     },
                     {
+                        xtype: 'spacer',
+                        height: 10,
+                        width: 47
+                    },
+                    {
                         xtype: 'component',
                         flex: 1,
                         cls: 'contact-name',
@@ -63217,7 +63222,7 @@ Ext.define('Ext.direct.Manager', {
                                 flex: 1,
                                 cls: 'icon-location',
                                 height: '70%',
-                                itemId: 'mytextfield1',
+                                itemId: 'address',
                                 style: 'opacity:0.5;font-size:14px',
                                 width: '100%',
                                 name: 'address',
@@ -63480,6 +63485,7 @@ Ext.define('Ext.direct.Manager', {
         window.location = 'tel:' + numberToDial;
     },
     onAddressFocus: function(textfield, e, eOpts) {
+        console.log(textfield.getValue());
         var queryString = encodeURIComponent(textfield.getValue());
         var url = 'geo:0,0?q=' + queryString;
         Ext.device.Device.openURL(url);
