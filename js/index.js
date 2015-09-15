@@ -45,17 +45,7 @@ var app = {
 	alert('Back Button pressed!');
     }*/
 	
-	function onDeviceReady(){
-    document.addEventListener("backbutton", function(e){
-       if(document.getElementById('#homepage')){
-           e.preventDefault();
-           navigator.app.exitApp();
-       }
-       else {
-           navigator.app.backHistory()
-       }
-    }, false);
-}
+	
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);

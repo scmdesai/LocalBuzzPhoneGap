@@ -63559,7 +63559,7 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.Msg.confirm("Exit", "¿Seguro que quieres cerrar el app?", function(answer) {
+                Ext.Msg.confirm("Exit", function(answer) {
                     if (answer == 'yes') {
                         navigator.app.exitApp();
                     } else {}
