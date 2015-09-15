@@ -63554,6 +63554,19 @@ Ext.application({
         Ext.create('Contact.store.MyDealsStore', {
             autoLoad: true
         });
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                Ext.Msg.confirm("Exit", "¿Seguro que quieres cerrar el app?", function(answer) {
+                    if (answer == 'yes') {
+                        navigator.app.exitApp();
+                    } else {}
+                });
+            }
+        }
+        //do nothing
         Ext.create('Contact.view.Main', {
             fullscreen: true
         });
