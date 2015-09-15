@@ -35,16 +35,15 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 		document.addEventListener("backbutton", onBackKeyDown, false);
-
-		function onBackKeyDown() {
-			// Handle the back button
-			 this.preventDefault();
-			 
-			 alert('back button pressed');
-			 
-
-		}
+		
     },
+	
+	
+    // Handle the back button
+    
+    function onBackKeyDown() {
+	alert('Back Button pressed!');
+    }
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
