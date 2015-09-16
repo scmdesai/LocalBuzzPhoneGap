@@ -63028,6 +63028,7 @@ Ext.define('Ext.direct.Manager', {
         overflow: 'hidden',
         height: 120,
         minHeight: 100,
+        padding: '5 5 5 5',
         style: 'overflow: hidden',
         ui: '',
         tpl: [
@@ -63155,78 +63156,102 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'panel',
                 border: '',
-                docked: 'top',
-                height: 162,
-                scrollable: false,
+                height: '',
+                maxHeight: '100%',
+                minHeight: '100%',
+                minWidth: '',
+                padding: '5 5 5 5',
+                style: 'border:1px inset',
                 layout: {
-                    type: 'hbox',
-                    align: 'start',
-                    pack: 'end'
+                    type: 'vbox',
+                    align: 'end'
                 },
                 items: [
                     {
                         xtype: 'contactpic',
+                        border: '',
                         docked: 'left',
-                        height: '100%',
+                        height: 137,
+                        maxHeight: '100%',
+                        minHeight: '50%',
+                        minWidth: '30%',
+                        style: '',
                         ui: 'light',
-                        width: 127,
+                        width: 97,
                         scrollable: false,
                         flex: 0.5,
                         layout: {
                             type: 'hbox',
                             align: 'start',
-                            pack: 'end'
+                            pack: 'center'
                         }
                     },
                     {
-                        xtype: 'formpanel',
-                        flex: 2,
-                        height: 156,
-                        itemId: 'myformpanel',
-                        style: 'background: transparent',
-                        width: '50%',
-                        scrollable: false,
-                        enableSubmissionForm: false,
-                        layout: {
-                            type: 'vbox',
-                            align: 'start',
-                            pack: 'end'
-                        },
+                        xtype: 'panel',
+                        height: '',
+                        maxHeight: '100%',
+                        minHeight: '100%',
+                        width: '100%',
                         items: [
                             {
                                 xtype: 'textfield',
-                                flex: 1,
-                                cls: 'icon-phone',
-                                height: '30%',
-                                html: '',
+                                cls: [
+                                    'icon-phone',
+                                    'customfield'
+                                ],
+                                height: '',
                                 itemId: 'phoneNumber',
-                                style: 'opacity : 0.5;font-size:5vw',
+                                maxHeight: '30%',
+                                maxWidth: '100%',
+                                minHeight: '',
+                                minWidth: '100%',
                                 width: '100%',
                                 clearIcon: false,
-                                inputCls: '',
-                                label: '',
-                                labelWidth: '',
+                                inputCls: 'customfield',
                                 name: 'phoneNumber',
                                 readOnly: true
                             },
                             {
-                                xtype: 'textfield',
-                                flex: 1,
-                                cls: 'icon-location',
-                                height: '70%',
+                                xtype: 'spacer',
+                                height: '10px'
+                            },
+                            {
+                                xtype: 'textareafield',
+                                cls: [
+                                    'icon-location',
+                                    'customfield'
+                                ],
+                                height: '100%',
                                 itemId: 'address',
-                                style: 'opacity:0.5;font-size:4.15vw',
+                                maxHeight: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                minWidth: '100%',
+                                style: 'border:1 px inset',
                                 width: '100%',
+                                clearIcon: false,
+                                inputCls: 'customfield',
                                 name: 'address',
-                                readOnly: true
+                                readOnly: true,
+                                maxRows: 3
                             }
                         ]
                     }
                 ]
             },
             {
-                xtype: 'listofdeals',
-                style: 'font-size: 18px'
+                xtype: 'panel',
+                padding: '5 5 5 5',
+                style: 'border:1px inset',
+                items: [
+                    {
+                        xtype: 'listofdeals',
+                        border: '',
+                        cls: 'list-item',
+                        style: '',
+                        itemCls: 'list-item'
+                    }
+                ]
             }
         ]
     },
