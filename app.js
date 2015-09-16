@@ -62992,7 +62992,8 @@ Ext.define('Ext.direct.Manager', {
         scrollable: true,
         items: [
             {
-                xtype: 'contactlist'
+                xtype: 'contactlist',
+                itemCls: 'list-items'
             }
         ]
     }
