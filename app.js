@@ -62987,6 +62987,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.Main', Ext.Panel, {
     config: {
         cls: 'home',
+        style: '',
         layout: 'fit',
         scrollable: true,
         items: [
@@ -63125,6 +63126,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
+                style: 'font-size:6vw',
                 ui: 'light',
                 items: [
                     {
@@ -63136,8 +63138,8 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'spacer',
-                        height: 10,
-                        width: 47
+                        height: 11,
+                        width: 18
                     },
                     {
                         xtype: 'component',
@@ -63231,7 +63233,7 @@ Ext.define('Ext.direct.Manager', {
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
-            var name = record.get('businessName') + ' ' + (record.get('category') || '');
+            var name = record.get('businessName');
             var isFavorite = record.get('isFavorite');
             this.down('#nameTxt').setHtml(name);
             //this.down('#favlist')[isFavorite ? 'addCls' : 'removeCls']('empty-star');
@@ -63291,6 +63293,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         fullscreen: true,
         itemId: 'dealPicture',
+        style: 'font-size:6vw',
         layout: 'fit',
         scrollable: true,
         tpl: [
