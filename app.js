@@ -62993,6 +62993,7 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'contactlist',
+                style: 'font-size:7vw',
                 itemCls: 'list-items'
             }
         ]
