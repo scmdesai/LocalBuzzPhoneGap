@@ -62995,8 +62995,9 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'toolbar',
                 cls: 'customToolbar',
                 docked: 'top',
-                html: '<center><span style="font-family: Harlow Solid Italic;font-size: 30pt;text-align: center;color:white">Local</span><img src="butterfly.png"/><span style="font-family: Harlow Solid Italic;font-size: 30pt;text-align: center;color:white">Buzz</span></center>',
-                style: '',
+                html: '<center><img src="localbuzz.png"/></center>',
+                padding: '10 0 0 0',
+                style: 'font-size:5vw',
                 ui: 'light'
             },
             {
@@ -63511,6 +63512,7 @@ Ext.define('Ext.direct.Manager', {
         console.log(textfield.getValue());
         numberToDial = textfield.getValue();
         textfield.blur();
+        e.destroy();
         window.location = 'tel:' + numberToDial;
     },
     onAddressFocus: function(textfield, e, eOpts) {
