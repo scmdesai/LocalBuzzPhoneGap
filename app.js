@@ -63518,7 +63518,7 @@ Ext.define('Ext.direct.Manager', {
         var queryString = encodeURIComponent(textfield.getValue());
         var url = 'geo:0,0?q=' + queryString;
         textfield.blur();
-        textfield.reset();
+        e.destroy();
         Ext.device.Device.openURL(url);
     }
 }, 0, 0, 0, 0, 0, 0, [
