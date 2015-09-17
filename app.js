@@ -62941,7 +62941,6 @@ Ext.define('Ext.direct.Manager', {
         emptyText: 'No Contacts',
         store: 'MyJsonPStore',
         grouped: true,
-        striped: true,
         itemTpl: [
             '<div>{businessName}</div>'
         ],
@@ -62987,10 +62986,19 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.Main', Ext.Panel, {
     config: {
         cls: 'home',
+        html: '',
         style: '',
         layout: 'fit',
         scrollable: true,
         items: [
+            {
+                xtype: 'toolbar',
+                cls: 'customToolbar',
+                docked: 'top',
+                html: '<center><span style="font-family: Harlow Solid Italic;font-size: 30pt;text-align: center;color:white">Local</span><img src="butterfly.png"/><span style="font-family: Harlow Solid Italic;font-size: 30pt;text-align: center;color:white">Buzz</span></center>',
+                style: '',
+                ui: 'light'
+            },
             {
                 xtype: 'contactlist',
                 style: 'font-size:7vw',
@@ -63502,12 +63510,14 @@ Ext.define('Ext.direct.Manager', {
     onPhoneNumberFocus: function(textfield, e, eOpts) {
         console.log(textfield.getValue());
         numberToDial = textfield.getValue();
+        textfield.blur();
         window.location = 'tel:' + numberToDial;
     },
     onAddressFocus: function(textfield, e, eOpts) {
         console.log(textfield.getValue());
         var queryString = encodeURIComponent(textfield.getValue());
         var url = 'geo:0,0?q=' + queryString;
+        textfield.blur();
         Ext.device.Device.openURL(url);
     }
 }, 0, 0, 0, 0, 0, 0, [
