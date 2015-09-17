@@ -63509,10 +63509,11 @@ Ext.define('Ext.direct.Manager', {
     },
     //Ext.Viewport.setActiveItem('contactinfo') ;
     onPhoneNumberFocus: function(textfield, e, eOpts) {
-        console.log(textfield.getValue());
+        console.log(e);
         numberToDial = textfield.getValue();
         textfield.blur();
         e.destroy();
+        e.stopEvent();
         window.location = 'tel:' + numberToDial;
     },
     onAddressFocus: function(textfield, e, eOpts) {
@@ -63520,6 +63521,7 @@ Ext.define('Ext.direct.Manager', {
         var queryString = encodeURIComponent(textfield.getValue());
         var url = 'geo:0,0?q=' + queryString;
         textfield.blur();
+        e.stopEvent();
         e.destroy();
         Ext.device.Device.openURL(url);
     }
