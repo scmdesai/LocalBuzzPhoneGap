@@ -8,6 +8,7 @@
         PhoneGap Team
     </author>
     <content src="index.html" />
+	<preference name='phonegap-version' value='cli-5.3.1' />
 	<preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
     <preference name="permissions" value="none" />
@@ -43,7 +44,8 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-	<gap:plugin name="cordova-plugin-gcmpushplugin" source="npm" />
+	<!-- <gap:plugin name="cordova-plugin-gcmpushplugin" source="npm" /> -->
+	<gap:plugin name="com.phonegap.plugins.pushplugin" />
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

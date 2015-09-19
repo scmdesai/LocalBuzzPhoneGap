@@ -37,8 +37,8 @@ var app = {
 		//document.addEventListener("backbutton", onBackKeyDown, false);
 		
 		// code for integratin with GCM 
-		var pushNotification = window.GcmPushPlugin;
-
+		//var pushNotification = window.GcmPushPlugin;
+		var pushNotification = window.plugins.pushNotification;
 		pushNotification.register(
 			successHandler, 
 			errorHandler, 
@@ -46,13 +46,15 @@ var app = {
 				// the sender ID below is the one used for LocalBuzz project
 				'senderID':'226322216862',
 				'jsCallback':'onNotificationGCM' // callback function
+				'ecb':'onNotificationGCM' // callback function
 			}
 		);
 		
     },
 	
 	function successHandler(result) {
-		console.log('Success: '+ result.gcm);
+		//console.log('Success: '+ result.gcm);
+		console.log('Success: '+ result);
 	}
 
 	function errorHandler(error) {
