@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 		//document.addEventListener("backbutton", onBackKeyDown, false);
-		
+/*		
         var push = PushNotification.init({
             "android": {
                 "senderID": "226322216862"
