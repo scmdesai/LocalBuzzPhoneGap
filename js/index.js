@@ -36,55 +36,40 @@ var app = {
         app.receivedEvent('deviceready');
 		//document.addEventListener("backbutton", onBackKeyDown, false);
 		
-		// code for integratin with GCM 
-		//var pushNotification = window.GcmPushPlugin;
-		var pushNotification = window.plugins.pushNotification;
-		pushNotification.register(
-			successHandler, 
-			errorHandler, 
-			{
-				// the sender ID below is the one used for LocalBuzz project
-				'senderID':'226322216862',
-				'jsCallback':'onNotificationGCM' // callback function
-				'ecb':'onNotificationGCM' // callback function
-			}
-		);
-		
-    },
-	
-	function successHandler(result) {
-		//console.log('Success: '+ result.gcm);
-		console.log('Success: '+ result);
-	}
+        var push = PushNotification.init({
+            "android": {
+                "senderID": "741175631277"
+            },
+            "ios": {}, 
+            "windows": {} 
+        });
+        
+        push.on('registration', function(data) {
+            console.log("registration event");
+            document.getElementById("regId").innerHTML = data.registrationId;
+            console.log(JSON.stringify(data));
+        });
 
-	function errorHandler(error) {
-		console.log('Error: '+ error);
-	}
-	
-	function onNotificationGCM(e) {
-		switch(e.event){
-			case 'registered':
-				if (e.regid.length > 0){
-					deviceRegistered(e.regid);
-				}
-			break;
+        push.on('notification', function(data) {
+        	console.log("notification event");
+            console.log(JSON.stringify(data));
+            var cards = document.getElementById("cards");
+            var push = '<div class="row">' +
+		  		  '<div class="col s12 m6">' +
+				  '  <div class="card darken-1">' +
+				  '    <div class="card-content black-text">' +
+				  '      <span class="card-title black-text">' + data.title + '</span>' +
+				  '      <p>' + data.message + '</p>' +
+				  '    </div>' +
+				  '  </div>' +
+				  ' </div>' +
+				  '</div>';
+            cards.innerHTML += push;
+        });
 
-			case 'message':
-				if (e.foreground){
-					// When the app is running foreground. 
-					alert('New Deal published')
-				}
-			break;
-
-			case 'error':
-				console.log('Error: ' + e.msg);
-			break;
-
-			default:
-			  console.log('An unknown event was received');
-			  break;
-		}
-	}
+        push.on('error', function(e) {
+            console.log("push error");
+        });
 	
     // Handle the back button
     
