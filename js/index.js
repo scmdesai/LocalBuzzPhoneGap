@@ -36,8 +36,53 @@ var app = {
         app.receivedEvent('deviceready');
 		//document.addEventListener("backbutton", onBackKeyDown, false);
 		
+		// code for integratin with GCM 
+		var pushNotification = window.GcmPushPlugin;
+
+		pushNotification.register(
+			successHandler, 
+			errorHandler, 
+			{
+				// the sender ID below is the one used for LocalBuzz project
+				'senderID':'226322216862',
+				'jsCallback':'onNotificationGCM' // callback function
+			}
+		);
+		
     },
 	
+	function successHandler(result) {
+		console.log('Success: '+ result.gcm);
+	}
+
+	function errorHandler(error) {
+		console.log('Error: '+ error);
+	}
+	
+	function onNotificationGCM(e) {
+		switch(e.event){
+			case 'registered':
+				if (e.regid.length > 0){
+					deviceRegistered(e.regid);
+				}
+			break;
+
+			case 'message':
+				if (e.foreground){
+					// When the app is running foreground. 
+					alert('New Deal published')
+				}
+			break;
+
+			case 'error':
+				console.log('Error: ' + e.msg);
+			break;
+
+			default:
+			  console.log('An unknown event was received');
+			  break;
+		}
+	}
 	
     // Handle the back button
     
