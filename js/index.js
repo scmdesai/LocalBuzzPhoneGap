@@ -33,9 +33,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-		//document.addEventListener("backbutton", onBackKeyDown, false);
-/*		
         var push = PushNotification.init({
             "android": {
                 "senderID": "226322216862"
@@ -70,13 +67,9 @@ var app = {
         push.on('error', function(e) {
             console.log("push error");
         });
-	
-    // Handle the back button
-    
-    /*function onBackKeyDown() {
-	alert('Back Button pressed!');
-    }*/
-	
+		
+		app.receivedEvent('deviceready');
+	},
 	
     // Update DOM on a Received Event
     receivedEvent: function(id) {
