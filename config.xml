@@ -45,8 +45,9 @@
     <gap:plugin name="cordova-plugin-network-information" source="npm"/>
     <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
     <gap:plugin name="cordova-plugin-vibration" source="npm"/>
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<!-- Plugin Added for Push Notification -->
-	<!-- <gap:plugin name="phonegap-plugin-push" source="npm" /> -->
+	<gap:plugin name="phonegap-plugin-push" source="npm" />
 	
 	<!-- Old PhoneGap 3.7 specific Cordova Plugins - NOT IN USE
     <gap:plugin name="org.apache.cordova.battery-status" />
@@ -96,7 +97,7 @@
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
+    
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
