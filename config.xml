@@ -46,7 +46,7 @@
     <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
     <gap:plugin name="cordova-plugin-vibration" source="npm"/>
 	<!-- Plugin Added for Push Notification -->
-	<gap:plugin name="phonegap-plugin-push" source="npm" />
+	<!-- <gap:plugin name="phonegap-plugin-push" source="npm" /> -->
 	
 	<!-- Old PhoneGap 3.7 specific Cordova Plugins - NOT IN USE
     <gap:plugin name="org.apache.cordova.battery-status" />
