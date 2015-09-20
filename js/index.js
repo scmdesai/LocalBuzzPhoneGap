@@ -71,6 +71,7 @@ var app = {
 
         push.on('error', function(e) {
             console.log("push error");
+			console.log(JSON.stringify(e));
         });
 		
 		
