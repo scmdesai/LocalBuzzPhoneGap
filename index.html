@@ -3,7 +3,9 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>MyCouponApp</title>
+	<!-- Enable all requests, inline styles, and eval() -->
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+	<title>LocalBuzz</title>
     <style type="text/css">
         /**
         * Example of an initial loading indicator.
@@ -50,7 +52,6 @@
             }
         }
     </style>
-	<script src="cordova.js"></script>
 	<script src="http://jsconsole.com/remote.js?1BADBE6A-5C96-4D99-BC71-79C1AD60F1B9"></script>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" data-app="ebc4f696-1e89-476c-adac-9fb508192e9f" type="text/javascript">(function(d){function l(b,d){var a=document.createElement("meta");a.setAttribute("name",b);a.setAttribute("content",d);p.appendChild(a)}var p=d.document.head||d.document.getElementsByTagName("head")[0],b=d.Ext;"undefined"==typeof b&&(d.Ext=b={});b.blink=function(d){var m=d.js||[];d=d.css||[];var a,h,c,g,n,j;navigator.userAgent.match(/IEMobile\/10\.0/)&&(a=document.createElement("style"),a.appendChild(document.createTextNode("@media screen and (orientation: portrait) {@-ms-viewport {width: 320px !important;}}@media screen and (orientation: landscape) {@-ms-viewport {width: 560px !important;}}")),
