@@ -46,12 +46,15 @@ var app = {
         
         push.on('registration', function(data) {
             console.log("registration event");
+			alert("registration event");
             //document.getElementById("regId").innerHTML = data.registrationId;
             console.log(JSON.stringify(data));
+			alert(JSON.stringify(data));
         });
 
         push.on('notification', function(data) {
         	console.log("notification event");
+			alert("notification event");
             console.log(JSON.stringify(data));
 			/*
             var cards = document.getElementById("cards");
@@ -71,7 +74,10 @@ var app = {
 
         push.on('error', function(e) {
             console.log("push error");
+			alert("push error");
+			
 			console.log(JSON.stringify(e));
+			alert(JSON.stringify(data));
         });
 		
 		
