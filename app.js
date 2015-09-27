@@ -64013,7 +64013,7 @@ Ext.define('Ext.direct.Manager', {
             store.findRecord('customerId', customerId).destroy();
             store.sync();
         }
-        console.log(customerId + isPressed);
+        //console.log(customerId + isPressed);
         record.set('isFavorite', isPressed);
         store.sync();
     },
@@ -64227,8 +64227,8 @@ Ext.define('Ext.direct.Manager', {
         var info = this.getContactinfo();
         info.setRecord(record);
         Ext.Viewport.setActiveItem(info);
-        console.log(record);
     },
+    //console.log(record);
     onInfoBackBtnTapHome: function(button, e, eOpts) {
         /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter() ;*/
