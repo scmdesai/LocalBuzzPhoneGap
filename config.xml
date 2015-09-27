@@ -30,7 +30,8 @@
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
     <gap:plugin name="cordova-plugin-camera" source="npm" version="1.2.0" />
     <gap:plugin name="cordova-plugin-media-capture" source="npm" version="1.0.1" />
-    <gap:plugin name="cordova-plugin-console" source="npm" version="1.0.1" />
+	<!-- Comment out the console plugin as it is causing issues on Android -->
+    <!-- <gap:plugin name="cordova-plugin-console" source="npm" version="1.0.1" /> -->
     <gap:plugin name="cordova-plugin-contacts" source="npm" version="1.1.0" />
     <gap:plugin name="cordova-plugin-device" source="npm" version="1.0.1" />
     <gap:plugin name="cordova-plugin-device-motion" source="npm" version="1.1.1" />
@@ -46,6 +47,7 @@
     <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
     <gap:plugin name="cordova-plugin-vibration" source="npm" version="1.2.0" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.1.0" />
+	
 	<!-- Plugin Added for Push Notification -->
 	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.2.3" />
 	
@@ -97,7 +99,6 @@
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
-    
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
