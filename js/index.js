@@ -47,17 +47,28 @@ var app = {
         push.on('registration', function(data) {
             console.log("registration event: " + data.registrationId);
 			//document.getElementById("regId").innerHTML = data.registrationId;
-            console.log(JSON.stringify(data));			
+            //console.log(JSON.stringify(data));					
         });
 
         push.on('notification', function(data) {
-        	console.log("notification event");
-			console.log(JSON.stringify(data));			
+        	console.log("notification event received");
+			// data.message, 
+			console.log("Notification Message is: " + data.message) ;
+			// data.title, 
+			console.log("Notification Title is: " + data.title) ;
+			// data.count, 
+			console.log("Notification Count is: " + data.count) ;
+			// data.sound, 
+			console.log("Notification Sound is: " + data.sound) ;
+			// data.image, 
+			console.log("Notification Image is: " + data.image) ;
+			// data.additionalData 
+			console.log("Notification additionalData is: " + data.additionalData) ;
         });
 
         push.on('error', function(e) {
-            console.log("push error");
-			console.log(JSON.stringify(e));			
+            console.log("Error received");
+			console.log("Error Message is: " + e.message) ;				
         });
 		
 	}
