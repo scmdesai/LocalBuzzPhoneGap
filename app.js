@@ -40,6 +40,7 @@ if (!Ext.mixin) Ext.mixin = {};
 if (!Ext.proxy) Ext.proxy = {};
 if (!Ext.scroll) Ext.scroll = {};
 if (!Ext.scroll.indicator) Ext.scroll.indicator = {};
+if (!Ext.tab) Ext.tab = {};
 if (!Ext.util) Ext.util = {};
 if (!Ext.util.paintmonitor) Ext.util.paintmonitor = {};
 if (!Ext.util.sizemonitor) Ext.util.sizemonitor = {};
@@ -61107,6 +61108,558 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
+ * Used in the {@link Ext.tab.Bar} component. This shouldn't be used directly, instead use
+ * {@link Ext.tab.Bar} or {@link Ext.tab.Panel}.
+ * @private
+ */
+(Ext.cmd.derive('Ext.tab.Tab', Ext.Button, {
+    alternateClassName: 'Ext.Tab',
+    // @private
+    isTab: true,
+    config: {
+        /**
+         * @cfg baseCls
+         * @inheritdoc
+         */
+        baseCls: 'x-tab',
+        /**
+         * @cfg {String} pressedCls
+         * The CSS class to be applied to a Tab when it is pressed.
+         * Providing your own CSS for this class enables you to customize the pressed state.
+         * @accessor
+         */
+        pressedCls: 'x-tab-pressed',
+        /**
+         * @cfg {String} activeCls
+         * The CSS class to be applied to a Tab when it is active.
+         * Providing your own CSS for this class enables you to customize the active state.
+         * @accessor
+         */
+        activeCls: 'x-tab-active',
+        /**
+         * @cfg {Boolean} active
+         * Set this to `true` to have the tab be active by default.
+         * @accessor
+         */
+        active: false,
+        /**
+         * @cfg {String} title
+         * The title of the card that this tab is bound to.
+         * @accessor
+         */
+        title: '&nbsp;'
+    },
+    updateIconCls: function(newCls, oldCls) {
+        Ext.Button.prototype.updateIconCls.call(this, newCls, oldCls);
+        if (oldCls) {
+            this.removeCls('x-tab-icon');
+        }
+        if (newCls) {
+            this.addCls('x-tab-icon');
+        }
+    },
+    /**
+     * @event activate
+     * Fires when a tab is activated
+     * @param {Ext.tab.Tab} this
+     */
+    /**
+     * @event deactivate
+     * Fires when a tab is deactivated
+     * @param {Ext.tab.Tab} this
+     */
+    updateTitle: function(title) {
+        this.setText(title);
+    },
+    updateActive: function(active, oldActive) {
+        var activeCls = this.getActiveCls();
+        if (active && !oldActive) {
+            this.element.addCls(activeCls);
+            this.fireEvent('activate', this);
+        } else if (oldActive) {
+            this.element.removeCls(activeCls);
+            this.fireEvent('deactivate', this);
+        }
+    }
+}, 0, [
+    "tab"
+], [
+    "component",
+    "button",
+    "tab"
+], {
+    "component": true,
+    "button": true,
+    "tab": true
+}, [
+    "widget.tab"
+], 0, [
+    Ext.tab,
+    'Tab',
+    Ext,
+    'Tab'
+], function() {
+    this.override({
+        activate: function() {
+            this.setActive(true);
+        },
+        deactivate: function() {
+            this.setActive(false);
+        }
+    });
+}));
+
+/**
+ * Ext.tab.Bar is used internally by {@link Ext.tab.Panel} to create the bar of tabs that appears at the top of the tab
+ * panel. It's unusual to use it directly, instead see the {@link Ext.tab.Panel tab panel docs} for usage instructions.
+ *
+ * Used in the {@link Ext.tab.Panel} component to display {@link Ext.tab.Tab} components.
+ *
+ * @private
+ */
+(Ext.cmd.derive('Ext.tab.Bar', Ext.Toolbar, {
+    alternateClassName: 'Ext.TabBar',
+    config: {
+        /**
+         * @cfg baseCls
+         * @inheritdoc
+         */
+        baseCls: 'x-tabbar',
+        // @private
+        defaultType: 'tab',
+        // @private
+        layout: {
+            type: 'hbox',
+            align: 'middle'
+        }
+    },
+    eventedConfig: {
+        /**
+         * @cfg {Number/String/Ext.Component} activeTab
+         * The initially activated tab. Can be specified as numeric index,
+         * component ID or as the component instance itself.
+         * @accessor
+         * @evented
+         */
+        activeTab: null
+    },
+    /**
+     * @event tabchange
+     * Fired when active tab changes.
+     * @param {Ext.tab.Bar} this
+     * @param {Ext.tab.Tab} newTab The new Tab
+     * @param {Ext.tab.Tab} oldTab The old Tab
+     */
+    platformConfig: [
+        {
+            theme: [
+                'Blackberry',
+                'Blackberry103',
+                'CupertinoClassic',
+                'MountainView'
+            ],
+            defaults: {
+                flex: 1
+            }
+        }
+    ],
+    initialize: function() {
+        var me = this;
+        Ext.Toolbar.prototype.initialize.call(this);
+        me.on({
+            tap: 'onTabTap',
+            delegate: '> tab',
+            scope: me
+        });
+    },
+    // @private
+    onTabTap: function(tab) {
+        this.setActiveTab(tab);
+    },
+    /**
+     * @private
+     */
+    applyActiveTab: function(newActiveTab, oldActiveTab) {
+        if (!newActiveTab && newActiveTab !== 0) {
+            return;
+        }
+        var newTabInstance = this.parseActiveTab(newActiveTab);
+        if (!newTabInstance) {
+            return;
+        }
+        return newTabInstance;
+    },
+    /**
+     * @private
+     * Default pack to center when docked to the bottom, otherwise default pack to left
+     */
+    doSetDocked: function(newDocked) {
+        var layout = this.getLayout(),
+            initialConfig = this.getInitialConfig(),
+            pack;
+        if (!initialConfig.layout || !initialConfig.layout.pack) {
+            pack = (newDocked == 'bottom') ? 'center' : 'left';
+            //layout isn't guaranteed to be instantiated so must test
+            if (layout.isLayout) {
+                layout.setPack(pack);
+            } else {
+                layout.pack = (layout && layout.pack) ? layout.pack : pack;
+            }
+        }
+        Ext.Toolbar.prototype.doSetDocked.apply(this, arguments);
+    },
+    /**
+     * @private
+     * Sets the active tab
+     */
+    doSetActiveTab: function(newTab, oldTab) {
+        if (newTab) {
+            newTab.setActive(true);
+        }
+        //Check if the parent is present, if not it is destroyed
+        if (oldTab && oldTab.parent) {
+            oldTab.setActive(false);
+        }
+    },
+    /**
+     * @private
+     * Parses the active tab, which can be a number or string
+     */
+    parseActiveTab: function(tab) {
+        //we need to call getItems to initialize the items, otherwise they will not exist yet.
+        if (typeof tab == 'number') {
+            return this.getItems().items[tab];
+        } else if (typeof tab == 'string') {
+            tab = Ext.getCmp(tab);
+        }
+        return tab;
+    }
+}, 0, [
+    "tabbar"
+], [
+    "component",
+    "container",
+    "toolbar",
+    "tabbar"
+], {
+    "component": true,
+    "container": true,
+    "toolbar": true,
+    "tabbar": true
+}, [
+    "widget.tabbar"
+], 0, [
+    Ext.tab,
+    'Bar',
+    Ext,
+    'TabBar'
+], 0));
+
+/**
+ * Tab Panels are a great way to allow the user to switch between several pages that are all full screen. Each
+ * Component in the Tab Panel gets its own Tab, which shows the Component when tapped on. Tabs can be positioned at
+ * the top or the bottom of the Tab Panel, and can optionally accept title and icon configurations.
+ *
+ * Here's how we can set up a simple Tab Panel with tabs at the bottom. Use the controls at the top left of the example
+ * to toggle between code mode and live preview mode (you can also edit the code and see your changes in the live
+ * preview):
+ *
+ *     @example miniphone preview
+ *     Ext.create('Ext.TabPanel', {
+ *         fullscreen: true,
+ *         tabBarPosition: 'bottom',
+ *
+ *         defaults: {
+ *             styleHtmlContent: true
+ *         },
+ *
+ *         items: [
+ *             {
+ *                 title: 'Home',
+ *                 iconCls: 'home',
+ *                 html: 'Home Screen'
+ *             },
+ *             {
+ *                 title: 'Contact',
+ *                 iconCls: 'user',
+ *                 html: 'Contact Screen'
+ *             }
+ *         ]
+ *     });
+ * One tab was created for each of the {@link Ext.Panel panels} defined in the items array. Each tab automatically uses
+ * the title and icon defined on the item configuration, and switches to that item when tapped on. We can also position
+ * the tab bar at the top, which makes our Tab Panel look like this:
+ *
+ *     @example miniphone preview
+ *     Ext.create('Ext.TabPanel', {
+ *         fullscreen: true,
+ *
+ *         defaults: {
+ *             styleHtmlContent: true
+ *         },
+ *
+ *         items: [
+ *             {
+ *                 title: 'Home',
+ *                 html: 'Home Screen'
+ *             },
+ *             {
+ *                 title: 'Contact',
+ *                 html: 'Contact Screen'
+ *             }
+ *         ]
+ *     });
+ *
+ * For more information, see our [Tab Panel Guide](../../../components/tabpanel.html).
+ */
+(Ext.cmd.derive('Ext.tab.Panel', Ext.Container, {
+    alternateClassName: 'Ext.TabPanel',
+    config: {
+        /**
+         * @cfg {String} ui
+         * Sets the UI of this component.
+         * Available values are: `light` and `dark`.
+         * @accessor
+         */
+        ui: 'dark',
+        /**
+         * @cfg {Object} tabBar
+         * An Ext.tab.Bar configuration.
+         * @accessor
+         */
+        tabBar: true,
+        /**
+         * @cfg {String} tabBarPosition
+         * The docked position for the {@link #tabBar} instance.
+         * Possible values are 'top' and 'bottom'.
+         * @accessor
+         */
+        tabBarPosition: 'top',
+        /**
+         * @cfg layout
+         * @inheritdoc
+         */
+        layout: {
+            type: 'card',
+            animation: {
+                type: 'slide',
+                direction: 'left'
+            }
+        },
+        /**
+         * @cfg cls
+         * @inheritdoc
+         */
+        cls: 'x-tabpanel'
+    },
+    /**
+         * @cfg {Boolean/String/Object} scrollable
+         * @accessor
+         * @hide
+         */
+    /**
+         * @cfg {Boolean/String/Object} scroll
+         * @hide
+         */
+    initialize: function() {
+        Ext.Container.prototype.initialize.call(this);
+        this.on({
+            order: 'before',
+            activetabchange: 'doTabChange',
+            delegate: '> tabbar',
+            scope: this
+        });
+        this.on({
+            disabledchange: 'onItemDisabledChange',
+            delegate: '> component',
+            scope: this
+        });
+    },
+    platformConfig: [
+        {
+            theme: [
+                'Blackberry',
+                'Blackberry103'
+            ],
+            tabBarPosition: 'bottom'
+        }
+    ],
+    /**
+     * Tab panels should not be scrollable. Instead, you should add scrollable to any item that
+     * you want to scroll.
+     * @private
+     */
+    applyScrollable: function() {
+        return false;
+    },
+    /**
+     * Updates the Ui for this component and the {@link #tabBar}.
+     */
+    updateUi: function(newUi, oldUi) {
+        Ext.Container.prototype.updateUi.apply(this, arguments);
+        if (this.initialized) {
+            this.getTabBar().setUi(newUi);
+        }
+    },
+    /**
+     * @private
+     */
+    doSetActiveItem: function(newActiveItem, oldActiveItem) {
+        if (newActiveItem) {
+            var items = this.getInnerItems(),
+                oldIndex = items.indexOf(oldActiveItem),
+                newIndex = items.indexOf(newActiveItem),
+                reverse = oldIndex > newIndex,
+                animation = this.getLayout().getAnimation(),
+                tabBar = this.getTabBar(),
+                oldTab = tabBar.parseActiveTab(oldIndex),
+                newTab = tabBar.parseActiveTab(newIndex);
+            if (animation && animation.setReverse) {
+                animation.setReverse(reverse);
+            }
+            Ext.Container.prototype.doSetActiveItem.apply(this, arguments);
+            if (newIndex != -1) {
+                this.forcedChange = true;
+                tabBar.setActiveTab(newIndex);
+                this.forcedChange = false;
+                if (oldTab) {
+                    oldTab.setActive(false);
+                }
+                if (newTab) {
+                    newTab.setActive(true);
+                }
+            }
+        }
+    },
+    /**
+     * Updates this container with the new active item.
+     * @param {Object} tabBar
+     * @param {Object} newTab
+     * @return {Boolean}
+     */
+    doTabChange: function(tabBar, newTab) {
+        var oldActiveItem = this.getActiveItem(),
+            newActiveItem;
+        this.setActiveItem(tabBar.indexOf(newTab));
+        newActiveItem = this.getActiveItem();
+        return this.forcedChange || oldActiveItem !== newActiveItem;
+    },
+    /**
+     * Creates a new {@link Ext.tab.Bar} instance using {@link Ext#factory}.
+     * @param {Object} config
+     * @return {Object}
+     * @private
+     */
+    applyTabBar: function(config) {
+        if (config === true) {
+            config = {};
+        }
+        if (config) {
+            Ext.applyIf(config, {
+                ui: this.getUi(),
+                docked: this.getTabBarPosition()
+            });
+        }
+        return Ext.factory(config, Ext.tab.Bar, this.getTabBar());
+    },
+    /**
+     * Adds the new {@link Ext.tab.Bar} instance into this container.
+     * @private
+     */
+    updateTabBar: function(newTabBar) {
+        if (newTabBar) {
+            this.add(newTabBar);
+            this.setTabBarPosition(newTabBar.getDocked());
+        }
+    },
+    /**
+     * Updates the docked position of the {@link #tabBar}.
+     * @private
+     */
+    updateTabBarPosition: function(position) {
+        var tabBar = this.getTabBar();
+        if (tabBar) {
+            tabBar.setDocked(position);
+        }
+    },
+    onItemAdd: function(card) {
+        var me = this;
+        if (!card.isInnerItem()) {
+            return Ext.Container.prototype.onItemAdd.apply(this, arguments);
+        }
+        var tabBar = me.getTabBar(),
+            initialConfig = card.getInitialConfig(),
+            tabConfig = initialConfig.tab || {},
+            tabTitle = (card.getTitle) ? card.getTitle() : initialConfig.title,
+            tabIconCls = (card.getIconCls) ? card.getIconCls() : initialConfig.iconCls,
+            tabHidden = (card.getHidden) ? card.getHidden() : initialConfig.hidden,
+            tabDisabled = (card.getDisabled) ? card.getDisabled() : initialConfig.disabled,
+            tabBadgeText = (card.getBadgeText) ? card.getBadgeText() : initialConfig.badgeText,
+            innerItems = me.getInnerItems(),
+            index = innerItems.indexOf(card),
+            tabs = tabBar.getItems(),
+            activeTab = tabBar.getActiveTab(),
+            currentTabInstance = (tabs.length >= innerItems.length) && tabs.getAt(index),
+            tabInstance;
+        if (tabTitle && !tabConfig.title) {
+            tabConfig.title = tabTitle;
+        }
+        if (tabIconCls && !tabConfig.iconCls) {
+            tabConfig.iconCls = tabIconCls;
+        }
+        if (tabHidden && !tabConfig.hidden) {
+            tabConfig.hidden = tabHidden;
+        }
+        if (tabDisabled && !tabConfig.disabled) {
+            tabConfig.disabled = tabDisabled;
+        }
+        if (tabBadgeText && !tabConfig.badgeText) {
+            tabConfig.badgeText = tabBadgeText;
+        }
+        tabInstance = Ext.factory(tabConfig, Ext.tab.Tab, currentTabInstance);
+        if (!currentTabInstance) {
+            tabBar.insert(index, tabInstance);
+        }
+        card.tab = tabInstance;
+        Ext.Container.prototype.onItemAdd.apply(this, arguments);
+        if (!activeTab && activeTab !== 0) {
+            tabBar.setActiveTab(tabBar.getActiveItem());
+        }
+    },
+    /**
+     * If an item gets enabled/disabled and it has an tab, we should also enable/disable that tab
+     * @private
+     */
+    onItemDisabledChange: function(item, newDisabled) {
+        if (item && item.tab) {
+            item.tab.setDisabled(newDisabled);
+        }
+    },
+    // @private
+    onItemRemove: function(item, index) {
+        this.getTabBar().remove(item.tab, this.getAutoDestroy());
+        Ext.Container.prototype.onItemRemove.apply(this, arguments);
+    }
+}, 0, [
+    "tabpanel"
+], [
+    "component",
+    "container",
+    "tabpanel"
+], {
+    "component": true,
+    "container": true,
+    "tabpanel": true
+}, [
+    "widget.tabpanel"
+], 0, [
+    Ext.tab,
+    'Panel',
+    Ext,
+    'TabPanel'
+], function() {}));
+
+/**
  * @private
  * Base class for iOS and Android viewports.
  */
@@ -62690,10 +63243,6 @@ Ext.define('Ext.direct.Manager', {
                 name: 'picture'
             },
             {
-                name: 'isFavorite',
-                type: 'boolean'
-            },
-            {
                 name: 'customerId'
             }
         ]
@@ -62743,6 +63292,40 @@ Ext.define('Ext.direct.Manager', {
 }, 0, 0, 0, 0, 0, 0, [
     Contact.model,
     'Deal'
+], 0));
+
+/*
+ * File: app/model/UserPreferences.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.model.UserPreferences', Ext.data.Model, {
+    config: {
+        idProperty: '',
+        fields: [
+            {
+                name: 'customerId',
+                type: 'auto'
+            },
+            {
+                defaultValue: false,
+                name: 'isFavorite',
+                type: 'boolean'
+            }
+        ]
+    }
+}, 0, 0, 0, 0, 0, 0, [
+    Contact.model,
+    'UserPreferences'
 ], 0));
 
 /*
@@ -62922,6 +63505,80 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /*
+ * File: app/store/UserPreferences.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.store.UserPreferences', Ext.data.Store, {
+    config: {
+        autoSync: true,
+        buffered: true,
+        model: 'Contact.model.UserPreferences',
+        remoteFilter: true,
+        storeId: 'UserPreferences',
+        proxy: {
+            type: 'localstorage',
+            batchActions: false,
+            id: ''
+        }
+    }
+}, 0, 0, 0, 0, 0, 0, [
+    Contact.store,
+    'UserPreferences'
+], 0));
+
+/*
+ * File: app/store/MyJsonPStore1.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.store.MyJsonPStore1', Ext.data.Store, {
+    config: {
+        autoLoad: true,
+        groupField: 'category',
+        model: 'Contact.model.Contact',
+        storeId: 'MyJsonPStore1',
+        grouper: {
+            groupFn: function(item) {
+                return record.get('category');
+            },
+            sortProperty: ''
+        },
+        sorters: {
+            sorterFn: function(first, second) {}
+        },
+        proxy: {
+            type: 'jsonp',
+            url: 'http://awseb-e-t-awsebloa-6wjsk6atywko-728481327.us-west-2.elb.amazonaws.com/stores',
+            reader: {
+                type: 'json'
+            }
+        }
+    }
+}, 0, 0, 0, 0, 0, 0, [
+    Contact.store,
+    'MyJsonPStore1'
+], 0));
+
+/*
  * File: app/view/List.js
  *
  * This file was generated by Sencha Architect version 3.2.0.
@@ -62970,6 +63627,52 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /*
+ * File: app/view/FavoriteView.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.view.FavoriteView', Ext.dataview.DataView, {
+    config: {
+        height: 415,
+        itemId: 'favoriteview',
+        emptyText: 'No Favorites',
+        inline: true,
+        store: 'MyJsonPStore1',
+        itemTpl: [
+            '<div class="favorite"><img src="{picture:empty("resources/img/defaultContactPic.png")}" width="160" />,',
+            '                <div>{businessName}</div>',
+            '            </div>'
+        ]
+    }
+}, 0, [
+    "favoriteview"
+], [
+    "component",
+    "container",
+    "dataview",
+    "favoriteview"
+], {
+    "component": true,
+    "container": true,
+    "dataview": true,
+    "favoriteview": true
+}, [
+    "widget.favoriteview"
+], 0, [
+    Contact.view,
+    'FavoriteView'
+], 0));
+
+/*
  * File: app/view/Main.js
  *
  * This file was generated by Sencha Architect version 3.2.0.
@@ -62983,38 +63686,40 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.Main', Ext.Panel, {
+(Ext.cmd.derive('Contact.view.Main', Ext.tab.Panel, {
     config: {
-        cls: 'home',
-        html: '',
-        style: '',
-        layout: 'fit',
-        scrollable: true,
         items: [
             {
-                xtype: 'toolbar',
-                cls: 'customToolbar',
-                docked: 'top',
-                html: '<center><img src="localbuzz.png"/></center>',
-                padding: '10 0 0 0',
-                style: 'font-size:5vw',
-                ui: 'light'
+                xtype: 'container',
+                title: 'Home',
+                items: [
+                    {
+                        xtype: 'contactlist',
+                        height: 403
+                    }
+                ]
             },
             {
-                xtype: 'contactlist',
-                style: 'font-size:7vw',
-                itemCls: 'list-items'
+                xtype: 'container',
+                title: 'My Favorites',
+                itemId: 'mycontainer1',
+                items: [
+                    {
+                        xtype: 'favoriteview',
+                        itemId: 'favoriteview1'
+                    }
+                ]
             }
         ]
     }
 }, 0, 0, [
     "component",
     "container",
-    "panel"
+    "tabpanel"
 ], {
     "component": true,
     "container": true,
-    "panel": true
+    "tabpanel": true
 }, 0, 0, [
     Contact.view,
     'Main'
@@ -63133,6 +63838,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.Info', Ext.form.Panel, {
     config: {
         border: 5,
+        height: 463,
         enableSubmissionForm: false,
         items: [
             {
@@ -63149,13 +63855,22 @@ Ext.define('Ext.direct.Manager', {
                         text: 'Back'
                     },
                     {
+                        xtype: 'button',
+                        handler: function(button, e) {
+                            button.addCls('x-button-pressed');
+                        },
+                        cls: 'empty-star',
+                        docked: 'right',
+                        itemId: 'favbutton',
+                        style: ''
+                    },
+                    {
                         xtype: 'spacer',
                         height: 11,
                         width: 18
                     },
                     {
                         xtype: 'component',
-                        flex: 1,
                         cls: 'contact-name',
                         disabled: true,
                         html: '<b>First Name</b>',
@@ -63264,26 +63979,72 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onFavbuttonTap',
+                event: 'tap',
+                delegate: '#favbutton'
+            }
         ]
+    },
+    onFavbuttonTap: function(button, e, eOpts) {
+        var store = Ext.getStore('UserPreferences');
+        //store.clearFilter();
+        var pressingCls = 'x-button-pressed';
+        button.element.toggleCls(pressingCls);
+        var isPressed = button.element.hasCls(pressingCls);
+        var record = this.getRecord();
+        var customerId = record.get('customerId');
+        store.add({
+            'customerId': customerId,
+            'isFavorite': isPressed
+        });
+        if (isPressed === true) {
+            button.setCls('fill-star');
+        } else // localStorage.setItem('customerId',record.get('customerId'));
+        // localStorage.setItem('isFavorite', isPressed);
+        // store.add({'customerId':customerId,'isFavorite':isPressed});
+        //  store.sync();
+        {
+            button.setCls('empty-star');
+            // localStorage.removeItem('customerId');
+            // localStorage.removeItem('isFavorite
+            store.findRecord('customerId', customerId).destroy();
+            store.sync();
+        }
+        console.log(customerId + isPressed);
+        record.set('isFavorite', isPressed);
+        store.sync();
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
             var isFavorite = record.get('isFavorite');
-            this.down('#nameTxt').setHtml(name);
-            //this.down('#favlist')[isFavorite ? 'addCls' : 'removeCls']('empty-star');
-            // this.down('#favoriteBtn')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
-            this.down('contactpic').setData(record.data);
             var customerId = record.get('customerId');
+            var store = Ext.getStore('UserPreferences');
+            if (store.getAllCount() !== 0) {
+                store.each(function(rec) {
+                    if (rec.get('customerId') == customerId) {
+                        isFavorite = rec.get('isFavorite');
+                    }
+                });
+            }
+            this.down('#nameTxt').setHtml(name);
+            console.log(store.getData());
+            if (isFavorite === true) {
+                this.down('#favbutton').setCls('fill-star');
+            } else //store.setData({'isFavorite':isFavorite});
+            {
+                this.down('#favbutton').setCls('empty-star');
+            }
+            // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+            this.down('#favbutton')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+            this.down('contactpic').setData(record.data);
             var ds = Ext.StoreManager.lookup('MyDealsStore');
             ds.clearFilter();
             ds.filter('customerId', customerId);
-            /*dealsData  = ds.getData().getAt(0);
-            var dealName = 'No Deals';
-            if(dealsData) {
-                 dealName = dealsData.get('dealName');
-            }*/
             this.down('listofdeals').setData(ds.getData());
         }
     }
@@ -63307,6 +64068,11 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'Info'
 ], 0));
+/*dealsData  = ds.getData().getAt(0);
+            var dealName = 'No Deals';
+            if(dealsData) {
+                 dealName = dealsData.get('dealName');
+            }*/
 
 /*
  * File: app/view/DealPicture.js
@@ -63394,7 +64160,9 @@ Ext.define('Ext.direct.Manager', {
     config: {
         stores: [
             'MyJsonPStore',
-            'MyDealsStore'
+            'MyDealsStore',
+            'MyJsonPStore1',
+            'UserPreferences'
         ],
         refs: {
             contactinfo: {
@@ -63418,7 +64186,12 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'dealpicture'
             },
             phoneNumber: 'textfield#phoneNumber',
-            address: 'textfield#address'
+            address: 'textfield#address',
+            mycontainer1: {
+                selector: 'container#mycontainer1',
+                xtype: 'favoriteview'
+            },
+            favoriteview: 'dataview#favoriteview'
         },
         control: {
             "dataview": {
@@ -63426,9 +64199,6 @@ Ext.define('Ext.direct.Manager', {
             },
             "button#infoBackBtn": {
                 tap: 'onInfoBackBtnTapHome'
-            },
-            "favoriteview": {
-                activate: 'onFavoriteViewActivate'
             },
             "contactpic": {
                 change: 'onContactPickerChange'
@@ -63447,6 +64217,9 @@ Ext.define('Ext.direct.Manager', {
             },
             "textfield#address": {
                 focus: 'onAddressFocus'
+            },
+            "container#mycontainer1": {
+                activate: 'onMycontainer1Activate'
             }
         }
     },
@@ -63454,15 +64227,27 @@ Ext.define('Ext.direct.Manager', {
         var info = this.getContactinfo();
         info.setRecord(record);
         Ext.Viewport.setActiveItem(info);
+        console.log(record);
     },
     onInfoBackBtnTapHome: function(button, e, eOpts) {
-        var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter();
+        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter() ;*/
         Ext.Viewport.setActiveItem(0);
-    },
-    onFavoriteViewActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.filter('isFavorite', true);
+        var store = Ext.getStore('UserPreferences');
+        var records = [];
+        var ds = Ext.getStore('MyJsonPStore1');
+        ds.clearFilter();
+        //store.clearFilter();
+        store.each(function(rec) {
+            if (rec.get('isFavorite') === true) {
+                records.push(rec.get('customerId'));
+            } else {
+                Ext.Array.remove(records, rec.get('customerId'));
+            }
+        });
+        ds.filterBy(function(record) {
+            return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
+        }, this);
     },
     onContactPickerChange: function(picker, value, eOpts) {
         var currentForm = Ext.Viewport.getActiveItem();
@@ -63524,10 +64309,77 @@ Ext.define('Ext.direct.Manager', {
         e.stopEvent();
         e.destroy();
         Ext.device.Device.openURL(url);
+    },
+    onMycontainer1Activate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        var store = Ext.getStore('UserPreferences');
+        var records = [];
+        var ds = Ext.getStore('MyJsonPStore1');
+        ds.clearFilter();
+        //store.clearFilter();
+        store.each(function(rec) {
+            if (rec.get('isFavorite') === true) {
+                records.push(rec.get('customerId'));
+            } else {
+                Ext.Array.remove(records, rec.get('customerId'));
+            }
+        });
+        ds.filterBy(function(record) {
+            return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
+        }, this);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
     'Contacts'
+], 0));
+
+/*
+ * File: app/view/Main1.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.view.Main1', Ext.Panel, {
+    config: {
+        cls: 'home',
+        html: '',
+        style: '',
+        items: [
+            {
+                xtype: 'toolbar',
+                cls: 'customToolbar',
+                docked: 'top',
+                html: '<center><img src="localbuzz.png"/></center>',
+                padding: '10 0 0 0',
+                style: 'font-size:5vw',
+                ui: 'light'
+            },
+            {
+                xtype: 'contactlist',
+                height: 379,
+                style: 'font-size:7vw',
+                itemCls: 'list-items'
+            }
+        ]
+    }
+}, 0, 0, [
+    "component",
+    "container",
+    "panel"
+], {
+    "component": true,
+    "container": true,
+    "panel": true
+}, 0, 0, [
+    Contact.view,
+    'Main1'
 ], 0));
 
 /*
@@ -63549,20 +64401,25 @@ Ext.Loader.setConfig({});
 Ext.application({
     models: [
         'Contact',
-        'Deal'
+        'Deal',
+        'UserPreferences'
     ],
     stores: [
         'ContactStore',
         'MyJsonPStore',
-        'MyDealsStore'
+        'MyDealsStore',
+        'UserPreferences',
+        'MyJsonPStore1'
     ],
     views: [
-        'Main',
+        'Main1',
         'Info',
         'Picture',
         'List',
         'DealPicture',
-        'ListOfDeals'
+        'ListOfDeals',
+        'Main',
+        'FavoriteView'
     ],
     controllers: [
         'Contacts'
