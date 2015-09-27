@@ -63520,6 +63520,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.store.UserPreferences', Ext.data.Store, {
     config: {
+        autoLoad: true,
         autoSync: true,
         buffered: true,
         model: 'Contact.model.UserPreferences',
