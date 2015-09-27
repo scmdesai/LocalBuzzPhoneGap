@@ -64032,7 +64032,7 @@ Ext.define('Ext.direct.Manager', {
                 });
             }
             this.down('#nameTxt').setHtml(name);
-            console.log(store.getData());
+            // console.log(store.getData());
             if (isFavorite === true) {
                 this.down('#favbutton').setCls('fill-star');
             } else //store.setData({'isFavorite':isFavorite});
