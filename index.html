@@ -52,6 +52,7 @@
     </style>
 	<script src="http://jsconsole.com/remote.js?1BADBE6A-5C96-4D99-BC71-79C1AD60F1B9"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+   <script src="GAPlugin.js"></script>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" data-app="ebc4f696-1e89-476c-adac-9fb508192e9f" type="text/javascript">(function(d){function l(b,d){var a=document.createElement("meta");a.setAttribute("name",b);a.setAttribute("content",d);p.appendChild(a)}var p=d.document.head||d.document.getElementsByTagName("head")[0],b=d.Ext;"undefined"==typeof b&&(d.Ext=b={});b.blink=function(d){var m=d.js||[];d=d.css||[];var a,h,c,g,n,j;navigator.userAgent.match(/IEMobile\/10\.0/)&&(a=document.createElement("style"),a.appendChild(document.createTextNode("@media screen and (orientation: portrait) {@-ms-viewport {width: 320px !important;}}@media screen and (orientation: landscape) {@-ms-viewport {width: 560px !important;}}")),
 document.getElementsByTagName("head")[0].appendChild(a));l("viewport","width\x3ddevice-width, initial-scale\x3d1.0, maximum-scale\x3d1.0, minimum-scale\x3d1.0, user-scalable\x3dno");l("apple-mobile-web-app-capable","yes");l("apple-touch-fullscreen","yes");b.microloaded=!0;var k=window.Ext.filterPlatform=function(a){function c(a){var b=/Mobile(\/|\s)/.test(a);return/(iPhone|iPod)/.test(a)||!/(Silk)/.test(a)&&/(Android)/.test(a)&&(/(Android 2)/.test(a)||b)||/(BlackBerry|BB)/.test(a)&&b||/(Windows Phone)/.test(a)}
@@ -59,6 +60,23 @@ function d(a){return!c(a)&&(/iPad/.test(a)||/Android|Silk/.test(a)||/(RIM Tablet
 break;case "android":f=/(Android|Silk)/.test(e);break;case "blackberry":f=/(BlackBerry|BB)/.test(e);break;case "safari":f=/Safari/.test(e)&&!/(BlackBerry|BB)/.test(e);break;case "chrome":f=/Chrome/.test(e);break;case "ie10":f=/MSIE 10/.test(e);break;case "windows":f=/MSIE 10/.test(e)||/Trident/.test(e);break;case "tizen":f=/Tizen/.test(e);break;case "firefox":f=/Firefox/.test(e)}if(f)return!0}return!1};a=0;for(h=d.length;a<h;a++){c=d[a];"string"!=typeof c&&(g=c.platform,j=c.exclude,n=c.theme,c=c.path);
 if(g){if(!k(g)||k(j))continue;b.theme||(b.theme={});b.theme.name||(b.theme.name=n||"Default")}document.write('\x3clink rel\x3d"stylesheet" href\x3d"'+c+'"\x3e')}a=0;for(h=m.length;a<h;a++)c=m[a],"string"!=typeof c&&(g=c.platform,j=c.exclude,c=c.path),(!g||k(g)&&!k(j))&&document.write('\x3cscript src\x3d"'+c+'"\x3e\x3c/script\x3e')}})(this);
 Ext.blink({id:"ebc4f696-1e89-476c-adac-9fb508192e9f",js:[{path:"phonegap.js",remote:!0},{path:"app.js",update:"delta"}],css:[{path:"resources/css/contacts.css"},{path:"resources/css/sencha-touch-bcdd5b97-dbf8-4dc3-9a52-df399e98c450.css",update:"delta",theme:"Default",platform:["phone","tablet","desktop"]}]});</script>
+<script type="text/javascript">
+    var gaObj;
+    function initialize() {
+        document.addEventListener("deviceready", onDeviceReady, true);
+    }
+    function onDeviceReady() {
+        gaObj = window.plugins.gaPlugin;
+        gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-67469655-1", 15);
+        TrackPageView("androidapp/index.html");
+    }
+    function TrackEvent(category,action,label,value) {
+        gaObj.trackEvent( function() {console.log('success');}, function() {console.log('failed');}, category, action, label, value);
+    }
+    function TrackPageView(pageurl) {
+        gaObj.trackPage(function() {console.log('success');}, function() {console.log('failed');}, pageurl);
+    }
+</script>
 </head>
 <body>
     <div id="appLoadingIndicator">

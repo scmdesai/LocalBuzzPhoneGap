@@ -64276,6 +64276,7 @@ Ext.define('Ext.direct.Manager', {
         console.log(eOpts) ;*/
         pic.setRecord(record);
         Ext.Viewport.setActiveItem(pic);
+        onClick = "_gaq.push(['_trackEvent', 'Images', 'Click', 'Deal Picture']);";
     },
     onDealBackBtnTap: function(button, e, eOpts) {
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
