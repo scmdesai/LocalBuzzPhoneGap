@@ -67,7 +67,7 @@ Ext.blink({id:"ebc4f696-1e89-476c-adac-9fb508192e9f",js:[{path:"phonegap.js",rem
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-67469655-2', 'auto');
+  ga('create', 'UA-67469655-1', 'auto');
   ga('send', 'pageview');
   ga('send', 'trackEvent', 'Images', 'Click', 'Deal Picture');
 
@@ -79,17 +79,13 @@ Ext.blink({id:"ebc4f696-1e89-476c-adac-9fb508192e9f",js:[{path:"phonegap.js",rem
         document.addEventListener("deviceready", onDeviceReady, true);
     }
     function onDeviceReady() {
-        gaObj = window.plugins.gaPlugin;
-        gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-67469655-1", 15);
-        TrackPageView("androidapp/index.html");
+        window.analytics.startTrackerWithId('UA-67469655-1');
     }
-    function _trackEvent(category,action,label,value) {
-        gaObj.trackEvent( function() {console.log('success');}, function() {console.log('failed');}, category, action, label, value);
+    function TrackEvent(category,action,label,value) {
+       window.analytics.trackEvent('Images', 'Click', 'Deal Picture', 0);
 		
     }
-    function TrackPageView(pageurl) {
-        gaObj.trackPage(function() {console.log('success');}, function() {console.log('failed');}, pageurl);
-    }
+    
 </script>
 </head>
 <body>
