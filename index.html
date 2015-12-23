@@ -70,7 +70,7 @@ Ext.blink({id:"ebc4f696-1e89-476c-adac-9fb508192e9f",js:[{path:"phonegap.js",rem
         gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-67469655-1", 15);
         TrackPageView("androidapp/index.html");
     }
-    function TrackEvent(category,action,label,value) {
+    function _trackEvent(category,action,label,value) {
         gaObj.trackEvent( function() {console.log('success');}, function() {console.log('failed');}, category, action, label, value);
     }
     function TrackPageView(pageurl) {
