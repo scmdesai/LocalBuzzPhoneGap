@@ -74,20 +74,46 @@ var app = {
 		/* Amazon Mobile Analytics*/
 		AWS.config.region = 'us-east-1';
 		AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-		IdentityPoolId: 'us-east-1:cd2c5cf7-2b6d-49a6-be5f-5d1a92113389' //Amazon Cognito Identity Pool ID
-		
+			IdentityPoolId: 'us-east-1:cd2c5cf7-2b6d-49a6-be5f-5d1a92113389' //Amazon Cognito Identity Pool ID
+		}); 
 		var options = {
-    appId : 'b8f01603ccc24b2c9d0e78b76334febe', //Amazon Mobile Analytics App ID
-	platform: 'JavaScript',
-    appTitle : 'Local Buzz',              //Optional e.g. 'Example App'
+			appId : 'b8f01603ccc24b2c9d0e78b76334febe', //Amazon Mobile Analytics App ID
+			platform: 'Android',
+			logger: console,
+			appTitle : 'Local Buzz'              //Optional e.g. 'Example App'
     
+		};
+
+		this.mobileAnalyticsClient = new AMA.Manager(options);
+		//mobileAnalyticsClient.startSession();
+		//mobileAnalyticsClient.submitEvents();
+
+		console.log('Analytics initialized');
+  
+        document.addEventListener('pause', this.mobileAnalyticsClient.stopSession.bind(this.mobileAnalyticsClient), false);
+        document.addEventListener('resume', this.mobileAnalyticsClient.startSession.bind(this.mobileAnalyticsClient), false);
+        document.addEventListener('touchstart', this.recordTouchEvent.bind(this), false);
+    }, // end of onDeviceReady function
+	
+    touchCount: 0,
+    
+	recordTouchEvent: function(event) {
+        console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
+            'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
+        console.log('Touch Event recorded');
+    },
+  
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+  
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+  
+        console.log('Received Event: ' + id);
+	}		
 };
 
-var mobileAnalyticsClient = new AMA.Manager(options);
-mobileAnalyticsClient.startSession();
-mobileAnalyticsClient.submitEvents();
-
-});		
-	}
-};
 app.initialize();
