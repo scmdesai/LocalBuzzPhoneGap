@@ -53,8 +53,6 @@
 	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.2.3" />
 	<!-- Plugin Added for Google Analytics -->
 	
-	<!-- Plugin to avoid the error Uncaught TypeError: Converting circular structure to JSON -->
-	<gap:plugin name="cycle" source="npm" version="1.0.3" />
 	
 	
 	<!-- <gap:plugin name="com.analytics.google" version="1.2.2" />
