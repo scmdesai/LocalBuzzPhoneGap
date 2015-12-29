@@ -92,7 +92,7 @@ var app = {
   
         document.addEventListener('pause', this.mobileAnalyticsClient.stopSession.bind(this.mobileAnalyticsClient), false);
         document.addEventListener('resume', this.mobileAnalyticsClient.startSession.bind(this.mobileAnalyticsClient), false);
-        document.addEventListener('touchstart', this.recordEvent(this), false);
+        document.addEventListener('touchstart', this.recordTouchEvent.bind(this), false);
     }, // end of onDeviceReady function
 	
     touchCount: 0,
