@@ -28,6 +28,15 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
+
+    touchCount: 0,
+    
+	recordTouchEvent: function(event) {
+        console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
+            'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
+        
+    },
+
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -93,18 +102,11 @@ var app = {
         document.addEventListener('pause', this.mobileAnalyticsClient.stopSession.bind(this.mobileAnalyticsClient), false);
         document.addEventListener('resume', this.mobileAnalyticsClient.startSession.bind(this.mobileAnalyticsClient), false);
        // document.addEventListener('touch', this.recordTouchEvent.bind(this.mobileAnalyticsClient), false);
-	   document.addEventListener('touch', this.recordTouchEvent.bind(this), false);
+	   document.addEventListener('touchstart', this.recordTouchEvent.bind(this), false);
 	   //document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));
 	   console.log('Touch Event recorded');
     }, // end of onDeviceReady function
 	
-    touchCount: 0,
-    
-	recordTouchEvent: function(event) {
-        console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
-            'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
-        
-    },
   
     // Update DOM on a Received Event
     receivedEvent: function(id) {
