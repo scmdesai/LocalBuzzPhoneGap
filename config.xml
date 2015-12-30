@@ -26,7 +26,7 @@
     <preference name="show-splash-screen-spinner" value="false" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
