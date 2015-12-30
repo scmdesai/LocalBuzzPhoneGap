@@ -97,15 +97,32 @@ var app = {
        // document.addEventListener('touch', this.recordTouchEvent.bind(this.mobileAnalyticsClient), false);
 	   document.addEventListener('touchstart', this.recordTouchEvent.bind(this), false);
 	   //document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));
-	   console.log('Touch Event recorded');
+	   
     }, // end of onDeviceReady function
 	
     touchCount: 0,
     
 	recordTouchEvent: function(event) {
+		console.log('Touch Event recorded');
         console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
             'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
-		console.log(JSON.stringify(event)) ;
+		
+		// retrieve the TouchList
+		var touches = event.changedTouches;
+		
+		// iterate through the TouchList
+		for (var i = 0; i < touches.length; i++) {
+			console.log("touchstart:" + i + "...");
+			var touchObject = touches[i] ;
+			var touchElement = touchObject.target ;
+			var attrCollection = touchElement.attributes ;
+			
+			for(var k=0; k < attrCollection.length; k++)
+			{
+				console.log("Attribute Name is:" + attrCollection[k].name);
+				console.log("Attribute Value is:" + attrCollection[k].value);
+			}
+		}
         
     },
   
