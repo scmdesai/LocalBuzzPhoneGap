@@ -79,7 +79,7 @@ var app = {
 		var options = {
 			appId : 'b8f01603ccc24b2c9d0e78b76334febe', //Amazon Mobile Analytics App ID
 			platform: 'Android',
-			logger: console,
+			// logger: console,  // Commented this line to get rid of the error Uncaught TypeError: Converting circular structure to JSON 
 			appTitle : 'Local Buzz'              //Optional e.g. 'Example App'
     
 		};
