@@ -121,7 +121,7 @@ var app = {
 			console.log("Element Tag Name is:" + touchElement.tagName) ;
 			console.log("Inner HTML is:"+ touchElement.innerHTML) ;
 			console.log("Outer HTML is:"+ touchElement.outerHTML) ;
-			
+			/*
 			var attrCollection = touchElement.attributes ;
 			
 			
@@ -130,6 +130,7 @@ var app = {
 				console.log("Attribute Name is:" + attrCollection[k].name);
 				console.log("Attribute Value is:" + attrCollection[k].value);
 			}
+			*/
 		}
         
     },
