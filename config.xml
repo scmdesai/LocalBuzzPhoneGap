@@ -51,7 +51,7 @@
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.1.0" />
 	
 	<!-- Plugin Added for Push Notification -->
-	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.2.3" />
+	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.5.2" />
 	<!-- Plugin Added for Google Analytics -->
 	<gap:plugin name="cordova-plugin-google-analytics"  source="npm" version="0.8.1"/>
 	<!-- End Google Analytics -->
