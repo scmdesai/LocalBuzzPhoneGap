@@ -99,6 +99,12 @@ var app = {
 	   document.addEventListener('touchstart', this.recordTouchEvent.bind(this), false);
 	   //document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));*/
 	   
+	   
+	   /* Begin Google Analytics Code*/
+	   window.analytics.startTrackerWithId('UA-67469655-1');
+	   window.analytics.trackEvent('TouchEvent', 'Touch', 'Main');
+	   
+	   
     }, // end of onDeviceReady function
 	
     /*touchCount: 0,
