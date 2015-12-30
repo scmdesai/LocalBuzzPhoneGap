@@ -26,16 +26,9 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
-    touchCount: 0,
-    
-	recordTouchEvent: function(event) {
-        console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
-            'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
-        
-    },
 
     // deviceready Event Handler
     //
@@ -107,6 +100,13 @@ var app = {
 	   console.log('Touch Event recorded');
     }, // end of onDeviceReady function
 	
+    touchCount: 0,
+    
+	recordTouchEvent: function(event) {
+        console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
+            'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
+        
+    },
   
     // Update DOM on a Received Event
     receivedEvent: function(id) {
