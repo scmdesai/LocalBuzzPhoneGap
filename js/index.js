@@ -105,6 +105,7 @@ var app = {
 	recordTouchEvent: function(event) {
         console.log(this.mobileAnalyticsClient.recordEvent('customTouch', { 
             'screenName': 'main'}, {'touchCount': this.touchCount++ } ));
+		console.log(JSON.stringify(event)) ;
         
     },
   
