@@ -115,7 +115,15 @@ var app = {
 			console.log("touchstart:" + i + "...");
 			var touchObject = touches[i] ;
 			var touchElement = touchObject.target ;
+			
+			console.log("Element ClassName is:" + touchElement.className) ;
+			console.log("Element ID is:" + touchElement.id) ;
+			console.log("Element Tag Name is:" + touchElement.tagName) ;
+			console.log("Inner HTML is:"+ touchElement.innerHTML) ;
+			console.log("Outer HTML is:"+ touchElement.outerHTML) ;
+			
 			var attrCollection = touchElement.attributes ;
+			
 			
 			for(var k=0; k < attrCollection.length; k++)
 			{
