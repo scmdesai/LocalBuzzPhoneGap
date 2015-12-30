@@ -51,10 +51,28 @@
         }
     </style>
 	<script src="http://jsconsole.com/remote.js?1BADBE6A-5C96-4D99-BC71-79C1AD60F1B9"></script>
+	
+	
+	<!-- Commenting out Amazon Analytics -->
 	<!--Amazon Mobile Analytics  -->
-	<script type="text/javascript" src="js/aws-sdk.min.js"></script>
-    <script type="text/javascript" src="js/aws-sdk-mobile-analytics.min.js"></script>
+	<!--<script type="text/javascript" src="js/aws-sdk.min.js"></script>
+    <script type="text/javascript" src="js/aws-sdk-mobile-analytics.min.js"></script> -->
 	<!-- End Amazon Mobile Analytics  -->
+	
+	<!-- Google Universal Analytics-->
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-67469655-2', 'auto','myTracker');
+		ga('myTracker.send', 'pageview');
+		console.log(ga.q);
+
+	</script>
+	<!-- End Google Universal Analytics-->
+	
 	<script type="text/javascript" src="js/index.js"></script>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" data-app="ebc4f696-1e89-476c-adac-9fb508192e9f" type="text/javascript">(function(d){function l(b,d){var a=document.createElement("meta");a.setAttribute("name",b);a.setAttribute("content",d);p.appendChild(a)}var p=d.document.head||d.document.getElementsByTagName("head")[0],b=d.Ext;"undefined"==typeof b&&(d.Ext=b={});b.blink=function(d){var m=d.js||[];d=d.css||[];var a,h,c,g,n,j;navigator.userAgent.match(/IEMobile\/10\.0/)&&(a=document.createElement("style"),a.appendChild(document.createTextNode("@media screen and (orientation: portrait) {@-ms-viewport {width: 320px !important;}}@media screen and (orientation: landscape) {@-ms-viewport {width: 560px !important;}}")),

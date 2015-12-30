@@ -73,8 +73,9 @@ var app = {
 			console.log("Error Message is: " + e.message) ;				
         });
 		
+		/* Commenting out Amazon Analytics */
 		/* Amazon Mobile Analytics*/
-		AWS.config.region = 'us-east-1';
+		/*AWS.config.region = 'us-east-1';
 		AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 			IdentityPoolId: 'us-east-1:cd2c5cf7-2b6d-49a6-be5f-5d1a92113389' //Amazon Cognito Identity Pool ID
 		}); 
@@ -96,11 +97,11 @@ var app = {
         document.addEventListener('resume', this.mobileAnalyticsClient.startSession.bind(this.mobileAnalyticsClient), false);
        // document.addEventListener('touch', this.recordTouchEvent.bind(this.mobileAnalyticsClient), false);
 	   document.addEventListener('touchstart', this.recordTouchEvent.bind(this), false);
-	   //document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));
+	   //document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));*/
 	   
     }, // end of onDeviceReady function
 	
-    touchCount: 0,
+    /*touchCount: 0,
     
 	recordTouchEvent: function(event) {
 		console.log('Touch Event recorded');
@@ -130,10 +131,10 @@ var app = {
 				console.log("Attribute Name is:" + attrCollection[k].name);
 				console.log("Attribute Value is:" + attrCollection[k].value);
 			}
-			*/
+			
 		}
         
-    },
+    },*/
   
     // Update DOM on a Received Event
     receivedEvent: function(id) {
