@@ -93,7 +93,8 @@ var app = {
         document.addEventListener('pause', this.mobileAnalyticsClient.stopSession.bind(this.mobileAnalyticsClient), false);
         document.addEventListener('resume', this.mobileAnalyticsClient.startSession.bind(this.mobileAnalyticsClient), false);
        // document.addEventListener('touch', this.recordTouchEvent.bind(this.mobileAnalyticsClient), false);
-	   document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));
+	   document.addEventListener('touch', this.recordTouchEvent.bind(this), false);
+	   //document.addEventListener('touch', this.mobileAnalyticsClient.recordEvent('customTouch', {'screenName': 'main'}, false));
 	   console.log('Touch Event recorded');
     }, // end of onDeviceReady function
 	
