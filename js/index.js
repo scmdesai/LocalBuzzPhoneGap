@@ -101,8 +101,9 @@ var app = {
 	   
 	   
 	   /* Begin Google Analytics Code*/
-	   window.analytics.startTrackerWithId('UA-67469655-1');
+	   window.analytics.startTrackerWithId('UA-67469655-4');
 	   window.analytics.trackEvent('TouchEvent', 'Touch', 'Main');
+	   console.log('Analytics initialized');
 	   
 	   
     }, // end of onDeviceReady function
