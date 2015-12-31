@@ -102,7 +102,7 @@ var app = {
 	   
 	   /* Begin Google Analytics Code*/
 	   analytics.startTrackerWithId('UA-67469655-4');
-	   analytics.trackEvent('TouchEvent', 'Touch', 'Main');
+	   //analytics.trackEvent('TouchEvent', 'Touch', 'Main');
 	   console.log('Analytics initialized');
 	   
 	   
