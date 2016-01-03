@@ -64791,7 +64791,15 @@ Ext.define('Ext.direct.Manager', {
         layout: 'vbox',
         scrollable: 'vertical',
         tpl: [
-            '<img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:100%;width:100%;" />'
+            '<div><img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:160;width:100%;" /></div>',
+            '<div style="font-size:4vw;color:green">{dealName}</div>',
+            '<div style="font-size:3vw;color:black">{dealDescription}</div>',
+            '<tpl if="dealEndDate &lt;= todayplusfivedays">',
+            '    <div style="font-size:2.8vw;color:red;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
+            '    <tpl else>',
+            '        <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
+            '    </tpl>',
+            ''
         ],
         items: [
             {
@@ -65840,7 +65848,7 @@ Ext.define('Ext.direct.Manager', {
         style: 'background:#FFF',
         styleHtmlContent: true,
         emptyText: '<h4 class="emptyText">No Buzz currently.Please check back later</h4>',
-        inline: true,
+        inline: false,
         itemCls: 'itemCls',
         store: 'MyDealsStore',
         useComponents: false,
@@ -65849,11 +65857,13 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="font-size:4vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
-            '<!--<div><img src="{dealPictureURL}" height="160" width="120"></div>-->',
             '',
-            '<div style="font-size:4vw;color:green;margin:5px 5px 5px 5px;">{dealName}</div>',
-            '<div style="font-size:3vw;font-family:Arial;">{dealDescription}</div>',
+            '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
+            '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>',
+            '',
+            '<div style="font-size:4vw;color:green">{dealName}',
+            '    ',
+            '<!--<div style="font-size:3vw;font-family:Arial;">{dealPictureURL}</div> -->',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
             '    <div style="font-size:2.8vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    <tpl else>',
