@@ -106,6 +106,50 @@ var app = {
 	   console.log('Analytics initialized');
 	   
 	   
+	   /* Implementing street level tracking based n usr location*/
+	   function getLocation() {
+    if (navigator.geolocation) {
+                //if you have the geolocation, run the showPosition function
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+                //geolocation not happening
+                analytics.trackEvent('send', 'event', 'geolocation', '(not set)');
+    }
+}
+ 
+//here's where we grab the lat and long and access the api's for data
+function showPosition(position)
+{
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+		
+		console.log('latitude: ' + latitude);
+		console.log('longitude: ' + longitude);
+       
+        //grab the neighborhood information and throw those in dimensions we set up in GA
+        //fire an event to make sure they get sent to GA
+        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=YOURUSERNAMEHERE", function(json) {
+                if(json.neighbourhood.name){
+                        validLocation = 1;
+                        analytics.addCustomDimension('set', 'dimension10', latitude);
+                        analytics.addCustomDimension('set', 'dimension11', longitude);
+                        analytics.addCustomDimension('set', 'dimension12', json.neighbourhood.name);
+                        var comboCoords = latitude + "," + longitude;
+                        analytics.trackEvent('send', 'event', 'geolocation', 'comboCoords', comboCoords);
+                }
+     });
+ 
+         //separately if you want, throw in the postal code, do another api call
+        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=YOURUSERNAMEHERE", function(json) {
+                        analytics.addCustomDimension('set', 'dimension13', json.postalCodes[0].postalCode);
+                        analytics.trackEvent('send', 'event', 'geolocation', 'postalcode', json.postalCodes[0].postalCode);
+      });
+ 
+}
+//run the above functions
+getLocation();
+	   
+	   
     }, // end of onDeviceReady function
 	
     /*touchCount: 0,
