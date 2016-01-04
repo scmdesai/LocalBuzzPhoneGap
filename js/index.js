@@ -108,10 +108,11 @@ var app = {
 	   
 	   /* Implementing street level tracking based n usr location*/
 	   function getLocation() {
-	   console.log('Inside Get Location');
+	   
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
         navigator.geolocation.getCurrentPosition(showPosition);
+		console.log(navigator.geolocation);
     } else {
                 //geolocation not happening
                 analytics.trackEvent('send', 'event', 'geolocation', '(not set)');
