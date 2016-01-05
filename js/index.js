@@ -132,8 +132,8 @@ var app = {
        
         //grab the neighborhood information and throw those in dimensions we set up in GA
         //fire an event to make sure they get sent to GA
-        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-		        console.log(json.neighborhood);
+        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=mJHvi09VTNqjTEfESJnKwA", function(json) {
+		        
                 if(json.neighbourhood.name){
                         validLocation = 1;
                         analytics.addCustomDimension('set', 'dimension10', latitude);
@@ -145,7 +145,7 @@ var app = {
      });
  
          //separately if you want, throw in the postal code, do another api call
-        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=mJHvi09VTNqjTEfESJnKwA", function(json) {
                         analytics.addCustomDimension('set', 'dimension13', json.postalCodes[0].postalCode);
                         analytics.trackEvent('event', 'geolocation', 'postalcode', json.postalCodes[0].postalCode);
       });
