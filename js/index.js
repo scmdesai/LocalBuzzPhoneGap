@@ -108,6 +108,7 @@ var app = {
 	   
 	   
 <<<<<<< HEAD
+<<<<<<< HEAD
 	   /* Implementing street level tracking based n usr location*/
 	   function getLocation() {
 	   
@@ -163,6 +164,8 @@ function onError(error) {
 getLocation();
 	   
 	   
+=======
+>>>>>>> parent of d5afd55... Implementing street level tracking based on user's geolocation
 =======
 >>>>>>> parent of d5afd55... Implementing street level tracking based on user's geolocation
     }, // end of onDeviceReady function
