@@ -111,8 +111,9 @@ var app = {
 	   
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
+				var options = { enableHighAccuracy: true };
 				
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        navigator.geolocation.getCurrentPosition(onSuccess, onError,options);
 		
     } else {
                 //geolocation not happening
@@ -131,7 +132,7 @@ var app = {
        
         //grab the neighborhood information and throw those in dimensions we set up in GA
         //fire an event to make sure they get sent to GA
-        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=YOURUSERNAMEHERE", function(json) {
+        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                 if(json.neighbourhood.name){
                         validLocation = 1;
                         analytics.addCustomDimension('set', 'dimension10', latitude);
@@ -143,7 +144,7 @@ var app = {
      });
  
          //separately if you want, throw in the postal code, do another api call
-        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=YOURUSERNAMEHERE", function(json) {
+        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                         analytics.addCustomDimension('set', 'dimension13', json.postalCodes[0].postalCode);
                         analytics.trackEvent('send', 'event', 'geolocation', 'postalcode', json.postalCodes[0].postalCode);
       });
