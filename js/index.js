@@ -140,14 +140,14 @@ var app = {
                         analytics.addCustomDimension('set', 'dimension3', longitude);
                         analytics.addCustomDimension('set', 'dimension4', json.neighbourhood);
                         var comboCoords = latitude + "," + longitude;
-                        analytics.trackEvent('event', 'geolocation', 'comboCoords', comboCoords);
+                        analytics.trackEvent('event', 'geolocation', {'comboCoords' : comboCoords});
                 }
      });
  
          //separately if you want, throw in the postal code, do another api call
         $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                         analytics.addCustomDimension('set', 'dimension5', json.postalCode);
-                        analytics.trackEvent('event', 'geolocation', 'postalcode', json.postalCode);
+                        analytics.trackEvent('event', 'geolocation', {'postalcode' : json.postalCode});
       });
  
 }
