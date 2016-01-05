@@ -18,6 +18,7 @@
  */
 var app = {
     // Application Constructor
+	<script  src ="jquery-2.1.1.js"></script>
     initialize: function() {
         this.bindEvents();
     },
