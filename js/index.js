@@ -112,7 +112,7 @@ var app = {
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
 				
-        navigator.geolocation.getCurrentPosition(showPosition(position));
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		
     } else {
                 //geolocation not happening
@@ -121,7 +121,7 @@ var app = {
 }
  
 //here's where we grab the lat and long and access the api's for data
- function showPosition(position)
+ function onSuccess(position) 
 {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -149,6 +149,11 @@ var app = {
       });
  
 }
+
+function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
 //run the above functions
 getLocation();
 	   
