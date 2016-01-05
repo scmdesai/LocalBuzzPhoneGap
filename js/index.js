@@ -145,7 +145,9 @@ var app = {
      });
  
          //separately if you want, throw in the postal code, do another api call
-        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+        /*$.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json)*/
+		$.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=60540&country=US&radius=10&username=1234_5678",function(json)
+		{
                         analytics.addCustomDimension('set', 'dimension5', json.postalCode);
                         analytics.trackEvent('event', 'geolocation', json.postalCode);
       });
