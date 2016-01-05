@@ -133,7 +133,7 @@ var app = {
         //grab the neighborhood information and throw those in dimensions we set up in GA
         //fire an event to make sure they get sent to GA
         $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-		        console.log(json.neighborhood.stingify());
+		        console.log(json.neighborhood.stringify());
                 if(json.neighbourhood.name){
                         validLocation = 1;
                         analytics.addCustomDimension('set', 'dimension10', latitude);
