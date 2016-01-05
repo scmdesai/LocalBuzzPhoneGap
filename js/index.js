@@ -106,68 +106,6 @@ var app = {
 	   //analytics.trackEvent('TouchEvent', 'Touch', 'Main');
 	   console.log('Analytics initialized');
 	   
-	   
-<<<<<<< HEAD
-<<<<<<< HEAD
-	   /* Implementing street level tracking based n usr location*/
-	   function getLocation() {
-	   
-    if (navigator.geolocation) {
-                //if you have the geolocation, run the showPosition function
-				var options = { enableHighAccuracy: true };
-				
-        navigator.geolocation.getCurrentPosition(onSuccess, onError,options);
-		
-    } else {
-                //geolocation not happening
-                analytics.trackEvent('event', 'geolocation', '(not set)');
-    }
-}
- 
-//here's where we grab the lat and long and access the api's for data
- function onSuccess(position) 
-{
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
-		
-		
-       
-        //grab the neighborhood information and throw those in dimensions we set up in GA
-        //fire an event to make sure they get sent to GA
-        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-		        
-                if(json.neighbourhood){
-                        validLocation = 1;
-                        analytics.addCustomDimension('set', 'dimension2', latitude);
-                        analytics.addCustomDimension('set', 'dimension3', longitude);
-                        analytics.addCustomDimension('set', 'dimension4', json.neighbourhood);
-                        var comboCoords = latitude + "," + longitude;
-                        analytics.trackEvent('event', 'geolocation', comboCoords);
-                }
-     });
- 
-         //separately if you want, throw in the postal code, do another api call
-        /*$.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json)*/
-		$.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=60540&country=US&radius=10&username=1234_5678",function(json)
-		{
-                        analytics.addCustomDimension('set', 'dimension5', json.postalCode);
-                        analytics.trackEvent('event', 'geolocation', json.postalCode);
-      });
- 
-}
-
-function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
-//run the above functions
-getLocation();
-	   
-	   
-=======
->>>>>>> parent of d5afd55... Implementing street level tracking based on user's geolocation
-=======
->>>>>>> parent of d5afd55... Implementing street level tracking based on user's geolocation
     }, // end of onDeviceReady function
 	
     /*touchCount: 0,
