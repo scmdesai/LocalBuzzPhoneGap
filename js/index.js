@@ -142,8 +142,8 @@ function showPosition(position)
          //separately if you want, throw in the postal code, do another api call
         $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                         analytics.trackEvent('set', 'dimension5', json.postalCode);
-						console.log(json.postalCode);
-                        analytics.trackEvent('DealClick','geolocation', 'Postal Code', json.postalCode);
+						console.log(postalCodes[0].postalCode);
+                        analytics.trackEvent('DealClick','geolocation', 'Postal Code', postalCodes[0].postalCode);
       });
  
 }
