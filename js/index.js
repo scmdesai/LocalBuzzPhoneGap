@@ -107,13 +107,13 @@ var app = {
 	   console.log('Analytics initialized');
 	   
 	   //the getLocation function grabs the user's location (if they give permission)
-function getLocation() {
+function getLocation(dealName) {
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
                 //geolocation not happening
-                analytics.trackEvent('DealClick', 'geolocation', 'Postal Code');
+                analytics.trackEvent('DealClick', 'geolocation', 'Location Not Set');
     }
 }
  
@@ -126,29 +126,16 @@ function showPosition(position)
 		console.log("Latitude : " + latitude);
 		console.log("Longitude : " + longitude);
        
-        //grab the neighborhood information and throw those in dimensions we set up in GA
-        //fire an event to make sure they get sent to GA
-        $.getJSON("http://api.geonames.org/neighbourhoodJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-                if(json.neighbourhood){
-                        validLocation = 1;
-                        analytics.trackEvent('set', 'dimension2', latitude);
-                        analytics.trackEvent('set', 'dimension3', longitude);
-                        analytics.trackEvent('set', 'dimension4', json.neighbourhood);
-                        var comboCoords = latitude + "," + longitude;
-                        analytics.trackEvent('DealClick', 'geolocation', 'comboCoords', comboCoords);
-                }
-     });
- 
-         //separately if you want, throw in the postal code, do another api call
+        // api call for postal code and track event
         $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                         analytics.trackEvent('set', 'dimension5', json.postalCodes[0].postalCode);
 						console.log(json.postalCodes[0].postalCode);
-                        analytics.trackEvent('DealClick','geolocation', json.postalCodes[0].postalCode);
+                        analytics.trackEvent('DealClick','DealClick', json.postalCodes[0].postalCode);
       });
  
 }
 //run the above functions
-getLocation();
+//getLocation();
 	   
     }, // end of onDeviceReady function
 	
