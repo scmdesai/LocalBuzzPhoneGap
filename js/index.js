@@ -107,7 +107,7 @@ var app = {
 	   console.log('Analytics initialized');
 	   
 	   //the getLocation function grabs the user's location (if they give permission)
-function getLocation(dealName) {
+function getLocation() {
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -135,7 +135,7 @@ function showPosition(position)
  
 }
 //run the above functions
-//getLocation();
+getLocation();
 	   
     }, // end of onDeviceReady function
 	
