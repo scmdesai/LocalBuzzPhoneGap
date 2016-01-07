@@ -138,9 +138,9 @@ function showPosition(position)
       });
  
 }
-function onError() {
+function onError(error) {
 				//geolocation not happening
-				console.log("Gelocation not enabled on User device");
+				console.log("Gelocation not enabled on User device " + error );
                 analytics.trackEvent('LocalBuzz App', 'Click', 'Unknown');
 }
 
