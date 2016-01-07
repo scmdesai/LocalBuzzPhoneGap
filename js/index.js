@@ -111,7 +111,8 @@ function getLocation() {
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
 				console.log("Locating User Location");
-        navigator.geolocation.getCurrentPosition(showPosition);
+				
+        navigator.geolocation.getCurrentPosition(showPosition,onError);
 		
     } else {
                 //geolocation not happening
@@ -137,6 +138,12 @@ function showPosition(position)
       });
  
 }
+function onError() {
+				//geolocation not happening
+				console.log("Gelocation not enabled on User device");
+                analytics.trackEvent('LocalBuzz App', 'Click', 'Unknown');
+}
+
 //run the above functions
 getLocation();
 	   
