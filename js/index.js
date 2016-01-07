@@ -111,9 +111,10 @@ function getLocation() {
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
         navigator.geolocation.getCurrentPosition(showPosition);
+		
     } else {
                 //geolocation not happening
-                analytics.trackEvent('DealClick', 'geolocation', 'Location Not Set');
+                analytics.trackEvent('LocalBuzz App', 'Click', 'Unknown');
     }
 }
  
@@ -130,7 +131,7 @@ function showPosition(position)
         $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                         analytics.trackEvent('set', 'dimension5', json.postalCodes[0].postalCode);
 						console.log(json.postalCodes[0].postalCode);
-                        analytics.trackEvent('DealClick','DealClick', json.postalCodes[0].postalCode);
+                        analytics.trackEvent('LocalBuzz App','Click',json.postalCodes[0].postalCode);
       });
  
 }
