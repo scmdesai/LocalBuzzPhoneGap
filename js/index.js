@@ -114,6 +114,7 @@ function getLocation() {
 		
     } else {
                 //geolocation not happening
+				console.log("Gelocation not enabled on User device");
                 analytics.trackEvent('LocalBuzz App', 'Click', 'Unknown');
     }
 }
