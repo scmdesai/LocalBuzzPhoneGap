@@ -145,7 +145,7 @@ function onError(error) {
 }
 
 //run the above functions
-getLocation();
+//getLocation();
 	   
     }, // end of onDeviceReady function
 	
