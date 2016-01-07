@@ -110,6 +110,7 @@ var app = {
 function getLocation() {
     if (navigator.geolocation) {
                 //if you have the geolocation, run the showPosition function
+				console.log("Locating User Location");
         navigator.geolocation.getCurrentPosition(showPosition);
 		
     } else {
@@ -124,7 +125,7 @@ function showPosition(position)
 {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
-		
+		console.log("Locating User Location inside showPosition");
 		console.log("Latitude : " + latitude);
 		console.log("Longitude : " + longitude);
        
