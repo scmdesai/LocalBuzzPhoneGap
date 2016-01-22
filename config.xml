@@ -28,7 +28,9 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
-	<preference name="StatusBarOverlaysWebView" value="true" />
+	<preference name="StatusBarOverlaysWebView" value="true" /> 
+	<preference name="StatusBarBackgroundColor" value="#000000" />
+	<preference name="StatusBarStyle" value="lightcontent" />
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
     <gap:plugin name="cordova-plugin-camera" source="npm" version="1.2.0" />
