@@ -29,6 +29,8 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
 	<preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#4b79bc" />
+    <preference name="StatusBarStyle" value="lightcontent" />
 	
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
@@ -51,6 +53,7 @@
     <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
     <gap:plugin name="cordova-plugin-vibration" source="npm" version="1.2.0" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.1.0" />
+	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	
 	<!-- Plugin Added for Push Notification -->
 	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.5.2" />
@@ -96,7 +99,13 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
 	-->
-	
+	<feature name="Device">
+<param name="ios-package" value="CDVDevice" />
+</feature>
+
+<feature name="StatusBar">
+<param name="ios-package" value="CDVStatusBar" onload="true" />
+</feature>
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
