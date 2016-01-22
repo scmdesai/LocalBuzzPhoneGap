@@ -39,6 +39,9 @@ var app = {
 		console.log("Device is ready");
 		//this.receivedEvent('deviceready');
 		
+		//StatusBar Overlay set to false
+		StatusBar.overlaysWebView(false);
+		
         var push = PushNotification.init({
             "android": {
                 "senderID": "226322216862"
