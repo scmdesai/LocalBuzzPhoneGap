@@ -28,9 +28,7 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
-	<preference name="StatusBarOverlaysWebView" value="true" /> 
-	<preference name="StatusBarBackgroundColor" value="#000000" />
-	<preference name="StatusBarStyle" value="lightcontent" />
+	
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
     <gap:plugin name="cordova-plugin-camera" source="npm" version="1.2.0" />
@@ -112,7 +110,8 @@
     <icon gap:platform="webos" src="www/res/icon/webos/icon-64.png" />
     <icon gap:platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="www/res/icon/windows-phone/icon-173-tile.png" />
-	<gap:splash src="splash.png" />
+	<!-- <gap:splash src="splash.png" /> -->
+	<gap:splash src="images/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
     <gap:splash gap:platform="android" gap:qualifier="ldpi" src="www/res/screen/android/ldpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="mdpi" src="www/res/screen/android/mdpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="hdpi" src="www/res/screen/android/hdpi.png" />
