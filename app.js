@@ -64823,9 +64823,9 @@ Ext.define('Ext.direct.Manager', {
         tabBar: {
             cls: 'tabBarCls',
             docked: 'bottom',
-            height: '9%',
-            padding: '5 5 0 5',
-            style: 'font-size:5vw;border-top:1px solid #eee;background:white;color:#00529D',
+            height: '8%',
+            padding: '5 10 0 10',
+            style: 'font-size:4vw;border-top:1px solid #eee;background:white;color:#c0c0c0',
             ui: 'plain',
             modal: false,
             activeTab: 0,
