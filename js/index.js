@@ -49,7 +49,8 @@ var app = {
             "ios": {
 				"alert": "true",
 				"badge": "true",
-				"senderID": "226322216862"				
+				"senderID": "226322216862",
+				"gcmSandbox": "true"
 			}, 
             "windows": {} 
         });
