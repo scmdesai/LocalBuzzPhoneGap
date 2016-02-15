@@ -71,7 +71,7 @@ var app = {
 					console.log(json.success + ", " + json.msg) ;
 				}
 			}
-			var data = '{"deviceType":"iOS","registrationID":'+data.registrationId+'}';
+			var data = '{"deviceType":"iOS","registrationID":"'+data.registrationId+'"}';
 			xhr.send(data);
         });
 
