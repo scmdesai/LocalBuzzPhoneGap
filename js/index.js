@@ -47,10 +47,10 @@ var app = {
                 "senderID": "226322216862"
             },
             "ios": {
+				// "senderID": "226322216862",
+				// "gcmSandbox": "true"
 				"alert": "true",
-				"badge": "true",
-				"senderID": "226322216862",
-				"gcmSandbox": "true"
+				"badge": "true"
 			}, 
             "windows": {} 
         });
