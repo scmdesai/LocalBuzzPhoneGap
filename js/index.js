@@ -57,8 +57,22 @@ var app = {
         
         push.on('registration', function(data) {
             console.log("registration event: " + data.registrationId);
-			//document.getElementById("regId").innerHTML = data.registrationId;
-            //console.log(JSON.stringify(data));					
+			
+			// Save the registration ID on the server. 
+			// Sending and receiving data in JSON format using POST mothod
+			//
+			xhr = new XMLHttpRequest();
+			var url = "http://services.appsonmobile.com/devices";
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-type", "application/json");
+			xhr.onreadystatechange = function () { 
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var json = JSON.parse(xhr.responseText);
+					console.log(json.success + ", " + json.msg) ;
+				}
+			}
+			var data = '{"deviceType":"iOS","registrationID":'+data.registrationId+'}';
+			xhr.send(data);
         });
 
         push.on('notification', function(data) {
