@@ -46,7 +46,11 @@ var app = {
             "android": {
                 "senderID": "226322216862"
             },
-            "ios": {}, 
+            "ios": {
+				"alert": "true",
+				"badge": "true",
+				"senderID": "226322216862"				
+			}, 
             "windows": {} 
         });
         
