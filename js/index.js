@@ -57,7 +57,14 @@ var app = {
         
         push.on('registration', function(data) {
             console.log("registration event: " + data.registrationId);
-			
+			console.log("Device platform is: " + device.platform) ;
+			console.log("Device Cordova is: " + device.cordova) ;
+			console.log("Device Model is: " + device.model) ;
+			console.log("Device UUID is: " + device.uuid) ;
+			console.log("Device Version is: " + device.version) ;
+			console.log("Device Manufacturer is: " + device.manufacturer) ;
+			console.log("Device Serial is: " + device.serial) ;
+			console.log("Device isVirtual is: " + device.isVirtual) ;
 			// Save the registration ID on the server. 
 			// Sending and receiving data in JSON format using POST mothod
 			//
@@ -71,7 +78,7 @@ var app = {
 					console.log(json.success + ", " + json.msg) ;
 				}
 			}
-			var data = '{"deviceType":"iOS","registrationID":"'+data.registrationId+'"}';
+			var data = '{"deviceType":"'+device.platform+'","registrationID":"'+data.registrationId+'"}';
 			xhr.send(data);
         });
 
