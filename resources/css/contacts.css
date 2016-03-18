@@ -26,7 +26,7 @@ $list-header-bg-color: $base-color;
 
 
 
-.customfield {
+.x-field {
     border:2px inset #eee;
     margin:5px 5px 5px 5px;
     font-size:4.5vw;
