@@ -30,7 +30,7 @@ $list-header-bg-color: $base-color;
 
     position: absolute;
     top: 30%;
-    
+    margin:5px 5px 5px 5px;
 }
 
 .x-field {
