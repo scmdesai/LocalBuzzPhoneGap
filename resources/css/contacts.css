@@ -33,14 +33,14 @@ $list-header-bg-color: $base-color;
     margin:5px 5px 5px 5px;
 }
 
-.x-field {
-    border:2px inset #C0C0C0;
+.customfield {
+    border-bottom:2px groove #C0C0C0;
     margin:5px 5px 5px 5px;
-    font-size:4.5vw;
+    font-size:4vw;
     font-weight:normal;
     text-align:center;
     vertical-align:middle;
-    border-radius: 7px;
+
 
 
 
