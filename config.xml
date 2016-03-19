@@ -66,6 +66,9 @@
 	<!-- End Geolocation -->
 	<!--social sharing -->
 	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+	
+	<!--email-->
+	<gap:plugin name="cordova-plugin-email-composer" source="npm" />
 
 	
 	<!-- <gap:plugin name="com.analytics.google" version="1.2.2" />
