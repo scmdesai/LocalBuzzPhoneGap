@@ -22,6 +22,7 @@ $list-header-bg-color: $base-color;
 .contact-name{
     color:white;
     padding-left: 4px;
+    word-wrap: normal;
 }
 
 .emptyText {
