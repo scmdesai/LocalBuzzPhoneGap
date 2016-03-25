@@ -34,6 +34,23 @@ $list-header-bg-color: $base-color;
     margin:5px 5px 5px 5px;
 }
 
+.dateValidity {
+    color:#1985d0;
+    font-size:3.3vw;
+    font-style:italics;
+    font-weight:normal;
+}
+
+.expiringDate {
+    {
+    color:red;
+    font-size:3.3vw;
+    font-style:italics;
+    font-weight:normal;
+}
+}
+
+
 .x-field {
     border-bottom:2px groove #C0C0C0;
     margin:5px 5px 5px 5px;
