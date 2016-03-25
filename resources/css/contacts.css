@@ -43,11 +43,11 @@ $list-header-bg-color: $base-color;
 
 .expiringDate {
     {
-    color:red;
-    font-size:3.3vw;
-    font-style:italics;
-    font-weight:normal;
-}
+        color:red;
+        font-size:3.3vw;
+        font-style:italics;
+        font-weight:normal;
+    }
 }
 
 
