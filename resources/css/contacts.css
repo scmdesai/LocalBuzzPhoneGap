@@ -39,16 +39,18 @@ $list-header-bg-color: $base-color;
     font-size:3.3vw;
     font-style:italics;
     font-weight:normal;
+    
+}
+.expiringDate {
+    color:#ff0000;
+    font-size:3.3vw;
+    font-style:italics;
+    font-weight:normal;
+    
 }
 
-.expiringDate {
-    {
-        color:red;
-        font-size:3.3vw;
-        font-style:italics;
-        font-weight:normal;
-    }
-}
+
+
 
 
 .x-field {
@@ -68,6 +70,8 @@ $list-header-bg-color: $base-color;
 
 
 }
+
+
 
 
 
