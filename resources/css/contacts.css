@@ -9,8 +9,8 @@ $list-color: #fff;
 $list-header-bg-color: $base-color;
 
 .favorite {
-    border: 1px solid #aaa; 
-    padding: 5px; 
+    border: 2px outset #C0C0C0; 
+    padding: 5px 5px 5px 5px; 
     margin: 5px 5px 5px 5px;
     text-align: center;
 }
