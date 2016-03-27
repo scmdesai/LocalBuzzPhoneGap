@@ -11,7 +11,7 @@ $list-header-bg-color: $base-color;
 .favorite {
     border: 1px solid #aaa; 
     padding: 5px; 
-    margin: 5px;
+    margin: 5px 5px 5px 5px;
     text-align: center;
 }
 
@@ -39,14 +39,14 @@ $list-header-bg-color: $base-color;
     font-size:3.3vw;
     font-style:italics;
     font-weight:normal;
-    
+
 }
 .expiringDate {
     color:#ff0000;
     font-size:3.3vw;
     font-style:italics;
     font-weight:normal;
-    
+
 }
 
 
