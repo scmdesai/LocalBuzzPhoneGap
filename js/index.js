@@ -176,8 +176,6 @@ var app = {
 		alert(e);
     }
 	
-	document.addEventListener('resume', this.onResume.bind(this), false);
-
     },
 	onResume: function() {
 	    alert('App Resumed');
