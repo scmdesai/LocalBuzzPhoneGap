@@ -26,18 +26,10 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady(), false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-		console.log('Device Ready');
-		StatusBar.overlaysWebView(false);
-		
-        var push = PushNotification.init({
+         //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+		 document.addEventListener('deviceready', function() {
+		 try{
+		 var push = PushNotification.init({
             "android": {
                 "senderID": "226322216862"
             },
@@ -49,6 +41,23 @@ var app = {
 			}, 
             "windows": {} 
         });
+		}
+		else {
+		alert(e);
+    }
+}, false);
+		
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+		console.log('Device Ready');
+		StatusBar.overlaysWebView(false);
+		
+        
         
         push.on('registration', function(data) {
             console.log("registration event: " + data.registrationId);
@@ -110,3 +119,4 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+app.initialize();
