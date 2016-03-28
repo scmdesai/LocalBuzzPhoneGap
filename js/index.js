@@ -42,7 +42,7 @@ var app = {
             "windows": {} 
         });
 		}
-		catch {
+		catch (e){
 		alert(e);
     }
 }, false);
