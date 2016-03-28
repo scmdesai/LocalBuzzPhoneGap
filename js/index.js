@@ -98,7 +98,10 @@ var app = {
     }
 }, false);
 
- 
+ document.addEventListener('load', function() {
+    alert('load');
+
+}, false);
 		
     },
     // deviceready Event Handler
