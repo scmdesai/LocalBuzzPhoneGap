@@ -106,7 +106,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
      
-	 document.addEventListener('resume', this.onResume.bind(this), false);
+	 
      try{
 		 var push = PushNotification.init({
             "android": {
@@ -175,6 +175,8 @@ var app = {
 		catch (e){
 		alert(e);
     }
+	
+	document.addEventListener('resume', this.onResume.bind(this), false);
 
     },
 	onResume: function() {
