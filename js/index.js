@@ -97,6 +97,11 @@ var app = {
 		alert(e);
     }
 }, false);
+
+ document.addEventListener('resume', function() {
+    alert('Resume');
+
+}, false);
 		
     },
     // deviceready Event Handler
