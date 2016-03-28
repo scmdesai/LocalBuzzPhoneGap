@@ -98,8 +98,8 @@ var app = {
     }
 }, false);
 
- document.addEventListener('load', function() {
-    alert('load');
+ document.addEventListener('resume', function() {
+    alert('Resume');
 
 }, false);
 		
