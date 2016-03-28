@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+		console.log('Device Ready');
 		StatusBar.overlaysWebView(false);
 		
         var push = PushNotification.init({
