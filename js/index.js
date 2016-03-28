@@ -27,7 +27,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
          document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-		 
+		 document.addEventListener('resume', this.onResume.bind(this), false);
 		/* document.addEventListener('deviceready', function() {
 		 try{
 		 var push = PushNotification.init({
@@ -106,7 +106,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
      
-	 document.addEventListener('resume', this.onResume.bind(this), false);
      try{
 		 var push = PushNotification.init({
             "android": {
