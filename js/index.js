@@ -27,7 +27,6 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
          document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-		 document.addEventListener("resume", onResume.bind(this), false);
 		/* document.addEventListener('deviceready', function() {
 		 try{
 		 var push = PushNotification.init({
@@ -176,9 +175,6 @@ var app = {
     }
 
     },
-	onResume: function() {
-	    alert('App Resumed');
-	}
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
