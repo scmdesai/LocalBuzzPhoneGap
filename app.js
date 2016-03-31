@@ -65007,7 +65007,7 @@ Ext.define('Ext.direct.Manager', {
                         draggable: false,
                         animation: google.maps.Animation.DROP
                     });
-                addInfoWindow(marker, 'Hello World');
+                addInfoWindow(marker, record.get('businessName'));
             });
         });
         function addInfoWindow(marker, content) {
