@@ -64875,6 +64875,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'map',
                         height: '100%',
+                        id: 'mymap',
                         itemId: 'mymap',
                         styleHtmlContent: true,
                         useCurrentLocation: true
@@ -64999,12 +65000,19 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
+                var businessName = record.get('businessName');
+                var infowindow = new google.maps.InfoWindow({
+                        content: "Hello World!"
+                    });
                 var marker = new google.maps.Marker({
                         position: m,
                         map: gmap,
                         draggable: false,
                         animation: google.maps.Animation.DROP
                     });
+                google.maps.event.addListener(marker, 'mousedown', function() {
+                    infowindow.open(document.getElementById('mymap'), marker);
+                });
             });
         });
     }
