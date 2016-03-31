@@ -65001,18 +65001,15 @@ Ext.define('Ext.direct.Manager', {
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
                 // var info = '<div>{record.get("businessName")}</div>';
-                var infoWindow = new google.maps.InfoWindow({
-                        content: 'Business Name'
-                    });
+                /*var infoWindow = new google.maps.InfoWindow({
+            content: 'Business Name'
+        });*/
                 var marker = new google.maps.Marker({
                         position: m,
                         map: gmap,
                         draggable: false,
                         animation: google.maps.Animation.DROP
                     });
-                google.maps.event.addListener(marker, 'mousedown', function() {
-                    infowindow.open(mymap, marker);
-                });
             });
         });
     }
@@ -65028,6 +65025,11 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'Main'
 ], 0));
+/*google.maps.event.addListener(marker, 'mousedown', function() {
+
+         infowindow.open(mymap, marker);
+
+        });*/
 
 /*
  * File: app/view/Picture.js
