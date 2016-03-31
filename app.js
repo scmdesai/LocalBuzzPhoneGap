@@ -65007,15 +65007,17 @@ Ext.define('Ext.direct.Manager', {
                         draggable: false,
                         animation: google.maps.Animation.DROP
                     });
-                google.maps.event.addListener(marker, 'mousedown', function() {
-                    console.log('MouseDown Event');
-                    var infowindow = new google.maps.InfoWindow({
-                            content: "Hello World!"
-                        });
-                    infowindow.open(Ext.getCmp('mymmap'), marker);
-                });
+                addInfoWindow(marker, 'Hello World');
             });
         });
+        function addInfoWindow(marker, content) {
+            var infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
+            google.maps.event.addListener(marker, 'mousedown', function() {
+                infoWindow.open(map, marker);
+            });
+        }
     }
 }, 0, 0, [
     "component",
