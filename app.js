@@ -65015,7 +65015,7 @@ Ext.define('Ext.direct.Manager', {
                     content: content
                 });
             google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.open(map, marker);
+                infoWindow.open(gmap, marker);
             });
         }
     }
