@@ -64875,6 +64875,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'mymap',
                         height: '100%',
+                        id: 'mymap',
                         itemId: 'mymap',
                         styleHtmlContent: true,
                         useCurrentLocation: true
@@ -64999,9 +65000,9 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
-                var info = '<div>{record.get("businessName")}</div>';
+                // var info = '<div>{record.get("businessName")}</div>';
                 var infoWindow = new google.maps.InfoWindow({
-                        content: info
+                        content: 'Business Name'
                     });
                 var marker = new google.maps.Marker({
                         position: m,
@@ -65010,7 +65011,7 @@ Ext.define('Ext.direct.Manager', {
                         animation: google.maps.Animation.DROP
                     });
                 google.maps.event.addListener(marker, 'mousedown', function() {
-                    infoWindow.open();
+                    infowindow.open(mymap, marker);
                 });
             });
         });
