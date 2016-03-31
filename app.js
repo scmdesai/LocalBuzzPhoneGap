@@ -65001,9 +65001,6 @@ Ext.define('Ext.direct.Manager', {
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
                 // var businessName = record.get('businessName');
-                var infowindow = new google.maps.InfoWindow({
-                        content: "Hello World!"
-                    });
                 var marker = new google.maps.Marker({
                         position: m,
                         map: gmap,
@@ -65012,7 +65009,10 @@ Ext.define('Ext.direct.Manager', {
                     });
                 google.maps.event.addListener(marker, 'mousedown', function() {
                     console.log('MouseDown Event');
-                    infowindow.open(Ext.get('mymmap'), marker);
+                    var infowindow = new google.maps.InfoWindow({
+                            content: "Hello World!"
+                        });
+                    infowindow.open(Ext.getCmp('mymmap'), marker);
                 });
             });
         });
