@@ -64999,11 +64999,17 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
-                new google.maps.Marker({
-                    position: m,
-                    map: gmap,
-                    draggable: false,
-                    animation: google.maps.Animation.DROP
+                var infoWindow = new google.maps.InfoWindow({
+                        content: tooltip
+                    });
+                var marker = new google.maps.Marker({
+                        position: m,
+                        map: gmap,
+                        draggable: false,
+                        animation: google.maps.Animation.DROP
+                    });
+                google.maps.event.addListener(marker, 'mousedown', function() {
+                    infoWindow.open(mymap.getMap(), marker);
                 });
             });
         });
