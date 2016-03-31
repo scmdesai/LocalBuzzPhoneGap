@@ -64996,7 +64996,8 @@ Ext.define('Ext.direct.Manager', {
             var address = record.get('address');
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 lat = json.results[0].geometry.location.lat;
-                long = json.results[0].geometry.location.long;
+                long = json.results[0].geometry.location.lng;
+                console.log(lat, lng);
                 var m = new google.maps.LatLng(lat, long);
                 new google.maps.Marker({
                     position: m,
