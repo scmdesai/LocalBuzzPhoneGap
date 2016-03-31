@@ -64999,8 +64999,9 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
+                var info = '<div>{record.get("businessName")}</div>';
                 var infoWindow = new google.maps.InfoWindow({
-                        content: tooltip
+                        content: info
                     });
                 var marker = new google.maps.Marker({
                         position: m,
