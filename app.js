@@ -64873,7 +64873,7 @@ Ext.define('Ext.direct.Manager', {
                         placeHolder: '     Enter zipcode'
                     },
                     {
-                        xtype: 'map',
+                        xtype: 'mymap',
                         height: '100%',
                         itemId: 'mymap',
                         styleHtmlContent: true,
@@ -65010,7 +65010,7 @@ Ext.define('Ext.direct.Manager', {
                         animation: google.maps.Animation.DROP
                     });
                 google.maps.event.addListener(marker, 'mousedown', function() {
-                    infoWindow.open(mymap.getMap(), marker);
+                    infoWindow.open();
                 });
             });
         });
