@@ -64873,9 +64873,8 @@ Ext.define('Ext.direct.Manager', {
                         placeHolder: '     Enter zipcode'
                     },
                     {
-                        xtype: 'mymap',
+                        xtype: 'map',
                         height: '100%',
-                        id: 'mymap',
                         itemId: 'mymap',
                         styleHtmlContent: true,
                         useCurrentLocation: true
