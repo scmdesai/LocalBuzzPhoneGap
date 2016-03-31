@@ -65001,11 +65001,13 @@ Ext.define('Ext.direct.Manager', {
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
                 // var businessName = record.get('businessName');
+                var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                 var marker = new google.maps.Marker({
                         position: m,
                         map: gmap,
                         draggable: false,
-                        animation: google.maps.Animation.DROP
+                        animation: google.maps.Animation.DROP,
+                        icon: iconBase + 'schools_maps.png'
                     });
                 addInfoWindow(marker, record.get('businessName'));
             });
