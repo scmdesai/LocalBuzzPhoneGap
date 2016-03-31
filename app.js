@@ -65011,6 +65011,7 @@ Ext.define('Ext.direct.Manager', {
                         animation: google.maps.Animation.DROP
                     });
                 google.maps.event.addListener(marker, 'mousedown', function() {
+                    console.log('MouseDown Event');
                     infowindow.open(Ext.get('mymmap'), marker);
                 });
             });
