@@ -65007,7 +65007,7 @@ Ext.define('Ext.direct.Manager', {
         });
         var icons = {
                 "Auto": {
-                    icon: 'resources/img/car.png'
+                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png'
                 },
                 /*{
                         path: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
@@ -65042,19 +65042,15 @@ Ext.define('Ext.direct.Manager', {
                     }
                 },
                 "DanceGroup": {
-                    icon: 'TEXT ICON'
+                    icon: {}
                 },
-                /*{
-                        path:fontawesome.markers.STOP,
+                /* path:fontawesome.markers.STOP,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1.0,
-
-
-
-                    }*/
+        */
                 "BeautySalon": {
                     icon: 'http://maps.google.com/mapfiles/kml/shapes/salon.png'
                 }
