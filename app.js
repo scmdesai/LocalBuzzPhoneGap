@@ -65011,7 +65011,7 @@ Ext.define('Ext.direct.Manager', {
         var icons = {
                 "Auto": {
                     icon: {
-                        path: fontawesome.markers.CAR,
+                        path: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
