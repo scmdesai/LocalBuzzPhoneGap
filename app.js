@@ -65007,16 +65007,17 @@ Ext.define('Ext.direct.Manager', {
         });
         var icons = {
                 "Auto": {
-                    icon: {
-                        path: fontawesome.markers.CAR,
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
+                    icon: 'resources/img/car.png'
                 },
+                /*{
+                                path: fontawesome.markers.CAR,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "Grocery": {
                     icon: {
                         path: fontawesome.markers.SHOPPING_CART,
