@@ -65085,6 +65085,7 @@ Ext.define('Ext.direct.Manager', {
                 });
             var label = new ELabel(m, "Utopia", "styleLabel");
             gmap.addOverlay(label);
+            label.show();
             addInfoWindow(marker, businessName);
         }
         function addInfoWindow(marker, content) {
