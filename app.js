@@ -65063,7 +65063,6 @@ Ext.define('Ext.direct.Manager', {
                 }
             };
         function addMarker(feature) {
-            console.log(feature);
             var marker = new google.maps.Marker({
                     position: google.maps.LatLng(lat, long),
                     map: gmap,
