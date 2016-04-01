@@ -65012,11 +65012,11 @@ Ext.define('Ext.direct.Manager', {
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
-                        strokeOpacity: 1,
+                        strokeOpacity: 0.2,
                         fillColor: '#1985d0',
                         fillOpacity: 1
                     },
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                    map_icon_label: '<span class="map-icon map-icon-car-repair"></span>'
                 },
                 "Grocery": {
                     icon: {
@@ -65024,11 +65024,11 @@ Ext.define('Ext.direct.Manager', {
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
-                        strokeOpacity: 1,
+                        strokeOpacity: 0.2,
                         fillColor: '#1985d0',
                         fillOpacity: 1
                     },
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                    map_icon_label: '<span class="map-icon map-icon-grocery-or-supermarket"></span>'
                 },
                 "Arts": {
                     icon: {
@@ -65040,20 +65040,20 @@ Ext.define('Ext.direct.Manager', {
                         fillColor: '#1985d0',
                         fillOpacity: 1
                     },
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                    map_icon_label: '<span class="map-icon map-icon-art-gallery"></span>'
                 },
                 "DanceGroup": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: 'resources/img/dance_class.png',
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    },
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                    }
                 },
+                //map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "BeautySalon": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65062,9 +65062,9 @@ Ext.define('Ext.direct.Manager', {
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 1
+                        fillOpacity: 0.2
                     },
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                    map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
                 }
             };
         function addMarker(feature, businessName, m) {
