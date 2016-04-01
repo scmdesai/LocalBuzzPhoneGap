@@ -65001,13 +65001,26 @@ Ext.define('Ext.direct.Manager', {
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
                 // var businessName = record.get('businessName');
-                var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+                /* var icons = {
+               auto: {
+               icon:'icon-car.png'
+               },
+
+           };*/
                 var marker = new google.maps.Marker({
                         position: m,
                         map: gmap,
                         draggable: false,
                         animation: google.maps.Animation.DROP,
-                        icon: iconBase + 'schools_maps.png'
+                        icon: {
+                            path: fontawesome.markers.EXCLAMATION,
+                            scale: 0.5,
+                            strokeWeight: 0.2,
+                            strokeColor: 'black',
+                            strokeOpacity: 1,
+                            fillColor: '#f8ae5f',
+                            fillOpacity: 0.7
+                        }
                     });
                 addInfoWindow(marker, record.get('businessName'));
             });
@@ -65178,6 +65191,7 @@ Ext.define('Ext.direct.Manager', {
                 disabled: false,
                 height: '',
                 hidden: false,
+                html: '',
                 id: 'phoneNumber',
                 itemId: 'phoneNumber',
                 margin: '5 15 0 15',
