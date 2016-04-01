@@ -65067,7 +65067,7 @@ Ext.define('Ext.direct.Manager', {
                     labelContent: "<div class='arrow'></div><div class='inner'>$425K</div>",
                     labelClass: "labels",
                     // the CSS class for the label
-                    icon: {}
+                    icon: ''
                 });
             addInfoWindow(marker, businessName);
         }
