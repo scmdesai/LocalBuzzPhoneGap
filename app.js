@@ -65009,55 +65009,55 @@ Ext.define('Ext.direct.Manager', {
                 "Auto": {
                     icon: {
                         path: fontawesome.markers.CAR,
-                        scale: 0.25,
+                        scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
-                        fillColor: '#ff0000',
+                        fillColor: '#1985d0',
                         fillOpacity: 1
                     }
                 },
                 "Grocery": {
                     icon: {
                         path: fontawesome.markers.SHOPPING_CART,
-                        scale: 0.25,
+                        scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
-                        fillColor: '#ff0000',
+                        fillColor: '#1985d0',
                         fillOpacity: 1
                     }
                 },
                 "Arts": {
                     icon: {
-                        path: fontawesome.markers.PAINT_BRUSH,
-                        scale: 0.25,
+                        path: fontawesome.markers.BULLSEYE,
+                        scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
-                        fillColor: '#ff0000',
+                        fillColor: '#1985d0',
                         fillOpacity: 1
                     }
                 },
                 "DanceGroup": {
                     icon: {
-                        path: fontawesome.markers.STOP_CIRCLE_O,
-                        scale: 0.25,
+                        path: fontawesome.markers.CHILD,
+                        scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
-                        fillColor: '#ff0000',
+                        fillColor: '#1985d0',
                         fillOpacity: 1
                     }
                 },
                 "BeautySalon": {
                     icon: {
-                        path: fontawesome.markers.SPA,
-                        scale: 0.25,
+                        path: fontawesome.markers.SCISSORS,
+                        scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
-                        fillColor: '#ff0000',
+                        fillColor: '#1985d0',
                         fillOpacity: 1
                     }
                 }
