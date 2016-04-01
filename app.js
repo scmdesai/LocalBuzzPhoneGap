@@ -65011,7 +65011,7 @@ Ext.define('Ext.direct.Manager', {
         var icons = {
                 "Auto": {
                     icon: {
-                        path: auto_icon,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65067,7 +65067,7 @@ Ext.define('Ext.direct.Manager', {
                     draggable: false,
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon,
-                    label: 'A'
+                    label: businessName
                 });
             addInfoWindow(marker, businessName);
         }
