@@ -64992,17 +64992,17 @@ Ext.define('Ext.direct.Manager', {
     },
     onMymapMaprender: function(map, gmap, eOpts) {
         var lat, long;
-        var businessName;
+        //var businessName;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 lat = json.results[0].geometry.location.lat;
                 long = json.results[0].geometry.location.lng;
-                console.log(lat, long);
+                //console.log(lat,long);
                 var m = new google.maps.LatLng(lat, long);
-                businessName = record.get('businessName');
-                addMarker(record.get('category'));
+                //businessName = record.get('businessName');
+                addMarker(record.get('category'), record.get('businessName'), m);
             });
         });
         var icons = {
@@ -65062,16 +65062,16 @@ Ext.define('Ext.direct.Manager', {
                     }
                 }
             };
-        function addMarker(feature) {
+        function addMarker(feature, businessName, m) {
             var marker = new google.maps.Marker({
-                    position: google.maps.LatLng(lat, long),
+                    position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
+            addInfoWindow(marker, businessName);
         }
-        //addInfoWindow(marker, businessName);
         function addInfoWindow(marker, content) {
             var infoWindow = new google.maps.InfoWindow({
                     content: content
