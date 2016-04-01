@@ -65078,11 +65078,10 @@ Ext.define('Ext.direct.Manager', {
                     position: location,
                     labelContent: "lets showthis",
                     map: map,
-                    labelAnchor: new google.maps.Point(35, 120),
+                    labelAnchor: m,
                     labelClass: "labels",
                     // the CSS class for the label
-                    labelInBackground: false,
-                    icon: pinSymbol('red')
+                    labelInBackground: false
                 });
             addInfoWindow(marker, businessName);
         }
