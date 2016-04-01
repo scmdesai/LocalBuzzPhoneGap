@@ -65007,32 +65007,8 @@ Ext.define('Ext.direct.Manager', {
         });
         var icons = {
                 "Auto": {
-                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png'
-                },
-                /*{
-                        path: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 0.2,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1.0,
-                    }*/
-                "Grocery": {
-                    icon: 'http://maps.google.com/mapfiles/kml/pal3/icon18.png'
-                },
-                /*{
-                        path:fontawesome.markers.SHOPPING_CART,
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 0.2,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1.0,
-                    }*/
-                "Arts": {
                     icon: {
-                        path: fontawesome.markers.STOP,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65041,33 +65017,67 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                "DanceGroup": {
-                    icon: {}
-                },
-                /* path:fontawesome.markers.STOP,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1.0,
-        */
-                "BeautySalon": {
-                    icon: 'http://maps.google.com/mapfiles/kml/shapes/salon.png'
-                }
-            };
-        /*{
-                        path:fontawesome.markers.STOP,
+                //,
+                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                "Grocery": {
+                    icon: {
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 1.0,
-
-                    }*/
+                        fillOpacity: 1
+                    }
+                },
+                //,
+                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                "Arts": {
+                    icon: {
+                        path: SQUARE_PIN,
+                        scale: 0.4,
+                        strokeWeight: 0.2,
+                        strokeColor: 'black',
+                        strokeOpacity: 1,
+                        fillColor: '#1985d0',
+                        fillOpacity: 1
+                    }
+                },
+                //,
+                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                "DanceGroup": {
+                    icon: {
+                        path: SQUARE_PIN,
+                        scale: 0.4,
+                        strokeWeight: 0.2,
+                        strokeColor: 'black',
+                        strokeOpacity: 1,
+                        fillColor: '#1985d0',
+                        fillOpacity: 1
+                    }
+                },
+                //,
+                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                "BeautySalon": {
+                    icon: {
+                        path: SQUARE_PIN,
+                        scale: 0.4,
+                        strokeWeight: 0.2,
+                        strokeColor: 'black',
+                        strokeOpacity: 1,
+                        fillColor: '#1985d0',
+                        fillOpacity: 1
+                    }
+                }
+            };
+        //,
+        //  map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
         function addMarker(feature, businessName, m) {
             var marker = new google.maps.Marker({
-                    position: location,
+                    position: m,
+                    map: gmap,
+                    draggable: false,
+                    animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
             addInfoWindow(marker, businessName);
