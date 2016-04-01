@@ -65044,11 +65044,11 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "DanceGroup": {
                     icon: {
-                        path: 'resources/img/dance_class.png',
+                        path: SQUARE_PIN,
                         scale: 0.4
-                    }
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 },
-                //map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "BeautySalon": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65063,7 +65063,7 @@ Ext.define('Ext.direct.Manager', {
                 }
             };
         function addMarker(feature, businessName, m) {
-            var marker = new google.maps.Marker({
+            var marker = new Marker({
                     position: m,
                     map: gmap,
                     draggable: false,
