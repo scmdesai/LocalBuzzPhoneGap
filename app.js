@@ -65008,7 +65008,7 @@ Ext.define('Ext.direct.Manager', {
         var icons = {
                 "Auto": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.CAR,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65017,11 +65017,9 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                //,
-                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "Grocery": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.SHOPPING_CART,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65030,11 +65028,9 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                //,
-                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "Arts": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.BULLSEYE,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65043,11 +65039,9 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                //,
-                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "DanceGroup": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.CHILD,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65056,11 +65050,9 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                //,
-                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "BeautySalon": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.SCISSORS,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65070,8 +65062,6 @@ Ext.define('Ext.direct.Manager', {
                     }
                 }
             };
-        //,
-        //  map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
         function addMarker(feature, businessName, m) {
             var marker = new google.maps.Marker({
                     position: m,
