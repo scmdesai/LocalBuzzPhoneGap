@@ -65006,7 +65006,7 @@ Ext.define('Ext.direct.Manager', {
             });
         });
         var icons = {
-                Auto: {
+                "Auto": {
                     icon: {
                         path: fontawesome.markers.CAR,
                         scale: 0.25,
@@ -65017,7 +65017,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                Grocery: {
+                "Grocery": {
                     icon: {
                         path: fontawesome.markers.SHOPPING_CART,
                         scale: 0.25,
@@ -65028,7 +65028,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                Arts: {
+                "Arts": {
                     icon: {
                         path: fontawesome.markers.PAINT_BRUSH,
                         scale: 0.25,
@@ -65039,7 +65039,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                DanceGroup: {
+                "DanceGroup": {
                     icon: {
                         path: fontawesome.markers.STOP_CIRCLE_O,
                         scale: 0.25,
@@ -65050,7 +65050,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                BeautySalon: {
+                "BeautySalon": {
                     icon: {
                         path: fontawesome.markers.SPA,
                         scale: 0.25,
