@@ -65022,16 +65022,17 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1.0,
                     }*/
                 "Grocery": {
-                    icon: {
-                        path: fontawesome.markers.SHOPPING_CART,
+                    icon: 'http://maps.google.com/mapfiles/kml/pal3/icon18.png'
+                },
+                /*{
+                        path:fontawesome.markers.SHOPPING_CART,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 0.2,
                         fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
-                },
+                        fillOpacity: 1.0,
+                    }*/
                 "Arts": {
                     icon: {
                         path: fontawesome.markers.STOP,
@@ -65044,27 +65045,33 @@ Ext.define('Ext.direct.Manager', {
                     }
                 },
                 "DanceGroup": {
-                    icon: {
-                        path: fontawesome.markers.STOP,
+                    icon: 'TEXT ICON'
+                },
+                /*{
+                        path:fontawesome.markers.STOP,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
-                },
+                        fillOpacity: 1.0,
+
+
+
+                    }*/
                 "BeautySalon": {
-                    icon: {
-                        path: fontawesome.markers.STOP,
+                    icon: 'http://maps.google.com/mapfiles/kml/shapes/salon.png'
+                }
+            };
+        /*{
+                        path:fontawesome.markers.STOP,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
-                }
-            };
+                        fillOpacity: 1.0,
+
+                    }*/
         var labelIndex = 0;
         function addMarker(feature, businessName, m) {
             var marker = new google.maps.Marker({
