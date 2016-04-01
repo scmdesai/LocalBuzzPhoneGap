@@ -65064,7 +65064,7 @@ Ext.define('Ext.direct.Manager', {
             };
         function addMarker(feature) {
             var marker = new google.maps.Marker({
-                    position: m,
+                    position: google.maps.LatLng(lat, long),
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
