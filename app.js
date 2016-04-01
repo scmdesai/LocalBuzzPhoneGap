@@ -65011,7 +65011,7 @@ Ext.define('Ext.direct.Manager', {
         var icons = {
                 "Auto": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.CAR,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65022,7 +65022,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "Grocery": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.SHOPPING_CART,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65033,7 +65033,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "Arts": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.STOP_CIRCLE,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65044,29 +65044,35 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "DanceGroup": {
                     icon: {
-                        path: SQUARE_PIN,
-                        scale: 0.4
+                        path: fontawesome.markers.STOP_CIRCLE,
+                        strokeWeight: 0.2,
+                        strokeColor: 'black',
+                        strokeOpacity: 1,
+                        fillColor: '#1985d0',
+                        fillOpacity: 1
                     }
                 },
                 "BeautySalon": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.STOP_CIRCLE,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 0.2
+                        fillOpacity: 1
                     }
                 }
             };
+        var labelIndex = 0;
         function addMarker(feature, businessName, m) {
-            var marker = new MarkerWithLabel({
+            var marker = new google.maps.Marker({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[feature].icon
+                    icon: icons[feature].icon,
+                    label: businessName[labelIndex++ % labelIndex.length]
                 });
             addInfoWindow(marker, businessName);
         }
