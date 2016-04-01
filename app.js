@@ -65019,50 +65019,54 @@ Ext.define('Ext.direct.Manager', {
                                 fillOpacity: 1
                             }*/
                 "Grocery": {
-                    icon: {
-                        path: fontawesome.markers.SHOPPING_CART,
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
+                    icon: 'resources/img/supermarket.png'
                 },
+                /*{
+                                path: fontawesome.markers.SHOPPING_CART,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "Arts": {
-                    icon: {
-                        path: fontawesome.markers.BULLSEYE,
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
+                    icon: 'resources/img/museum_art.png'
                 },
+                /*{
+                                path: fontawesome.markers.BULLSEYE,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "DanceGroup": {
-                    icon: {
-                        path: fontawesome.markers.CHILD,
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
+                    icon: 'resources/img/dance_class.png'
                 },
+                /*{
+                                path: fontawesome.markers.CHILD,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "BeautySalon": {
-                    icon: {
-                        path: fontawesome.markers.SCISSORS,
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
+                    icon: 'resources/img/barber.png'
                 }
             };
+        /*{
+                                path: fontawesome.markers.SCISSORS,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
         function addMarker(feature, businessName, m) {
             var marker = new google.maps.Marker({
                     position: m,
