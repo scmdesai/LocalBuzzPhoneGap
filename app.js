@@ -65008,58 +65008,63 @@ Ext.define('Ext.direct.Manager', {
         var icons = {
                 "Auto": {
                     icon: {
-                        path: fontawesome.markers.CAR,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    }
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 },
                 "Grocery": {
                     icon: {
-                        path: fontawesome.markers.SHOPPING_CART,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    }
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 },
                 "Arts": {
                     icon: {
-                        path: fontawesome.markers.BULLSEYE,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    }
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 },
                 "DanceGroup": {
                     icon: {
-                        path: fontawesome.markers.CHILD,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    }
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 },
                 "BeautySalon": {
                     icon: {
-                        path: fontawesome.markers.SCISSORS,
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    }
+                    },
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 }
             };
         function addMarker(feature, businessName, m) {
