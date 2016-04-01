@@ -65045,12 +65045,7 @@ Ext.define('Ext.direct.Manager', {
                 "DanceGroup": {
                     icon: {
                         path: 'resources/img/dance_class.png',
-                        scale: 0.4,
-                        strokeWeight: 0.2,
-                        strokeColor: 'black',
-                        strokeOpacity: 1,
-                        fillColor: '#1985d0',
-                        fillOpacity: 1
+                        scale: 0.4
                     }
                 },
                 //map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
