@@ -65015,9 +65015,9 @@ Ext.define('Ext.direct.Manager', {
                         strokeOpacity: 0.2,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    },
-                    map_icon_label: '<span class="map-icon map-icon-car-repair"></span>'
+                    }
                 },
+                // map_icon_label: '<span class="map-icon map-icon-car-repair"></span>'
                 "Grocery": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65027,9 +65027,9 @@ Ext.define('Ext.direct.Manager', {
                         strokeOpacity: 0.2,
                         fillColor: '#1985d0',
                         fillOpacity: 1
-                    },
-                    map_icon_label: '<span class="map-icon map-icon-grocery-or-supermarket"></span>'
+                    }
                 },
+                // map_icon_label: '<span class="map-icon map-icon-grocery-or-supermarket"></span>'
                 "Arts": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65038,17 +65038,17 @@ Ext.define('Ext.direct.Manager', {
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 1,
-                        map_icon_label: '<span class="map-icon map-icon-art-gallery"></span>'
+                        fillOpacity: 1
                     }
                 },
+                // map_icon_label: '<span class="map-icon map-icon-art-gallery"></span>'
                 "DanceGroup": {
                     icon: {
                         path: SQUARE_PIN,
-                        scale: 0.4,
-                        map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                        scale: 0.4
                     }
                 },
+                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "BeautySalon": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65057,18 +65057,19 @@ Ext.define('Ext.direct.Manager', {
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 0.2,
-                        map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
+                        fillOpacity: 0.2
                     }
                 }
             };
+        //map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
         function addMarker(feature, businessName, m) {
             var marker = new Marker({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[feature].icon
+                    icon: icons[feature].icon,
+                    map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
                 });
             addInfoWindow(marker, businessName);
         }
