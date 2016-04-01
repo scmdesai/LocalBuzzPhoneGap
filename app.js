@@ -65008,7 +65008,7 @@ Ext.define('Ext.direct.Manager', {
         var icons = {
                 "Auto": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: fontawesome.markers.CAR,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65017,7 +65017,6 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                // map_icon_label: '<span class="map-icon map-icon-car-repair"></span>'
                 "Grocery": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65029,7 +65028,6 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                // map_icon_label: '<span class="map-icon map-icon-grocery-or-supermarket"></span>'
                 "Arts": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65041,14 +65039,12 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                // map_icon_label: '<span class="map-icon map-icon-art-gallery"></span>'
                 "DanceGroup": {
                     icon: {
                         path: SQUARE_PIN,
                         scale: 0.4
                     }
                 },
-                // map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
                 "BeautySalon": {
                     icon: {
                         path: SQUARE_PIN,
@@ -65061,15 +65057,17 @@ Ext.define('Ext.direct.Manager', {
                     }
                 }
             };
-        //map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
         function addMarker(feature, businessName, m) {
-            var marker = new Marker({
+            var marker = new MarkerWithLabel({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[feature].icon,
-                    map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
+                    //icon: icons[feature].icon,
+                    labelContent: "<div class='arrow'></div><div class='inner'>$425K</div>",
+                    labelClass: "labels",
+                    // the CSS class for the label
+                    icon: {}
                 });
             addInfoWindow(marker, businessName);
         }
