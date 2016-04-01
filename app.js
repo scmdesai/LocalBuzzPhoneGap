@@ -65079,8 +65079,8 @@ Ext.define('Ext.direct.Manager', {
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[feature].icon,
-                    label: businessName[labelIndex++ % labelIndex.length]
+                    //icon: icons[feature].icon,
+                    title: businessName
                 });
             addInfoWindow(marker, businessName);
         }
