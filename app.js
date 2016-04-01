@@ -65063,13 +65063,13 @@ Ext.define('Ext.direct.Manager', {
                 }
             };
         function addMarker(feature, businessName, m) {
-            var marker = new MarkerWithLabel({
+            var marker = new google.maps.MarkerLabel({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
                     icon: '',
-                    labelContent: icons[feature].map_icon_label
+                    text: icons[feature].map_icon_label
                 });
             addInfoWindow(marker, businessName);
         }
