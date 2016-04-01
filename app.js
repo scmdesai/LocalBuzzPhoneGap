@@ -65013,7 +65013,7 @@ Ext.define('Ext.direct.Manager', {
                         draggable: false,
                         animation: google.maps.Animation.DROP,
                         icon: {
-                            path: fontawesome.markers.AUTOMOBILE,
+                            path: fontawesome.markers.CAR,
                             scale: 0.5,
                             strokeWeight: 0.2,
                             strokeColor: 'black',
