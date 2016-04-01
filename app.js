@@ -65006,7 +65006,7 @@ Ext.define('Ext.direct.Manager', {
             });
         });
         var icons = {
-                auto: {
+                Auto: {
                     icon: {
                         path: fontawesome.markers.CAR,
                         scale: 0.25,
@@ -65017,7 +65017,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                grocery: {
+                Grocery: {
                     icon: {
                         path: fontawesome.markers.SHOPPING_CART,
                         scale: 0.25,
@@ -65028,7 +65028,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                arts: {
+                Arts: {
                     icon: {
                         path: fontawesome.markers.PAINT_BRUSH,
                         scale: 0.25,
@@ -65039,7 +65039,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                dance: {
+                DanceGroup: {
                     icon: {
                         path: fontawesome.markers.STOP_CIRCLE_O,
                         scale: 0.25,
@@ -65050,7 +65050,7 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1
                     }
                 },
-                beauty: {
+                BeautySalon: {
                     icon: {
                         path: fontawesome.markers.SPA,
                         scale: 0.25,
@@ -65063,12 +65063,13 @@ Ext.define('Ext.direct.Manager', {
                 }
             };
         function addMarker(feature) {
+            console.log(feature);
             var marker = new google.maps.Marker({
                     position: google.maps.LatLng(lat, long),
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons.feature.icon
+                    icon: icons[feature].icon
                 });
         }
         function addInfoWindow(marker, content) {
