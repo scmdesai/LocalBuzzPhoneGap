@@ -65032,7 +65032,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "Arts": {
                     icon: {
-                        path: '<span class="map-icon map-icon-art-gallery"></span>',
+                        path: SQUARE_PIN,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65063,12 +65063,13 @@ Ext.define('Ext.direct.Manager', {
                 }
             };
         function addMarker(feature, businessName, m) {
-            var marker = new Marker({
+            var marker = new MarkerWithLabel({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[feature].map_icon_label
+                    icon: '',
+                    labelContent: icons[feature].map_icon_label
                 });
             addInfoWindow(marker, businessName);
         }
