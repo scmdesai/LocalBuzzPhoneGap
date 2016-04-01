@@ -65032,7 +65032,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "Arts": {
                     icon: {
-                        path: SQUARE_PIN,
+                        path: 'map-icon-art-gallery',
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
