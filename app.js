@@ -65074,18 +65074,16 @@ Ext.define('Ext.direct.Manager', {
                     }*/
         var labelIndex = 0;
         function addMarker(feature, businessName, m) {
-            var marker = new google.maps.Marker({
-                    position: m,
-                    map: gmap,
-                    draggable: false,
-                    animation: google.maps.Animation.DROP,
-                    //icon: icons[feature].icon,
-                    title: businessName,
-                    visible: true
+            var marker = new MarkerWithLabel({
+                    position: location,
+                    labelContent: "lets showthis",
+                    map: map,
+                    labelAnchor: new google.maps.Point(35, 120),
+                    labelClass: "labels",
+                    // the CSS class for the label
+                    labelInBackground: false,
+                    icon: pinSymbol('red')
                 });
-            var label = new ELabel(m, "Utopia", "styleLabel");
-            gmap.addOverlay(label);
-            label.show();
             addInfoWindow(marker, businessName);
         }
         function addInfoWindow(marker, content) {
@@ -65095,6 +65093,16 @@ Ext.define('Ext.direct.Manager', {
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
             });
+            function pinSymbol(color) {
+                return {
+                    path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
+                    fillColor: color,
+                    fillOpacity: 1,
+                    strokeColor: '#000',
+                    strokeWeight: 2,
+                    scale: 4
+                };
+            }
         }
     }
 }, 0, 0, [
