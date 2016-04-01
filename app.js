@@ -65038,16 +65038,16 @@ Ext.define('Ext.direct.Manager', {
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 1
-                    },
-                    map_icon_label: '<span class="map-icon map-icon-art-gallery"></span>'
+                        fillOpacity: 1,
+                        map_icon_label: '<span class="map-icon map-icon-art-gallery"></span>'
+                    }
                 },
                 "DanceGroup": {
                     icon: {
                         path: SQUARE_PIN,
-                        scale: 0.4
-                    },
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                        scale: 0.4,
+                        map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                    }
                 },
                 "BeautySalon": {
                     icon: {
@@ -65057,19 +65057,18 @@ Ext.define('Ext.direct.Manager', {
                         strokeColor: 'black',
                         strokeOpacity: 1,
                         fillColor: '#1985d0',
-                        fillOpacity: 0.2
-                    },
-                    map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
+                        fillOpacity: 0.2,
+                        map_icon_label: '<span class="map-icon map-icon-beauty-salon"></span>'
+                    }
                 }
             };
         function addMarker(feature, businessName, m) {
-            var marker = new google.maps.MarkerLabel({
+            var marker = new Marker({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: '',
-                    text: icons[feature].map_icon_label
+                    icon: icons[feature].icon
                 });
             addInfoWindow(marker, businessName);
         }
