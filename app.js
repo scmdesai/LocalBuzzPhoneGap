@@ -65033,7 +65033,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "Arts": {
                     icon: {
-                        path: fontawesome.markers.STOP_CIRCLE,
+                        path: fontawesome.markers.STOP,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65044,7 +65044,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "DanceGroup": {
                     icon: {
-                        path: fontawesome.markers.STOP_CIRCLE,
+                        path: fontawesome.markers.STOP,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 1,
@@ -65054,7 +65054,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 "BeautySalon": {
                     icon: {
-                        path: fontawesome.markers.STOP_CIRCLE,
+                        path: fontawesome.markers.STOP,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
