@@ -65005,12 +65005,9 @@ Ext.define('Ext.direct.Manager', {
                 addMarker(record.get('category'), record.get('businessName'), m);
             });
         });
-        var auto_icon = {
-                url: 'resources/img/car.png'
-            };
         var icons = {
                 "Auto": {
-                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png'
+                    icon: 'resurces/img/car.png'
                 },
                 /*{
                         path: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
@@ -65072,16 +65069,10 @@ Ext.define('Ext.direct.Manager', {
                         fillOpacity: 1.0,
 
                     }*/
-        var labelIndex = 0;
         function addMarker(feature, businessName, m) {
-            var marker = new MarkerWithLabel({
+            var marker = new google.maps.Marker({
                     position: location,
-                    labelContent: "lets showthis",
-                    map: map,
-                    labelAnchor: m,
-                    labelClass: "labels",
-                    // the CSS class for the label
-                    labelInBackground: false
+                    icon: icons[feature].icon
                 });
             addInfoWindow(marker, businessName);
         }
