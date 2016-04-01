@@ -64992,6 +64992,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onMymapMaprender: function(map, gmap, eOpts) {
         var lat, long;
+        var businessName;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -65000,9 +65001,8 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
-                // var businessName = record.get('businessName');
+                businessName = record.get('businessName');
                 addMarker(record.get('category'));
-                addInfoWindow(marker, record.get('businessName'));
             });
         });
         var icons = {
@@ -65071,6 +65071,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
+            addInfoWindow(marker, record.get('businessName'));
         }
         function addInfoWindow(marker, content) {
             var infoWindow = new google.maps.InfoWindow({
