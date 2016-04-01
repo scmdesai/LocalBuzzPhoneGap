@@ -65001,27 +65001,73 @@ Ext.define('Ext.direct.Manager', {
                 console.log(lat, long);
                 var m = new google.maps.LatLng(lat, long);
                 // var businessName = record.get('businessName');
-                /* var icons = {
-               auto: {
-               icon:'icon-car.png'
-               },
-
-           };*/
-                var marker = new google.maps.Marker({
-                        position: m,
-                        map: gmap,
-                        draggable: false,
-                        animation: google.maps.Animation.DROP,
-                        icon: {
-                            path: fontawesome.markers.CAR,
-                            scale: 0.5,
-                            strokeWeight: 0.2,
-                            strokeColor: 'black',
-                            strokeOpacity: 1,
-                            fillColor: '#f8ae5f',
-                            fillOpacity: 0.7
+                var icons = {
+                        auto: {
+                            icon: {
+                                path: fontawesome.markers.CAR,
+                                scale: 0.25,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#ff0000',
+                                fillOpacity: 1
+                            }
+                        },
+                        grocery: {
+                            icon: {
+                                path: fontawesome.markers.SHOPPING_CART,
+                                scale: 0.25,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#ff0000',
+                                fillOpacity: 1
+                            }
+                        },
+                        arts: {
+                            icon: {
+                                path: fontawesome.markers.PAINT_BRUSH,
+                                scale: 0.25,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#ff0000',
+                                fillOpacity: 1
+                            }
+                        },
+                        dance: {
+                            icon: {
+                                path: fontawesome.markers.STOP_CIRCLE_O,
+                                scale: 0.25,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#ff0000',
+                                fillOpacity: 1
+                            }
+                        },
+                        beauty: {
+                            icon: {
+                                path: fontawesome.markers.SPA,
+                                scale: 0.25,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#ff0000',
+                                fillOpacity: 1
+                            }
                         }
-                    });
+                    };
+                function addMarker(feature) {
+                    var marker = new google.maps.Marker({
+                            position: m,
+                            map: gmap,
+                            draggable: false,
+                            animation: google.maps.Animation.DROP,
+                            icon: icons[feature.type].icon
+                        });
+                }
+                addMarker(record.get('category'));
                 addInfoWindow(marker, record.get('businessName'));
             });
         });
