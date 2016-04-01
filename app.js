@@ -65075,7 +65075,8 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            addInfoWindow(marker, businessName);
+            var content = '<h1>{businessName}</h1>';
+            addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
             var infoWindow = new google.maps.InfoWindow({
