@@ -65012,17 +65012,12 @@ Ext.define('Ext.direct.Manager', {
                         map: gmap,
                         draggable: false,
                         animation: google.maps.Animation.DROP,
-                        icon: {
-                            path: icon - car,
-                            //fontawesome.markers.EXCLAMATION,
-                            scale: 0.5,
-                            strokeWeight: 0.2,
-                            strokeColor: 'black',
-                            strokeOpacity: 1,
-                            fillColor: '#f8ae5f',
-                            fillOpacity: 0.7
-                        }
+                        icon: '',
+                        labelContent: '<i class="fa fa-car fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
+                        labelAnchor: new google.maps.Point(22, 50),
+                        labelClass: "labels"
                     });
+                // the CSS class for the label
                 addInfoWindow(marker, record.get('businessName'));
             });
         });
