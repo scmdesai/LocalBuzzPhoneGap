@@ -65005,10 +65005,13 @@ Ext.define('Ext.direct.Manager', {
                 addMarker(record.get('category'), record.get('businessName'), m);
             });
         });
+        var auto_icon = {
+                url: 'resources/img/car.png'
+            };
         var icons = {
                 "Auto": {
                     icon: {
-                        path: fontawesome.markers.CAR,
+                        path: auto_icon,
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
@@ -65063,11 +65066,7 @@ Ext.define('Ext.direct.Manager', {
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    //icon: icons[feature].icon,
-                    labelContent: "<div class='arrow'></div><div class='inner'>$425K</div>",
-                    labelClass: "labels",
-                    // the CSS class for the label
-                    icon: ''
+                    icon: icons[feature].icon
                 });
             addInfoWindow(marker, businessName);
         }
