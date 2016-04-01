@@ -65010,16 +65010,17 @@ Ext.define('Ext.direct.Manager', {
             };
         var icons = {
                 "Auto": {
-                    icon: {
+                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png'
+                },
+                /*{
                         path: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
                         scale: 0.4,
                         strokeWeight: 0.2,
                         strokeColor: 'black',
                         strokeOpacity: 0.2,
                         fillColor: '#1985d0',
-                        fillOpacity: 1
-                    }
-                },
+                        fillOpacity: 1.0,
+                    }*/
                 "Grocery": {
                     icon: {
                         path: fontawesome.markers.SHOPPING_CART,
