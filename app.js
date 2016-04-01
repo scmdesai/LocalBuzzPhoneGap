@@ -65007,7 +65007,7 @@ Ext.define('Ext.direct.Manager', {
         });
         var icons = {
                 "Auto": {
-                    icon: 'resurces/img/car.png'
+                    icon: 'resources/img/car.png'
                 },
                 /*{
                         path: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
