@@ -65064,7 +65064,7 @@ Ext.define('Ext.direct.Manager', {
                             map: gmap,
                             draggable: false,
                             animation: google.maps.Animation.DROP,
-                            icon: icons[feature.type].icon
+                            icon: icons[feature].icon
                         });
                 }
                 addMarker(record.get('category'));
