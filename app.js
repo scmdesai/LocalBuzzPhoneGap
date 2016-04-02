@@ -65034,23 +65034,19 @@ Ext.define('Ext.direct.Manager', {
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
-            /* var infoWindow = new google.maps.InfoWindow({
-                content: content
-            });*/
+            var infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
             google.maps.event.addListener(marker, 'mousedown', function() {
-                // infoWindow.open(gmap, marker);
-                //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
-                // storeInfo.setRecord(record);
-                //Ext.Viewport.setActiveItem(storeInfo);
-                var overlay = new Ext.Panel({
-                        floating: true,
-                        modal: true,
-                        centered: true,
-                        width: 500,
-                        height: 500,
-                        styleHtmlContent: true,
-                        html: '<div><iframe style="width:100%;height:100%;" src="http://www.sencha.com/products/touch">Your device does not support iframes.</iframe></div>'
-                    }).show('pop', true);
+                infoWindow.open(gmap, marker);
+            });
+            google.maps.event.addListener(infoWindow, 'mousedown', function() {
+                console.log('InfoWindow clicked');
+                var storeInfo = Ext.Viewport.add({
+                        xtype: 'contactinfo'
+                    });
+                storeInfo.setRecord(record);
+                Ext.Viewport.setActiveItem(storeInfo);
             });
         }
     }
