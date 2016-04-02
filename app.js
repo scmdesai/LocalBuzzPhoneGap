@@ -65032,7 +65032,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<div>" + businessName + "</div><label id=\"labelStore\">Store Info</label>";
+            var content = "<h3>" + businessName + "</h3><label id=\"labelStore\" style=\"color:green\">Store Info</label>";
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
@@ -65197,6 +65197,7 @@ Ext.define('Ext.direct.Manager', {
                     //var test = Ext.Date.add(date,Ext.Date.DAY,0);
                     //var today = Ext.Date.format(test,'n/j/Y');
                     store.clearFilter();
+                    store.load();
                     store.each(function(rec) {
                         //console.log('Deal End Date: ' + rec.get('dealEndDate'));
                         //console.log('Tdays date is : ' + today);
