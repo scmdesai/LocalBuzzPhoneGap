@@ -64751,29 +64751,6 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
-                title: 'Expiring Soon',
-                iconCls: 'time',
-                disabled: false,
-                itemId: 'ExpiringSoon',
-                style: 'border:2px inset #C0C0C0;',
-                ui: 'dark',
-                layout: 'hbox',
-                modal: true,
-                items: [
-                    {
-                        xtype: 'latestbuzz',
-                        width: '100%'
-                    },
-                    {
-                        xtype: 'toolbar',
-                        docked: 'top',
-                        html: '<h1 style=" color:white;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>',
-                        style: 'border:none;background-color:transparent'
-                    }
-                ]
-            },
-            {
-                xtype: 'container',
                 title: 'Search Business',
                 iconCls: 'search',
                 itemId: 'SearchBusiness',
@@ -64895,11 +64872,6 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#LatestBuzz'
             },
             {
-                fn: 'onExpiringSoonActivate',
-                event: 'activate',
-                delegate: '#ExpiringSoon'
-            },
-            {
                 fn: 'onSearchfieldKeyup',
                 event: 'keyup',
                 delegate: '#searchfield'
@@ -64933,23 +64905,6 @@ Ext.define('Ext.direct.Manager', {
                 rec.set('dealStatus', 'Expired');
             } else {
                 rec.set('dealStatus', 'Active');
-            }
-        });
-        //store.clearFilter();
-        store.filter('dealStatus', 'Active');
-    },
-    onExpiringSoonActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        var date = new Date();
-        var todayplusthree = Ext.Date.add(date, Ext.Date.DAY, 3);
-        var todayplusthreedays = Ext.Date.format(todayplusthree, 'n/j/Y');
-        var today = Ext.Date.format(date, 'n/j/Y');
-        var store = Ext.getStore('MyDealsStore');
-        store.clearFilter();
-        store.each(function(rec) {
-            //console.log('Deal End Date: ' + rec.get('dealEndDate'));
-            //console.log('Tdays date is : ' + today);
-            if (rec.get('dealEndDate') >= todayplusthreedays) {
-                rec.set('dealStatus', 'Not Expiring');
             }
         });
         //store.clearFilter();
@@ -65002,7 +64957,7 @@ Ext.define('Ext.direct.Manager', {
                 //console.log(lat,long);
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
-                addMarker(record.get('category'), record.get('businessName'), m);
+                addMarker(record.get('category'), record.get('businessName'), m, record);
             });
         });
         var icons = {
@@ -65067,7 +65022,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-        function addMarker(feature, businessName, m) {
+        function addMarker(feature, businessName, m, record) {
             var marker = new google.maps.Marker({
                     position: m,
                     map: gmap,
@@ -65075,7 +65030,11 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<h3>" + businessName + "</h3>";
+            var storeInfo = Ext.Viewport.add({
+                    xtype: 'contactinfo'
+                });
+            storeInfo.setRecord(record);
+            var content = "<div>" + businessName + "</div><a href = \"javascript:Ext.Viewport.setActiveItem(storeInfo)\">Store Info</div>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
@@ -65652,7 +65611,7 @@ Ext.define('Ext.direct.Manager', {
         fullscreen: true,
         id: 'dealPicture',
         itemId: 'dealPicture',
-        style: 'background:none',
+        style: 'background:#fff',
         width: '100%',
         layout: 'vbox',
         scrollable: 'vertical',
@@ -65934,6 +65893,9 @@ Ext.define('Ext.direct.Manager', {
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
         Ext.Viewport.getActiveItem().destroy();
+        var store = Ext.StoreManager.lookup('MyDealsStore');
+        store.clearFilter();
+        store.load();
     },
     onPhoneNumberFocus: function(textfield, e, eOpts) {},
     /*console.log('focus');
@@ -66098,6 +66060,7 @@ Ext.define('Ext.direct.Manager', {
         var today = Ext.Date.format(date, 'n/j/Y');
         //var test = Ext.Date.add(date,Ext.Date.DAY,0);
         //var today = Ext.Date.format(test,'n/j/Y');
+        Ext.Viewport.setActiveItem(newActiveItem);
         store.each(function(rec) {
             //console.log('Deal End Date: ' + rec.get('dealEndDate'));
             //console.log('Tdays date is : ' + today);
