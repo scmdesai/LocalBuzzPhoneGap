@@ -65033,13 +65033,6 @@ Ext.define('Ext.direct.Manager', {
                 });
             var content = "<div>" + businessName + "</div><label id=\"labelStore\">Store Info</label>";
             addInfoWindow(marker, content, record);
-            google.maps.event.addListener(infoWindow, 'domready', function() {
-                console.log('InfoWindow clicked');
-                //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
-                // Ext.Viewport.setActiveItem(storeInfo);
-                //storeInfo.setRecord(record);
-                console.log(infoWindow.getContent());
-            });
         }
         function addInfoWindow(marker, content, record) {
             infoindow = new google.maps.InfoWindow({
@@ -65047,6 +65040,13 @@ Ext.define('Ext.direct.Manager', {
             });
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
+                google.maps.event.addListener(infoWindow, 'domready', function() {
+                    console.log('InfoWindow clicked');
+                    //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
+                    // Ext.Viewport.setActiveItem(storeInfo);
+                    //storeInfo.setRecord(record);
+                    console.log(infoWindow.getContent());
+                });
             });
         }
     }
