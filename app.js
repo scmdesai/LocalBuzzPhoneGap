@@ -65030,9 +65030,10 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var showStore = Ext.Viewport.add({
+            var showStore = Ext.Viewport.setActiveItem({
                     xtype: 'contactinfo'
                 });
+            showStore.setRecord(record);
             var content = "<div>" + businessName + "</div><a href = \"showStore\">Store Info</a>";
             addInfoWindow(marker, content);
         }
