@@ -65040,13 +65040,15 @@ Ext.define('Ext.direct.Manager', {
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
             });
-            google.maps.event.addListener(infoWindow, 'mousedown', function() {
-                console.log('Info window clicked');
-                var showStore = Ext.Viewport.add({
-                        xtype: 'contactinfo'
-                    });
-                //showStore.setRecord(record);
-                Ext.Viewport.setActiveItem(showStore);
+            google.maps.event.addListener(infowindow, "domready", function() {
+                google.maps.event.addListener(infoWindow, 'mousedown', function() {
+                    console.log('Info window clicked');
+                    var showStore = Ext.Viewport.add({
+                            xtype: 'contactinfo'
+                        });
+                    //showStore.setRecord(record);
+                    Ext.Viewport.setActiveItem(showStore);
+                });
             });
             function pinSymbol(color) {
                 return {
