@@ -65206,7 +65206,7 @@ Ext.define('Ext.direct.Manager', {
                     });
                     //store.clearFilter();
                     store.filter('dealStatus', 'Active');
-                    //Ext.Viewport.getActiveItem().destroy();
+                    Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
                             xtype: 'DealsPanel'
                         });
@@ -65638,8 +65638,8 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'button',
                         handler: function(button, e) {
                             Ext.getStore('LocalStore').removeAt(0);
+                            Ext.Viewport.getActiveItem().destroy();
                         },
-                        //Ext.Viewport.getActiveItem().destroy();
                         //var view = Ext.Viewport.add({xtype:'DealsPanel'});
                         //Ext.Viewport.setActiveItem(view);
                         style: 'font-size:6vw',
@@ -65878,8 +65878,8 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onDealBackBtnTap: function(button, e, eOpts) {
-        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+    onDealBackBtnTap: function(button, e, eOpts) {},
+    /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter() ;
         var dealRecord = this.getContactinfo().getRecord() ;
         //console.log("Deal Record is:") ;
@@ -65902,11 +65902,12 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus', 'Active');
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
-        Ext.Viewport.getActiveItem().destroy();
+    /*Ext.Viewport.getActiveItem().destroy();
+
         var store = Ext.StoreManager.lookup('MyDealsStore');
         store.clearFilter();
         store.load();
-    },
+        */
     onPhoneNumberFocus: function(textfield, e, eOpts) {},
     /*console.log('focus');
         var numberToDial = textfield.getValue();
@@ -66070,7 +66071,7 @@ Ext.define('Ext.direct.Manager', {
         var today = Ext.Date.format(date, 'n/j/Y');
         //var test = Ext.Date.add(date,Ext.Date.DAY,0);
         //var today = Ext.Date.format(test,'n/j/Y');
-        Ext.Viewport.getActiveItem().destroy();
+        //Ext.Viewport.getActiveItem().destroy();
         //Ext.Viewport.setActiveItem(newActiveItem);
         store.each(function(rec) {
             //console.log('Deal End Date: ' + rec.get('dealEndDate'));
