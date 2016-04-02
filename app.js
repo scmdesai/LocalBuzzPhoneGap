@@ -64863,7 +64863,8 @@ Ext.define('Ext.direct.Manager', {
         tabBar: {
             docked: 'bottom',
             style: 'font-size:6vw',
-            modal: false
+            modal: false,
+            activeTab: 0
         },
         listeners: [
             {
@@ -65048,25 +65049,31 @@ Ext.define('Ext.direct.Manager', {
                     // console.log(infoWindow.getContent());
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         console.log('Label Clicked');
-                        var storeInfo = Ext.Viewport.add({
-                                xtype: 'contactinfo'
-                            });
-                        Ext.Viewport.setActiveItem(storeInfo);
-                        storeInfo.setRecord(record);
+                        var store = Ext.getStore('MyDealsStore');
+                        store.filter('customerId', record.get('customerId'));
+                        Ext.Viewport.setActiveItem({
+                            xtype: 'Main'
+                        });
                     });
                 });
             });
         }
     }
-}, 0, 0, [
+}, 0, [
+    "Main"
+], [
     "component",
     "container",
-    "tabpanel"
+    "tabpanel",
+    "Main"
 ], {
     "component": true,
     "container": true,
-    "tabpanel": true
-}, 0, 0, [
+    "tabpanel": true,
+    "Main": true
+}, [
+    "widget.Main"
+], 0, [
     Contact.view,
     'Main'
 ], 0));
