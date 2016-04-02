@@ -65042,21 +65042,15 @@ Ext.define('Ext.direct.Manager', {
                 //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
                 // storeInfo.setRecord(record);
                 //Ext.Viewport.setActiveItem(storeInfo);
-                win = Ext.create('widget.window', {
-                    title: 'Layout Window',
-                    closable: true,
-                    closeAction: 'hide',
-                    width: 600,
-                    minWidth: 350,
-                    height: 350,
-                    layout: 'border',
-                    bodyStyle: 'padding: 5px;',
-                    items: [
-                        {
-                            xtype: 'contactinfo'
-                        }
-                    ]
-                });
+                var overlay = new Ext.Panel({
+                        floating: true,
+                        modal: true,
+                        centered: true,
+                        width: 500,
+                        height: 500,
+                        styleHtmlContent: true,
+                        html: '<div><iframe style="width:100%;height:100%;" src="http://www.sencha.com/products/touch">Your device does not support iframes.</iframe></div>'
+                    }).show('pop', true);
             });
         }
     }
