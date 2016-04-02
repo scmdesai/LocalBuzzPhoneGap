@@ -64919,6 +64919,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyJsonPStore').clearFilter();
+        Ext.getStore('MyDealsStore').clearFilter();
     },
     onLookUpZipcodeAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
@@ -65198,16 +65199,27 @@ Ext.define('Ext.direct.Manager', {
                     //var today = Ext.Date.format(test,'n/j/Y');
                     store.clearFilter();
                     store.load();
-                    store.each(function(rec) {
-                        //console.log('Deal End Date: ' + rec.get('dealEndDate'));
-                        //console.log('Tdays date is : ' + today);
-                        if (rec.get('dealEndDate') < today) {
-                            console.log(rec.get('dealName'));
-                            rec.set('dealStatus', 'Expired');
-                        }
-                    });
+                    /*store.each(function(rec)
+                    {
+
+
+                    //console.log('Deal End Date: ' + rec.get('dealEndDate'));
+                    //console.log('Tdays date is : ' + today);
+
+                    if(rec.get('dealEndDate') < today) {
+
+                        console.log(rec.get('dealName'));
+                        rec.set('dealStatus','Expired');
+
+
+
+                    }
+
+
+
+                });*/
                     store.filter('dealStatus', 'Active');
-                    Ext.Viewport.getActiveItem().destroy();
+                    //Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
                             xtype: 'DealsPanel'
                         });
