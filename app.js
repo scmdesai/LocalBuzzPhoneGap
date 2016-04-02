@@ -65035,6 +65035,7 @@ Ext.define('Ext.direct.Manager', {
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
+            var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
             google.maps.event.addListener(marker, 'mousedown', function() {
