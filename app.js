@@ -65030,17 +65030,19 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var storeInfo = Ext.Viewport.add({
-                    xtype: 'contactinfo'
-                });
-            storeInfo.setRecord(record);
-            var content = "<div>" + businessName + "</div><a href = \"/view/Info.js\">Store Info</div>";
+            var content = "<div>" + businessName + "</div><input type=\"button\" onclick = \"showStoreInfo(record)\">Store Info</div>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
             var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
+            function showStoreInfo(record) {
+                var storeInfo = Ext.Viewport.setActiveItem({
+                        xtype: 'contactinfo'
+                    });
+                storeInfo.setRecord(record);
+            }
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
             });
@@ -65844,6 +65846,7 @@ Ext.define('Ext.direct.Manager', {
         console.log(eOpts) ;*/
         pic.setRecord(record);
         Ext.getStore('LocalStore').add(record);
+        Ext.Viewport.add(dataview);
         Ext.Viewport.add(pic);
         Ext.Viewport.setActiveItem(pic);
         //_gaq.push(['_trackEvent', 'Images', 'Click', 'Deal Picture', 0]);
