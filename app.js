@@ -65030,7 +65030,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<div>" + businessName + "</div><a href = \"https://www.google.com\">Store Info</div>";
+            var content = "<div>" + businessName + "</div><a href = \"https://www.google.com\" target=\"_self\">Store Info</div>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
