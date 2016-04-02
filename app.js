@@ -64948,7 +64948,7 @@ Ext.define('Ext.direct.Manager', {
     onMymapMaprender: function(map, gmap, eOpts) {
         var lat, long;
         //var businessName;
-        var infoWindow;
+        //var infoWindow;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -65035,9 +65035,8 @@ Ext.define('Ext.direct.Manager', {
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
-            infoindow = new google.maps.InfoWindow({
-                content: content
-            });
+                    content: content
+                });
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
