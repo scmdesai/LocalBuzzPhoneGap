@@ -64898,7 +64898,7 @@ Ext.define('Ext.direct.Manager', {
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
         var store = Ext.getStore('MyDealsStore');
-        store.clearFilter();
+        //store.clearFilter();
         store.each(function(rec) {
             //console.log('Deal End Date: ' + rec.get('dealEndDate'));
             //console.log('Tdays date is : ' + today);
