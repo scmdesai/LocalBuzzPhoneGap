@@ -65034,7 +65034,7 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'contactinfo'
                 });
             showStore.setRecord(record);
-            var content = "<div>" + businessName + "</div><a href = \"showStore\">Store Info</a>";
+            var content = "<div>" + businessName + "</div><a href = \"window.open(showStore)\">Store Info</a>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
