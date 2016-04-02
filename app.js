@@ -64898,7 +64898,7 @@ Ext.define('Ext.direct.Manager', {
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
         var store = Ext.getStore('MyDealsStore');
-        //store.clearFilter();
+        store.clearFilter();
         store.each(function(rec) {
             //console.log('Deal End Date: ' + rec.get('dealEndDate'));
             //console.log('Tdays date is : ' + today);
@@ -65052,7 +65052,7 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         store.filter('customerId', record.get('customerId'));
                         Ext.Viewport.setActiveItem({
-                            xtype: 'Main'
+                            xtype: 'DealsPanel'
                         });
                     });
                 });
@@ -65196,6 +65196,7 @@ Ext.define('Ext.direct.Manager', {
                     var today = Ext.Date.format(date, 'n/j/Y');
                     //var test = Ext.Date.add(date,Ext.Date.DAY,0);
                     //var today = Ext.Date.format(test,'n/j/Y');
+                    store.clearFilter();
                     store.each(function(rec) {
                         //console.log('Deal End Date: ' + rec.get('dealEndDate'));
                         //console.log('Tdays date is : ' + today);
@@ -65204,7 +65205,6 @@ Ext.define('Ext.direct.Manager', {
                             rec.set('dealStatus', 'Expired');
                         }
                     });
-                    //store.clearFilter();
                     store.filter('dealStatus', 'Active');
                     Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
