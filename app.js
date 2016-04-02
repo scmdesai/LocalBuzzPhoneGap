@@ -65043,7 +65043,8 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'contactinfo'
                     });
                 storeInfo.setRecord(record);
-                Ext.Viewport.setActiveItem(storeInfo);
+                //Ext.Viewport.setActiveItem(storeInfo);
+                storeInfo.showBy(marker);
             });
         }
     }
@@ -65836,7 +65837,6 @@ Ext.define('Ext.direct.Manager', {
         console.log(eOpts) ;*/
         pic.setRecord(record);
         Ext.getStore('LocalStore').add(record);
-        Ext.Viewport.add(dataview);
         Ext.Viewport.add(pic);
         Ext.Viewport.setActiveItem(pic);
         //_gaq.push(['_trackEvent', 'Images', 'Click', 'Deal Picture', 0]);
@@ -66053,6 +66053,7 @@ Ext.define('Ext.direct.Manager', {
         var today = Ext.Date.format(date, 'n/j/Y');
         //var test = Ext.Date.add(date,Ext.Date.DAY,0);
         //var today = Ext.Date.format(test,'n/j/Y');
+        Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(newActiveItem);
         store.each(function(rec) {
             //console.log('Deal End Date: ' + rec.get('dealEndDate'));
