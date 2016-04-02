@@ -65039,24 +65039,27 @@ Ext.define('Ext.direct.Manager', {
             });*/
             google.maps.event.addListener(marker, 'mousedown', function() {
                 // infoWindow.open(gmap, marker);
-                var overlayInfo = new Ext.Panel({
-                        floating: true,
-                        modal: true,
-                        centered: true,
-                        width: 200,
-                        height: 300,
-                        styleHtmlContent: true,
-                        scroll: 'vertical',
-                        html: 'temporaray fixed html content',
-                        dockedItems: [
-                            {
-                                dock: 'top',
-                                xtype: 'toolbar',
-                                title: 'addr'
-                            }
-                        ]
-                    });
-                overlayInfo.show();
+                setTimeout(function() {
+                    console.log('Overlay');
+                    var overlayInfo = new Ext.Panel({
+                            floating: true,
+                            modal: true,
+                            centered: true,
+                            width: 200,
+                            height: 300,
+                            styleHtmlContent: true,
+                            scroll: 'vertical',
+                            html: 'temporaray fixed html content',
+                            dockedItems: [
+                                {
+                                    dock: 'top',
+                                    xtype: 'toolbar',
+                                    title: 'addr'
+                                }
+                            ]
+                        });
+                    overlayInfo.show();
+                });
             });
         }
     }
