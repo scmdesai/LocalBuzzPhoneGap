@@ -65034,16 +65034,33 @@ Ext.define('Ext.direct.Manager', {
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
-            /*var infoWindow = new google.maps.InfoWindow({
+            /* var infoWindow = new google.maps.InfoWindow({
                 content: content
-            });*/
-            google.maps.event.addListener(marker, 'mousedown', function() {
-                // infoWindow.open(gmap, marker);
-                var view = Ext.Viewport.add({
-                        xtype: 'contactinfo'
-                    });
-                view.setRecord(record);
             });
+
+           google.maps.event.addListener(marker, 'mousedown', function () {
+                infoWindow.open(gmap, marker);
+
+
+            });*/
+            var overlayInfo = new Ext.Panel({
+                    floating: true,
+                    modal: true,
+                    centered: true,
+                    width: Ext.is.Phone ? 260 : 400,
+                    height: Ext.is.Phone ? 220 : 400,
+                    styleHtmlContent: true,
+                    scroll: 'vertical',
+                    html: 'temporaray fixed html content',
+                    dockedItems: [
+                        {
+                            dock: 'top',
+                            xtype: 'toolbar',
+                            title: addr
+                        }
+                    ]
+                });
+            overlayInfo.show();
         }
     }
 }, 0, 0, [
