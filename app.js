@@ -65639,9 +65639,11 @@ Ext.define('Ext.direct.Manager', {
                         handler: function(button, e) {
                             Ext.getStore('LocalStore').removeAt(0);
                             Ext.Viewport.getActiveItem().destroy();
+                            var view = Ext.Viewport.add({
+                                    xtype: 'DealsPanel'
+                                });
+                            Ext.Viewport.setActiveItem(view);
                         },
-                        //var view = Ext.Viewport.add({xtype:'DealsPanel'});
-                        //Ext.Viewport.setActiveItem(view);
                         style: 'font-size:6vw',
                         ui: 'back',
                         text: 'Back'
@@ -65878,8 +65880,8 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onDealBackBtnTap: function(button, e, eOpts) {},
-    /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+    onDealBackBtnTap: function(button, e, eOpts) {
+        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter() ;
         var dealRecord = this.getContactinfo().getRecord() ;
         //console.log("Deal Record is:") ;
@@ -65902,12 +65904,11 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus', 'Active');
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
-    /*Ext.Viewport.getActiveItem().destroy();
-
+        Ext.Viewport.getActiveItem().destroy();
         var store = Ext.StoreManager.lookup('MyDealsStore');
         store.clearFilter();
         store.load();
-        */
+    },
     onPhoneNumberFocus: function(textfield, e, eOpts) {},
     /*console.log('focus');
         var numberToDial = textfield.getValue();
