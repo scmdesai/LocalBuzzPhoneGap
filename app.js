@@ -65030,7 +65030,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var showStore = Ext.Viewport.setActiveItem({
+            var showStore = Ext.Viewport.add({
                     xtype: 'contactinfo'
                 });
             showStore.setRecord(record);
