@@ -65046,7 +65046,7 @@ Ext.define('Ext.direct.Manager', {
                     closable: true,
                     closeAction: 'hide',
                     maximizable: true,
-                    animateTarget: button,
+                    animateTarget: marker,
                     width: 600,
                     minWidth: 350,
                     height: 350,
