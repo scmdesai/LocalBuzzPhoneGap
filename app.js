@@ -65030,7 +65030,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<div>" + businessName + "</div><input type=\"button\" onclick = \"showStoreInfo(record)\">Store Info</div>";
+            var content = "<div>" + businessName + "</div><input type=\"button\" onclick = \"javascript:showStoreInfo(record)\">Store Info</div>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
@@ -65038,10 +65038,9 @@ Ext.define('Ext.direct.Manager', {
                     content: content
                 });
             function showStoreInfo(record) {
-                var storeInfo = Ext.Viewport.setActiveItem({
-                        xtype: 'contactinfo'
-                    });
-                storeInfo.setRecord(record);
+                Ext.Viewport.setActiveItem({
+                    xtype: 'contactinfo'
+                });
             }
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
