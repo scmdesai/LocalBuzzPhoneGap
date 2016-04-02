@@ -65030,7 +65030,10 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<div>" + businessName + "</div><a href = \"https://www.google.com\" target=\"_self\">Store Info</div>";
+            var showStore = Ext.Viewport.add({
+                    xtype: 'contactinfo'
+                });
+            var content = "<div>" + businessName + "</div><a href = \"showStore\">Store Info</a>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
@@ -65131,6 +65134,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         disabled: false,
         height: '100%',
+        id: 'Info',
         style: 'background-color:#fff;border:2px groove #C0C0C0',
         ui: 'dark',
         hideOnMaskTap: false,
