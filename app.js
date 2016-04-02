@@ -65056,7 +65056,7 @@ Ext.define('Ext.direct.Manager', {
                         {
                             dock: 'top',
                             xtype: 'toolbar',
-                            title: addr
+                            title: 'addr'
                         }
                     ]
                 });
