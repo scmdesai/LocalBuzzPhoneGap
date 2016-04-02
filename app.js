@@ -65045,7 +65045,15 @@ Ext.define('Ext.direct.Manager', {
                     //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
                     // Ext.Viewport.setActiveItem(storeInfo);
                     //storeInfo.setRecord(record);
-                    console.log(infoWindow.getContent());
+                    // console.log(infoWindow.getContent());
+                    document.getElementById('labelStore').addEventListener('mousedown', function() {
+                        console.log('Label Clicked');
+                        var storeInfo = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
+                        Ext.Viewport.setActiveItem(storeInfo);
+                        storeInfo.setRecord(record);
+                    });
                 });
             });
         }
