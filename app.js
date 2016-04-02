@@ -65042,9 +65042,6 @@ Ext.define('Ext.direct.Manager', {
                 setTimeout(function() {
                     console.log('Overlay');
                     var overlayInfo = new Ext.Panel({
-                            floating: true,
-                            modal: true,
-                            centered: true,
                             width: 200,
                             height: 300,
                             styleHtmlContent: true,
