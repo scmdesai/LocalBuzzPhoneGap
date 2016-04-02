@@ -65043,24 +65043,26 @@ Ext.define('Ext.direct.Manager', {
 
 
             });*/
-            var overlayInfo = new Ext.Panel({
-                    floating: true,
-                    modal: true,
-                    centered: true,
-                    width: 200,
-                    height: 300,
-                    styleHtmlContent: true,
-                    scroll: 'vertical',
-                    html: 'temporaray fixed html content',
-                    dockedItems: [
-                        {
-                            dock: 'top',
-                            xtype: 'toolbar',
-                            title: 'addr'
-                        }
-                    ]
-                });
-            overlayInfo.show();
+            setTimeout(function() {
+                var overlayInfo = new Ext.Panel({
+                        floating: true,
+                        modal: true,
+                        centered: true,
+                        width: 200,
+                        height: 300,
+                        styleHtmlContent: true,
+                        scroll: 'vertical',
+                        html: 'temporaray fixed html content',
+                        dockedItems: [
+                            {
+                                dock: 'top',
+                                xtype: 'toolbar',
+                                title: 'addr'
+                            }
+                        ]
+                    });
+                overlayInfo.show();
+            });
         }
     }
 }, 0, 0, [
