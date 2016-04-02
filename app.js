@@ -65030,21 +65030,21 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<div>" + businessName + "</div><input type=\"button\" onclick = \"javascript:showStoreInfo(record)\">Store Info</div>";
+            var content = "<div>" + businessName + "</div><input type=\"button\" onclick = \"showStoreInfo(record)\">Store Info</div>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
             var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
+            google.maps.event.addListener(marker, 'mousedown', function() {
+                infoWindow.open(gmap, marker);
+            });
             function showStoreInfo(record) {
                 Ext.Viewport.setActiveItem({
                     xtype: 'contactinfo'
                 });
             }
-            google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.open(gmap, marker);
-            });
             function pinSymbol(color) {
                 return {
                     path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
