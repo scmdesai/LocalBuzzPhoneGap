@@ -65033,17 +65033,16 @@ Ext.define('Ext.direct.Manager', {
                 });
             var content = "<div>" + businessName + "</div><label id=\"labelStore\">Store Info</label>";
             addInfoWindow(marker, content, record);
-            google.maps.event.addListener(infoWindow, 'mousedown', function() {
+            google.maps.event.addListener(infoWindow, 'domready', function() {
                 console.log('InfoWindow clicked');
-                var storeInfo = Ext.Viewport.add({
-                        xtype: 'contactinfo'
-                    });
-                Ext.Viewport.setActiveItem(storeInfo);
-                storeInfo.setRecord(record);
+                //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
+                // Ext.Viewport.setActiveItem(storeInfo);
+                //storeInfo.setRecord(record);
+                console.log(infoWindow.getContent());
             });
         }
         function addInfoWindow(marker, content, record) {
-            infoWindow = new google.maps.InfoWindow({
+            infoindow = new google.maps.InfoWindow({
                 content: content
             });
             google.maps.event.addListener(marker, 'mousedown', function() {
