@@ -64948,6 +64948,7 @@ Ext.define('Ext.direct.Manager', {
     onMymapMaprender: function(map, gmap, eOpts) {
         var lat, long;
         //var businessName;
+        var infoWindow;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -65032,21 +65033,21 @@ Ext.define('Ext.direct.Manager', {
                 });
             var content = "<div>" + businessName + "</div><label id=\"labelStore\">Store Info</label>";
             addInfoWindow(marker, content, record);
-        }
-        function addInfoWindow(marker, content, record) {
-            var infoWindow = new google.maps.InfoWindow({
-                    content: content
-                });
-            google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.open(gmap, marker);
-            });
             google.maps.event.addListener(infoWindow, 'mousedown', function() {
                 console.log('InfoWindow clicked');
                 var storeInfo = Ext.Viewport.add({
                         xtype: 'contactinfo'
                     });
-                storeInfo.setRecord(record);
                 Ext.Viewport.setActiveItem(storeInfo);
+                storeInfo.setRecord(record);
+            });
+        }
+        function addInfoWindow(marker, content, record) {
+            infoWindow = new google.maps.InfoWindow({
+                content: content
+            });
+            google.maps.event.addListener(marker, 'mousedown', function() {
+                infoWindow.open(gmap, marker);
             });
         }
     }
