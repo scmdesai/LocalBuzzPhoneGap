@@ -65197,7 +65197,7 @@ Ext.define('Ext.direct.Manager', {
                     var today = Ext.Date.format(date, 'n/j/Y');
                     //var test = Ext.Date.add(date,Ext.Date.DAY,0);
                     //var today = Ext.Date.format(test,'n/j/Y');
-                    store.clearFilter();
+                    //store.clearFilter();
                     store.load();
                     /*store.each(function(rec)
                     {
@@ -65218,7 +65218,7 @@ Ext.define('Ext.direct.Manager', {
 
 
                 });*/
-                    store.filter('dealStatus', 'Active');
+                    //store.filter('dealStatus','Active');
                     //Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
                             xtype: 'DealsPanel'
@@ -65919,7 +65919,7 @@ Ext.define('Ext.direct.Manager', {
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
         Ext.Viewport.getActiveItem().destroy();
         var store = Ext.StoreManager.lookup('MyDealsStore');
-        store.clearFilter();
+        //store.clearFilter();
         store.load();
     },
     onPhoneNumberFocus: function(textfield, e, eOpts) {},
@@ -66083,20 +66083,6 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
-        //var test = Ext.Date.add(date,Ext.Date.DAY,0);
-        //var today = Ext.Date.format(test,'n/j/Y');
-        //Ext.Viewport.getActiveItem().destroy();
-        //Ext.Viewport.setActiveItem(newActiveItem);
-        store.each(function(rec) {
-            //console.log('Deal End Date: ' + rec.get('dealEndDate'));
-            //console.log('Tdays date is : ' + today);
-            if (rec.get('dealEndDate') < today) {
-                console.log(rec.get('dealName'));
-                rec.set('dealStatus', 'Expired');
-            }
-        });
-        //store.clearFilter();
-        store.filter('dealStatus', 'Active');
     }
 }, 0, [
     "DealsPanel"
@@ -66116,6 +66102,35 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'DealsPanel'
 ], 0));
+//var test = Ext.Date.add(date,Ext.Date.DAY,0);
+//var today = Ext.Date.format(test,'n/j/Y');
+//Ext.Viewport.getActiveItem().destroy();
+//Ext.Viewport.setActiveItem(newActiveItem);
+/*store.each(function(rec)
+                   {
+
+
+                       //console.log('Deal End Date: ' + rec.get('dealEndDate'));
+                       //console.log('Tdays date is : ' + today);
+
+                       if(rec.get('dealEndDate') < today) {
+
+                           console.log(rec.get('dealName'));
+                           rec.set('dealStatus','Expired');
+
+
+
+
+                       }
+
+
+
+                   });
+
+
+
+        //store.clearFilter();
+        store.filter('dealStatus','Active');*/
 
 /*
  * File: app/view/BuzzNearMe.js
