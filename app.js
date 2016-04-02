@@ -65030,11 +65030,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var showStore = Ext.Viewport.add({
-                    xtype: 'contactinfo'
-                });
-            showStore.setRecord(record);
-            var content = "<div>" + businessName + "</div><label id=\"labelStore\" onclick=\"storeInfo(showStore)\">Store Info</label>";
+            var content = "<div>" + businessName + "</div><label id=\"labelStore\">Store Info</label>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
@@ -65044,9 +65040,13 @@ Ext.define('Ext.direct.Manager', {
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
             });
-            function storeInfo(showStore) {
+            google.maps.event.addListener(infoWindow, 'mousedown', function() {
+                var showStore = Ext.Viewport.add({
+                        xtype: 'contactinfo'
+                    });
+                showStore.setRecord(record);
                 Ext.Viewport.setActiveItem(showStore);
-            }
+            });
             function pinSymbol(color) {
                 return {
                     path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
