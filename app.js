@@ -65034,7 +65034,7 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'contactinfo'
                 });
             showStore.setRecord(record);
-            var content = "<div>" + businessName + "</div><a href = \"window.open(showStore)\">Store Info</a>";
+            var content = "<div>" + businessName + "</div><label id=\"labelStore\" onclick=\"storeInfo(showStore)\">Store Info</label>";
             addInfoWindow(marker, content);
         }
         function addInfoWindow(marker, content) {
@@ -65044,6 +65044,9 @@ Ext.define('Ext.direct.Manager', {
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.open(gmap, marker);
             });
+            function storeInfo(showStore) {
+                Ext.Viewport.setActiveItem(showStore);
+            }
             function pinSymbol(color) {
                 return {
                     path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
