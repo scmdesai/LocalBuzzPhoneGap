@@ -65058,7 +65058,7 @@ Ext.define('Ext.direct.Manager', {
                                 }
                             ]
                         });
-                    overlayInfo.show();
+                    overlayInfo.showBy(marker);
                 });
             });
         }
