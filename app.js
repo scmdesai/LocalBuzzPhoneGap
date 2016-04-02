@@ -66071,7 +66071,7 @@ Ext.define('Ext.direct.Manager', {
         //var test = Ext.Date.add(date,Ext.Date.DAY,0);
         //var today = Ext.Date.format(test,'n/j/Y');
         Ext.Viewport.getActiveItem().destroy();
-        Ext.Viewport.setActiveItem(newActiveItem);
+        //Ext.Viewport.setActiveItem(newActiveItem);
         store.each(function(rec) {
             //console.log('Deal End Date: ' + rec.get('dealEndDate'));
             //console.log('Tdays date is : ' + today);
