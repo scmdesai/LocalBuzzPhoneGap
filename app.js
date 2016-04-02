@@ -65036,14 +65036,9 @@ Ext.define('Ext.direct.Manager', {
         function addInfoWindow(marker, content, record) {
             /* var infoWindow = new google.maps.InfoWindow({
                 content: content
-            });
-
-           google.maps.event.addListener(marker, 'mousedown', function () {
-                infoWindow.open(gmap, marker);
-
-
             });*/
-            setTimeout(function() {
+            google.maps.event.addListener(marker, 'mousedown', function() {
+                // infoWindow.open(gmap, marker);
                 var overlayInfo = new Ext.Panel({
                         floating: true,
                         modal: true,
