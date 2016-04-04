@@ -64926,10 +64926,10 @@ Ext.define('Ext.direct.Manager', {
                 $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     lat = json.results[0].geometry.location.lat;
                     long = json.results[0].geometry.location.lng;
-                    gmap.setMapCenter({
+                    gmap.setMapCenter(new google.maps.LatLng({
                         latitude: lat,
                         longitude: long
-                    });
+                    }));
                 });
             });
         }
