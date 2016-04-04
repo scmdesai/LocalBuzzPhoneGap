@@ -64929,10 +64929,10 @@ Ext.define('Ext.direct.Manager', {
                         lat = json.results[0].geometry.location.lat;
                         long = json.results[0].geometry.location.lng;
                         console.log(lat, long);
-                        map.setMapCenter(new google.maps.LatLng({
+                        gmap.setGeo({
                             latitude: lat,
                             longitude: long
-                        }));
+                        });
                     });
                 }
             });
