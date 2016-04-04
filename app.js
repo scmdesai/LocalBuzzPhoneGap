@@ -64924,11 +64924,11 @@ Ext.define('Ext.direct.Manager', {
             console.log('User denied permission');
             Ext.Msg.prompt('Enter zipcode', null, function(postalCode) {
                 $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat.toNumber();
-                    long = json.results[0].geometry.location.lng.toNumber();
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
                     map.setMapCenter(new google.maps.LatLng({
-                        latitude: lat,
-                        longitude: long
+                        latitude: (lat.toNumber()),
+                        longitude: (long.toNumber())
                     }));
                 });
             });
