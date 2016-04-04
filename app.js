@@ -64967,6 +64967,8 @@ Ext.define('Ext.direct.Manager', {
                     Ext.getCmp('lookUpZipcode').hide();
                 }
             });
+        } else {
+            console.log('User Location service not available');
         }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
