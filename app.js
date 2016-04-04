@@ -64871,10 +64871,7 @@ Ext.define('Ext.direct.Manager', {
                                                     long = json.results[0].geometry.location.lng;
                                                     console.log(lat, long);
                                                 });
-                                                /*var mapOptions = {
-                                                center: {lat: lat, lng: long}
-                                                };*/
-                                                element.setMapCenter({
+                                                element.set(center, {
                                                     latitude: lat,
                                                     longitude: long
                                                 });
