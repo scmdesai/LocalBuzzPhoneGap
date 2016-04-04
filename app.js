@@ -64905,11 +64905,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onMymapMaprender',
                 event: 'maprender',
                 delegate: '#mymap'
-            },
-            {
-                fn: 'onMymapCenteredChange',
-                event: 'centeredchange',
-                delegate: '#mymap'
             }
         ]
     },
@@ -64934,7 +64929,9 @@ Ext.define('Ext.direct.Manager', {
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
-            Ext.getCmp('mymap').setData(lat, long);
+            Ext.getCmp('mymap').fireAction('maprender', function(lat, long) {
+                return (lat , long);
+            }, this);
         });
     },
     onMymapMaprender: function(map, gmap, eOpts) {
@@ -65064,11 +65061,6 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-    },
-    onMymapCenteredChange: function(component, value, oldValue, eOpts) {
-        console.log(value);
-        console.log(component.getItemId());
-        console.log(oldValue);
     }
 }, 0, [
     "Main"
