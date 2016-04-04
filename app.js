@@ -64925,29 +64925,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onLookUpZipcodeAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
-        var date = new Date();
-        var today = Ext.Date.format(date, 'n/j/Y');
-        var ds = Ext.getStore('MyJsonPStore');
-        var store = Ext.getStore('MyDealsStore');
-        store.clearFilter();
-        ds.clearFilter();
-        var records = [];
-        ds.filter('zipcode', postalCode);
-        ds.each(function(record) {
-            records.push(record.get('customerId'));
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            lat = json.results[0].geometry.location.lat;
+            long = json.results[0].geometry.location.lng;
+            Ext.getCmp('mymap').setData(lat, long);
         });
-        store.filterBy(function(record) {
-            return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
-        }, this);
-        store.each(function(rec) {
-            if (rec.get('dealEndDate') < today) {
-                rec.set('dealStatus', 'Expired');
-            } else {
-                rec.set('dealStatus', 'Active');
-            }
-        });
-        //store.clearFilter();
-        store.filter('dealStatus', 'Active');
     },
     onMymapMaprender: function(map, gmap, eOpts) {
         var lat, long;
