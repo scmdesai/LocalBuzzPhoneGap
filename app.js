@@ -64907,8 +64907,8 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#mymap'
             },
             {
-                fn: 'onMymapCenterChange',
-                event: 'centerchange',
+                fn: 'onMymapCenteredChange',
+                event: 'centeredchange',
                 delegate: '#mymap'
             }
         ]
@@ -65065,8 +65065,10 @@ Ext.define('Ext.direct.Manager', {
             });
         }
     },
-    onMymapCenterChange: function(map, gmap, center, eOpts) {
-        gmap.setMapOptions(center);
+    onMymapCenteredChange: function(component, value, oldValue, eOpts) {
+        console.log(value);
+        console.log(component.getItemId());
+        console.log(oldValue);
     }
 }, 0, [
     "Main"
