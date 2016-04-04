@@ -29,7 +29,7 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
 	<preference name="StatusBarOverlaysWebView" value="false" />
-	<preference name="StatusBarBackgroundColor" value="#003D75" />
+	<preference name="StatusBarBackgroundColor" value="#19d085" />
     <preference name="StatusBarStyle" value="lightcontent" />
 	
 	<!-- New PhoneGap Plugins -->
