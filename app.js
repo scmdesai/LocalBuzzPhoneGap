@@ -64850,7 +64850,43 @@ Ext.define('Ext.direct.Manager', {
                         id: 'mymap',
                         itemId: 'mymap',
                         styleHtmlContent: true,
-                        useCurrentLocation: true
+                        useCurrentLocation: true,
+                        listeners: [
+                            {
+                                fn: function(element, eOpts) {
+                                    var lat, long;
+                                    navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                                        latitude = position.coords.latitude;
+                                        longitude = position.coords.longitude;
+                                        console.log('Got Geolocation permission');
+                                        console.log(latitude + "," + longitude);
+                                    }, onError);
+                                    function onError(error) {
+                                        console.log('User denied permission');
+                                        Ext.Msg.prompt('Enter zipcode to find the Latest Buzz near you', null, function(btnText, postalCode) {
+                                            if (btnText === 'ok') {
+                                                console.log(postalCode);
+                                                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                                                    lat = json.results[0].geometry.location.lat;
+                                                    long = json.results[0].geometry.location.lng;
+                                                    console.log(lat, long);
+                                                });
+                                                var mapOptions = {
+                                                        center: {
+                                                            lat: lat,
+                                                            lng: long
+                                                        }
+                                                    };
+                                                element.setMapOptions(mapOptions);
+                                            }
+                                        });
+                                    }
+                                },
+                                //new google.maps.Map(document.getElementById('mymap'),
+                                // mapOptions);
+                                event: 'painted'
+                            }
+                        ]
                     }
                 ]
             }
@@ -64914,34 +64950,6 @@ Ext.define('Ext.direct.Manager', {
         //var infoWindow;
         ///if (navigator.geolocation) {
         //if you have the geolocation, run the showPosition function
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            console.log('Got Geolocation permission');
-            console.log(latitude + "," + longitude);
-        }, onError);
-        function onError(error) {
-            console.log('User denied permission');
-            Ext.Msg.prompt('Enter zipcode to find the Latest Buzz near you', null, function(btnText, postalCode) {
-                if (btnText === 'ok') {
-                    console.log(postalCode);
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        console.log(lat, long);
-                    });
-                    var mapOptions = {
-                            center: {
-                                lat: lat,
-                                lng: long
-                            }
-                        };
-                    map.setMapOptions(mapOptions);
-                }
-            });
-        }
-        //new google.maps.Map(document.getElementById('mymap'),
-        // mapOptions);
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
