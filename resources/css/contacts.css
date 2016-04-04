@@ -50,6 +50,15 @@ $list-header-bg-color: $base-color;
 }
 
 
+.toolbar-icon-color{
+    color:white;
+}
+
+
+
+.tabBarCls {
+    padding: 5px,5px,5px,5px;
+}
 
 
 
