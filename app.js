@@ -64902,7 +64902,7 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#lookUpZipcode'
             },
             {
-                fn: 'onMymapMaprender',
+                fn: 'onMyMapRender',
                 event: 'maprender',
                 delegate: '#mymap'
             }
@@ -64929,30 +64929,15 @@ Ext.define('Ext.direct.Manager', {
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
-            Ext.getCmp('mymap').fireAction('maprender', function(lat, long) {
-                return (lat , long);
-            }, this);
+            Ext.getCmp('mymap').destroy();
         });
     },
-    onMymapMaprender: function(map, gmap, eOpts) {
+    onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         //var businessName;
         //var infoWindow;
         ///if (navigator.geolocation) {
         //if you have the geolocation, run the showPosition function
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-            console.log('Got Geolocation permission');
-            console.log(latitude + "," + longitude);
-            Ext.getCmp('lookUpZipcode').hide();
-        }, onError);
-        function onError(error) {
-            // if(error.code===error.PERMIS
-            console.log('User denied permission');
-            Ext.getCmp('lookUpZipcode').show();
-        }
-        // }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -66150,6 +66135,17 @@ Ext.application({
         var latitude;
         var longitude;
         var postalCode;
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            console.log('Got Geolocation permission');
+            console.log(latitude + "," + longitude);
+            Ext.getCmp('lookUpZipcode').hide();
+        }, onError);
+        function onError(error) {
+            console.log('User denied permission');
+            Ext.getCmp('lookUpZipcode').show();
+        }
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
