@@ -64905,6 +64905,11 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onMymapMaprender',
                 event: 'maprender',
                 delegate: '#mymap'
+            },
+            {
+                fn: 'onMymapCenterChange',
+                event: 'centerchange',
+                delegate: '#mymap'
             }
         ]
     },
@@ -64925,6 +64930,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onLookUpZipcodeAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
+        console.log(postalCode);
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
@@ -65058,6 +65064,10 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
+    },
+    onMymapCenterChange: function(map, gmap, center, eOpts) {
+        console.log(center);
+        gmap.setCentered(true);
     }
 }, 0, [
     "Main"
