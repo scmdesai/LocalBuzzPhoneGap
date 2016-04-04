@@ -64922,7 +64922,7 @@ Ext.define('Ext.direct.Manager', {
         }, onError);
         function onError(error) {
             console.log('User denied permission');
-            Ext.Msg.prompt('Enter zipcode', null, function(btnText, postalCode) {
+            Ext.Msg.prompt('Enter zipcode to find the Latest Buzz near you', null, function(btnText, postalCode) {
                 if (btnText === 'ok') {
                     console.log(postalCode);
                     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
@@ -64931,7 +64931,6 @@ Ext.define('Ext.direct.Manager', {
                         console.log(lat, long);
                     });
                     var mapOptions = {
-                            zoom: 13,
                             center: {
                                 lat: lat,
                                 lng: long
