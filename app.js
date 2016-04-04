@@ -64929,11 +64929,15 @@ Ext.define('Ext.direct.Manager', {
                         lat = json.results[0].geometry.location.lat;
                         long = json.results[0].geometry.location.lng;
                         console.log(lat, long);
-                        gmap.setGeo({
-                            latitude: lat,
-                            longitude: long
-                        });
                     });
+                    var mapOptions = {
+                            zoom: 8,
+                            center: {
+                                lat: lat,
+                                lng: long
+                            }
+                        };
+                    map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
                 }
             });
         }
