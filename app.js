@@ -64961,13 +64961,13 @@ Ext.define('Ext.direct.Manager', {
             console.log('Got Geolocation permission');
             console.log(latitude + "," + longitude);
             Ext.getCmp('lookUpZipcode').hide();
-        }, function(error) {
-            if (error.code === error.PERMISSION_DENIED) {
-                console.log('User denied permission');
-                Ext.getCmp('lookUpZipcode').show();
-            }
-        });
-        //}
+        }, onError);
+        function onError(error) {
+            // if(error.code===error.PERMIS
+            console.log('User denied permission');
+            Ext.getCmp('lookUpZipcode').show();
+        }
+        // }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
