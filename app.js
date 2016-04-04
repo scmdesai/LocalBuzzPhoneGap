@@ -64931,16 +64931,18 @@ Ext.define('Ext.direct.Manager', {
                         console.log(lat, long);
                     });
                     var mapOptions = {
-                            zoom: 20,
+                            zoom: 13,
                             center: {
                                 lat: lat,
                                 lng: long
                             }
                         };
-                    map = new google.maps.Map(document.getElementById('mymap'), mapOptions);
+                    map.setMapOptions(mapOptions);
                 }
             });
         }
+        //new google.maps.Map(document.getElementById('mymap'),
+        // mapOptions);
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
