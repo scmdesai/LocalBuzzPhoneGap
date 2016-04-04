@@ -64931,7 +64931,7 @@ Ext.define('Ext.direct.Manager', {
                         console.log(lat, long);
                     });
                     var mapOptions = {
-                            zoom: 8,
+                            zoom: 20,
                             center: {
                                 lat: lat,
                                 lng: long
