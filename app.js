@@ -64953,20 +64953,21 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         //var businessName;
         //var infoWindow;
-        if (navigator.geolocation) {
-            //if you have the geolocation, run the showPosition function
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                console.log(latitude + "," + longitude);
-                Ext.getCmp('lookUpZipcode').hide();
-            }, function(error) {
-                if (error.code === error.PERMISSION_DENIED) {
-                    console.log('User denied permission');
-                    Ext.getCmp('lookUpZipcode').show();
-                }
-            });
-        }
+        ///if (navigator.geolocation) {
+        //if you have the geolocation, run the showPosition function
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            console.log('Got Geolocation permission');
+            console.log(latitude + "," + longitude);
+            Ext.getCmp('lookUpZipcode').hide();
+        }, function(error) {
+            if (error.code === error.PERMISSION_DENIED) {
+                console.log('User denied permission');
+                Ext.getCmp('lookUpZipcode').show();
+            }
+        });
+        //}
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
