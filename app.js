@@ -64845,16 +64845,6 @@ Ext.define('Ext.direct.Manager', {
                 modal: false,
                 items: [
                     {
-                        xtype: 'searchfield',
-                        hidden: true,
-                        id: 'lookUpZipcode',
-                        itemId: 'lookUpZipcode',
-                        styleHtmlContent: true,
-                        width: '',
-                        label: '',
-                        placeHolder: '     Enter zipcode'
-                    },
-                    {
                         xtype: 'map',
                         height: '100%',
                         id: 'mymap',
@@ -64897,11 +64887,6 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#SearchBusiness'
             },
             {
-                fn: 'onLookUpZipcodeAction',
-                event: 'action',
-                delegate: '#lookUpZipcode'
-            },
-            {
                 fn: 'onMyMapRender',
                 event: 'maprender',
                 delegate: '#mymap'
@@ -64923,15 +64908,6 @@ Ext.define('Ext.direct.Manager', {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyDealsStore').clearFilter();
     },
-    onLookUpZipcodeAction: function(textfield, e, eOpts) {
-        var postalCode = textfield.getValue();
-        console.log(postalCode);
-        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-            lat = json.results[0].geometry.location.lat;
-            long = json.results[0].geometry.location.lng;
-            return (lat , long);
-        });
-    },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         //var businessName;
@@ -64943,13 +64919,19 @@ Ext.define('Ext.direct.Manager', {
             longitude = position.coords.longitude;
             console.log('Got Geolocation permission');
             console.log(latitude + "," + longitude);
-            Ext.getCmp('lookUpZipcode').hide();
         }, onError);
         function onError(error) {
             console.log('User denied permission');
-            Ext.getCmp('lookUpZipcode').show();
-            var coords = onLookUpZipCodeAction();
-            console.log(coords);
+            Ext.Msg.prompt('Enter zipcode', function(postalCode) {
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    gmap.setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+                });
+            });
         }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
