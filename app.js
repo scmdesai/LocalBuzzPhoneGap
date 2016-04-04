@@ -64953,22 +64953,19 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         //var businessName;
         //var infoWindow;
-        var latitude;
-        var longitude;
         if (navigator.geolocation) {
             //if you have the geolocation, run the showPosition function
             navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                console.log(latitude, longitude);
-                if (!position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                console.log(latitude + "," + longitude);
+                Ext.getCmp('lookUpZipcode').hide();
+            }, function(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    console.log('User denied permission');
                     Ext.getCmp('lookUpZipcode').show();
-                } else {
-                    Ext.getCmp('lookUpZipcode').hide();
                 }
             });
-        } else {
-            console.log('User Location service not available');
         }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
