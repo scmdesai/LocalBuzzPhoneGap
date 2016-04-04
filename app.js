@@ -64871,15 +64871,18 @@ Ext.define('Ext.direct.Manager', {
                                                     long = json.results[0].geometry.location.lng;
                                                     console.log(lat, long);
                                                 });
-                                                element.set(center, {
-                                                    latitude: lat,
-                                                    longitude: long
-                                                });
+                                                var mapOptions = {
+                                                        center: {
+                                                            lat: lat,
+                                                            lng: long
+                                                        }
+                                                    };
+                                                Ext.getCmp('mymap').setMapOptions(mapOptions);
                                             }
                                         });
                                     }
                                 },
-                                // setMapOptions(mapOptions);    //new google.maps.Map(document.getElementById('mymap'),
+                                //new google.maps.Map(document.getElementById('mymap'),
                                 // mapOptions);
                                 event: 'painted'
                             }
