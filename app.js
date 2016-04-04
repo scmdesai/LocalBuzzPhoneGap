@@ -64929,7 +64929,7 @@ Ext.define('Ext.direct.Manager', {
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
-            Ext.getCmp('mymap').destroy();
+            return (lat , long);
         });
     },
     onMyMapRender: function(map, gmap, eOpts) {
@@ -64938,6 +64938,19 @@ Ext.define('Ext.direct.Manager', {
         //var infoWindow;
         ///if (navigator.geolocation) {
         //if you have the geolocation, run the showPosition function
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            console.log('Got Geolocation permission');
+            console.log(latitude + "," + longitude);
+            Ext.getCmp('lookUpZipcode').hide();
+        }, onError);
+        function onError(error) {
+            console.log('User denied permission');
+            Ext.getCmp('lookUpZipcode').show();
+            var coords = onLookUpZipCodeAction();
+            console.log(coords);
+        }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -66135,17 +66148,6 @@ Ext.application({
         var latitude;
         var longitude;
         var postalCode;
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            console.log('Got Geolocation permission');
-            console.log(latitude + "," + longitude);
-            Ext.getCmp('lookUpZipcode').hide();
-        }, onError);
-        function onError(error) {
-            console.log('User denied permission');
-            Ext.getCmp('lookUpZipcode').show();
-        }
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
