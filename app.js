@@ -65066,8 +65066,7 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onMymapCenterChange: function(map, gmap, center, eOpts) {
-        console.log(center);
-        gmap.setCentered(true);
+        gmap.setCenter(center);
     }
 }, 0, [
     "Main"
