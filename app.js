@@ -64776,6 +64776,7 @@ Ext.define('Ext.direct.Manager', {
                         itemId: 'mymap',
                         styleHtmlContent: true,
                         mapOptions: {
+                            disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         },
                         useCurrentLocation: true,
