@@ -64876,7 +64876,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
-        records.forEach(function(rec) {
+        store.each(function(rec) {
             if (rec.data.dealEndDate < today) {
                 rec.data.dealStatus = 'Expired';
             }
@@ -65275,7 +65275,7 @@ Ext.define('Ext.direct.Manager', {
                 margin: '5 15 0 15',
                 maxHeight: '30%',
                 minHeight: '',
-                style: '',
+                style: 'font-family:Arial',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'phoneNumber',
