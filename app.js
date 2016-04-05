@@ -65014,6 +65014,8 @@ Ext.define('Ext.direct.Manager', {
                 document.getElementById('labelStore').addEventListener('mousedown', function() {
                     var store = Ext.getStore('MyDealsStore');
                     console.log('Label Clicked ' + record.get('customerId'));
+                    store.clearFilter();
+                    store.load();
                     store.filter('customerId', record.get('customerId'));
                     var view = Ext.Viewport.add({
                             xtype: 'DealsPanel'
