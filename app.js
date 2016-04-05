@@ -65000,7 +65000,6 @@ Ext.define('Ext.direct.Manager', {
             var content = "<h3>" + businessName + "</h3><label id=\"labelStore\" style=\"color:green;font-size:5vw\">Store Info</label>";
             addInfoWindow(marker, content, record);
         }
-        var infoWindow;
         function addInfoWindow(marker, content, record) {
             infoWindow = new google.maps.InfoWindow({
                 content: content
@@ -65010,7 +65009,7 @@ Ext.define('Ext.direct.Manager', {
                 infoWindow.open(gmap, marker);
                 infoWindow.setContent(content);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
-                    document.getElementById('labelStore').addEventListener('click', function() {
+                    document.getElementById('labelStore').addEventListener('mousedown', function() {
                         var store = Ext.getStore('MyDealsStore');
                         store.filter('customerId', record.get('customerId'));
                         Ext.Viewport.setActiveItem({
@@ -65018,9 +65017,6 @@ Ext.define('Ext.direct.Manager', {
                         });
                     });
                 });
-            });
-            google.maps.event.addListener(infoWindow, 'mouseout', function() {
-                infoWindow.close();
             });
         }
     },
