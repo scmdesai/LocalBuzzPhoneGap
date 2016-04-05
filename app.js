@@ -64945,11 +64945,6 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#mymap'
             },
             {
-                fn: 'onBuzzNearMeDeactivate',
-                event: 'deactivate',
-                delegate: '#BuzzNearMe'
-            },
-            {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
@@ -65085,9 +65080,6 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-    },
-    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {
-        Ext.getCmp('locationOffText').hide();
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         if (!Ext.getCmp('mymap')) {
