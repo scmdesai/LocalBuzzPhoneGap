@@ -64910,6 +64910,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
+        var infoWindow;
         //var businessName;
         //var infoWindow;
         ///if (navigator.geolocation) {
@@ -64999,7 +65000,6 @@ Ext.define('Ext.direct.Manager', {
             var content = "<h3>" + businessName + "</h3><label id=\"labelStore\" style=\"color:green;font-size:5vw\">Store Info</label>";
             addInfoWindow(marker, content, record);
         }
-        var infoWindow;
         function addInfoWindow(marker, content, record) {
             infoWindow = new google.maps.InfoWindow({
                 content: content
