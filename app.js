@@ -64916,7 +64916,7 @@ Ext.define('Ext.direct.Manager', {
         //var infoWindow;
         ///if (navigator.geolocation) {
         //if you have the geolocation, run the showPosition function
-        gmap.mapTypeControl = false;
+        map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
