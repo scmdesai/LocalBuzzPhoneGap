@@ -64999,15 +64999,17 @@ Ext.define('Ext.direct.Manager', {
             var content = "<h3>" + businessName + "</h3><label id=\"labelStore\" style=\"color:green;font-size:5vw\">Store Info</label>";
             addInfoWindow(marker, content, record);
         }
+        var infoWindow;
         function addInfoWindow(marker, content, record) {
-            var infoWindow = new google.maps.InfoWindow({
-                    content: content
-                });
+            infoWindow = new google.maps.InfoWindow({
+                content: content
+            });
             google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.open(gmap, marker);
+                infoWindow.close();
+                infoWindow.setContent(content);
+                infoWindow.open(map, marker);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
-                    document.getElementById('labelStore').addEventListener('mousedown', function() {
-                        console.log('Label Clicked');
+                    document.getElementById('labelStore').addEventListener('click', function() {
                         var store = Ext.getStore('MyDealsStore');
                         store.filter('customerId', record.get('customerId'));
                         Ext.Viewport.setActiveItem({
