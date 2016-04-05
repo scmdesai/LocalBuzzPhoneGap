@@ -64654,6 +64654,7 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'container',
+                title: 'Latest Buzz',
                 iconCls: 'icon-bubbles',
                 itemId: 'LatestBuzz',
                 style: '',
@@ -64675,6 +64676,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
+                title: 'Search',
                 iconCls: 'icon-search',
                 itemId: 'SearchBusiness',
                 style: '',
@@ -64720,6 +64722,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
+                title: 'Favorites',
                 iconCls: 'icon-star-favorite',
                 height: '100%',
                 itemId: 'Favorites',
@@ -64758,6 +64761,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
+                title: 'Buzz Near Me',
                 iconCls: 'icon-buzz',
                 height: '100%',
                 itemId: 'BuzzNearMe',
@@ -64834,7 +64838,7 @@ Ext.define('Ext.direct.Manager', {
             docked: 'bottom',
             height: '9%',
             padding: '10 10 10 10',
-            style: 'font-size:5vw;border-top:1px solid #eee;background:white',
+            style: 'font-size:4vw;border-top:1px solid #eee;background:white;color:#00529D',
             ui: 'plain',
             modal: false,
             activeTab: 0,
@@ -64992,7 +64996,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = "<h3>" + businessName + "</h3><label id=\"labelStore\" style=\"color:green\">Store Info</label>";
+            var content = "<h3>" + businessName + "</h3><label id=\"labelStore\" style=\"color:green;font-size:5vw\">Store Info</label>";
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
@@ -65000,13 +65004,8 @@ Ext.define('Ext.direct.Manager', {
                     content: content
                 });
             google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.close();
                 infoWindow.open(gmap, marker);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
-                    //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
-                    // Ext.Viewport.setActiveItem(storeInfo);
-                    //storeInfo.setRecord(record);
-                    // console.log(infoWindow.getContent());
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         console.log('Label Clicked');
                         var store = Ext.getStore('MyDealsStore');
@@ -65016,6 +65015,9 @@ Ext.define('Ext.direct.Manager', {
                         });
                     });
                 });
+            });
+            google.maps.event.addListener(infoWindow, 'mouseout', function() {
+                infoWindow.close();
             });
         }
     },
@@ -65065,7 +65067,7 @@ Ext.define('Ext.direct.Manager', {
         fullscreen: true,
         id: 'dealPicture',
         itemId: 'dealPicture',
-        style: 'background:#fff',
+        style: 'background:#fff;',
         width: '100%',
         layout: 'vbox',
         scrollable: 'vertical',
@@ -65077,6 +65079,7 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'toolbar',
                 docked: 'top',
                 height: '10px',
+                style: 'background:white;border:none',
                 items: [
                     {
                         xtype: 'button',
@@ -65084,7 +65087,7 @@ Ext.define('Ext.direct.Manager', {
                             Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
-                        style: 'font-size:6vw',
+                        style: 'font-size:6vw;',
                         ui: 'back',
                         text: 'Back'
                     },
@@ -65200,6 +65203,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
+                style: 'border:none;background:white',
                 items: [
                     {
                         xtype: 'button',
@@ -65980,11 +65984,13 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
+                style: 'background:white;border: none',
                 items: [
                     {
                         xtype: 'button',
                         itemId: 'dealBackBtn',
-                        style: 'font-size:6vw',
+                        style: 'font-size:6vw;',
+                        styleHtmlContent: true,
                         ui: 'back',
                         text: 'Back'
                     }

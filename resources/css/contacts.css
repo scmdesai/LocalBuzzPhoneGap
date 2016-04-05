@@ -20,7 +20,7 @@ $list-header-bg-color: $base-color;
 }
 
 .contact-name{
-    color:white;
+    color:#00529D;
     padding-left: 4px;
     word-wrap: normal;
 }
