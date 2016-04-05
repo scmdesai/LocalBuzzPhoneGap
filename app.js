@@ -64446,7 +64446,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="font-size:4vw;text-align:center;font-style:italic;color:blue">{businessName}</div>',
+            '<div style="font-size:4vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
             '<div><img src="{dealPictureURL}" height="160" width="120"></div>',
             '<div style="font-size:3vw;color:black">{dealName}</div>',
             '<tpl if="dealEndDate &lt; todayplusthreedays ">',
@@ -64668,9 +64668,9 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'toolbar',
+                        cls: 'toolbarCls',
                         docked: 'top',
-                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>',
-                        style: 'border:none;background:white;border-bottom:1px solid #C0C0C0'
+                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     }
                 ]
             },
@@ -64692,8 +64692,8 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'toolbar',
+                        cls: 'toolbarCls',
                         docked: 'top',
-                        style: 'border:none;background:white;border-bottom:1px solid #C0C0C0',
                         items: [
                             {
                                 xtype: 'spacer',
@@ -64775,6 +64775,9 @@ Ext.define('Ext.direct.Manager', {
                         id: 'mymap',
                         itemId: 'mymap',
                         styleHtmlContent: true,
+                        mapOptions: {
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        },
                         useCurrentLocation: true,
                         listeners: [
                             {
@@ -65017,11 +65020,11 @@ Ext.define('Ext.direct.Manager', {
                 infoWindow.setContent(content);
                 console.log('Marker clicked ' + record.get('customerId'));
                 google.maps.event.addListener(infoWindow, 'domready', function() {
+                    var store = Ext.getStore('MyDealsStore');
+                    store.clearFilter();
+                    store.load();
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
-                        var store = Ext.getStore('MyDealsStore');
                         console.log('Label Clicked ' + businessName);
-                        store.clearFilter();
-                        store.load();
                         store.filter('businessName', businessName);
                         var view = Ext.Viewport.add({
                                 xtype: 'DealsPanel'
@@ -65088,9 +65091,10 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'toolbar',
+                cls: 'toolbarCls',
                 docked: 'top',
                 height: '10px',
-                style: 'background:white;border:none',
+                style: '',
                 items: [
                     {
                         xtype: 'button',
@@ -65213,8 +65217,8 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'toolbar',
+                cls: 'toolbarCls',
                 docked: 'top',
-                style: 'border:none;background:white',
                 items: [
                     {
                         xtype: 'button',
@@ -65994,8 +65998,8 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'toolbar',
+                cls: 'toolbarCls',
                 docked: 'top',
-                style: 'background:white;border: none',
                 items: [
                     {
                         xtype: 'button',

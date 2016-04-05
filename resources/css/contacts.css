@@ -25,6 +25,11 @@ $list-header-bg-color: $base-color;
     word-wrap: normal;
 }
 
+.toolbarCls {
+    background:white;
+    border-bottom:1px solid #C0C0C0;
+}
+
 .emptyText {
     text-align:center;
     color: #999;
