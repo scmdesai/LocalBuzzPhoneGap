@@ -64434,7 +64434,9 @@ Ext.define('Ext.direct.Manager', {
         cls: 'favorite',
         height: '100%',
         itemId: 'latestbuzz',
+        margin: '1 1 1 1',
         style: 'background:#fff',
+        emptyText: '<h4 class="emptyText">No Buzz currently.Please check back later</h4>',
         inline: true,
         itemCls: 'itemCls',
         store: 'MyDealsStore',
@@ -64592,9 +64594,8 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.FavoriteView', Ext.dataview.DataView, {
     config: {
         itemId: 'favoriteview',
-        margin: '5px 5px 5px 5px',
         style: 'background:#fff;',
-        emptyText: '<div class="emptyText">You can see the the Latest Buzz from your  Favorite Business here!</div>',
+        emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your  Favorite Business here!</h4>',
         inline: true,
         store: 'MyJsonPStore1',
         itemTpl: [
@@ -64683,6 +64684,7 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'contactlist',
+                        margin: '1 1 1 1',
                         modal: true,
                         flex: 1
                     },
@@ -64721,6 +64723,7 @@ Ext.define('Ext.direct.Manager', {
                 iconCls: 'icon-star-favorite',
                 height: '100%',
                 itemId: 'Favorites',
+                margin: '1 1 1 1',
                 modal: false,
                 items: [
                     {
@@ -64758,6 +64761,7 @@ Ext.define('Ext.direct.Manager', {
                 iconCls: 'icon-buzz',
                 height: '100%',
                 itemId: 'BuzzNearMe',
+                margin: '1 1 1 1',
                 padding: '',
                 modal: false,
                 items: [
@@ -64813,7 +64817,7 @@ Ext.define('Ext.direct.Manager', {
                         centered: false,
                         height: '100%',
                         hidden: true,
-                        html: '<h4 style="color:#C0C0C0">Uh-Oh! Location service is disabled.<br> Please allow Local Buzz to access your location in App Settings</h4>',
+                        html: '<h4 style="color:#C0C0C0">Uh-Oh! Location service is disabled.<br> To access the Latest Buzz near you, allow Local Buzz to access your location in App Settings</h4>',
                         id: 'locationOffText',
                         itemId: 'locationOffText',
                         styleHtmlContent: true,
@@ -64870,7 +64874,14 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
-        store.load();
+        var date = new Date();
+        var today = Ext.Date.format(date, 'n/j/Y');
+        records.forEach(function(rec) {
+            if (rec.data.dealEndDate < today) {
+                rec.data.dealStatus = 'Expired';
+            }
+        });
+        store.clearFilter();
         store.filter('dealStatus', 'Active');
     },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
@@ -65511,7 +65522,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         allowDeselect: true,
         deferEmptyText: false,
-        emptyText: '<div class="emptyText">No Buzz from this Business yet</div>',
+        emptyText: '<h4 class="emptyText">No Buzz from this Business yet</h4>',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,

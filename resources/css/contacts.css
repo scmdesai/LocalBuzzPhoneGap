@@ -35,7 +35,7 @@ $list-header-bg-color: $base-color;
 }
 
 .dateValidity {
-    color:#1985d0;
+    color:grey;
     font-size:3.3vw;
     font-style:italics;
     font-weight:normal;
@@ -84,7 +84,7 @@ $list-header-bg-color: $base-color;
 .searchfield {
     border-bottom:2px groove #C0C0C0;
     margin:5px 5px 5px 5px;
-    font-size:6vw;
+    font-size:5.5vw;
     height:12vh;
     font-weight:normal;
     text-align:center;
