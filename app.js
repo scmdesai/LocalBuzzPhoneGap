@@ -64930,7 +64930,7 @@ Ext.define('Ext.direct.Manager', {
             });
         });
         var icons = {
-                "Auto": {
+                "0": {
                     icon: 'resources/img/car.png'
                 },
                 /*{
@@ -64942,7 +64942,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                "Grocery": {
+                "1": {
                     icon: 'resources/img/supermarket.png'
                 },
                 /*{
@@ -64954,7 +64954,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                "Arts": {
+                "2": {
                     icon: 'resources/img/museum_art.png'
                 },
                 /*{
@@ -64966,7 +64966,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                "Dance-Group": {
+                "3": {
                     icon: 'resources/img/dance_class.png'
                 },
                 /*{
@@ -64978,7 +64978,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                "Beauty-Salon": {
+                "4": {
                     icon: 'resources/img/barber.png'
                 }
             };
@@ -64992,12 +64992,24 @@ Ext.define('Ext.direct.Manager', {
                                 fillOpacity: 1
                             }*/
         function addMarker(feature, businessName, m, record) {
+            var category;
+            if (feature === 'Auto') {
+                category = 0;
+            } else if (feature === 'Grocery') {
+                category = 1;
+            } else if (feature === 'Arts') {
+                category = 2;
+            } else if (feature === 'Dance Group') {
+                category = 3;
+            } else if (feature === 'Beauty Salon') {
+                category = 4;
+            }
             var marker = new google.maps.Marker({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[feature].icon
+                    icon: icons[category].icon
                 });
             var content = '<h3 id ="businessname">' + businessName + '</h3><label id="labelStore" style="color:green;font-size:5vw;text-decoration:underline">Get The Latest Buzz</label>';
             addInfoWindow(marker, content, record, businessName);
