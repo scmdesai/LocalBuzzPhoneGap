@@ -64874,16 +64874,25 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
-        var date = new Date();
-        var today = Ext.Date.format(date, 'n/j/Y');
-        store.each(function(rec) {
-            if (rec.data.dealEndDate < today) {
+        store.load();
+    },
+    /*var date = new Date();
+        var today = Ext.Date.format(date,'n/j/Y');
+
+
+
+        store.each(function(rec){
+            if(rec.data.dealEndDate< today){
                 rec.data.dealStatus = 'Expired';
             }
         });
+
+
+
+
+
         store.clearFilter();
-        store.filter('dealStatus', 'Active');
-    },
+        store.filter('dealStatus','Active');*/
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
@@ -64893,6 +64902,7 @@ Ext.define('Ext.direct.Manager', {
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyDealsStore').clearFilter();
+        Ext.getStore('MyJsonPStore').load();
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
@@ -64949,7 +64959,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                "DanceGroup": {
+                "Dance-Group": {
                     icon: 'resources/img/dance_class.png'
                 },
                 /*{
@@ -64961,7 +64971,7 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                "BeautySalon": {
+                "Beauty-Salon": {
                     icon: 'resources/img/barber.png'
                 }
             };
@@ -64990,9 +65000,9 @@ Ext.define('Ext.direct.Manager', {
                     content: content
                 });
             google.maps.event.addListener(marker, 'mousedown', function() {
+                infoWindow.close();
                 infoWindow.open(gmap, marker);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
-                    console.log('InfoWindow clicked');
                     //var storeInfo = Ext.Viewport.add({xtype:'contactinfo'});
                     // Ext.Viewport.setActiveItem(storeInfo);
                     //storeInfo.setRecord(record);
