@@ -65011,7 +65011,6 @@ Ext.define('Ext.direct.Manager', {
                 console.log('Marker clicked ' + record.get('customerId'));
             });
             // google.maps.event.addListener(infoWindow, 'domready', function () {
-            //});
             document.getElementById('labelStore').addEventListener('mousedown', function() {
                 var store = Ext.getStore('MyDealsStore');
                 var businessName = document.getElementById('businessName').getValue();
@@ -65026,6 +65025,7 @@ Ext.define('Ext.direct.Manager', {
             });
         }
     },
+    //});
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         if (!Ext.getCmp('mymap')) {
             Ext.getCmp('locationOffText').show();
