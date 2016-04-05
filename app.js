@@ -60003,91 +60003,6 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
- * The Search field creates an HTML5 search input and is usually created inside a form. Because it creates an HTML
- * search input type, the visual styling of this input is slightly different to normal text input controls (the corners
- * are rounded), though the virtual keyboard displayed by the operating system is the standard keyboard control.
- *
- * As with all other form fields in Sencha Touch, the search field gains a "clear" button that appears whenever there
- * is text entered into the form, and which removes that text when tapped.
- *
- *     @example
- *     Ext.create('Ext.form.Panel', {
- *         fullscreen: true,
- *         items: [
- *             {
- *                 xtype: 'fieldset',
- *                 title: 'Search',
- *                 items: [
- *                     {
- *                         xtype: 'searchfield',
- *                         label: 'Query',
- *                         name: 'query'
- *                     }
- *                 ]
- *             }
- *         ]
- *     });
- *
- * Or on its own, outside of a form:
- *
- *     Ext.create('Ext.field.Search', {
- *         label: 'Search:',
- *         value: 'query'
- *     });
- *
- * Because search field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
- * fields provide, including getting and setting the value at runtime, validations and various events that are fired
- * as the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional
- * functionality available.
- *
- * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
- */
-(Ext.cmd.derive('Ext.field.Search', Ext.field.Text, {
-    alternateClassName: 'Ext.form.Search',
-    config: {
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        component: {
-            type: 'search'
-        },
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        ui: 'search'
-    },
-    platformConfig: [
-        {
-            platform: 'blackberry',
-            component: {
-                type: 'text'
-            }
-        }
-    ]
-}, 0, [
-    "searchfield"
-], [
-    "component",
-    "field",
-    "textfield",
-    "searchfield"
-], {
-    "component": true,
-    "field": true,
-    "textfield": true,
-    "searchfield": true
-}, [
-    "widget.searchfield"
-], 0, [
-    Ext.field,
-    'Search',
-    Ext.form,
-    'Search'
-], 0));
-
-/**
  * The Form panel presents a set of form fields and provides convenient ways to load and save data. Usually a form
  * panel just contains the set of fields you want to display, ordered inside the items configuration like this:
  *
@@ -64535,7 +64450,7 @@ Ext.define('Ext.direct.Manager', {
             '<tpl if="dealEndDate &lt; todayplusthreedays ">',
             '    <div style="font-size:3vw;color:red">Valid through {dealEndDate}</div>',
             '    <tpl else>',
-            '        <div style="font-size:3vw;color:blue">Valid through {dealEndDate}</div>',
+            '        <div style="font-size:3vw;color:grey">Valid through {dealEndDate}</div>',
             '    </tpl>',
             '',
             ''
@@ -64752,8 +64667,8 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'toolbar',
                         docked: 'top',
-                        html: '<h1 style=" color:white;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>',
-                        style: 'border:none;background-color:transparent'
+                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>',
+                        style: 'border:none;background:white;border-bottom:1px solid #C0C0C0'
                     }
                 ]
             },
@@ -64774,6 +64689,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'toolbar',
                         docked: 'top',
+                        style: 'border:none;background:white;border-bottom:1px solid #C0C0C0',
                         items: [
                             {
                                 xtype: 'spacer',
@@ -64781,19 +64697,20 @@ Ext.define('Ext.direct.Manager', {
                                 width: 5
                             },
                             {
-                                xtype: 'searchfield',
+                                xtype: 'textfield',
                                 flex: 4,
-                                height: '10%',
+                                cls: 'searchfield',
+                                height: '10vh',
                                 id: 'searchfield',
                                 itemId: 'searchfield',
                                 margin: '5 15 5 5',
-                                style: ' padding: 0.2em',
+                                style: ' padding: 0.2em;',
                                 styleHtmlContent: true,
                                 clearIcon: false,
                                 name: 'searchfield',
                                 autoComplete: true,
                                 autoCorrect: false,
-                                placeHolder: '    Search Business'
+                                placeHolder: 'Search Business'
                             }
                         ]
                     }
@@ -65586,7 +65503,6 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.ListOfDeals', Ext.dataview.List, {
     config: {
-        cls: 'customlist',
         height: '100%',
         html: '',
         id: 'listofdeals',

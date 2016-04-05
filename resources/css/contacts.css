@@ -81,6 +81,24 @@ $list-header-bg-color: $base-color;
 }
 
 
+.searchfield {
+    border-bottom:2px groove #C0C0C0;
+    margin:5px 5px 5px 5px;
+    font-size:6vw;
+    height:12vh;
+    font-weight:normal;
+    text-align:center;
+    vertical-align:middle;
+    font-family:sans-serif;
+    border-radius:7px;
+
+
+
+
+
+
+
+}
 
 
 
