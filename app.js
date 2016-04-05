@@ -65008,9 +65008,11 @@ Ext.define('Ext.direct.Manager', {
                 infoWindow.close();
                 infoWindow.open(gmap, marker);
                 infoWindow.setContent(content);
+                console.log('Marker clicked ' + record.get('customerId'));
                 google.maps.event.addListener(infoWindow, 'domready', function() {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         var store = Ext.getStore('MyDealsStore');
+                        console.log('Label Clicked ' + record.get('customerId'));
                         store.filter('customerId', record.get('customerId'));
                         var view = Ext.Viewport.add({
                                 xtype: 'DealsPanel'
