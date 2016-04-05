@@ -65009,23 +65009,23 @@ Ext.define('Ext.direct.Manager', {
                 infoWindow.open(gmap, marker);
                 infoWindow.setContent(content);
                 console.log('Marker clicked ' + record.get('customerId'));
-            });
-            // google.maps.event.addListener(infoWindow, 'domready', function () {
-            document.getElementById('labelStore').addEventListener('mousedown', function() {
-                var store = Ext.getStore('MyDealsStore');
-                var businessName = document.getElementById('businessName').getValue();
-                console.log('Label Clicked ' + businessName);
-                store.clearFilter();
-                store.load();
-                store.filter('businessName', businessName);
-                var view = Ext.Viewport.add({
-                        xtype: 'DealsPanel'
+                google.maps.event.addListener(infoWindow, 'domready', function() {
+                    document.getElementById('labelStore').addEventListener('mousedown', function() {
+                        var store = Ext.getStore('MyDealsStore');
+                        var businessName = document.getElementById('businessName').getValue();
+                        console.log('Label Clicked ' + businessName);
+                        store.clearFilter();
+                        store.load();
+                        store.filter('businessName', businessName);
+                        var view = Ext.Viewport.add({
+                                xtype: 'DealsPanel'
+                            });
+                        Ext.Viewport.setActiveItem(view);
                     });
-                Ext.Viewport.setActiveItem(view);
+                });
             });
         }
     },
-    //});
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         if (!Ext.getCmp('mymap')) {
             Ext.getCmp('locationOffText').show();
