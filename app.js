@@ -64910,7 +64910,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
-        //var infoWindow;
+        var infoWindow;
         //var businessName;
         //var infoWindow;
         ///if (navigator.geolocation) {
