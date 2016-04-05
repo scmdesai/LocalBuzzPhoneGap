@@ -65005,7 +65005,10 @@ Ext.define('Ext.direct.Manager', {
                 content: content
             });
             google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.close();
+                infoWindow.destroy();
+                infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
                 infoWindow.open(gmap, marker);
                 infoWindow.setContent(content);
                 console.log('Marker clicked ' + record.get('customerId'));
