@@ -64870,14 +64870,11 @@ Ext.define('Ext.direct.Manager', {
                                                     lat = json.results[0].geometry.location.lat;
                                                     long = json.results[0].geometry.location.lng;
                                                     console.log(lat, long);
+                                                    Ext.getCmp('mymap').setMapCenter({
+                                                        latitude: lat,
+                                                        longitude: long
+                                                    });
                                                 });
-                                                var mapOptions = {
-                                                        center: {
-                                                            latitude: lat,
-                                                            longitude: long
-                                                        }
-                                                    };
-                                                Ext.getCmp('mymap').setMapOptions(mapOptions);
                                             }
                                         });
                                     }
