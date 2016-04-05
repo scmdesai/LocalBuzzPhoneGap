@@ -64910,7 +64910,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
-        var infoWindow;
+        //var infoWindow;
         //var businessName;
         //var infoWindow;
         ///if (navigator.geolocation) {
@@ -65001,15 +65001,16 @@ Ext.define('Ext.direct.Manager', {
             addInfoWindow(marker, content, record);
         }
         function addInfoWindow(marker, content, record) {
-            infoWindow = new google.maps.InfoWindow({
-                content: content
-            });
+            var infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.close();
                 infoWindow.open(gmap, marker);
                 infoWindow.setContent(content);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
+                        Ext.Viewport.getActiveItem().destroy();
                         var store = Ext.getStore('MyDealsStore');
                         store.filter('customerId', record.get('customerId'));
                         var view = Ext.Viewport.add({
