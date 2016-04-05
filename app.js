@@ -65012,9 +65012,10 @@ Ext.define('Ext.direct.Manager', {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         var store = Ext.getStore('MyDealsStore');
                         store.filter('customerId', record.get('customerId'));
-                        Ext.Viewport.setActiveItem({
-                            xtype: 'DealsPanel'
-                        });
+                        var view = Ext.Viewport.add({
+                                xtype: 'DealsPanel'
+                            });
+                        Ext.Viewport.setActiveItem(view);
                     });
                 });
             });
