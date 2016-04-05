@@ -65010,20 +65010,20 @@ Ext.define('Ext.direct.Manager', {
                 infoWindow.setContent(content);
                 console.log('Marker clicked ' + record.get('customerId'));
             });
-            google.maps.event.addListener(infoWindow, 'domready', function() {
-                document.getElementById('labelStore').addEventListener('mousedown', function() {
-                    var store = Ext.getStore('MyDealsStore');
-                    console.log('Label Clicked ' + record.get('customerId'));
-                    store.clearFilter();
-                    store.load();
-                    store.filter('customerId', record.get('customerId'));
-                    var view = Ext.Viewport.add({
-                            xtype: 'DealsPanel'
-                        });
-                    Ext.Viewport.setActiveItem(view);
-                });
-            });
         }
+        // google.maps.event.addListener(infoWindow, 'domready', function () {
+        //});
+        document.getElementById('labelStore').addEventListener('mousedown', function() {
+            var store = Ext.getStore('MyDealsStore');
+            console.log('Label Clicked ' + record.get('customerId'));
+            store.clearFilter();
+            store.load();
+            store.filter('customerId', record.get('customerId'));
+            var view = Ext.Viewport.add({
+                    xtype: 'DealsPanel'
+                });
+            Ext.Viewport.setActiveItem(view);
+        });
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         if (!Ext.getCmp('mymap')) {
@@ -66017,7 +66017,6 @@ Ext.define('Ext.direct.Manager', {
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-        store.filter('dealStatus', 'Active');
     }
 }, 0, [
     "DealsPanel"
@@ -66037,6 +66036,7 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'DealsPanel'
 ], 0));
+//store.filter('dealStatus','Active');
 //var date = new Date();
 //var today = Ext.Date.format(date,'n/j/Y');
 //var test = Ext.Date.add(date,Ext.Date.DAY,0);
