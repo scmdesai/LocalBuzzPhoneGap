@@ -64873,8 +64873,8 @@ Ext.define('Ext.direct.Manager', {
                                                 });
                                                 var mapOptions = {
                                                         center: {
-                                                            lat: lat,
-                                                            lng: long
+                                                            latitude: lat,
+                                                            longitude: long
                                                         }
                                                     };
                                                 Ext.getCmp('mymap').setMapOptions(mapOptions);
