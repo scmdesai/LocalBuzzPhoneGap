@@ -66197,6 +66197,14 @@ Ext.application({
         function onResume(e) {
             //Ext.Msg.alert('Resume',null,null,null);
             Ext.getStore('MyDealsStore').load();
+            navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                Ext.getCmp('mymap').show();
+                Ext.getCmp('locationOffText').hide();
+            }, onError);
+            function onError(error) {
+                Ext.getCmp('mymap').hide();
+                Ext.getCmp('locationOffText').show();
+            }
         }
         Ext.create('Contact.view.Main', {
             fullscreen: true
