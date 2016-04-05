@@ -64788,8 +64788,6 @@ Ext.define('Ext.direct.Manager', {
                                         Ext.getCmp('locationOffText').hide();
                                         latitude = position.coords.latitude;
                                         longitude = position.coords.longitude;
-                                        console.log('Got Geolocation permission');
-                                        console.log(latitude + "," + longitude);
                                     }, onError);
                                     function onError(error) {
                                         /*  Ext.Msg.prompt('Location Service is not enabled','Enter zipcode to get the Latest Buzz in your area',function(btnText,postalCode){
@@ -64918,6 +64916,7 @@ Ext.define('Ext.direct.Manager', {
         //var infoWindow;
         ///if (navigator.geolocation) {
         //if you have the geolocation, run the showPosition function
+        gmap.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -65000,7 +64999,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[feature].icon
                 });
-            var content = '<h3 id ="businessname">' + businessName + '</h3><label id="labelStore" style="color:green;font-size:5vw">Store Info</label>';
+            var content = '<h3 id ="businessname">' + businessName + '</h3><label id="labelStore" style="color:green;font-size:5vw;text-decoration:underline">Get The Latest Buzz</label>';
             addInfoWindow(marker, content, record, businessName);
         }
         function addInfoWindow(marker, content, record, businessName) {
@@ -65030,6 +65029,9 @@ Ext.define('Ext.direct.Manager', {
                                 xtype: 'DealsPanel'
                             });
                         Ext.Viewport.setActiveItem(view);
+                    });
+                    google.maps.event.addListener(infoWindow, 'mouseout', function() {
+                        infoWindow.close();
                     });
                 });
             });
@@ -65094,7 +65096,6 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'toolbarCls',
                 docked: 'top',
                 height: '10px',
-                style: '',
                 items: [
                     {
                         xtype: 'button',
