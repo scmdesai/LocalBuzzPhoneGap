@@ -64862,14 +64862,11 @@ Ext.define('Ext.direct.Manager', {
                                         console.log(latitude + "," + longitude);
                                     }, onError);
                                     function onError(error) {
-                                        console.log('User denied permission');
-                                        Ext.Msg.prompt('Enter zipcode to find the Latest Buzz near you', null, function(btnText, postalCode) {
+                                        Ext.Msg.prompt('Location Service is not enabled', 'Enter zipcode to get the Latest Buzz in your area', function(btnText, postalCode) {
                                             if (btnText === 'ok') {
-                                                console.log(postalCode);
                                                 $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                                     lat = json.results[0].geometry.location.lat;
                                                     long = json.results[0].geometry.location.lng;
-                                                    console.log(lat, long);
                                                     Ext.getCmp('mymap').setMapCenter({
                                                         latitude: lat,
                                                         longitude: long
@@ -64879,8 +64876,6 @@ Ext.define('Ext.direct.Manager', {
                                         });
                                     }
                                 },
-                                //new google.maps.Map(document.getElementById('mymap'),
-                                // mapOptions);
                                 event: 'painted'
                             }
                         ]
