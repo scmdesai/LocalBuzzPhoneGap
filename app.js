@@ -65007,7 +65007,7 @@ Ext.define('Ext.direct.Manager', {
 
             });*/
             google.maps.event.addListener(marker, 'mousedown', function() {
-                if (!!infowindow) {
+                if (!!infoWindow) {
                     infoWindow.close();
                 }
                 infoWindow = new google.maps.InfoWindow({
