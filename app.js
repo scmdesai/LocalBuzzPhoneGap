@@ -65006,8 +65006,8 @@ Ext.define('Ext.direct.Manager', {
             });
             google.maps.event.addListener(marker, 'mousedown', function() {
                 infoWindow.close();
-                infoWindow.setContent(content);
                 infoWindow.open(map, marker);
+                infoWindow.setContent(content);
                 google.maps.event.addListener(infoWindow, 'domready', function() {
                     document.getElementById('labelStore').addEventListener('click', function() {
                         var store = Ext.getStore('MyDealsStore');
