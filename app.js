@@ -65001,11 +65001,15 @@ Ext.define('Ext.direct.Manager', {
             addInfoWindow(marker, content, record, businessName);
         }
         function addInfoWindow(marker, content, record, businessName) {
-            infoWindow = new google.maps.InfoWindow({
+            /*infoWindow = new google.maps.InfoWindow({
                 content: content
-            });
+
+
+            });*/
             google.maps.event.addListener(marker, 'mousedown', function() {
-                infoWindow.close();
+                if (!!infowindow) {
+                    infoWindow.close();
+                }
                 infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
