@@ -64885,33 +64885,43 @@ Ext.define('Ext.direct.Manager', {
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         var infoWindow;
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+        /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
             Ext.getCmp('locationOffText').hide();
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
-        }, onError);
-        function onError(error) {
+
+
+        },onError);
+
+        function onError(error){
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
             Ext.getCmp('mymap').hide();
-            Ext.getCmp('lookUpZipcode').addListener('action', function() {
-                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-                Ext.getCmp('mymap').show();
-                Ext.getCmp('lookUpZipcode').hide();
-                Ext.getCmp('locationOffText').hide();
-                console.log(postalCode);
-                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat;
-                    long = json.results[0].geometry.location.lng;
-                    Ext.getCmp('mymap').setMapCenter({
-                        latitude: lat,
-                        longitude: long
-                    });
-                });
+
+        Ext.getCmp('lookUpZipcode').addListener('action',function(){
+
+        var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+        Ext.getCmp('mymap').show();
+        Ext.getCmp('lookUpZipcode').hide();
+        Ext.getCmp('locationOffText').hide();
+         console.log(postalCode);
+
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
+
+                      function(json){
+                          lat = json.results[0].geometry.location.lat;
+                          long = json.results[0].geometry.location.lng;
+
+        Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
+
             });
-        }
+            });
+
+
+
+                }*/
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
@@ -65046,9 +65056,32 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        if (!Ext.getCmp('mymap')) {
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+        }, onError);
+        function onError(error) {
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
+            Ext.getCmp('mymap').hide();
+            Ext.getCmp('lookUpZipcode').addListener('action', function() {
+                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+                Ext.getCmp('mymap').show();
+                Ext.getCmp('lookUpZipcode').hide();
+                Ext.getCmp('locationOffText').hide();
+                console.log(postalCode);
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+                });
+            });
         }
     }
 }, 0, [
