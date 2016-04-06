@@ -64552,7 +64552,7 @@ Ext.define('Ext.direct.Manager', {
         store: 'MyJsonPStore',
         grouped: true,
         itemTpl: [
-            '<div>{businessName}</div>',
+            '<div style="font-family:Arial;font-size:4vw">{businessName}</div>',
             ''
         ]
     }
@@ -65318,7 +65318,7 @@ Ext.define('Ext.direct.Manager', {
                 margin: '5 15 0 15',
                 maxHeight: '30%',
                 minHeight: '',
-                style: 'font-family:Arial',
+                style: '',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'phoneNumber',
@@ -65574,7 +65574,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="font-size:6.3vw;color:black;font-weight:normal">{dealName}</div>',
+            '<div style="font-size:4vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
             '<tpl if="dealEndDate &lt; todayplusthreedays ">',
             '    <div class= expiringDate >Valid {dealStartDate} to {dealEndDate}</div>',
             '    <tpl else>',
