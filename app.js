@@ -64436,7 +64436,7 @@ Ext.define('Ext.direct.Manager', {
         itemId: 'latestbuzz',
         margin: '1 1 1 1',
         style: 'background:#fff',
-        emptyText: '<h4 class="emptyText">No Buzz currently.Please check back later</h4>',
+        emptyText: '<h4 style="color:#C0C0C0">No Buzz currently.Please check back later</h4>',
         inline: true,
         itemCls: 'itemCls',
         store: 'MyDealsStore',
@@ -64548,7 +64548,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.List', Ext.dataview.List, {
     config: {
         disableSelection: true,
-        emptyText: '',
+        emptyText: '<h4 style="color:#C0C0C0">Find Stores Registed With Local Buzz Here!</h4>',
         store: 'MyJsonPStore',
         grouped: true,
         itemTpl: [
@@ -64595,7 +64595,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         itemId: 'favoriteview',
         style: 'background:#fff;',
-        emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your  Favorite Business here!</h4>',
+        emptyText: '<h4 style="color:#C0C0C0">You can see the the Latest Buzz from your Favorite Business here!</h4>',
         inline: true,
         store: 'MyJsonPStore1',
         itemTpl: [
@@ -65327,7 +65327,7 @@ Ext.define('Ext.direct.Manager', {
                 margin: '5 15 0 15',
                 maxHeight: '30%',
                 minHeight: '',
-                style: 'font-family:Arial;',
+                style: 'font-family:Arial;font-size:3vw!important;text-align:center',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'phoneNumber',
@@ -65575,7 +65575,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         allowDeselect: true,
         deferEmptyText: false,
-        emptyText: '<h4 class="emptyText">No Buzz from this Business yet</h4>',
+        emptyText: '<h4 style="color:#C0C0C0">No Buzz from this Business yet</h4>',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,
