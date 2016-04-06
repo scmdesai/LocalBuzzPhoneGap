@@ -64595,12 +64595,12 @@ Ext.define('Ext.direct.Manager', {
     config: {
         itemId: 'favoriteview',
         style: 'background:#fff;',
-        emptyText: '<h4 style="color:#C0C0C0">You can see the the Latest Buzz from your Favorite Business here!</h4>',
+        emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your Favorite Business here!</h4>',
         inline: true,
         store: 'MyJsonPStore1',
         itemTpl: [
-            '<div class="favorite"><img src="{pictureURL:empty("resources/img/defaultContactPic.png")}" width="160" /></div>',
-            '<div>{businessName}</div>',
+            '<div class="favorite"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="160" /></div>',
+            '<div style="color:black">{businessName}</div>',
             '',
             '',
             ''

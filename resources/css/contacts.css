@@ -31,13 +31,15 @@ $list-header-bg-color: $base-color;
 }
 
 .emptyText {
-    text-align:center;
+    
     color: #C0C0C0 !important;
-    position: absolute;
-    top: 40%;
-    left:20%;
-    font-family:Arial;
-    font-size:4vw;
+    position: absolute !important;
+    text-align:center !important;
+    vertical-align:middle !important;
+    top: 40% !important;
+    left:10% !important;
+    font-family:Arial !important;
+    font-size:4vw !important;
 }
 
 .dateValidity {
