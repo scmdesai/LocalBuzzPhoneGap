@@ -64814,7 +64814,7 @@ Ext.define('Ext.direct.Manager', {
 
 
                                     );*/
-                                    if (lat === null) {
+                                    if (Ext.getCmp('lookUpZipcode').getValue() === null) {
                                         Ext.getCmp('locationOffText').show();
                                         Ext.getCmp('lookUpZipcode').show();
                                         Ext.getCmp('mymap').hide();
