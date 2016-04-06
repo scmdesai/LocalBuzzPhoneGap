@@ -64798,7 +64798,6 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'textfield',
                         baseCls: '',
-                        cls: 'searchfield',
                         hidden: true,
                         id: 'lookUpZipcode',
                         itemId: 'lookUpZipcode',
