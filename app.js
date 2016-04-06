@@ -64823,6 +64823,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'textareafield',
                         centered: false,
+                        docked: 'top',
                         height: '100%',
                         hidden: true,
                         html: '<h4 class="emptyText">Uh-Oh! Location service is disabled.<br> To access the Latest Buzz near you, allow Local Buzz to access your location in App Settings or Enter your zipcode in the box below</h4>',
@@ -65074,6 +65075,9 @@ Ext.define('Ext.direct.Manager', {
     },
     onLookUpZipcodeAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
+        Ext.getCmp('mymap').show();
+        Ext.getCmp('lookUpZipcode').hide();
+        Ext.getCmp('locationOffText').hide();
         console.log(postalCode);
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
