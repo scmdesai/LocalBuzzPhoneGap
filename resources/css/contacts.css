@@ -32,7 +32,7 @@ $list-header-bg-color: $base-color;
 
 .emptyText {
     text-align:center;
-    color: #999;
+    color: #C0C0C0;
     position: absolute;
     top: 30%;
     margin:5px 5px 5px 5px;
