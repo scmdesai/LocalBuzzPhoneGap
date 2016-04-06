@@ -64552,7 +64552,7 @@ Ext.define('Ext.direct.Manager', {
         store: 'MyJsonPStore',
         grouped: true,
         itemTpl: [
-            '<div style="font-family:Arial;font-size:4vw">{businessName}</div>',
+            '<div style="font-family:Arial;font-size:5vw">{businessName}</div>',
             ''
         ]
     }
@@ -64839,8 +64839,8 @@ Ext.define('Ext.direct.Manager', {
             cls: 'tabBarCls',
             docked: 'bottom',
             height: '9%',
-            padding: '10 10 10 10',
-            style: 'font-size:4vw;border-top:1px solid #eee;background:white;color:#00529D',
+            padding: '5 5 0 5',
+            style: 'font-size:5vw;border-top:1px solid #eee;background:white;color:#00529D',
             ui: 'plain',
             modal: false,
             activeTab: 0,
@@ -65093,6 +65093,7 @@ Ext.define('Ext.direct.Manager', {
         'dealPicture'
     ],
     config: {
+        cls: 'icon-share',
         fullscreen: true,
         id: 'dealPicture',
         itemId: 'dealPicture',
@@ -65116,18 +65117,24 @@ Ext.define('Ext.direct.Manager', {
                             Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
-                        style: 'font-size:6vw;',
-                        ui: 'back',
-                        text: 'Back'
+                        centered: false,
+                        cls: 'icon-back-button',
+                        height: '100%',
+                        style: 'font-family:Arial;',
+                        styleHtmlContent: true,
+                        ui: 'plain',
+                        text: ''
                     },
                     {
                         xtype: 'button',
+                        cls: 'icon-share',
                         docked: 'right',
+                        height: '100%',
                         itemId: 'share',
                         margin: '5 10 10 10',
-                        style: 'font-size:6.5vw;',
-                        ui: 'plain',
-                        iconCls: 'icon-share'
+                        style: 'font-family:Arial;',
+                        styleHtmlContent: true,
+                        ui: 'plain'
                     }
                 ]
             }
@@ -65236,10 +65243,11 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
+                        cls: 'icon-back-button',
                         itemId: 'infoBackBtn',
-                        style: 'font-size:5.5vw',
-                        ui: 'back',
-                        text: 'Back'
+                        style: 'font-family:Arial;',
+                        styleHtmlContent: true,
+                        ui: 'plain'
                     },
                     {
                         xtype: 'button',
@@ -65256,7 +65264,7 @@ Ext.define('Ext.direct.Manager', {
                         html: '<b>First Name</b>',
                         id: 'nameTxt',
                         itemId: 'nameTxt',
-                        style: 'font-size:6vw;word-wrap:break-word;',
+                        style: 'word-wrap:break-word;font-family:Arial;',
                         width: '65%'
                     }
                 ]
@@ -65303,6 +65311,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 height: '',
                 margin: '0 5 0 5',
+                style: 'font-family:Arial;font-size:5vw',
                 ui: 'confirm',
                 text: 'Get The Latest Buzz!'
             },
@@ -65318,7 +65327,7 @@ Ext.define('Ext.direct.Manager', {
                 margin: '5 15 0 15',
                 maxHeight: '30%',
                 minHeight: '',
-                style: '',
+                style: 'font-family:Arial;',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'phoneNumber',
@@ -65342,6 +65351,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'email',
                 itemId: 'email',
                 margin: '0 15 0 15',
+                style: 'font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
                 clearIcon: false,
                 inputCls: '',
@@ -65391,7 +65401,7 @@ Ext.define('Ext.direct.Manager', {
                 margin: '0 15 0 15',
                 maxHeight: '30%',
                 minHeight: '',
-                style: 'color:black;text-decoration:underline;font-family:Verdana,sans-serif;font-size:4.5vw',
+                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'websiteDisplayName',
@@ -65418,7 +65428,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'address',
                 itemId: 'address',
                 margin: '0 15 0 15',
-                style: 'font-size:4.2vw;font-family: arial',
+                style: 'font-size:4.2vw;font-family:Arial',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'address',
@@ -65574,7 +65584,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="font-size:4vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
+            '<div style="font-size:5vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
             '<tpl if="dealEndDate &lt; todayplusthreedays ">',
             '    <div class= expiringDate >Valid {dealStartDate} to {dealEndDate}</div>',
             '    <tpl else>',
@@ -66017,10 +66027,12 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
+                        cls: 'icon-back-button',
+                        height: '100%',
                         itemId: 'dealBackBtn',
-                        style: 'font-size:6vw;',
+                        style: 'font-family:Arial;',
                         styleHtmlContent: true,
-                        ui: 'back',
+                        ui: 'plain',
                         text: 'Back'
                     }
                 ]
