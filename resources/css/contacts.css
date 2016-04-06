@@ -36,8 +36,8 @@ $list-header-bg-color: $base-color;
     position: absolute !important;
     text-align:center !important;
     vertical-align:middle !important;
-    top: 40px !important;
-    left:50px !important;
+    top: 50px !important;
+    left:45px !important;
     font-family:Arial !important;
     font-size:4vw !important;
 }
