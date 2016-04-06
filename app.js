@@ -65072,6 +65072,7 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('mymap').hide();
             Ext.getCmp('lookUpZipcode').addListener('action', function() {
                 var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+                Ext.getCmp('lookUpZipcode').setValue('');
                 Ext.getCmp('mymap').show();
                 Ext.getCmp('lookUpZipcode').hide();
                 Ext.getCmp('locationOffText').hide();
