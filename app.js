@@ -64595,7 +64595,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         itemId: 'favoriteview',
         style: 'background:#fff;',
-        emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your Favorite Business here!</h4>',
+        emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your <br>Favorite Business here!</h4>',
         inline: true,
         store: 'MyJsonPStore1',
         itemTpl: [
