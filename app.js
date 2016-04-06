@@ -64784,33 +64784,37 @@ Ext.define('Ext.direct.Manager', {
                             {
                                 fn: function(element, eOpts) {
                                     var lat, long;
-                                    navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                                        Ext.getCmp('mymap').show();
-                                        Ext.getCmp('lookUpZipcode').hide();
-                                        Ext.getCmp('locationOffText').hide();
-                                        latitude = position.coords.latitude;
-                                        longitude = position.coords.longitude;
-                                    }, onError);
-                                    function onError(error) {
-                                        /*  Ext.Msg.prompt('Location Service is not enabled','Enter zipcode to get the Latest Buzz in your area',function(btnText,postalCode){
-                                        if(btnText==='ok'){
-
-                                        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                                        function(json){
-                                        lat = json.results[0].geometry.location.lat;
-                                        long = json.results[0].geometry.location.lng;
-                                        Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-                                        });
+                                    /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                                    Ext.getCmp('mymap').show();
+                                    Ext.getCmp('lookUpZipcode').hide();
+                                    Ext.getCmp('locationOffText').hide();
+                                    latitude = position.coords.latitude;
+                                    longitude = position.coords.longitude;
 
 
+                                    },onError);
 
-                                        }
-                                        }
+                                    function onError(error){
+                                    /*  Ext.Msg.prompt('Location Service is not enabled','Enter zipcode to get the Latest Buzz in your area',function(btnText,postalCode){
+                                    if(btnText==='ok'){
+
+                                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
+
+                                    function(json){
+                                    lat = json.results[0].geometry.location.lat;
+                                    long = json.results[0].geometry.location.lng;
+                                    Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
+
+                                    });
 
 
-                                        );*/
+
+                                    }
+                                    }
+
+
+                                    );*/
+                                    if (lat === null) {
                                         Ext.getCmp('locationOffText').show();
                                         Ext.getCmp('lookUpZipcode').show();
                                         Ext.getCmp('mymap').hide();
