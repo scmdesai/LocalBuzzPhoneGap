@@ -64779,76 +64779,12 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         },
-                        useCurrentLocation: true,
-                        listeners: [
-                            {
-                                fn: function(element, eOpts) {
-                                    var lat, long;
-                                },
-                                /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                                    Ext.getCmp('mymap').show();
-                                    Ext.getCmp('lookUpZipcode').hide();
-                                    Ext.getCmp('locationOffText').hide();
-                                    latitude = position.coords.latitude;
-                                    longitude = position.coords.longitude;
-
-
-                                    },onError);
-
-                                    function onError(error){
-                                    /*  Ext.Msg.prompt('Location Service is not enabled','Enter zipcode to get the Latest Buzz in your area',function(btnText,postalCode){
-                                    if(btnText==='ok'){
-
-                                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                                    function(json){
-                                    lat = json.results[0].geometry.location.lat;
-                                    long = json.results[0].geometry.location.lng;
-                                    Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-                                    });
-
-
-
-                                    }
-                                    }
-
-
-                                    );*/
-                                /*console.log(Ext.getCmp('lookUpZipcode').getValue());
-                                    if(Ext.getCmp('lookUpZipcode').getValue()===null){
-
-                                    Ext.getCmp('locationOffText').show();
-                                    Ext.getCmp('lookUpZipcode').show();
-                                    Ext.getCmp('mymap').hide();
-
-                                    Ext.getCmp('lookUpZipcode').addListener('action',function(){
-
-                                    var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-                                    Ext.getCmp('mymap').show();
-                                    Ext.getCmp('lookUpZipcode').setHidden(true);
-                                    Ext.getCmp('locationOffText').setHidden(true);
-                                    console.log(postalCode);
-
-                                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                                    function(json){
-                                    lat = json.results[0].geometry.location.lat;
-                                    long = json.results[0].geometry.location.lng;
-
-                                    Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-                                    });
-                                    });
-                                    }*/
-                                event: 'painted'
-                            }
-                        ]
+                        useCurrentLocation: true
                     },
                     {
                         xtype: 'textareafield',
                         centered: false,
-                        docked: 'top',
+                        docked: 'bottom',
                         height: '100%',
                         hidden: true,
                         html: '<h4 class="emptyText">Uh-Oh! Location service is disabled.<br> To access the Latest Buzz near you, allow Local Buzz to access your location in App Settings or Enter your zipcode in the box below</h4>',
@@ -64865,7 +64801,7 @@ Ext.define('Ext.direct.Manager', {
                         hidden: true,
                         id: 'lookUpZipcode',
                         itemId: 'lookUpZipcode',
-                        label: 'Field',
+                        clearIcon: false,
                         name: 'lookUpZipcode',
                         placeHolder: 'Enter Zipcode To Find All The Latest Buzz'
                     }
