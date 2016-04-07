@@ -65218,6 +65218,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.Picture', Ext.Container, {
     config: {
         overflow: 'hidden',
+        height: '100%',
         margin: '5 5 5 5',
         padding: '5 5 5 5',
         style: 'overflow: hidden;background:#fff;',
@@ -65311,6 +65312,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'contactpic',
+                width: '100%',
                 flex: 10
             },
             {
@@ -65343,7 +65345,6 @@ Ext.define('Ext.direct.Manager', {
 
                 });*/
                     //store.filter('dealStatus','Active');
-                    //Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
                             xtype: 'DealsPanel'
                         });
@@ -65944,7 +65945,7 @@ Ext.define('Ext.direct.Manager', {
         ds.clearFilter() ;
         Ext.Viewport.setActiveItem(info);
 
-        var store = Ext.StoreManager.lookup('MyDealsStore');
+        /*var store = Ext.StoreManager.lookup('MyDealsStore');
         store.filter('customerId', customerId);
         store.filter('dealStatus', 'Active');
 
@@ -65953,6 +65954,16 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
         store.load();
+        var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter();
+        var dealRecord = this.getContactinfo().getRecord();
+        var customerId = dealRecord.get('customerId');
+        ds.filter('customerId', customerId);
+        var customerData = ds.getData().getAt(0);
+        var info = this.getContactinfo();
+        info.setRecord(customerData);
+        ds.clearFilter();
+        Ext.Viewport.setActiveItem(info);
     },
     onFavoritesActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('UserPreferences');
@@ -66119,7 +66130,7 @@ Ext.define('Ext.direct.Manager', {
 //var today = Ext.Date.format(date,'n/j/Y');
 //var test = Ext.Date.add(date,Ext.Date.DAY,0);
 /*var today = Ext.Date.format(test,'n/j/Y');
-        //Ext.Viewport.getActiveItem().destroy();
+
 
         Ext.Viewport.add(newActiveItem);
 
