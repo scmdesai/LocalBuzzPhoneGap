@@ -65954,16 +65954,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
         store.load();
-        var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter();
-        var dealRecord = this.getContactinfo().getRecord();
-        var customerId = dealRecord.get('customerId');
-        ds.filter('customerId', customerId);
-        var customerData = ds.getData().getAt(0);
-        var info = this.getContactinfo();
-        info.setRecord(customerData);
-        ds.clearFilter();
-        Ext.Viewport.setActiveItem(info);
+        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
     },
     onFavoritesActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('UserPreferences');
