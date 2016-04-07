@@ -66102,6 +66102,7 @@ Ext.define('Ext.direct.Manager', {
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
+        Ext.Viewport.getActiveItem().destroy();
     }
 }, 0, [
     "DealsPanel"
