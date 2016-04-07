@@ -65915,7 +65915,7 @@ Ext.define('Ext.direct.Manager', {
             navigator.geolocation.getCurrentPosition(function showPosition(position) {
                 var latitude = position.coords.latitude;
                 var longitude = position.coords.longitude;
-                console.log(latitude + "," + longitude);
+                console.log('Inside Analytics module: ' + latitude + "," + longitude);
                 // api call for postal code and track event
                 $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                     //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
