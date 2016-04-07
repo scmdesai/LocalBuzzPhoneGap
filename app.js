@@ -64927,6 +64927,9 @@ Ext.define('Ext.direct.Manager', {
 
                 }*/
         map.mapTypeControl = false;
+        if (infoWindow) {
+            infoWindow.close();
+        }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -65037,7 +65040,7 @@ Ext.define('Ext.direct.Manager', {
 
             });*/
             google.maps.event.addListener(marker, 'mousedown', function() {
-                if (!!infoWindow) {
+                if (infoWindow) {
                     infoWindow.close();
                 }
                 infoWindow = new google.maps.InfoWindow({
