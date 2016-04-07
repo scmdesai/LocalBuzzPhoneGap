@@ -65954,7 +65954,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
         store.load();
-        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+        console.log(Ext.Viewport.getActiveItem().getItemId());
     },
     onFavoritesActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('UserPreferences');
