@@ -65021,6 +65021,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon
                 });
+            marker.setBadgeText("2");
             var content = '<h4 id ="businessname">' + businessName + '</h4><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">Get The Latest Buzz</label>';
             addInfoWindow(marker, content, record, businessName);
         }
