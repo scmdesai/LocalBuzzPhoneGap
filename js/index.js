@@ -29,6 +29,8 @@ var app = {
          //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 		 document.addEventListener('deviceready', function() {
 		 try{
+		 
+		 window.analytics.startTrackerWithId('UA-67469655-6');
 		 var push = PushNotification.init({
             "android": {
                 "senderID": "226322216862"
