@@ -65001,6 +65001,10 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
+        var ds = Ext.getStore('MyDealsStore');
+        ds.clearFilter();
+        ds.filter('customerId', record.get('customerId'));
+        var count = ds.getCount();
         function addMarker(feature, businessName, m, record) {
             var category;
             if (feature === 'Auto') {
@@ -65019,9 +65023,9 @@ Ext.define('Ext.direct.Manager', {
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[category].icon
+                    icon: icons[category].icon,
+                    label: count
                 });
-            marker.setBadgeText("2");
             var content = '<h4 id ="businessname">' + businessName + '</h4><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">Get The Latest Buzz</label>';
             addInfoWindow(marker, content, record, businessName);
         }
