@@ -65001,11 +65001,11 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-        var ds = Ext.getStore('MyDealsStore');
-        ds.clearFilter();
-        ds.filter('customerId', record.get('customerId'));
-        var count = ds.getCount();
         function addMarker(feature, businessName, m, record) {
+            var ds = Ext.getStore('MyDealsStore');
+            ds.clearFilter();
+            ds.filter('customerId', record.get('customerId'));
+            var count = ds.getCount();
             var category;
             if (feature === 'Auto') {
                 category = 0;
