@@ -65004,8 +65004,9 @@ Ext.define('Ext.direct.Manager', {
         function addMarker(feature, businessName, m, record) {
             var ds = Ext.getStore('MyDealsStore');
             ds.clearFilter();
-            ds.load();
             ds.filter('customerId', record.get('customerId'));
+            ds.load();
+            ds.filter('dealStatus', 'Active');
             var count = ds.getCount();
             var category;
             if (feature === 'Auto') {
