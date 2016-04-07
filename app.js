@@ -65901,12 +65901,6 @@ Ext.define('Ext.direct.Manager', {
         console.log("Event Options is: ") ;
         console.log(eOpts) ;*/
         //
-        Ext.getStore('LocalStore').add(record);
-        var pic = Ext.Viewport.add({
-                xtype: 'dealpicture'
-            });
-        pic.setRecord(record);
-        Ext.Viewport.setActiveItem(pic);
         //_gaq.push(['_trackEvent', 'Images', 'Click', 'Deal Picture', 0]);
         //analytics.trackEvent(record.get('customerId'), 'DealClick', record.get('dealName'));
         var showPosition;
@@ -65928,6 +65922,12 @@ Ext.define('Ext.direct.Manager', {
             console.log("Gelocation not working");
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
+        Ext.getStore('LocalStore').add(record);
+        var pic = Ext.Viewport.add({
+                xtype: 'dealpicture'
+            });
+        pic.setRecord(record);
+        Ext.Viewport.setActiveItem(pic);
     },
     onDealBackBtnTap: function(button, e, eOpts) {
         /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
