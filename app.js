@@ -64290,6 +64290,7 @@ Ext.define('Ext.direct.Manager', {
         //console.log(records);
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
+        var test = Ext.Date.add(date, Ext.Date.DAY, 3);
         /* if(records.data.get('dealEndDate') < today) {
 
 
@@ -64449,7 +64450,7 @@ Ext.define('Ext.direct.Manager', {
             '<div style="font-size:4vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
             '<div><img src="{dealPictureURL}" height="160" width="120"></div>',
             '<div style="font-size:3vw;color:black">{dealName}</div>',
-            '<tpl if="dealEndDate &lt; todayplusthreedays ">',
+            '<tpl if="dealEndDate &lt;= today">',
             '    <div style="font-size:3vw;color:red">Valid through {dealEndDate}</div>',
             '    <tpl else>',
             '        <div style="font-size:3vw;color:grey">Valid through {dealEndDate}</div>',
@@ -65050,11 +65051,11 @@ Ext.define('Ext.direct.Manager', {
                 infoWindow.setContent(content);
                 console.log('Marker clicked ' + record.get('customerId'));
                 google.maps.event.addListener(infoWindow, 'domready', function() {
-                    var store = Ext.getStore('MyDealsStore');
-                    store.clearFilter();
-                    store.load();
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         console.log('Label Clicked ' + businessName);
+                        var store = Ext.getStore('MyDealsStore');
+                        store.clearFilter();
+                        store.load();
                         store.filter('businessName', businessName);
                         var view = Ext.Viewport.add({
                                 xtype: 'DealsPanel'
@@ -65629,11 +65630,14 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
+            '',
+            '',
+            '',
             '<div style="font-size:5vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
-            '<tpl if="dealEndDate &lt; todayplusthreedays ">',
-            '    <div class= expiringDate >Valid {dealStartDate} to {dealEndDate}</div>',
-            '    <tpl else>',
-            '        <div class= dateValidity >Valid {dealStartDate} to {dealEndDate}</div></tpl>',
+            '<tpl if= "dealEndDate &lt;= today"> ',
+            ' <div class= "expiringDate" >Valid {dealStartDate} to {dealEndDate}</div>',
+            '  <tpl else>',
+            '        <div class= "dateValidity" >Valid {dealStartDate} to {dealEndDate}</div></tpl>',
             '',
             '',
             '',
