@@ -64936,9 +64936,6 @@ Ext.define('Ext.direct.Manager', {
 
                 }*/
         map.mapTypeControl = false;
-        if (infoWindow) {
-            infoWindow.close();
-        }
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -65039,7 +65036,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon
                 });
-            var content = '<h4 id ="businessname">' + businessName + '</h4><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label>';
+            var content = '<h4 id ="businessname">' + businessName + '</h4><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label><label id="labelStoreInfo" style="color:blue;font-size:4vw;text-decoration:underline">Get Store Info</label>';
             addInfoWindow(marker, content, record, businessName);
         }
         function addInfoWindow(marker, content, record, businessName) {
@@ -65068,6 +65065,19 @@ Ext.define('Ext.direct.Manager', {
                         var view = Ext.Viewport.add({
                                 xtype: 'DealsPanel1'
                             });
+                        Ext.Viewport.setActiveItem(view);
+                    });
+                    document.getElementById('labelStoreInfo').addEventListener('mousedown', function() {
+                        console.log('Label Clicked ' + businessName);
+                        var store = Ext.getStore('MyJsonPStore');
+                        store.clearFilter();
+                        //store.load();
+                        //store.filter('businessName',businessName);
+                        var record = store.findRecord('businessName', businessName);
+                        var view = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
+                        view.setRecord(record);
                         Ext.Viewport.setActiveItem(view);
                     });
                     google.maps.event.addListener(gmap, 'click', function() {
