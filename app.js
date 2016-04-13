@@ -64040,11 +64040,11 @@ Ext.define('Ext.direct.Manager', {
             {
                 convert: function(v, rec) {
                     var date = new Date();
-                    var test = Ext.Date.add(date, Ext.Date.DAY, 3);
+                    var test = Ext.Date.add(date, Ext.Date.DAY, 5);
                     return Ext.Date.format(test, 'n/j/Y');
                 },
                 dateFormat: 'n/j/Y',
-                name: 'todayplusthreedays',
+                name: 'todayplusfivedays',
                 type: 'date'
             },
             {
@@ -64450,7 +64450,7 @@ Ext.define('Ext.direct.Manager', {
             '<div style="font-size:4vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
             '<div><img src="{dealPictureURL}" height="160" width="120"></div>',
             '<div style="font-size:3vw;color:black">{dealName}</div>',
-            '<tpl if="dealEndDate &lt;= today">',
+            '<tpl if="dealEndDate &lt;= todayplusfivedays">',
             '    <div style="font-size:3vw;color:red">Valid through {dealEndDate}</div>',
             '    <tpl else>',
             '        <div style="font-size:3vw;color:grey">Valid through {dealEndDate}</div>',
@@ -64600,8 +64600,8 @@ Ext.define('Ext.direct.Manager', {
         inline: true,
         store: 'MyJsonPStore1',
         itemTpl: [
-            '<div class="favorite"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="160" /></div>',
-            '<div style="color:black">{businessName}</div>',
+            '<div class="favorite"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" /></div>',
+            '<div style="color:black;font-size:3vw">{businessName}</div>',
             '',
             '',
             ''
@@ -64878,6 +64878,7 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus','Active');*/
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
+        textfield.setValue("");
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         store.filter('businessName', search);
