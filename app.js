@@ -65070,8 +65070,10 @@ Ext.define('Ext.direct.Manager', {
                             });
                         Ext.Viewport.setActiveItem(view);
                     });
-                    google.maps.event.addListener(infoWindow, 'mouseout', function() {
-                        infoWindow.close();
+                    google.maps.event.addListener(map, 'mousedown', function() {
+                        if (infoWindow) {
+                            infoWindow.close();
+                        }
                     });
                 });
             });
