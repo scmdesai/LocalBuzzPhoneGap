@@ -64715,7 +64715,15 @@ Ext.define('Ext.direct.Manager', {
                                 name: 'searchfield',
                                 autoComplete: true,
                                 autoCorrect: false,
-                                placeHolder: 'Search Business'
+                                placeHolder: 'Search Business',
+                                listeners: [
+                                    {
+                                        fn: function(element, eOpts) {
+                                            Ext.getCmp('searchfield').setValue("");
+                                        },
+                                        event: 'painted'
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -64878,7 +64886,6 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus','Active');*/
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
-        textfield.setValue("");
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         store.filter('businessName', search);
