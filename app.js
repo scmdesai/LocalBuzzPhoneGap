@@ -65966,16 +65966,16 @@ Ext.define('Ext.direct.Manager', {
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
         Ext.Viewport.getActiveItem().destroy();
-        var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter();
-        var dealRecord = this.getContactinfo().getRecord();
+        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter() ;
+        var dealRecord = this.getContactinfo().getRecord() ;
         var customerId = dealRecord.get('customerId');
         ds.filter('customerId', customerId);
-        var customerData = ds.getData().getAt(0);
+        var customerData = ds.getData().getAt(0) ;
         var info = this.getContactinfo();
         info.setRecord(customerData);
-        ds.clearFilter();
-        Ext.Viewport.setActiveItem(info);
+        ds.clearFilter() ;
+        Ext.Viewport.setActiveItem(info);*/
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
         store.load();
