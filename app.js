@@ -65070,7 +65070,7 @@ Ext.define('Ext.direct.Manager', {
                             });
                         Ext.Viewport.setActiveItem(view);
                     });
-                    google.maps.event.addListener(map, 'mousedown', function() {
+                    google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
                         }
