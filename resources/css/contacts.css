@@ -11,7 +11,7 @@ $list-header-bg-color: $base-color;
 .favorite {
     border: 2px outset #C0C0C0; 
     padding: 5px 5px 5px 5px; 
-    margin: 5px 5px 5px 5px;
+    margin: 15px 15px 15px 15px;
     text-align: center;
 }
 
