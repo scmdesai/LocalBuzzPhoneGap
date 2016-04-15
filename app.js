@@ -65208,7 +65208,6 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onDealPicturePainted: function(element, eOpts) {
-        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -65577,7 +65576,6 @@ Ext.define('Ext.direct.Manager', {
         store.sync();
     },
     onInfoPainted: function(element, eOpts) {
-        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -66226,7 +66224,6 @@ Ext.define('Ext.direct.Manager', {
 
         //store.clearFilter();*/
     onDealsPanelPainted: function(element, eOpts) {
-        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -66359,7 +66356,6 @@ Ext.define('Ext.direct.Manager', {
 
         //store.clearFilter();*/
     onDealsPanel1Painted: function(element, eOpts) {
-        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
