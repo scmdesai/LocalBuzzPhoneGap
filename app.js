@@ -65204,6 +65204,7 @@ Ext.define('Ext.direct.Manager', {
     initialize: function() {
         Ext.Panel.prototype.initialize.call(this);
         if (Ext.os.is('Android')) {
+            Ext.get('dealBackButton').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
@@ -65212,7 +65213,7 @@ Ext.define('Ext.direct.Manager', {
                 var view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
                     });
-                Ext.getStore('MyDealsPanel').load();
+                Ext.getStore('MyDealsStore').load();
                 Ext.Viewport.setActiveItem(view);
             }
         }
