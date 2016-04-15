@@ -65215,7 +65215,9 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 Ext.Viewport.getActiveItem().destroy();
-                Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                Ext.Viewport.setActiveItem({
+                    xtype: 'DealsPanel'
+                });
             }
         }
     }
@@ -65587,7 +65589,6 @@ Ext.define('Ext.direct.Manager', {
                 ds.clearFilter();
                 var store = Ext.StoreManager.lookup('MyDealsStore');
                 store.clearFilter();
-                //Ext.Viewport.setActiveItem(0);
                 Ext.Viewport.getActiveItem().destroy();
             }
         }
@@ -66275,19 +66276,6 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 Ext.Viewport.getActiveItem().destroy();
-                var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                ds.clearFilter();
-                var dealRecord = this.getContactinfo().getRecord();
-                var customerId = dealRecord.get('customerId');
-                ds.filter('customerId', customerId);
-                var customerData = ds.getData().getAt(0);
-                var info = this.getContactinfo();
-                info.setRecord(customerData);
-                ds.clearFilter();
-                Ext.Viewport.setActiveItem(info);
-                var store = Ext.StoreManager.lookup('MyDealsStore');
-                //store.clearFilter();
-                store.load();
             }
         }
     }
@@ -66309,6 +66297,21 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'DealsPanel'
 ], 0));
+/*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        		ds.clearFilter() ;
+        		//var dealRecord = this.getContactinfo().getRecord() ;
+
+        		var customerId = dealRecord.get('customerId');
+        		ds.filter('customerId', customerId);
+        		var customerData = ds.getData().getAt(0) ;
+        		var info = this.getContactinfo();
+        		info.setRecord(customerData);
+        		ds.clearFilter() ;
+        		Ext.Viewport.setActiveItem(info);
+
+        		var store = Ext.StoreManager.lookup('MyDealsStore');
+        		//store.clearFilter();
+        		store.load();*/
 
 /*
  * File: app/view/DealsPanel1.js
