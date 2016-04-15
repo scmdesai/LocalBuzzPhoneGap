@@ -65199,10 +65199,16 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onDealPicturePainted',
+                event: 'painted'
+            }
         ]
     },
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
+    onDealPicturePainted: function(element, eOpts) {
+        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -65534,6 +65540,10 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onFavbuttonTap',
                 event: 'tap',
                 delegate: '#favbutton'
+            },
+            {
+                fn: 'onInfoPainted',
+                event: 'painted'
             }
         ]
     },
@@ -65565,6 +65575,18 @@ Ext.define('Ext.direct.Manager', {
         //console.log(customerId + isPressed);
         record.set('isFavorite', isPressed);
         store.sync();
+    },
+    onInfoPainted: function(element, eOpts) {
+        this.callParent();
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                // Ext.Viewport.getActiveItem().destroy();
+                Ext.get('infoBackBtn').fireEvent('tap');
+            }
+        }
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
@@ -65605,18 +65627,6 @@ Ext.define('Ext.direct.Manager', {
         var ds = Ext.StoreManager.lookup('MyDealsStore');
         ds.clearFilter();
         ds.filter('customerId', customerId);
-    },
-    initialize: function() {
-        Ext.form.Panel.prototype.initialize.call(this);
-        if (Ext.os.is('Android')) {
-            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-            // add back button listener
-            function onBackKeyDown(eve) {
-                eve.preventDefault();
-                // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('infoBackBtn').fireEvent('tap');
-            }
-        }
     }
 }, 0, [
     "contactinfo"
@@ -66170,6 +66180,10 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanelPainted',
+                event: 'painted'
             }
         ]
     },
@@ -66211,8 +66225,8 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
+    onDealsPanelPainted: function(element, eOpts) {
+        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -66299,6 +66313,10 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanel1Painted',
+                event: 'painted'
             }
         ]
     },
@@ -66340,8 +66358,8 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
+    onDealsPanel1Painted: function(element, eOpts) {
+        this.callParent();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
