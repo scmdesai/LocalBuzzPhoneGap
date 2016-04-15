@@ -66416,7 +66416,7 @@ Ext.application({
                         //do nothing
                     }
                 });*/
-                if (!Ext.Viewport.getActiveItem().destroy()) {
+                if (Ext.Viewport.getActiveItem().destroy() === null) {
                     navigator.app.exitApp();
                 } else {
                     Ext.Viewport.getActiveItem().destroy();
