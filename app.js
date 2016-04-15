@@ -65207,11 +65207,7 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onDealPicturePainted: function(element, eOpts) {
-        if (Ext.os.is('Android')) {
-            Ext.get('dealBackButton').hide();
-        }
-    }
+    onDealPicturePainted: function(element, eOpts) {}
 }, 0, [
     "dealpicture"
 ], [
@@ -65232,7 +65228,6 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
-//document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);  // add back button listener
 
 /*
  * File: app/view/Picture.js
@@ -65534,10 +65529,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onFavbuttonTap',
                 event: 'tap',
                 delegate: '#favbutton'
-            },
-            {
-                fn: 'onInfoPainted',
-                event: 'painted'
             }
         ]
     },
@@ -65569,11 +65560,6 @@ Ext.define('Ext.direct.Manager', {
         //console.log(customerId + isPressed);
         record.set('isFavorite', isPressed);
         store.sync();
-    },
-    onInfoPainted: function(element, eOpts) {
-        if (Ext.os.is('Android')) {
-            Ext.get('infoBackBtn').hide();
-        }
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
@@ -66212,11 +66198,7 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    onDealsPanelPainted: function(element, eOpts) {
-        if (Ext.os.is('Android')) {
-            Ext.get('dealBackBtn').hide();
-        }
-    }
+    onDealsPanelPainted: function(element, eOpts) {}
 }, 0, [
     "DealsPanel"
 ], [
@@ -66338,11 +66320,7 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    onDealsPanel1Painted: function(element, eOpts) {
-        if (Ext.os.is('Android')) {
-            Ext.get('dealBackBtn1').hide();
-        }
-    }
+    onDealsPanel1Painted: function(element, eOpts) {}
 }, 0, [
     "DealsPanel1"
 ], [
@@ -66423,6 +66401,10 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         if (Ext.os.is('Android')) {
+            Ext.get('dealBackButton').hide();
+            Ext.get('dealBackBtn').hide();
+            Ext.get('dealBackBtn1').hide();
+            Ext.get('infoBackBtn').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
@@ -66434,7 +66416,11 @@ Ext.application({
                         //do nothing
                     }
                 });*/
-                Ext.Viewport.getActiveItem().destroy();
+                if (!Ext.Viewport.getActiveItem().destroy()) {
+                    navigator.app.exitApp();
+                } else {
+                    Ext.Viewport.getActiveItem().destroy();
+                }
             }
         }
         document.addEventListener("resume", Ext.bind(onResume, this), false);
