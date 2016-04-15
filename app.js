@@ -65210,7 +65210,18 @@ Ext.define('Ext.direct.Manager', {
     onDealPicturePainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
             Ext.get('dealBackButton').hide();
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
         }
+    },
+    // add back button listener
+    onBackKeyDown: function(e) {
+        e.preventDefault();
+        Ext.Viewport.getActiveItem().destroy();
+        var view = Ext.Viewport.add({
+                xtype: 'DealsPanel'
+            });
+        Ext.getStore('MyDealsStore').load();
+        Ext.Viewport.setActiveItem(view);
     }
 }, 0, [
     "dealpicture"
