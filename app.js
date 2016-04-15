@@ -65204,17 +65204,13 @@ Ext.define('Ext.direct.Manager', {
     initialize: function() {
         Ext.Panel.prototype.initialize.call(this);
         if (Ext.os.is('Android')) {
-            Ext.get('dealBackButton').hide();
+            // Ext.get('dealBackButton').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.Viewport.getActiveItem().destroy();
-                var view = Ext.Viewport.add({
-                        xtype: 'DealsPanel'
-                    });
-                Ext.getStore('MyDealsStore').load();
-                Ext.Viewport.setActiveItem(view);
+                // Ext.Viewport.getActiveItem().destroy();
+                Ext.get('dealBackButton').fireEvent('tap');
             }
         }
     }
