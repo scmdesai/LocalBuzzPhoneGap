@@ -65214,7 +65214,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackButton').fireEvent('tap');
+                Ext.get('dealBackButton').fireEvent('tap', this);
             }
         }
     }
@@ -65582,7 +65582,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('infoBackBtn').fireEvent('tap');
+                Ext.get('infoBackBtn').fireEvent('tap', this);
             }
         }
     },
@@ -66230,7 +66230,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackBtn').fireEvent('tap');
+                Ext.get('dealBackBtn').fireEvent('tap', this);
             }
         }
     }
@@ -66362,7 +66362,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackBtn1').fireEvent('tap');
+                Ext.get('dealBackBtn1').fireEvent('tap', this);
             }
         }
     }
