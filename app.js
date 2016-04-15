@@ -66401,10 +66401,10 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         if (Ext.os.is('Android')) {
-            Ext.get('dealBackButton').hide();
+            /* Ext.get('dealBackButton').hide();
             Ext.get('dealBackBtn').hide();
             Ext.get('dealBackBtn1').hide();
-            Ext.get('infoBackBtn').hide();
+            Ext.get('infoBackBtn').hide();*/
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
