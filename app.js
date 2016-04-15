@@ -65176,20 +65176,6 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            Ext.Viewport.getActiveItem().destroy();
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                        },
-                        centered: false,
-                        cls: 'icon-back-button',
-                        height: '100%',
-                        style: 'font-family:Arial;',
-                        styleHtmlContent: true,
-                        ui: 'plain',
-                        text: ''
-                    },
-                    {
-                        xtype: 'button',
                         cls: 'icon-share',
                         docked: 'right',
                         height: '100%',
@@ -65198,10 +65184,40 @@ Ext.define('Ext.direct.Manager', {
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain'
+                    },
+                    {
+                        xtype: 'button',
+                        handler: function(button, e) {
+                            Ext.Viewport.getActiveItem().destroy();
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                        },
+                        cls: 'icon-back-button',
+                        id: 'dealBackButton',
+                        itemId: 'dealBackButton',
+                        ui: 'plain',
+                        iconCls: ''
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onDealPicturePainted',
+                event: 'painted'
+            }
         ]
+    },
+    onDealPicturePainted: function(element, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                Ext.getCmp('dealBackButton').hide();
+                Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+            }
+        }
     }
 }, 0, [
     "dealpicture"
@@ -65523,6 +65539,10 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onFavbuttonTap',
                 event: 'tap',
                 delegate: '#favbutton'
+            },
+            {
+                fn: 'onInfoPainted',
+                event: 'painted'
             }
         ]
     },
@@ -65555,6 +65575,60 @@ Ext.define('Ext.direct.Manager', {
         record.set('isFavorite', isPressed);
         store.sync();
     },
+    onInfoPainted: function(element, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                Ext.getCmp('infoBackBtn').hide();
+                var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                ds.clearFilter();
+                var store = Ext.StoreManager.lookup('MyDealsStore');
+                store.clearFilter();
+                //Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.getActiveItem().destroy();
+            }
+        }
+    },
+    /*var store = Ext.getStore('UserPreferences');
+
+                        var records= [];
+
+
+
+
+
+                        var ds = Ext.getStore('MyJsonPStore1');
+                        ds.clearFilter();
+                       //store.clearFilter();
+
+
+
+                       store.each(function(rec)
+                        {
+
+
+
+                                if(rec.get('isFavorite')===true) {
+
+                                    records.push(rec.get('customerId'));
+
+
+                                }
+                            else {
+                                Ext.Array.remove(records,rec.get('customerId'));
+                            }
+
+
+
+                        });
+
+
+                        ds.filterBy(function(record){
+                            return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
+
+                                                              }, this);*/
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
@@ -66146,37 +66220,23 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanelPainted',
+                event: 'painted'
             }
         ]
     },
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    }
-}, 0, [
-    "DealsPanel"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel": true
-}, [
-    "widget.DealsPanel"
-], 0, [
-    Contact.view,
-    'DealsPanel'
-], 0));
-//Ext.Viewport.getActiveItem().destroy();
-//store.filter('dealStatus','Active');
-//var date = new Date();
-//var today = Ext.Date.format(date,'n/j/Y');
-//var test = Ext.Date.add(date,Ext.Date.DAY,0);
-/*var today = Ext.Date.format(test,'n/j/Y');
+    },
+    //Ext.Viewport.getActiveItem().destroy();
+    //store.filter('dealStatus','Active');
+    //var date = new Date();
+    //var today = Ext.Date.format(date,'n/j/Y');
+    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
+    /*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -66205,6 +66265,48 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
+    onDealsPanelPainted: function(element, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                Ext.getCmp('dealBackBtn').hide();
+                Ext.Viewport.getActiveItem().destroy();
+                var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                ds.clearFilter();
+                var dealRecord = this.getContactinfo().getRecord();
+                var customerId = dealRecord.get('customerId');
+                ds.filter('customerId', customerId);
+                var customerData = ds.getData().getAt(0);
+                var info = this.getContactinfo();
+                info.setRecord(customerData);
+                ds.clearFilter();
+                Ext.Viewport.setActiveItem(info);
+                var store = Ext.StoreManager.lookup('MyDealsStore');
+                //store.clearFilter();
+                store.load();
+            }
+        }
+    }
+}, 0, [
+    "DealsPanel"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel": true
+}, [
+    "widget.DealsPanel"
+], 0, [
+    Contact.view,
+    'DealsPanel'
+], 0));
 
 /*
  * File: app/view/DealsPanel1.js
@@ -66262,37 +66364,23 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanel1Painted',
+                event: 'painted'
             }
         ]
     },
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    }
-}, 0, [
-    "DealsPanel1"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel1"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel1": true
-}, [
-    "widget.DealsPanel1"
-], 0, [
-    Contact.view,
-    'DealsPanel1'
-], 0));
-//Ext.Viewport.getActiveItem().destroy();
-//store.filter('dealStatus','Active');
-//var date = new Date();
-//var today = Ext.Date.format(date,'n/j/Y');
-//var test = Ext.Date.add(date,Ext.Date.DAY,0);
-/*var today = Ext.Date.format(test,'n/j/Y');
+    },
+    //Ext.Viewport.getActiveItem().destroy();
+    //store.filter('dealStatus','Active');
+    //var date = new Date();
+    //var today = Ext.Date.format(date,'n/j/Y');
+    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
+    /*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -66321,6 +66409,48 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
+    onDealsPanel1Painted: function(element, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                Ext.getCmp('dealBackBtn1').hide();
+                Ext.Viewport.getActiveItem().destroy();
+                /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                ds.clearFilter() ;
+                var dealRecord = this.getContactinfo().getRecord() ;
+                var customerId = dealRecord.get('customerId');
+                ds.filter('customerId', customerId);
+                var customerData = ds.getData().getAt(0) ;
+                var info = this.getContactinfo();
+                info.setRecord(customerData);
+                ds.clearFilter() ;
+                Ext.Viewport.setActiveItem(info);*/
+                var store = Ext.StoreManager.lookup('MyDealsStore');
+                //store.clearFilter();
+                store.load();
+            }
+        }
+    }
+}, 0, [
+    "DealsPanel1"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel1"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel1": true
+}, [
+    "widget.DealsPanel1"
+], 0, [
+    Contact.view,
+    'DealsPanel1'
+], 0));
 
 /*
  * File: app.js
@@ -66419,5 +66549,5 @@ Ext.application({
 });
 
 // @tag full-page
-// @require H:\Apps\LocalBuzzMobileApp\app.js
+// @require H:\Apps\Sencha Architect Apps\LocalBuzzForAndroid\app.js
 
