@@ -65209,11 +65209,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onDealPicturePainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
+            this.down('dealBackButton').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.getCmp('dealBackButton').hide();
                 Ext.Viewport.getActiveItem().destroy();
                 Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
             }
@@ -65577,11 +65577,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onInfoPainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
+            this.down('infoBackBtn').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.getCmp('infoBackBtn').hide();
                 var ds = Ext.StoreManager.lookup('MyJsonPStore');
                 ds.clearFilter();
                 var store = Ext.StoreManager.lookup('MyDealsStore');
@@ -66267,11 +66267,11 @@ Ext.define('Ext.direct.Manager', {
         //store.clearFilter();*/
     onDealsPanelPainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
+            this.down('dealBackBtn').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.getCmp('dealBackBtn').hide();
                 Ext.Viewport.getActiveItem().destroy();
                 var ds = Ext.StoreManager.lookup('MyJsonPStore');
                 ds.clearFilter();
@@ -66411,11 +66411,11 @@ Ext.define('Ext.direct.Manager', {
         //store.clearFilter();*/
     onDealsPanel1Painted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
+            this.down('dealBackBtn1').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.getCmp('dealBackBtn1').hide();
                 Ext.Viewport.getActiveItem().destroy();
                 /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
                 ds.clearFilter() ;
