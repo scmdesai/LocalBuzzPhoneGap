@@ -65324,6 +65324,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         cls: 'icon-back-button',
+                        id: 'infoBackBtn',
                         itemId: 'infoBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
@@ -66201,6 +66202,7 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'button',
                         cls: 'icon-back-button',
                         height: '100%',
+                        id: 'dealBackBtn',
                         itemId: 'dealBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
@@ -66345,6 +66347,7 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'button',
                         cls: 'icon-back-button',
                         height: '100%',
+                        id: 'dealBackBtn1',
                         itemId: 'dealBackBtn1',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
