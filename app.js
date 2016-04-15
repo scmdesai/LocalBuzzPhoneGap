@@ -64658,7 +64658,6 @@ Ext.define('Ext.direct.Manager', {
                 title: 'Latest Buzz',
                 iconCls: 'icon-bubbles',
                 itemId: 'LatestBuzz',
-                style: '',
                 ui: 'dark',
                 layout: 'hbox',
                 modal: true,
@@ -64825,7 +64824,7 @@ Ext.define('Ext.direct.Manager', {
             docked: 'bottom',
             height: '8%',
             padding: '5 10 0 10',
-            style: 'font-size:4vw;border-top:1px solid #eee;background:white;color:#c0c0c0',
+            style: 'font-size:4vw;border-top:1px solid #eee;background:white;',
             ui: 'plain',
             modal: false,
             activeTab: 0,
@@ -66388,14 +66387,16 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.Msg.confirm("Exit", "", function(answer) {
-                    if (answer == 'yes') {
+                /*  Ext.Msg.confirm("Exit", "",  function ( answer ) {
+                    if ( answer == 'yes') {
                         navigator.app.exitApp();
-                    } else {}
-                });
+                    } else {
+                        //do nothing
+                    }
+                });*/
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
-        //do nothing
         document.addEventListener("resume", Ext.bind(onResume, this), false);
         function onResume(e) {
             //Ext.Msg.alert('Resume',null,null,null);
