@@ -65199,15 +65199,24 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onDealPicturePainted',
-                event: 'painted'
-            }
         ]
     },
-    onDealPicturePainted: function(element, eOpts) {}
+    initialize: function() {
+        Ext.Panel.prototype.initialize.call(this);
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                eve.preventDefault();
+                Ext.Viewport.getActiveItem().destroy();
+                var view = Ext.Viewport.add({
+                        xtype: 'DealsPanel'
+                    });
+                Ext.getStore('MyDealsPanel').load();
+                Ext.Viewport.setActiveItem(view);
+            }
+        }
+    }
 }, 0, [
     "dealpicture"
 ], [
@@ -66400,29 +66409,10 @@ Ext.application({
         Ext.util.Format.undef = function(value, defaultValue) {
             return Ext.isDefined(value) ? value : defaultValue;
         };
-        if (Ext.os.is('Android')) {
-            /* Ext.get('dealBackButton').hide();
+        /* Ext.get('dealBackButton').hide();
             Ext.get('dealBackBtn').hide();
             Ext.get('dealBackBtn1').hide();
             Ext.get('infoBackBtn').hide();*/
-            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-            // add back button listener
-            function onBackKeyDown(eve) {
-                eve.preventDefault();
-                /*  Ext.Msg.confirm("Exit", "",  function ( answer ) {
-                    if ( answer == 'yes') {
-                        navigator.app.exitApp();
-                    } else {
-                        //do nothing
-                    }
-                });*/
-                if (Ext.Viewport.getActiveItem().destroy() === null) {
-                    navigator.app.exitApp();
-                } else {
-                    Ext.Viewport.getActiveItem().destroy();
-                }
-            }
-        }
         document.addEventListener("resume", Ext.bind(onResume, this), false);
         function onResume(e) {
             //Ext.Msg.alert('Resume',null,null,null);
