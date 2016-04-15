@@ -65209,7 +65209,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onDealPicturePainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
-            this.down('dealBackButton').hide();
+            Ext.get('dealBackButton').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
@@ -65577,7 +65577,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onInfoPainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
-            this.down('infoBackBtn').hide();
+            Ext.get('infoBackBtn').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
@@ -66267,7 +66267,7 @@ Ext.define('Ext.direct.Manager', {
         //store.clearFilter();*/
     onDealsPanelPainted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
-            this.down('dealBackBtn').hide();
+            Ext.get('dealBackBtn').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
@@ -66411,7 +66411,7 @@ Ext.define('Ext.direct.Manager', {
         //store.clearFilter();*/
     onDealsPanel1Painted: function(element, eOpts) {
         if (Ext.os.is('Android')) {
-            this.down('dealBackBtn1').hide();
+            Ext.get('dealBackBtn1').hide();
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
