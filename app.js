@@ -66238,7 +66238,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         height: '100%',
         id: 'DealsPanel1',
-        itemId: 'DealsPanel',
+        itemId: 'DealsPanel1',
         padding: '5 5 5 5',
         style: 'background:#fff',
         scrollable: false,
