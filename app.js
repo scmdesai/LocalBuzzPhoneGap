@@ -66423,6 +66423,8 @@ Ext.application({
                         Ext.Viewport.setActiveItem(1);
                         var dealStore = Ext.StoreManager.lookup('MyDealsStore');
                         dealStore.load();
+                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
+                        Ext.Viewport.getActiveItem().destroy();
                     }
                 }
             }
