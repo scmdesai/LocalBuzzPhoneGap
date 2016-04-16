@@ -65369,8 +65369,8 @@ Ext.define('Ext.direct.Manager', {
                 });*/
                     //store.filter('dealStatus','Active');
                     var view;
-                    if (Ext.Viewport.getCmp('DealsPanel')) {
-                        Ext.Viewport.setActiveItem(view);
+                    if (Ext.Viewport.getComponent('DealsPanel')) {
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                     } else {
                         view = Ext.Viewport.add({
                             xtype: 'DealsPanel'
