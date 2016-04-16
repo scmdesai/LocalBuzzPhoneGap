@@ -65584,11 +65584,11 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                //  Ext.Viewport.getActiveItem().destroy();
-                Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
     },
+    // Ext.Viewport.setActiveItem(0);
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
