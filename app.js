@@ -65189,7 +65189,7 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'button',
                         handler: function(button, e) {
                             console.log('Back buttn fired');
-                            Ext.Viewport.getActiveItem().destroy();
+                            Ext.Viewport.getActiveItem().pop();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
                         cls: 'icon-back-button',
@@ -65589,7 +65589,7 @@ Ext.define('Ext.direct.Manager', {
                 var store = Ext.StoreManager.lookup('MyDealsStore');
                 store.clearFilter();
                 //Ext.Viewport.setActiveItem(0);
-                Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.getActiveItem().pop();
             }
         }
     },
@@ -66236,8 +66236,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackBtn').fireEvent('tap', element);
+                Ext.Viewport.getActiveItem().pop();
             }
         }
     }
@@ -66368,8 +66367,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackBtn1').fireEvent('tap');
+                Ext.Viewport.getActiveItem().pop();
             }
         }
     }
