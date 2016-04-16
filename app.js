@@ -65214,7 +65214,7 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                eve.preventDefault();
+                //  eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
                 // Ext.get('dealBackButton').fireEvent('tap',element);
                 Ext.Viewport.setActiveItem(0);
@@ -65583,12 +65583,12 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                eve.preventDefault();
-                Ext.Viewport.getActiveItem().destroy();
+                //  eve.preventDefault();
+                //Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(0);
             }
         }
     },
-    // Ext.Viewport.setActiveItem(0);
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
@@ -66231,8 +66231,8 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                eve.preventDefault();
-                //Ext.Viewport.getActiveItem().destroy();
+                //  eve.preventDefault();
+                //  Ext.Viewport.getActiveItem().destroy();
                 Ext.Viewport.setActiveItem(0);
             }
         }
@@ -66363,8 +66363,8 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                eve.preventDefault();
-                // Ext.Viewport.getActiveItem().destroy();
+                //  eve.preventDefault();
+                //   Ext.Viewport.getActiveItem().destroy();
                 Ext.Viewport.setActiveItem(0);
             }
         }
