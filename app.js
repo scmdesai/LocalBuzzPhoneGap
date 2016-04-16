@@ -65215,9 +65215,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 //  eve.preventDefault();
-                // Ext.Viewport.getActiveItem().destroy();
-                // Ext.get('dealBackButton').fireEvent('tap',element);
-                Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
     }
@@ -65241,6 +65239,8 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
+// Ext.get('dealBackButton').fireEvent('tap',element);
+//  Ext.Viewport.setActiveItem(0);
 
 /*
  * File: app/view/Picture.js
@@ -65584,7 +65584,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 //  eve.preventDefault();
-                //Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.getActiveItem().destroy();
                 Ext.Viewport.setActiveItem(0);
             }
         }
@@ -66232,8 +66232,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 //  eve.preventDefault();
-                //  Ext.Viewport.getActiveItem().destroy();
-                Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
     }
@@ -66255,6 +66254,7 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'DealsPanel'
 ], 0));
+// Ext.Viewport.setActiveItem(0);
 
 /*
  * File: app/view/DealsPanel1.js
