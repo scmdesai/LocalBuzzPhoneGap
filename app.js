@@ -66410,7 +66410,7 @@ Ext.application({
                         var store = Ext.StoreManager.lookup('MyDealsStore');
                         store.clearFilter();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
-                        Ext.Viewport.getActiveItem().destroy();
+                        //Ext.Viewport.getActiveItem().destroy();
                         Ext.Viewport.setActiveItem(1);
                         var dealStore = Ext.StoreManager.lookup('MyDealsStore');
                         dealStore.load();
