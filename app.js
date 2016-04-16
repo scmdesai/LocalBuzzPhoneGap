@@ -66387,7 +66387,7 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    navigator.app.exit();
+                    navigator.app.exitApp();
                 } else {
                     console.log(Ext.Viewport.getActiveItem().getItemId());
                     console.log(Ext.Viewport.getAt(0).getItemId());
