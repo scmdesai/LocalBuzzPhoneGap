@@ -65579,16 +65579,15 @@ Ext.define('Ext.direct.Manager', {
         store.sync();
     },
     onInfoPainted: function(element, eOpts) {
+        var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter();
+        var store = Ext.StoreManager.lookup('MyDealsStore');
+        store.clearFilter();
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                ds.clearFilter();
-                var store = Ext.StoreManager.lookup('MyDealsStore');
-                store.clearFilter();
-                //Ext.Viewport.setActiveItem(0);
-                Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(0);
             }
         }
     },
