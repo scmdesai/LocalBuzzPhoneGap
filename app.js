@@ -65203,7 +65203,8 @@ Ext.define('Ext.direct.Manager', {
         listeners: [
             {
                 fn: 'onDealPicturePainted',
-                event: 'painted'
+                event: 'painted',
+                order: 'after'
             }
         ]
     },
@@ -65214,7 +65215,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackButton').fireEvent('tap', this);
+                Ext.getCmp('dealBackBtn').fireEvent('tap');
             }
         }
     }
@@ -65582,7 +65583,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('infoBackBtn').fireEvent('tap', this);
+                Ext.get('infoBackBtn').fireEvent('tap');
             }
         }
     },
@@ -66230,7 +66231,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackBtn').fireEvent('tap', this);
+                Ext.get('dealBackBtn').fireEvent('tap');
             }
         }
     }
@@ -66362,7 +66363,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.get('dealBackBtn1').fireEvent('tap', this);
+                Ext.get('dealBackBtn1').fireEvent('tap');
             }
         }
     }
