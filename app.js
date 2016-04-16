@@ -66412,9 +66412,15 @@ Ext.application({
                         store.clearFilter();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
                         Ext.Viewport.getActiveItem().destroy();
-                        Ext.Viewport.setActiveItem(Ext.Viewport.add({
-                            xtype: 'contactinfo'
-                        }));
+                        if (Ext.Viewport.getComponent('contactinfo')) {
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('contactinfo'));
+                        } else {
+                            var view = Ext.Viewport.add({
+                                    xtype: 'contactinfo'
+                                });
+                            //view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
+                        }
                         var dealStore = Ext.StoreManager.lookup('MyDealsStore');
                         //store.clearFilter();
                         dealStore.load();
