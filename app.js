@@ -65188,7 +65188,6 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            console.log('Back buttn fired');
                             Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
@@ -65306,52 +65305,6 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                            ds.clearFilter();
-                            var store = Ext.StoreManager.lookup('MyDealsStore');
-                            store.clearFilter();
-                            //Ext.Viewport.setActiveItem(0);
-                            Ext.Viewport.getActiveItem().destroy();
-                        },
-                        /*var store = Ext.getStore('UserPreferences');
-
-                            var records= [];
-
-
-
-
-
-                            var ds = Ext.getStore('MyJsonPStore1');
-                            ds.clearFilter();
-                            //store.clearFilter();
-
-
-
-                            store.each(function(rec)
-                            {
-
-
-
-                                if(rec.get('isFavorite')===true) {
-
-                                    records.push(rec.get('customerId'));
-
-
-                                }
-                                else {
-                                    Ext.Array.remove(records,rec.get('customerId'));
-                                }
-
-
-
-                            });
-
-
-                            ds.filterBy(function(record){
-                                return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
-
-                            }, this);*/
                         cls: 'icon-back-button',
                         id: 'infoBackBtn',
                         itemId: 'infoBackBtn',
@@ -65907,18 +65860,15 @@ Ext.define('Ext.direct.Manager', {
         store.filter('customerId', record.get('customerId'));
         store.filter('dealStatus', 'Active');
     },
-    onInfoBackBtnTapHome: function(button, e, eOpts) {},
-    /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter() ;
-
+    onInfoBackBtnTapHome: function(button, e, eOpts) {
+        var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter();
         var store = Ext.StoreManager.lookup('MyDealsStore');
-        store.clearFilter() ;
+        store.clearFilter();
         //Ext.Viewport.setActiveItem(0);
-
         Ext.Viewport.getActiveItem().destroy();
-
-
-        /*var store = Ext.getStore('UserPreferences');
+    },
+    /*var store = Ext.getStore('UserPreferences');
 
                         var records= [];
 
@@ -66011,8 +65961,8 @@ Ext.define('Ext.direct.Manager', {
         //for android back button functionality
         history.pushState();
     },
-    onDealBackBtnTap: function(button, e, eOpts) {},
-    /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+    onDealBackBtnTap: function(button, e, eOpts) {
+        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter() ;
         var dealRecord = this.getContactinfo().getRecord() ;
         //console.log("Deal Record is:") ;
@@ -66035,21 +65985,21 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus', 'Active');
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
-    /*Ext.Viewport.getActiveItem().destroy();
+        Ext.Viewport.getActiveItem().destroy();
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter() ;
-        var dealRecord = this.getContactinfo().getRecord() ;
+        ds.clearFilter();
+        var dealRecord = this.getContactinfo().getRecord();
         var customerId = dealRecord.get('customerId');
         ds.filter('customerId', customerId);
-        var customerData = ds.getData().getAt(0) ;
+        var customerData = ds.getData().getAt(0);
         var info = this.getContactinfo();
         info.setRecord(customerData);
-        ds.clearFilter() ;
+        ds.clearFilter();
         Ext.Viewport.setActiveItem(info);
-
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
-        store.load();*/
+        store.load();
+    },
     onFavoritesActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('UserPreferences');
         var records = [];
@@ -66180,22 +66130,6 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            Ext.Viewport.getActiveItem().destroy();
-                            var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                            ds.clearFilter();
-                            var dealRecord = this.getContactinfo().getRecord();
-                            var customerId = dealRecord.get('customerId');
-                            ds.filter('customerId', customerId);
-                            var customerData = ds.getData().getAt(0);
-                            var info = this.getContactinfo();
-                            info.setRecord(customerData);
-                            ds.clearFilter();
-                            Ext.Viewport.setActiveItem(info);
-                            var store = Ext.StoreManager.lookup('MyDealsStore');
-                            //store.clearFilter();
-                            store.load();
-                        },
                         cls: 'icon-back-button',
                         height: '100%',
                         id: 'dealBackBtn',
@@ -66313,22 +66247,6 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            Ext.Viewport.getActiveItem().destroy();
-                            /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                            ds.clearFilter() ;
-                            var dealRecord = this.getContactinfo().getRecord() ;
-                            var customerId = dealRecord.get('customerId');
-                            ds.filter('customerId', customerId);
-                            var customerData = ds.getData().getAt(0) ;
-                            var info = this.getContactinfo();
-                            info.setRecord(customerData);
-                            ds.clearFilter() ;
-                            Ext.Viewport.setActiveItem(info);*/
-                            var store = Ext.StoreManager.lookup('MyDealsStore');
-                            //store.clearFilter();
-                            store.load();
-                        },
                         cls: 'icon-back-button',
                         height: '100%',
                         id: 'dealBackBtn1',
@@ -66471,7 +66389,6 @@ Ext.application({
         Ext.util.Format.undef = function(value, defaultValue) {
             return Ext.isDefined(value) ? value : defaultValue;
         };
-        Ext.Viewport.setAutoDestroy(true);
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
