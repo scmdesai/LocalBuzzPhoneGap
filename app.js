@@ -65188,6 +65188,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
+                            console.log('Back buttn fired');
                             Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
