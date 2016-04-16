@@ -65215,7 +65215,7 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                Ext.getCmp('dealBackBtn').fireEvent('tap');
+                Ext.getCmp('dealBackButton').fireEvent('click');
             }
         }
     }
