@@ -66477,7 +66477,7 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 // Ext.Viewport.setAutoDestroy(true);
-                Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
         document.addEventListener("resume", Ext.bind(onResume, this), false);
