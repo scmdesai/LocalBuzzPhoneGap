@@ -66417,11 +66417,8 @@ Ext.application({
                         console.log('DealsPanel1');
                         Ext.Viewport.getActiveItem().destroy();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
-                        console.log('DealPicture');
-                        console.log('Active Item 0 : ' + Ext.Viewport.setActiveItem(0).getItemId());
-                        console.log('Active Item 1 : ' + Ext.Viewport.setActiveItem(1).getItemId());
-                        console.log('Active Item 2 : ' + Ext.Viewport.setActiveItem(2).getItemId());
-                        console.log('Active Item 3 : ' + Ext.Viewport.setActiveItem(3).getItemId());
+                        Ext.Viewport.getActiveItem().destroy();
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
                     }
                 }
             }
