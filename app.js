@@ -66418,7 +66418,10 @@ Ext.application({
                         Ext.Viewport.getActiveItem().destroy();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
                         console.log('DealPicture');
-                        console.log(Ext.Viewport.getActiveItem(1).getItemId());
+                        console.log('Active Item 0 : ' + Ext.Viewport.setActiveItem(0).getItemId());
+                        console.log('Active Item 1 : ' + Ext.Viewport.setActiveItem(1).getItemId());
+                        console.log('Active Item 2 : ' + Ext.Viewport.setActiveItem(2).getItemId());
+                        console.log('Active Item 3 : ' + Ext.Viewport.setActiveItem(3).getItemId());
                     }
                 }
             }
