@@ -65583,12 +65583,6 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                // Ext.Viewport.getActiveItem().destroy();
-                var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                ds.clearFilter();
-                var store = Ext.StoreManager.lookup('MyDealsStore');
-                store.clearFilter();
-                //Ext.Viewport.setActiveItem(0);
                 Ext.Viewport.getActiveItem().destroy();
             }
         }
