@@ -66386,7 +66386,7 @@ Ext.application({
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                if (Ext.Viewport.getActiveItem() === Ext.Viewport.getAt(0)) {
+                if (Ext.Viewport.getActiveItem().getItemId() === Ext.Viewport.getAt(0).getItemId()) {
                     navigator.app.exit();
                 } else {
                     Ext.Viewport.getActiveItem().destroy();
@@ -66415,5 +66415,5 @@ Ext.application({
 });
 
 // @tag full-page
-// @require H:\Apps\LocalBuzzMobileApp\app.js
+// @require H:\Apps\Sencha Architect Apps\AnroidBackButton\app.js
 
