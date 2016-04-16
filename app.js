@@ -65213,7 +65213,14 @@ Ext.define('Ext.direct.Manager', {
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            function onBackKeyDown(eve) {}
+            function onBackKeyDown(eve) {
+                //  eve.preventDefault();
+                //Ext.Viewport.getActiveItem().destroy();
+                // Ext.get('dealBackButton').fireEvent('tap',element);
+                //  Ext.Viewport.setActiveItem(0);
+                //for android back button functionality
+                history.back();
+            }
         }
     }
 }, 0, [
@@ -65236,10 +65243,6 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
-//  eve.preventDefault();
-//Ext.Viewport.getActiveItem().destroy();
-// Ext.get('dealBackButton').fireEvent('tap',element);
-//  Ext.Viewport.setActiveItem(0);
 
 /*
  * File: app/view/Picture.js
@@ -65362,6 +65365,8 @@ Ext.define('Ext.direct.Manager', {
                     var store = Ext.getStore('MyDealsStore');
                     var date = new Date();
                     var today = Ext.Date.format(date, 'n/j/Y');
+                    //for android back button functionality
+                    history.pushState();
                     //var test = Ext.Date.add(date,Ext.Date.DAY,0);
                     //var today = Ext.Date.format(test,'n/j/Y');
                     //store.clearFilter();
@@ -65581,12 +65586,14 @@ Ext.define('Ext.direct.Manager', {
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            function onBackKeyDown(eve) {}
+            function onBackKeyDown(eve) {
+                //  eve.preventDefault();
+                // Ext.Viewport.getActiveItem().destroy();
+                //  Ext.Viewport.setActiveItem(0);
+                history.back();
+            }
         }
     },
-    //  eve.preventDefault();
-    // Ext.Viewport.getActiveItem().destroy();
-    //  Ext.Viewport.setActiveItem(0);
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
@@ -65883,6 +65890,8 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.add(info);
         Ext.Viewport.setActiveItem(info);
         //console.log(info);
+        //for android back button functionality
+        history.pushState();
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
@@ -65987,6 +65996,8 @@ Ext.define('Ext.direct.Manager', {
             });
         pic.setRecord(record);
         Ext.Viewport.setActiveItem(pic);
+        //for android back button functionality
+        history.pushState();
     },
     onDealBackBtnTap: function(button, e, eOpts) {
         /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
@@ -66228,7 +66239,12 @@ Ext.define('Ext.direct.Manager', {
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            function onBackKeyDown(eve) {}
+            function onBackKeyDown(eve) {
+                //  eve.preventDefault();
+                // Ext.Viewport.getActiveItem().destroy();
+                // Ext.Viewport.setActiveItem(0);
+                history.back();
+            }
         }
     }
 }, 0, [
@@ -66249,9 +66265,6 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'DealsPanel'
 ], 0));
-//  eve.preventDefault();
-// Ext.Viewport.getActiveItem().destroy();
-// Ext.Viewport.setActiveItem(0);
 
 /*
  * File: app/view/DealsPanel1.js
@@ -66359,7 +66372,12 @@ Ext.define('Ext.direct.Manager', {
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            function onBackKeyDown(eve) {}
+            function onBackKeyDown(eve) {
+                //  eve.preventDefault();
+                //   Ext.Viewport.getActiveItem().destroy();
+                //   Ext.Viewport.setActiveItem(0);
+                history.back();
+            }
         }
     }
 }, 0, [
@@ -66380,9 +66398,6 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'DealsPanel1'
 ], 0));
-//  eve.preventDefault();
-//   Ext.Viewport.getActiveItem().destroy();
-//   Ext.Viewport.setActiveItem(0);
 
 /*
  * File: app.js
