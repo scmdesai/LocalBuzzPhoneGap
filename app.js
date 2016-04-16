@@ -65214,8 +65214,7 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                Ext.Viewport.getActiveItem().destroy();
-                Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                Ext.Viewport.get('dealpicture').destroy();
             }
         }
     }
@@ -65239,6 +65238,7 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
+//Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
 
 /*
  * File: app/view/Picture.js
@@ -65587,7 +65587,8 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                Ext.Viewport.setActiveItem(0);
+                //Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.get('contactinfo').destroy();
             }
         }
     },
@@ -66237,7 +66238,7 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.get('DealsPanel').destroy();
             }
         }
     }
@@ -66382,7 +66383,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 //  eve.preventDefault();
-                Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.get('DealsPanel1').destroy();
             }
         }
     }
