@@ -65217,6 +65217,7 @@ Ext.define('Ext.direct.Manager', {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
                 Ext.get('dealBackButton').fireEvent('tap', element);
+                Ext.Viewport.setActiveItem(0);
             }
         }
     }
@@ -65583,7 +65584,8 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.Viewport.getActiveItem().destroy();
+                //  Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(0);
             }
         }
     },
@@ -66230,7 +66232,8 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.Viewport.getActiveItem().destroy();
+                //Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(0);
             }
         }
     }
@@ -66361,7 +66364,8 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 eve.preventDefault();
-                Ext.Viewport.getActiveItem().destroy();
+                // Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(0);
             }
         }
     }
