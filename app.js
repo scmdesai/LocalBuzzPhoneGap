@@ -65176,6 +65176,20 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
+                        handler: function(button, e) {
+                            Ext.Viewport.getActiveItem().destroy();
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                        },
+                        centered: false,
+                        cls: 'icon-back-button',
+                        height: '100%',
+                        style: 'font-family:Arial;',
+                        styleHtmlContent: true,
+                        ui: 'plain',
+                        text: ''
+                    },
+                    {
+                        xtype: 'button',
                         cls: 'icon-share',
                         docked: 'right',
                         height: '100%',
@@ -65184,18 +65198,6 @@ Ext.define('Ext.direct.Manager', {
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain'
-                    },
-                    {
-                        xtype: 'button',
-                        handler: function(button, e) {
-                            Ext.Viewport.getActiveItem().destroy();
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                        },
-                        cls: 'icon-back-button',
-                        id: 'dealBackButton',
-                        itemId: 'dealBackButton',
-                        ui: 'plain',
-                        iconCls: ''
                     }
                 ]
             }
@@ -65306,7 +65308,6 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         cls: 'icon-back-button',
-                        id: 'infoBackBtn',
                         itemId: 'infoBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
@@ -65343,8 +65344,6 @@ Ext.define('Ext.direct.Manager', {
                     var store = Ext.getStore('MyDealsStore');
                     var date = new Date();
                     var today = Ext.Date.format(date, 'n/j/Y');
-                    //for android back button functionality
-                    //history.pushState();
                     //var test = Ext.Date.add(date,Ext.Date.DAY,0);
                     //var today = Ext.Date.format(test,'n/j/Y');
                     //store.clearFilter();
@@ -65852,8 +65851,6 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.add(info);
         Ext.Viewport.setActiveItem(info);
         //console.log(info);
-        //for android back button functionality
-        history.pushState();
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
@@ -65958,8 +65955,6 @@ Ext.define('Ext.direct.Manager', {
             });
         pic.setRecord(record);
         Ext.Viewport.setActiveItem(pic);
-        //for android back button functionality
-        history.pushState();
     },
     onDealBackBtnTap: function(button, e, eOpts) {
         /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
@@ -66132,7 +66127,6 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'button',
                         cls: 'icon-back-button',
                         height: '100%',
-                        id: 'dealBackBtn',
                         itemId: 'dealBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
@@ -66249,7 +66243,6 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'button',
                         cls: 'icon-back-button',
                         height: '100%',
-                        id: 'dealBackBtn1',
                         itemId: 'dealBackBtn1',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
@@ -66393,10 +66386,10 @@ Ext.application({
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                if (Ext.Viewport.getActiveItem()) {
-                    Ext.Viewport.getActiveItem().destroy();
-                } else {
+                if (Ext.Viewport.getActiveItem() === Ext.Viewport.getAt(0)) {
                     navigator.app.exit();
+                } else {
+                    Ext.Viewport.getActiveItem().destroy();
                 }
             }
         }
@@ -66422,5 +66415,5 @@ Ext.application({
 });
 
 // @tag full-page
-// @require H:\Apps\Sencha Architect Apps\LocalBuzzForAndroid\app.js
+// @require H:\Apps\LocalBuzzMobileApp\app.js
 
