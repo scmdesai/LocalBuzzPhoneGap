@@ -66402,7 +66402,7 @@ Ext.application({
                     navigator.app.exitApp();
                 } else {
                     if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
-                        Ext.Viewport.getActiveItem().destroy();
+                        Ext.Viewport.setActiveItem(1);
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                         Ext.Viewport.getActiveItem().destroy();
                         var ds = Ext.StoreManager.lookup('MyJsonPStore');
