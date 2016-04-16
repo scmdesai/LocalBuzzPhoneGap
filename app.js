@@ -65584,7 +65584,12 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 eve.preventDefault();
                 // Ext.Viewport.getActiveItem().destroy();
-                this.down('infoBackBtn').fireEvent('tap');
+                var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                ds.clearFilter();
+                var store = Ext.StoreManager.lookup('MyDealsStore');
+                store.clearFilter();
+                //Ext.Viewport.setActiveItem(0);
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
     },
