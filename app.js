@@ -66404,7 +66404,8 @@ Ext.application({
                         var store = Ext.StoreManager.lookup('MyDealsStore');
                         store.clearFilter();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
-                        var info = Ext.Viewport.getComponent('contactinfo');
+                        Ext.Viewport.getActiveItem().destroy();
+                        var info = Ext.Viewport.getComponent(1);
                         Ext.Viewport.setActiveItem(info);
                         var store1 = Ext.StoreManager.lookup('MyDealsStore');
                         //store.clearFilter();
@@ -66414,7 +66415,11 @@ Ext.application({
                         Ext.Viewport.getActiveItem().destroy();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
                         Ext.Viewport.getActiveItem().destroy();
-                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                        if (Ext.Viewport.getComponent('DealsPanel')) {
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                        } else {
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
+                        }
                     }
                 }
             }
