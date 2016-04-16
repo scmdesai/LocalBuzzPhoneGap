@@ -65588,7 +65588,7 @@ Ext.define('Ext.direct.Manager', {
             // add back button listener
             function onBackKeyDown(eve) {
                 //Ext.Viewport.setActiveItem(0);
-                Ext.Viewport.get('contactinfo').destroy();
+                Ext.Viewport.getActiveItem().destroy();
             }
         }
     },
