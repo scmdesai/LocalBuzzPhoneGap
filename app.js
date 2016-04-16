@@ -66476,8 +66476,11 @@ Ext.application({
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                // Ext.Viewport.setAutoDestroy(true);
-                Ext.Viewport.getActiveItem().destroy();
+                if (Ext.Viewport.getActiveItem()) {
+                    Ext.Viewport.getActiveItem().destroy();
+                } else {
+                    navigator.app.exit();
+                }
             }
         }
         document.addEventListener("resume", Ext.bind(onResume, this), false);
