@@ -66386,7 +66386,7 @@ Ext.application({
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                if (Ext.Viewport.getActiveItem() === null) {
+                if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     navigator.app.exit();
                 } else {
                     console.log(Ext.Viewport.getActiveItem().getItemId());
