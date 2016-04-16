@@ -65369,7 +65369,7 @@ Ext.define('Ext.direct.Manager', {
                 });*/
                     //store.filter('dealStatus','Active');
                     var view;
-                    if (Ext.Viewport.get('DealsPanel')) {
+                    if (Ext.Viewport.getCmp('DealsPanel')) {
                         Ext.Viewport.setActiveItem(view);
                     } else {
                         view = Ext.Viewport.add({
