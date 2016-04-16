@@ -65186,7 +65186,6 @@ Ext.define('Ext.direct.Manager', {
                         handler: function(button, e) {
                             Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                            ite;
                         },
                         centered: false,
                         cls: 'icon-back-button',
@@ -66419,7 +66418,7 @@ Ext.application({
                         Ext.Viewport.getActiveItem().destroy();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
                         console.log('DealPicture');
-                        console.log(Ext.Viewport.getActiveItem(2).getItemId());
+                        console.log(Ext.Viewport.getActiveItem(1).getItemId());
                     }
                 }
             }
