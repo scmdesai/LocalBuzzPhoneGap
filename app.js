@@ -66419,7 +66419,7 @@ Ext.application({
                         Ext.Viewport.getActiveItem().destroy();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
                         console.log('DealPicture');
-                        Ext.Viewport.getActiveItem().destroy();
+                        console.log(Ext.Viewport.getActiveItem(2).getItemId());
                     }
                 }
             }
