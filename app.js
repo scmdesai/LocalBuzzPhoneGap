@@ -66394,9 +66394,46 @@ Ext.application({
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     navigator.app.exitApp();
                 } else {
-                    console.log(Ext.Viewport.getActiveItem().getItemId());
-                    console.log(Ext.Viewport.getAt(0).getItemId());
-                    Ext.Viewport.getActiveItem().destroy();
+                    if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
+                        Ext.Viewport.getActiveItem().destroy();
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                        Ext.Viewport.getActiveItem().destroy();
+                        var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                        ds.clearFilter();
+                        var store = Ext.StoreManager.lookup('MyDealsStore');
+                        store.clearFilter();
+                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
+                        Ext.Viewport.getActiveItem().destroy();
+                        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter() ;
+        var dealRecord = this.getContactinfo().getRecord() ;
+        var customerId = dealRecord.get('customerId');
+        ds.filter('customerId', customerId);
+        var customerData = ds.getData().getAt(0) ;
+        var info = this.getContactinfo();
+        info.setRecord(customerData);
+        ds.clearFilter() ;
+        Ext.Viewport.setActiveItem(info);*/
+                        var dealStore = Ext.StoreManager.lookup('MyDealsStore');
+                        //store.clearFilter();
+                        dealStore.load();
+                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
+                        Ext.Viewport.getActiveItem().destroy();
+                        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter() ;
+        var dealRecord = this.getContactinfo().getRecord() ;
+        var customerId = dealRecord.get('customerId');
+        ds.filter('customerId', customerId);
+        var customerData = ds.getData().getAt(0) ;
+        var info = this.getContactinfo();
+        info.setRecord(customerData);
+        ds.clearFilter() ;
+        Ext.Viewport.setActiveItem(info);*/
+                        var dealStore1 = Ext.StoreManager.lookup('MyDealsStore');
+                        //store.clearFilter();
+                        dealStore1.load();
+                    }
                 }
             }
         }
