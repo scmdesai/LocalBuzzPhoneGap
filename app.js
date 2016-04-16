@@ -65190,6 +65190,7 @@ Ext.define('Ext.direct.Manager', {
                         centered: false,
                         cls: 'icon-back-button',
                         height: '100%',
+                        id: 'dealpictureBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain',
@@ -65209,6 +65210,16 @@ Ext.define('Ext.direct.Manager', {
                 ]
             }
         ]
+    },
+    initialize: function() {
+        Ext.Panel.prototype.initialize.call(this);
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                Ext.get('dealpictureBackBtn').fireEvent('tap');
+            }
+        }
     }
 }, 0, [
     "dealpicture"
@@ -66401,21 +66412,17 @@ Ext.application({
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     navigator.app.exitApp();
                 } else {
-                    if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
-                        Ext.Viewport.setActiveItem(1);
-                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                    if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                         Ext.Viewport.getActiveItem().destroy();
                         var ds = Ext.StoreManager.lookup('MyJsonPStore');
                         ds.clearFilter();
                         var store = Ext.StoreManager.lookup('MyDealsStore');
                         store.clearFilter();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
-                        //Ext.Viewport.getActiveItem().destroy();
+                        Ext.Viewport.getActiveItem().destroy();
                         Ext.Viewport.setActiveItem(1);
                         var dealStore = Ext.StoreManager.lookup('MyDealsStore');
                         dealStore.load();
-                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
-                        Ext.Viewport.getActiveItem().destroy();
                     }
                 }
             }
