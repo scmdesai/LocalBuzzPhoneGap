@@ -65186,6 +65186,7 @@ Ext.define('Ext.direct.Manager', {
                         handler: function(button, e) {
                             Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                            ite;
                         },
                         centered: false,
                         cls: 'icon-back-button',
@@ -65210,16 +65211,6 @@ Ext.define('Ext.direct.Manager', {
                 ]
             }
         ]
-    },
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
-        if (Ext.os.is('Android')) {
-            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-            // add back button listener
-            function onBackKeyDown(eve) {
-                Ext.get('dealpictureBackBtn').fireEvent('tap');
-            }
-        }
     }
 }, 0, [
     "dealpicture"
@@ -66425,6 +66416,9 @@ Ext.application({
                         dealStore.load();
                     } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
                         console.log('DealsPanel1');
+                        Ext.Viewport.getActiveItem().destroy();
+                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
+                        console.log('DealPicture');
                         Ext.Viewport.getActiveItem().destroy();
                     }
                 }
