@@ -66485,8 +66485,11 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    // navigator.app.exitApp();
-                    console.log(Ext.Viewport.getActiveItem().getActiveItem().getItemId());
+                    if (Ext.Viewport.getActiveItem().getActiveItem().getItemId() === 'LatestBuzz') {
+                        navigator.app.exitApp();
+                    } else {
+                        Ext.Viewport.getActiveItem().setActiveTab('LatestBuzz');
+                    }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
                     var ds = Ext.StoreManager.lookup('MyJsonPStore');
