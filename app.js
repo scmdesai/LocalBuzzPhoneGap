@@ -64841,6 +64841,7 @@ Ext.define('Ext.direct.Manager', {
                         if (Ext.os.is('Android')) {
                             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
                             // add back button listener
+                            console.log(this.getActiveTab());
                             function onBackKeyDown(eve) {
                                 if (this.getActiveTab() === 0) {
                                     navigator.app.exitApp();
