@@ -65297,6 +65297,9 @@ Ext.define('Ext.direct.Manager', {
                 ui: '',
                 width: '98%',
                 scrollable: false,
+                itemTpl: [
+                    '<img src = "{pictureURL}" style="height:100%;width:95%;margin-left:5px;margin-top:2px;"/>'
+                ],
                 store: 'MyJsonPStore'
             },
             {
@@ -65541,8 +65544,8 @@ Ext.define('Ext.direct.Manager', {
             }
             // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
             this.down('#favbutton')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
-            this.down('contactpic').setData(record.data);
         }
+        //this.down('contactpic').setData(record.data);
         /* var ds = Ext.StoreManager.lookup('MyDealsStore');
             ds.clearFilter() ;
             ds.filter('customerId', customerId);
