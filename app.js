@@ -66485,21 +66485,14 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    // var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
+                    var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
                     // var mainView = Ext.Viewport.getActiveItem().get;
-                    /*if(tabPanel.getItemId()==='LatestBuzz'){
-                         navigator.app.exitApp();
-                     }
-                     else {*/
-                    Ext.Msg.alert('Press Back again to exit', null, null, null);
-                    document.addEventListener("backbutton", Ext.bind(onBackKeyDown1, this), false);
-                    // add back button listener
-                    function onBackKeyDown1(eve) {
+                    if (tabPanel.getItemId() === 'LatestBuzz') {
                         navigator.app.exitApp();
+                    } else {
+                        Ext.Viewport.setActiveItem(Ext.get('tabbar').first('LatestBuzz'));
                     }
-                }
-                // }
-                else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
                     var ds = Ext.StoreManager.lookup('MyJsonPStore');
                     ds.clearFilter();
