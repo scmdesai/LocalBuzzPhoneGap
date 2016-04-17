@@ -64657,6 +64657,7 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'container',
                 title: 'Latest Buzz',
                 iconCls: 'icon-bubbles',
+                id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
                 ui: 'dark',
                 layout: 'hbox',
@@ -64859,6 +64860,10 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
+            },
+            {
+                fn: 'onTabpanelActiveItemChange',
+                event: 'activeitemchange'
             }
         ]
     },
@@ -65148,6 +65153,15 @@ Ext.define('Ext.direct.Manager', {
                     });
                 });
             });
+        }
+    },
+    onTabpanelActiveItemChange: function(container, value, oldValue, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                container.setActiveItem(0);
+            }
         }
     }
 }, 0, [
