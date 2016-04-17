@@ -64861,11 +64861,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
-            },
-            {
-                fn: 'onTabpanelInitialize',
-                event: 'initialize',
-                order: 'after'
             }
         ]
     },
@@ -65155,19 +65150,6 @@ Ext.define('Ext.direct.Manager', {
                     });
                 });
             });
-        }
-    },
-    onTabpanelInitialize: function(component, eOpts) {
-        if (Ext.os.is('Android')) {
-            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-            // add back button listener
-            function onBackKeyDown(eve) {
-                if (this.getActiveIndex() === 0) {
-                    navigator.app.exitApp();
-                } else {
-                    this.setActiveTab(0);
-                }
-            }
         }
     }
 }, 0, [
@@ -66520,6 +66502,13 @@ Ext.application({
                     Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                 } else {
                     Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
+                }
+            } else if (Ext.Viewport.getActiveItem().xtype === 'Main') {
+                if (Ext.Viewport.getActiveItem().getItemId() === 'LatestBuzz') {
+                    navigator.app.exitApp();
+                } else {
+                    console.log(Ext.Viewport.getActiveItem().getItemId());
+                    Ext.Viewport.setActiveItem('LatestBuzz');
                 }
             }
         }
