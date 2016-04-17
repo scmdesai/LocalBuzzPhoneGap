@@ -66485,10 +66485,11 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    if (Ext.Viewport.getActiveItem().getActiveItem().getItemId() === 'LatestBuzz') {
+                    var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
+                    if (tabPanel.getItemId() === 'LatestBuzz') {
                         navigator.app.exitApp();
                     } else {
-                        Ext.Viewport.getActiveItem().setActiveItem('LatestBuzz');
+                        tabPanel.setActiveItem(tabPanel.down('LatestBuzz'));
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
