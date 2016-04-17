@@ -65162,7 +65162,7 @@ Ext.define('Ext.direct.Manager', {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                if (this.getActiveTab().id === 'LatestBuzz') {
+                if (this.getActiveItem().getItemId() === 'LatestBuzz') {
                     navigator.app.exitApp();
                 } else {
                     this.setActiveTab(0);
