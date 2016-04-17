@@ -64824,6 +64824,7 @@ Ext.define('Ext.direct.Manager', {
             cls: 'tabBarCls',
             docked: 'bottom',
             height: '8%',
+            itemId: 'mytabbar',
             padding: '5 10 0 10',
             style: 'font-size:4vw;border-top:1px solid #eee;background:white;',
             ui: 'plain',
@@ -64862,8 +64863,9 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#BuzzNearMe'
             },
             {
-                fn: 'onTabpanelActiveItemChange',
-                event: 'activeitemchange'
+                fn: 'onMytabbarActivetabChange',
+                event: 'activetabchange',
+                delegate: '#mytabbar'
             }
         ]
     },
@@ -65155,12 +65157,12 @@ Ext.define('Ext.direct.Manager', {
             });
         }
     },
-    onTabpanelActiveItemChange: function(container, value, oldValue, eOpts) {
+    onMytabbarActivetabChange: function(tabbar, value, oldValue, eOpts) {
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
-                container.setActiveItem(0);
+                tabbar.setActiveTab(0);
             }
         }
     }
