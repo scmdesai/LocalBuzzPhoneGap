@@ -65073,7 +65073,7 @@ Ext.define('Ext.direct.Manager', {
                         //store.load();
                         //store.filter('businessName',businessName);
                         var record = store.findRecord('businessName', businessName);
-                        view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('contactinfo'));
+                        view = Ext.Viewport.setActiveItem(1);
                         view.setRecord(record);
                         Ext.Viewport.setActiveItem(view);
                     });
