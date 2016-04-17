@@ -65234,13 +65234,17 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onDealPictureInitialize',
+                event: 'initialize',
+                order: 'after'
+            }
         ]
     },
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
-        if (Ext.os.is('Android')) {
-            Ext.get('dealpictureBackBtn').hide();
-        }
+    onDealPictureInitialize: function(component, eOpts) {
+        component.hide();
     }
 }, 0, [
     "dealpicture"
@@ -65302,7 +65306,16 @@ Ext.define('Ext.direct.Manager', {
                         itemId: 'infoBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
-                        ui: 'plain'
+                        ui: 'plain',
+                        listeners: [
+                            {
+                                fn: function(component, eOpts) {
+                                    this.setHidden(true);
+                                },
+                                event: 'initialize',
+                                order: 'after'
+                            }
+                        ]
                     },
                     {
                         xtype: 'button',
@@ -65597,12 +65610,6 @@ Ext.define('Ext.direct.Manager', {
         var ds = Ext.StoreManager.lookup('MyDealsStore');
         ds.clearFilter();
         ds.filter('customerId', customerId);
-    },
-    initialize: function() {
-        Ext.form.Panel.prototype.initialize.call(this);
-        if (Ext.os.is('Android')) {
-            Ext.get('infoBackBtn').hide();
-        }
     }
 }, 0, [
     "contactinfo"
@@ -66207,6 +66214,11 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanelInitialize',
+                event: 'initialize',
+                order: 'after'
             }
         ]
     },
@@ -66248,11 +66260,8 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
-        if (Ext.os.is('Android')) {
-            Ext.get('dealBackBtn').hide();
-        }
+    onDealsPanelInitialize: function(component, eOpts) {
+        component.hide();
     }
 }, 0, [
     "DealsPanel"
@@ -66329,6 +66338,11 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanel1Initialize',
+                event: 'initialize',
+                order: 'after'
             }
         ]
     },
@@ -66370,6 +66384,9 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
+    onDealsPanel1Initialize: function(component, eOpts) {
+        component.hide();
+    },
     initialize: function() {
         Ext.Panel.prototype.initialize.call(this);
         if (Ext.os.is('Android')) {
