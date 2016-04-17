@@ -64834,27 +64834,7 @@ Ext.define('Ext.direct.Manager', {
                 type: 'hbox',
                 align: 'start',
                 pack: 'justify'
-            },
-            listeners: [
-                {
-                    fn: function(component, eOpts) {
-                        if (Ext.os.is('Android')) {
-                            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-                            // add back button listener
-                            console.log(this.getActiveTab());
-                            function onBackKeyDown(eve) {
-                                if (this.getActiveTab() === 0) {
-                                    navigator.app.exitApp();
-                                } else {
-                                    this.setActiveTab(0);
-                                }
-                            }
-                        }
-                    },
-                    event: 'initialize',
-                    order: 'after'
-                }
-            ]
+            }
         },
         listeners: [
             {
@@ -64881,6 +64861,11 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
+            },
+            {
+                fn: 'onTabpanelInitialize',
+                event: 'initialize',
+                order: 'after'
             }
         ]
     },
@@ -65170,6 +65155,19 @@ Ext.define('Ext.direct.Manager', {
                     });
                 });
             });
+        }
+    },
+    onTabpanelInitialize: function(component, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                if (this.getActiveTab().id === 'LatestBuzz') {
+                    navigator.app.exitApp();
+                } else {
+                    this.setActiveTab(0);
+                }
+            }
         }
     }
 }, 0, [
