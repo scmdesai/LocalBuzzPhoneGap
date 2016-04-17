@@ -64834,7 +64834,26 @@ Ext.define('Ext.direct.Manager', {
                 type: 'hbox',
                 align: 'start',
                 pack: 'justify'
-            }
+            },
+            listeners: [
+                {
+                    fn: function(component, eOpts) {
+                        if (Ext.os.is('Android')) {
+                            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+                            // add back button listener
+                            function onBackKeyDown(eve) {
+                                if (this.getActiveIndex() === 0) {
+                                    navigator.app.exitApp();
+                                } else {
+                                    this.setActiveIndex(0);
+                                }
+                            }
+                        }
+                    },
+                    event: 'initialize',
+                    order: 'after'
+                }
+            ]
         },
         listeners: [
             {
@@ -66481,34 +66500,29 @@ Ext.application({
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
-                Ext.Viewport.getActiveItem().destroy();
-                var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                ds.clearFilter();
-                var store = Ext.StoreManager.lookup('MyDealsStore');
-                store.clearFilter();
-            } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
-                Ext.Viewport.getActiveItem().destroy();
-                Ext.Viewport.setActiveItem(1);
-                var store1 = Ext.StoreManager.lookup('MyDealsStore');
-                //store.clearFilter();
-                store1.load();
-            } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
-                console.log('DealsPanel1');
-                Ext.Viewport.getActiveItem().destroy();
-            } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
-                Ext.Viewport.getActiveItem().destroy();
-                if (Ext.Viewport.getComponent('DealsPanel')) {
-                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                } else {
-                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
-                }
-            } else if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                if (Ext.Viewport.getActiveItem().getItemId() === 'LatestBuzz') {
-                    navigator.app.exitApp();
-                } else {
-                    console.log(Ext.Viewport.getActiveItem().getItemId());
-                    Ext.Viewport.setActiveItem('LatestBuzz');
+            function onBackKeyDown(eve) {
+                if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                    Ext.Viewport.getActiveItem().destroy();
+                    var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                    ds.clearFilter();
+                    var store = Ext.StoreManager.lookup('MyDealsStore');
+                    store.clearFilter();
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
+                    Ext.Viewport.getActiveItem().destroy();
+                    Ext.Viewport.setActiveItem(1);
+                    var store1 = Ext.StoreManager.lookup('MyDealsStore');
+                    //store.clearFilter();
+                    store1.load();
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
+                    console.log('DealsPanel1');
+                    Ext.Viewport.getActiveItem().destroy();
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
+                    Ext.Viewport.getActiveItem().destroy();
+                    if (Ext.Viewport.getComponent('DealsPanel')) {
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                    } else {
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
+                    }
                 }
             }
         }
