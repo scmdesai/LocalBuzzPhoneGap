@@ -64834,7 +64834,22 @@ Ext.define('Ext.direct.Manager', {
                 type: 'hbox',
                 align: 'start',
                 pack: 'justify'
-            }
+            },
+            listeners: [
+                {
+                    fn: function(component, eOpts) {
+                        if (Ext.os.is('Android')) {
+                            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+                            // add back button listener
+                            function onBackKeyDown(eve) {
+                                this.setActiveTab('LatestBuzz');
+                            }
+                        }
+                    },
+                    event: 'initialize',
+                    order: 'after'
+                }
+            ]
         },
         listeners: [
             {
@@ -65164,8 +65179,6 @@ Ext.define('Ext.direct.Manager', {
             function onBackKeyDown(eve) {
                 if (this.getActiveItem().getItemId() === 'LatestBuzz') {
                     navigator.app.exitApp();
-                } else {
-                    this.setActiveItem('LatestBuzz');
                 }
             }
         }
