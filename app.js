@@ -65078,12 +65078,14 @@ Ext.define('Ext.direct.Manager', {
                         //store.load();
                         //store.filter('businessName',businessName);
                         var record = store.findRecord('businessName', businessName);
+                        var view;
                         if (Ext.Viewport.getComponent('Info')) {
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            view.setRecord(record);
                         } else {
-                            var view = Ext.Viewport.add({
-                                    xtype: 'contactinfo'
-                                });
+                            view = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
                             view.setRecord(record);
                             Ext.Viewport.setActiveItem(view);
                         }
