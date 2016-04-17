@@ -65235,6 +65235,12 @@ Ext.define('Ext.direct.Manager', {
                 ]
             }
         ]
+    },
+    initialize: function() {
+        Ext.Panel.prototype.initialize.call(this);
+        if (Ext.os.is('Android')) {
+            Ext.get('dealpictureBackBtn').hide();
+        }
     }
 }, 0, [
     "dealpicture"
@@ -65591,6 +65597,12 @@ Ext.define('Ext.direct.Manager', {
         var ds = Ext.StoreManager.lookup('MyDealsStore');
         ds.clearFilter();
         ds.filter('customerId', customerId);
+    },
+    initialize: function() {
+        Ext.form.Panel.prototype.initialize.call(this);
+        if (Ext.os.is('Android')) {
+            Ext.get('infoBackBtn').hide();
+        }
     }
 }, 0, [
     "contactinfo"
@@ -66201,31 +66213,13 @@ Ext.define('Ext.direct.Manager', {
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    }
-}, 0, [
-    "DealsPanel"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel": true
-}, [
-    "widget.DealsPanel"
-], 0, [
-    Contact.view,
-    'DealsPanel'
-], 0));
-//Ext.Viewport.getActiveItem().destroy();
-//store.filter('dealStatus','Active');
-//var date = new Date();
-//var today = Ext.Date.format(date,'n/j/Y');
-//var test = Ext.Date.add(date,Ext.Date.DAY,0);
-/*var today = Ext.Date.format(test,'n/j/Y');
+    },
+    //Ext.Viewport.getActiveItem().destroy();
+    //store.filter('dealStatus','Active');
+    //var date = new Date();
+    //var today = Ext.Date.format(date,'n/j/Y');
+    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
+    /*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -66254,6 +66248,30 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
+    initialize: function() {
+        Ext.Panel.prototype.initialize.call(this);
+        if (Ext.os.is('Android')) {
+            Ext.get('dealBackBtn').hide();
+        }
+    }
+}, 0, [
+    "DealsPanel"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel": true
+}, [
+    "widget.DealsPanel"
+], 0, [
+    Contact.view,
+    'DealsPanel'
+], 0));
 
 /*
  * File: app/view/DealsPanel1.js
@@ -66317,31 +66335,13 @@ Ext.define('Ext.direct.Manager', {
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    }
-}, 0, [
-    "DealsPanel1"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel1"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel1": true
-}, [
-    "widget.DealsPanel1"
-], 0, [
-    Contact.view,
-    'DealsPanel1'
-], 0));
-//Ext.Viewport.getActiveItem().destroy();
-//store.filter('dealStatus','Active');
-//var date = new Date();
-//var today = Ext.Date.format(date,'n/j/Y');
-//var test = Ext.Date.add(date,Ext.Date.DAY,0);
-/*var today = Ext.Date.format(test,'n/j/Y');
+    },
+    //Ext.Viewport.getActiveItem().destroy();
+    //store.filter('dealStatus','Active');
+    //var date = new Date();
+    //var today = Ext.Date.format(date,'n/j/Y');
+    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
+    /*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -66370,6 +66370,30 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
+    initialize: function() {
+        Ext.Panel.prototype.initialize.call(this);
+        if (Ext.os.is('Android')) {
+            Ext.get('dealBackBtn1').hide();
+        }
+    }
+}, 0, [
+    "DealsPanel1"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel1"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel1": true
+}, [
+    "widget.DealsPanel1"
+], 0, [
+    Contact.view,
+    'DealsPanel1'
+], 0));
 
 /*
  * File: app.js
