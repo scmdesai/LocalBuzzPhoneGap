@@ -64842,10 +64842,10 @@ Ext.define('Ext.direct.Manager', {
                             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
                             // add back button listener
                             function onBackKeyDown(eve) {
-                                if (this.getActiveIndex() === 0) {
+                                if (this.getActiveTab() === 0) {
                                     navigator.app.exitApp();
                                 } else {
-                                    this.setActiveIndex(0);
+                                    this.setActiveTab(0);
                                 }
                             }
                         }
