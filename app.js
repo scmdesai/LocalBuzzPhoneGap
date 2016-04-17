@@ -66488,7 +66488,7 @@ Ext.application({
                     if (Ext.Viewport.getActiveItem().getActiveItem().getItemId() === 'LatestBuzz') {
                         navigator.app.exitApp();
                     } else {
-                        Ext.Viewport.getActiveItem().setActiveTab('LatestBuzz');
+                        Ext.Viewport.getActiveItem().setActiveItem('LatestBuzz');
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
