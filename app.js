@@ -64836,22 +64836,7 @@ Ext.define('Ext.direct.Manager', {
                 type: 'hbox',
                 align: 'start',
                 pack: 'justify'
-            },
-            listeners: [
-                {
-                    fn: function(component, eOpts) {
-                        if (Ext.os.is('Android')) {
-                            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-                            // add back button listener
-                            function onBackKeyDown(eve) {
-                                this.setActiveItem('LatestBuzz');
-                            }
-                        }
-                    },
-                    event: 'initialize',
-                    order: 'after'
-                }
-            ]
+            }
         },
         listeners: [
             {
@@ -66500,9 +66485,8 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    if (Ext.Viewport.getActiveItem().id === 'LatestBuzz') {
-                        navigator.app.exitApp();
-                    }
+                    // navigator.app.exitApp();
+                    console.log(Ext.Viewport.getActiveItem().getActiveItem().getItemId());
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
                     var ds = Ext.StoreManager.lookup('MyJsonPStore');
