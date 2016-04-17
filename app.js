@@ -66490,7 +66490,13 @@ Ext.application({
                     if (tabPanel.getItemId() === 'LatestBuzz') {
                         navigator.app.exitApp();
                     } else {
-                        Ext.Viewport.down('tabbar').setActiveItem(0);
+                        Ext.Msg.confirm('Exit', 'Do you want to exit?', function(button) {
+                            if (button == 'yes') {
+                                navigator.app.exitApp();
+                            } else {
+                                return false;
+                            }
+                        });
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
