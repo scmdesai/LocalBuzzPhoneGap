@@ -66486,10 +66486,11 @@ Ext.application({
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
+                    var mainView = Ext.Viewport.getActiveItem();
                     if (tabPanel.getItemId() === 'LatestBuzz') {
                         navigator.app.exitApp();
                     } else {
-                        Ext.Viewport.setActiveItem(Ext.Viewport.getActiveItem().setActiveTab('LatestBuzz'));
+                        console.log(mainView.getItemIndex());
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
