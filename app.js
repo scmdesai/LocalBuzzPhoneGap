@@ -65073,7 +65073,9 @@ Ext.define('Ext.direct.Manager', {
                         //store.load();
                         //store.filter('businessName',businessName);
                         var record = store.findRecord('businessName', businessName);
-                        Ext.Viewport.getComponent('contactinfo').destroy();
+                        if (Ext.Viewport.getComponent('Info')) {
+                            Ext.Viewport.getComponent('Info').destroy();
+                        }
                         var view = Ext.Viewport.add({
                                 xtype: 'contactinfo'
                             });
@@ -65245,6 +65247,7 @@ Ext.define('Ext.direct.Manager', {
         disabled: false,
         height: '100%',
         id: 'Info',
+        itemId: 'Info',
         style: 'background-color:#fff;border:2px groove #C0C0C0',
         ui: 'dark',
         hideOnMaskTap: false,
