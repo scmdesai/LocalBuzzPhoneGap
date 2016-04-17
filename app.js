@@ -65061,10 +65061,15 @@ Ext.define('Ext.direct.Manager', {
                         store.clearFilter();
                         store.load();
                         store.filter('businessName', businessName);
-                        var view = Ext.Viewport.add({
-                                xtype: 'DealsPanel1'
-                            });
-                        Ext.Viewport.setActiveItem(view);
+                        if (Ext.Viewport.getComponent('DealsPanel1')) {
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
+                            if (Ext.Viewport.getComponent('Info')) {} else {
+                                var view = Ext.Viewport.add({
+                                        xtype: 'DealsPanel1'
+                                    });
+                                Ext.Viewport.setActiveItem(view);
+                            }
+                        }
                     });
                     document.getElementById('labelStoreInfo').addEventListener('mousedown', function() {
                         console.log('Label Clicked ' + businessName);
@@ -65073,11 +65078,16 @@ Ext.define('Ext.direct.Manager', {
                         //store.load();
                         //store.filter('businessName',businessName);
                         var record = store.findRecord('businessName', businessName);
-                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                        if (Ext.Viewport.getComponent('Info')) {
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                        } else {
+                            var view = Ext.Viewport.add({
+                                    xtype: 'contactinfo'
+                                });
+                            view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
+                        }
                     });
-                    /* var view = Ext.Viewport.add({xtype:'contactinfo'});
-                        view.setRecord(record);
-                        Ext.Viewport.setActiveItem(view);*/
                     google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
