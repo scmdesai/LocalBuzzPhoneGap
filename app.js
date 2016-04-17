@@ -65216,10 +65216,22 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'icon-back-button',
                         height: '100%',
                         id: 'dealpictureBackBtn',
+                        itemId: 'mybutton',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain',
-                        text: ''
+                        text: '',
+                        listeners: [
+                            {
+                                fn: function(component, eOpts) {
+                                    if (Ext.os.is('Android')) {
+                                        this.setHidden(true);
+                                    }
+                                },
+                                event: 'initialize',
+                                order: 'after'
+                            }
+                        ]
                     },
                     {
                         xtype: 'button',
@@ -65234,17 +65246,7 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onDealPictureInitialize',
-                event: 'initialize',
-                order: 'after'
-            }
         ]
-    },
-    onDealPictureInitialize: function(component, eOpts) {
-        component.hide();
     }
 }, 0, [
     "dealpicture"
@@ -65310,7 +65312,9 @@ Ext.define('Ext.direct.Manager', {
                         listeners: [
                             {
                                 fn: function(component, eOpts) {
-                                    this.setHidden(true);
+                                    if (Ext.os.is('Android')) {
+                                        this.setHidden(true);
+                                    }
                                 },
                                 event: 'initialize',
                                 order: 'after'
@@ -66199,7 +66203,18 @@ Ext.define('Ext.direct.Manager', {
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain',
-                        text: 'Back'
+                        text: 'Back',
+                        listeners: [
+                            {
+                                fn: function(component, eOpts) {
+                                    if (Ext.os.is('Android')) {
+                                        this.setHidden(true);
+                                    }
+                                },
+                                event: 'initialize',
+                                order: 'after'
+                            }
+                        ]
                     }
                 ]
             },
@@ -66214,24 +66229,37 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
-            },
-            {
-                fn: 'onDealsPanelInitialize',
-                event: 'initialize',
-                order: 'after'
             }
         ]
     },
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    },
-    //Ext.Viewport.getActiveItem().destroy();
-    //store.filter('dealStatus','Active');
-    //var date = new Date();
-    //var today = Ext.Date.format(date,'n/j/Y');
-    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
-    /*var today = Ext.Date.format(test,'n/j/Y');
+    }
+}, 0, [
+    "DealsPanel"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel": true
+}, [
+    "widget.DealsPanel"
+], 0, [
+    Contact.view,
+    'DealsPanel'
+], 0));
+//Ext.Viewport.getActiveItem().destroy();
+//store.filter('dealStatus','Active');
+//var date = new Date();
+//var today = Ext.Date.format(date,'n/j/Y');
+//var test = Ext.Date.add(date,Ext.Date.DAY,0);
+/*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -66260,27 +66288,6 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    onDealsPanelInitialize: function(component, eOpts) {
-        component.hide();
-    }
-}, 0, [
-    "DealsPanel"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel": true
-}, [
-    "widget.DealsPanel"
-], 0, [
-    Contact.view,
-    'DealsPanel'
-], 0));
 
 /*
  * File: app/view/DealsPanel1.js
@@ -66323,7 +66330,18 @@ Ext.define('Ext.direct.Manager', {
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain',
-                        text: 'Back'
+                        text: 'Back',
+                        listeners: [
+                            {
+                                fn: function(component, eOpts) {
+                                    if (Ext.os.is('Android')) {
+                                        this.setHidden(true);
+                                    }
+                                },
+                                event: 'initialize',
+                                order: 'after'
+                            }
+                        ]
                     }
                 ]
             },
@@ -66338,24 +66356,37 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
-            },
-            {
-                fn: 'onDealsPanel1Initialize',
-                event: 'initialize',
-                order: 'after'
             }
         ]
     },
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    },
-    //Ext.Viewport.getActiveItem().destroy();
-    //store.filter('dealStatus','Active');
-    //var date = new Date();
-    //var today = Ext.Date.format(date,'n/j/Y');
-    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
-    /*var today = Ext.Date.format(test,'n/j/Y');
+    }
+}, 0, [
+    "DealsPanel1"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel1"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel1": true
+}, [
+    "widget.DealsPanel1"
+], 0, [
+    Contact.view,
+    'DealsPanel1'
+], 0));
+//Ext.Viewport.getActiveItem().destroy();
+//store.filter('dealStatus','Active');
+//var date = new Date();
+//var today = Ext.Date.format(date,'n/j/Y');
+//var test = Ext.Date.add(date,Ext.Date.DAY,0);
+/*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -66384,33 +66415,6 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    onDealsPanel1Initialize: function(component, eOpts) {
-        component.hide();
-    },
-    initialize: function() {
-        Ext.Panel.prototype.initialize.call(this);
-        if (Ext.os.is('Android')) {
-            Ext.get('dealBackBtn1').hide();
-        }
-    }
-}, 0, [
-    "DealsPanel1"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel1"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel1": true
-}, [
-    "widget.DealsPanel1"
-], 0, [
-    Contact.view,
-    'DealsPanel1'
-], 0));
 
 /*
  * File: app.js
