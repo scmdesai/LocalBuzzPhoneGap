@@ -65815,10 +65815,13 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.add(info);
         Ext.Viewport.setActiveItem(info);
         //console.log(info);
+        var storeName = Ext.getStore('MyJsonPStore');
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
+        storeName.clearFilter();
         store.load();
         store.filter('customerId', record.get('customerId'));
+        storeName.filter('customerId', record.get('customerId'));
         store.filter('dealStatus', 'Active');
     },
     onInfoBackBtnTapHome: function(button, e, eOpts) {
