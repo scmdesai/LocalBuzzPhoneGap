@@ -64834,25 +64834,7 @@ Ext.define('Ext.direct.Manager', {
                 type: 'hbox',
                 align: 'start',
                 pack: 'justify'
-            },
-            listeners: [
-                {
-                    fn: function(element, eOpts) {
-                        if (Ext.os.is('Android')) {
-                            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-                            // add back button listener
-                            function onBackKeyDown(eve) {
-                                if (this.getItemId !== 'LatestBuzz') {
-                                    this.setActiveTab(0);
-                                } else {
-                                    navigator.app.exitApp();
-                                }
-                            }
-                        }
-                    },
-                    event: 'painted'
-                }
-            ]
+            }
         },
         listeners: [
             {
@@ -64879,6 +64861,11 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
+            },
+            {
+                fn: 'onTabpanelInitialize',
+                event: 'initialize',
+                order: 'after'
             }
         ]
     },
@@ -65168,6 +65155,19 @@ Ext.define('Ext.direct.Manager', {
                     });
                 });
             });
+        }
+    },
+    onTabpanelInitialize: function(component, eOpts) {
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            // add back button listener
+            function onBackKeyDown(eve) {
+                if (this.getActiveIndex() === 0) {
+                    navigator.app.exitApp();
+                } else {
+                    this.setActiveTab(0);
+                }
+            }
         }
     }
 }, 0, [
