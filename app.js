@@ -66490,7 +66490,7 @@ Ext.application({
                     if (tabPanel.getItemId() === 'LatestBuzz') {
                         navigator.app.exitApp();
                     } else {
-                        console.log(mainView.getItemIndex());
+                        Ext.Viewport.setActiveItem(this.setActiveItem(0));
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
