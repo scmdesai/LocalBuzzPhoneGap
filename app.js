@@ -65035,8 +65035,7 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon
                 });
-            var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div><div><label id="labelStoreInfo" style="color:blue;font-size:4vw;text-decoration:underline">Get Store Info</label></div>';
-            addInfoWindow(marker, content, record, businessName);
+            var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>' + addInfoWindow(marker, content, record, businessName);
         }
         function addInfoWindow(marker, content, record, businessName) {
             /*infoWindow = new google.maps.InfoWindow({
@@ -65056,28 +65055,23 @@ Ext.define('Ext.direct.Manager', {
                 console.log('Marker clicked ' + record.get('customerId'));
                 google.maps.event.addListener(infoWindow, 'domready', function() {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
-                        console.log('Label Clicked ' + businessName);
-                        var store = Ext.getStore('MyDealsStore');
-                        store.clearFilter();
-                        store.load();
-                        store.filter('businessName', businessName);
-                        if (Ext.Viewport.getComponent('DealsPanel1')) {
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
-                            if (Ext.Viewport.getComponent('Info')) {} else {
-                                var view = Ext.Viewport.add({
-                                        xtype: 'DealsPanel1'
-                                    });
-                                Ext.Viewport.setActiveItem(view);
+                        /* console.log('Label Clicked ' + businessName);
+
+                       var store = Ext.getStore('MyDealsStore');
+                       store.clearFilter();
+                       store.load();
+
+                        store.filter('businessName',businessName);
+
+                        if(Ext.Viewport.getComponent('DealsPanel1')){
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));if(Ext.Viewport.getComponent('Info')){
                             }
-                        }
-                    });
-                    document.getElementById('labelStoreInfo').addEventListener('mousedown', function() {
-                        console.log('Label Clicked ' + businessName);
-                        var store = Ext.getStore('MyJsonPStore');
-                        store.clearFilter();
-                        //store.load();
-                        //store.filter('businessName',businessName);
-                        var record = store.findRecord('businessName', businessName);
+                            else {
+                            var view = Ext.Viewport.add({xtype:'DealsPanel1'});
+                            Ext.Viewport.setActiveItem(view);
+                            }
+
+                            }*/
                         var view;
                         if (Ext.Viewport.getComponent('Info')) {
                             view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
@@ -65090,6 +65084,32 @@ Ext.define('Ext.direct.Manager', {
                             Ext.Viewport.setActiveItem(view);
                         }
                     });
+                    /* document.getElementById('labelStoreInfo').addEventListener('mousedown',function() {
+
+
+                        console.log('Label Clicked ' + businessName);
+
+                       var store = Ext.getStore('MyJsonPStore');
+                       store.clearFilter();
+                       //store.load();
+
+                        //store.filter('businessName',businessName);
+                        var record = store.findRecord('businessName',businessName);
+
+                            var view;
+                            if(Ext.Viewport.getComponent('Info')){
+                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                                view.setRecord(record);
+                            }
+                        else {
+
+                        view = Ext.Viewport.add({xtype:'contactinfo'});
+                        view.setRecord(record);
+                        Ext.Viewport.setActiveItem(view);
+
+                        }
+
+                    });*/
                     google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
