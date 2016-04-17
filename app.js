@@ -64644,6 +64644,8 @@ Ext.define('Ext.direct.Manager', {
     config: {
         cls: 'toolbar-icon-color',
         height: '100%',
+        id: 'tabbar',
+        itemId: 'tabbar',
         minHeight: '',
         style: '',
         modal: true,
@@ -66483,7 +66485,7 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    Ext.Viewport.setActiveItem('LatestBuzz');
+                    Ext.get('tabbar').setActiveItem('LatestBuzz');
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     navigator.app.exitApp();
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'LatestBuzz') {
