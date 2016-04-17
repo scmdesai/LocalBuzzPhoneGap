@@ -65165,7 +65165,7 @@ Ext.define('Ext.direct.Manager', {
                 if (this.getActiveItem().getItemId() === 'LatestBuzz') {
                     navigator.app.exitApp();
                 } else {
-                    this.setActiveTab(0);
+                    this.setActiveItem('LatestBuzz');
                 }
             }
         }
