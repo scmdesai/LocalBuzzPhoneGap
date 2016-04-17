@@ -65073,9 +65073,10 @@ Ext.define('Ext.direct.Manager', {
                         //store.load();
                         //store.filter('businessName',businessName);
                         var record = store.findRecord('businessName', businessName);
-                        var view = Ext.Viewport.setActiveItem(Ext.Viewport.add({
+                        Ext.Viewport.getComponent('contactinfo').destroy();
+                        var view = Ext.Viewport.add({
                                 xtype: 'contactinfo'
-                            }));
+                            });
                         view.setRecord(record);
                         Ext.Viewport.setActiveItem(view);
                     });
