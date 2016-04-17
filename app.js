@@ -64834,7 +64834,25 @@ Ext.define('Ext.direct.Manager', {
                 type: 'hbox',
                 align: 'start',
                 pack: 'justify'
-            }
+            },
+            listeners: [
+                {
+                    fn: function(element, eOpts) {
+                        if (Ext.os.is('Android')) {
+                            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+                            // add back button listener
+                            function onBackKeyDown(eve) {
+                                if (this.getItemId !== 'LatestBuzz') {
+                                    this.setActiveTab(0);
+                                } else {
+                                    navigator.app.exitApp();
+                                }
+                            }
+                        }
+                    },
+                    event: 'painted'
+                }
+            ]
         },
         listeners: [
             {
@@ -64861,11 +64879,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
-            },
-            {
-                fn: 'onMytabbarActivetabChange',
-                event: 'activetabchange',
-                delegate: '#mytabbar'
             }
         ]
     },
@@ -65155,15 +65168,6 @@ Ext.define('Ext.direct.Manager', {
                     });
                 });
             });
-        }
-    },
-    onMytabbarActivetabChange: function(tabbar, value, oldValue, eOpts) {
-        if (Ext.os.is('Android')) {
-            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
-            // add back button listener
-            function onBackKeyDown(eve) {
-                tabbar.setActiveTab(0);
-            }
         }
     }
 }, 0, [
@@ -66495,33 +66499,27 @@ Ext.application({
         if (Ext.os.is('Android')) {
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            function onBackKeyDown(eve) {
-                if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    navigator.app.exitApp();
+            if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                Ext.Viewport.getActiveItem().destroy();
+                var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                ds.clearFilter();
+                var store = Ext.StoreManager.lookup('MyDealsStore');
+                store.clearFilter();
+            } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
+                Ext.Viewport.getActiveItem().destroy();
+                Ext.Viewport.setActiveItem(1);
+                var store1 = Ext.StoreManager.lookup('MyDealsStore');
+                //store.clearFilter();
+                store1.load();
+            } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
+                console.log('DealsPanel1');
+                Ext.Viewport.getActiveItem().destroy();
+            } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
+                Ext.Viewport.getActiveItem().destroy();
+                if (Ext.Viewport.getComponent('DealsPanel')) {
+                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                 } else {
-                    if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
-                        Ext.Viewport.getActiveItem().destroy();
-                        var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                        ds.clearFilter();
-                        var store = Ext.StoreManager.lookup('MyDealsStore');
-                        store.clearFilter();
-                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
-                        Ext.Viewport.getActiveItem().destroy();
-                        Ext.Viewport.setActiveItem(1);
-                        var store1 = Ext.StoreManager.lookup('MyDealsStore');
-                        //store.clearFilter();
-                        store1.load();
-                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
-                        console.log('DealsPanel1');
-                        Ext.Viewport.getActiveItem().destroy();
-                    } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
-                        Ext.Viewport.getActiveItem().destroy();
-                        if (Ext.Viewport.getComponent('DealsPanel')) {
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                        } else {
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
-                        }
-                    }
+                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
                 }
             }
         }
