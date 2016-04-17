@@ -65073,15 +65073,11 @@ Ext.define('Ext.direct.Manager', {
                         //store.load();
                         //store.filter('businessName',businessName);
                         var record = store.findRecord('businessName', businessName);
-                        if (Ext.Viewport.getComponent('Info')) {
-                            Ext.Viewport.getComponent('Info').destroy();
-                        }
-                        var view = Ext.Viewport.add({
-                                xtype: 'contactinfo'
-                            });
-                        view.setRecord(record);
-                        Ext.Viewport.setActiveItem(view);
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
                     });
+                    /* var view = Ext.Viewport.add({xtype:'contactinfo'});
+                        view.setRecord(record);
+                        Ext.Viewport.setActiveItem(view);*/
                     google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
