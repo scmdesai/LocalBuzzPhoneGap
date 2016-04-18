@@ -66481,10 +66481,10 @@ Ext.application({
         };
         if (Ext.os.is('Android')) {
             var panel;
+            var exitApp = false;
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
-                var exitApp = false;
                 var intval = setInterval(function() {
                         exitApp = false;
                     }, 1000);
