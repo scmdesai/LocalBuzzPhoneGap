@@ -64435,7 +64435,6 @@ Ext.define('Ext.direct.Manager', {
         cls: 'favorite',
         height: '100%',
         itemId: 'latestbuzz',
-        margin: '1 1 1 1',
         style: 'background:#fff',
         emptyText: '<h4 class="emptyText">No Buzz currently.Please check back later</h4>',
         inline: true,
@@ -66495,7 +66494,7 @@ Ext.application({
                     }, 3000);
                 panel = Ext.create('Ext.Panel', {
                     html: '<h4>Press Back Again to Exit</h4>',
-                    style: 'background-color:#000,color:white'
+                    bodyStyle: 'background-color:#000,color:white'
                 });
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     //   var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
