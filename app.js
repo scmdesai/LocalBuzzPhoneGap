@@ -66488,10 +66488,6 @@ Ext.application({
                 var intval = setInterval(function() {
                         exitApp = false;
                     }, 3000);
-                panel = Ext.create('Ext.Panel', {
-                    html: '<h4>Press Back Again to Exit</h4>',
-                    bodyStyle: 'background:#000!important'
-                });
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     //   var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
                     // var mainView = Ext.Viewport.getActiveItem().get;
@@ -66509,8 +66505,11 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        panel.setDocked('bottom');
-                        panel.showBy(Ext.get('tabbar'));
+                        panel = Ext.create('Ext.Panel', {
+                            html: '<h4>Press Back Again to Exit</h4>',
+                            bodyStyle: 'background:#000!important'
+                        });
+                        panel.show();
                     }
                 }
                 //  }
