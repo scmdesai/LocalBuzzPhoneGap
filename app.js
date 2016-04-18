@@ -66483,7 +66483,7 @@ Ext.application({
             var panel;
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
-            function onBackKeyDown(eve) {
+            function onBackKeyDown(e) {
                 var exitApp = false;
                 var intval = setInterval(function() {
                         exitApp = false;
