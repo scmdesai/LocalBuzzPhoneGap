@@ -66499,7 +66499,7 @@ Ext.application({
                                 // fullscreen: true,
                                 html: 'Press Back again to exit'
                             });
-                        Ext.Viewport.add(panel);
+                        panel.showBy(Ext.get('tabbar'));
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
