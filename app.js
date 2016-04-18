@@ -66485,16 +66485,12 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(eve) {
                 var exitApp = false;
-                if (panel)  {
-                    panel.destroy();
-                }
-                
                 var intval = setInterval(function() {
                         exitApp = false;
                     }, 3000);
                 panel = Ext.create('Ext.Panel', {
                     html: '<h4>Press Back Again to Exit</h4>',
-                    bodyStyle: 'background-color:#000,color:white'
+                    bodyStyle: 'background:#000!important'
                 });
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     //   var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
@@ -66513,7 +66509,8 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        panel.showBy(Ext.getCmp('tabbar'));
+                        panel.setDocked('bottom');
+                        panel.show();
                     }
                 }
                 //  }
