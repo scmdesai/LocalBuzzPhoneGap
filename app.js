@@ -66481,17 +66481,22 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         if (Ext.os.is('Android')) {
-            var exitApp = false;
-            var intval = setInterval(function() {
-                    exitApp = false;
-                }, 3000);
-            var panel = Ext.create('Ext.Panel', {
-                    html: '<h4>Press Back Again to Exit</h4>',
-                    style: 'background-color:#000,color:white'
-                });
+            var panel;
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
+                var exitApp = false;
+                if (panel)  {
+                    panel.destroy();
+                }
+                
+                var intval = setInterval(function() {
+                        exitApp = false;
+                    }, 3000);
+                panel = Ext.create('Ext.Panel', {
+                    html: '<h4>Press Back Again to Exit</h4>',
+                    style: 'background-color:#000,color:white'
+                });
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     //   var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
                     // var mainView = Ext.Viewport.getActiveItem().get;
