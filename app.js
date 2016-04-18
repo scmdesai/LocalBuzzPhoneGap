@@ -66510,7 +66510,7 @@ Ext.application({
                     } else {
                         exitApp = true;
                         panel.setDocked('bottom');
-                        panel.show();
+                        panel.showBy(Ext.get('tabbar'));
                     }
                 }
                 //  }
