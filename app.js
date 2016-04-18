@@ -66498,6 +66498,10 @@ Ext.application({
                     //Ext.Viewport.setActiveItem(tabPanel) ;
                     if (exitApp) {
                         clearInterval(intval);
+                        if (panel)  {
+                            panel.destroy();
+                        }
+                        
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
