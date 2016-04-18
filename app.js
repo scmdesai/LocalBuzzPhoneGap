@@ -66497,10 +66497,11 @@ Ext.application({
                         exitApp = true;
                         var panel = Ext.create('Ext.Panel', {
                                 // fullscreen: true,
-                                html: 'Press Back again to exit',
+                                html: 'Double tap on Back Button to exit',
                                 style: 'background:black'
                             });
                         panel.showBy(Ext.get('tabbar'));
+                        panel.setBottom('50px');
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
