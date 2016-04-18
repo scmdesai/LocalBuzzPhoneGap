@@ -66501,7 +66501,10 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        Ext.Msg.alert('Press Back Button Again to Exit', null, null, null);
+                        var panel = Ext.create('Ext.Panel', {
+                                html: 'Press Back Again to Exit'
+                            });
+                        panel.showBy(Ext.Viewport.getActiveItem());
                     }
                 }
                 //  }
