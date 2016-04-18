@@ -66486,7 +66486,10 @@ Ext.application({
                     exitApp = false;
                 }, 3000);
             var panel = Ext.create('Ext.Panel', {
-                    html: 'Press Back Again to Exit'
+                    html: '<h4>Press Back Again to Exit</h4>',
+                    background: black,
+                    color: white,
+                    border: none
                 });
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -66508,7 +66511,7 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        panel.showBy(Ext.Viewport.getActiveItem());
+                        panel.showBy(Ext.getCmp('tabbar'));
                     }
                 }
                 //  }
