@@ -66484,7 +66484,10 @@ Ext.application({
             var exitApp = false;
             var intval = setInterval(function() {
                     exitApp = false;
-                }, 1000);
+                }, 3000);
+            var panel = Ext.create('Ext.Panel', {
+                    html: 'Press Back Again to Exit'
+                });
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
@@ -66505,9 +66508,6 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        var panel = Ext.create('Ext.Panel', {
-                                html: 'Press Back Again to Exit'
-                            });
                         panel.showBy(Ext.Viewport.getActiveItem());
                     }
                 }
