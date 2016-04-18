@@ -66497,7 +66497,8 @@ Ext.application({
                         exitApp = true;
                         var panel = Ext.create('Ext.Panel', {
                                 // fullscreen: true,
-                                html: 'Press Back again to exit'
+                                html: 'Press Back again to exit',
+                                style: 'background:black'
                             });
                         panel.showBy(Ext.get('tabbar'));
                     }
