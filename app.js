@@ -66501,6 +66501,7 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
+                        Ext.Msg.alert('Press Back Button Again to Exit', null, null, null);
                     }
                 }
                 //  }
