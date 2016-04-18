@@ -66487,9 +66487,7 @@ Ext.application({
                 }, 3000);
             var panel = Ext.create('Ext.Panel', {
                     html: '<h4>Press Back Again to Exit</h4>',
-                    background: black,
-                    color: white,
-                    border: none
+                    style: 'background-color:#000,color:white'
                 });
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
