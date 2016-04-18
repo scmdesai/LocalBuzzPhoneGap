@@ -66509,7 +66509,7 @@ Ext.application({
                             html: '<h4>Press Back Again to Exit</h4>',
                             bodyStyle: 'background:#000!important'
                         });
-                        panel.show();
+                        panel.showBy(Ext.Viewport.getActiveItem());
                     }
                 }
                 //  }
