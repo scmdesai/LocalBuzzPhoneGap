@@ -66487,33 +66487,21 @@ Ext.application({
                 var exitApp = false;
                 var intval = setInterval(function() {
                         exitApp = false;
-                    }, 3000);
+                    }, 1000);
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    //   var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
-                    // var mainView = Ext.Viewport.getActiveItem().get;
-                    //if(tabPanel.getItemId()==='LatestBuzz'){
-                    //      navigator.app.exitApp();
-                    //  }
-                    // else {
-                    //Ext.Viewport.setActiveItem(tabPanel) ;
+                    e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
-                        if (panel)  {
-                            panel.destroy();
-                        }
-                        
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        panel = Ext.create('Ext.Panel', {
-                            html: '<h4>Press Back Again to Exit</h4>',
-                            bodyStyle: 'background:#000!important'
-                        });
-                        panel.showBy(Ext.Viewport.getActiveItem());
+                        var panel = Ext.create('Ext.Panel', {
+                                // fullscreen: true,
+                                html: 'Press Back again to exit'
+                            });
+                        Ext.Viewport.add(panel);
                     }
-                }
-                //  }
-                else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
                     var ds = Ext.StoreManager.lookup('MyJsonPStore');
                     ds.clearFilter();
