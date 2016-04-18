@@ -66481,18 +66481,30 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         if (Ext.os.is('Android')) {
+            var exitApp = false;
+            var intval = setInterval(function() {
+                    exitApp = false;
+                }, 1000);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(eve) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
+                    //   var tabPanel = Ext.Viewport.getActiveItem().getActiveItem();
                     // var mainView = Ext.Viewport.getActiveItem().get;
-                    if (tabPanel.getItemId() === 'LatestBuzz') {
+                    //if(tabPanel.getItemId()==='LatestBuzz'){
+                    //      navigator.app.exitApp();
+                    //  }
+                    // else {
+                    //Ext.Viewport.setActiveItem(tabPanel) ;
+                    if (exitApp) {
+                        clearInterval(intval);
                         navigator.app.exitApp();
                     } else {
-                        Ext.Viewport.setActiveItem(Ext.get('tabbar').first('LatestBuzz'));
+                        exitApp = true;
                     }
-                } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                }
+                //  }
+                else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
                     var ds = Ext.StoreManager.lookup('MyJsonPStore');
                     ds.clearFilter();
