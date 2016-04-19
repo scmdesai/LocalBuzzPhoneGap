@@ -64953,9 +64953,6 @@ Ext.define('Ext.direct.Manager', {
                 isMarkerpresent = isMarkerpresent || map.getBounds().contains(marker.getPosition());
             });
         });
-        if (!isMarkerpresent) {
-            Ext.Msg.alert('No Active Buzz in your location currently', 'Please check back later', null, null);
-        }
         var icons = {
                 "0": {
                     icon: 'resources/img/car.png'
@@ -65157,6 +65154,9 @@ Ext.define('Ext.direct.Manager', {
                     latitude: lat,
                     longitude: long
                 });
+                if (!isMarkerpresent) {
+                    Ext.Msg.alert('No Active Buzz in your location currently', 'Please check back later', null, null);
+                }
             });
         });
     }
