@@ -66500,7 +66500,11 @@ Ext.application({
                             panel = Ext.create('Ext.Panel', {
                                 // fullscreen: true,
                                 html: 'Double tap on Back Button to exit',
-                                style: 'background:black'
+                                width: 200,
+                                height: 100,
+                                bodyStyle: {
+                                    "background-color": "black"
+                                }
                             });
                             //panel.showBy(Ext.get('tabbar'));
                             panel.showBy(Ext.get('mytabbar'), 'tm-bm?');
