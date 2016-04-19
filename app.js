@@ -66523,7 +66523,6 @@ Ext.application({
                         //panel.setStyle('background-color:rgba(0,0,0,0.7);color:#FFF;padding-left:5px;padding-top:10px;border-radius:25px;vertical-align:middle');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
-                            Ext.Viewport.getComponent('panel').destroy();
                             panel.destroy();
                         }, 500);
                     }
