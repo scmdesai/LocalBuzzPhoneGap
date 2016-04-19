@@ -66513,7 +66513,7 @@ Ext.application({
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
-                        }, 360);
+                        }, 400);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
