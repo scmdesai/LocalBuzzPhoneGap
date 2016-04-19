@@ -66509,7 +66509,7 @@ Ext.application({
                         panel.setLeft('170px');
                         panel.setHeight('50px');
                         panel.setWidth('300px');
-                        panel.setStyle('background-color:rgba(0,0,0,0.5);color:#FFF;margin-left:2px;margin-top:10px;border-radius:25px;vertical-align:middle');
+                        panel.setStyle('background-color:rgba(0,0,0,0.5);color:#FFF;padding-left:2px;padding-top:10px;border-radius:25px;vertical-align:middle');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
