@@ -64944,7 +64944,6 @@ Ext.define('Ext.direct.Manager', {
 
                 }*/
         map.mapTypeControl = false;
-        var isMarkerpresent = false;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -64955,7 +64954,6 @@ Ext.define('Ext.direct.Manager', {
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
-                isMarkerpresent = isMarkerpresent || map.getBounds().contains(marker.getPosition());
             });
         });
         var icons = {
@@ -65162,9 +65160,6 @@ Ext.define('Ext.direct.Manager', {
                     latitude: lat,
                     longitude: long
                 });
-                if (!isMarkerpresent) {
-                    Ext.Msg.alert('No Active Buzz in your location currently', 'Please check back later', null, null);
-                }
             });
         });
     }
@@ -66510,9 +66505,12 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
+                        Ext.Viewport.getComponent('panel').destroy();
                         panel = Ext.create('Ext.Panel', {
                             // fullscreen: true,
                             html: 'Double Tap on Back Button To Exit',
+                            id: 'panel',
+                            itemId: 'panel',
                             width: 200,
                             height: 100,
                             baseCls: 'x-box'
