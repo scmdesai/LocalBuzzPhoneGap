@@ -66507,10 +66507,10 @@ Ext.application({
                                 }
                             });
                             //panel.showBy(Ext.get('tabbar'));
-                            panel.showBy(Ext.get('mytabbar'), 'tm-bm?');
+                            panel.showBy(Ext.get('mytabbar'), 'tl-bl?');
                             // panel.setDocked('bottom');
-                            panel.setHeight('10%');
-                            panel.setStyle('background:black;color:white;border:none');
+                            //panel.setHeight('10%');
+                            panel.setStyle('color:#00529D;border:none');
                         }
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
