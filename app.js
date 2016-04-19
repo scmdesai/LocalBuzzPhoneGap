@@ -66507,9 +66507,9 @@ Ext.application({
                         panel.show();
                         panel.setBottom('100px');
                         panel.setLeft('170px');
-                        panel.setHeight('80px');
+                        panel.setHeight('100px');
                         panel.setWidth('300px');
-                        panel.setStyle('background-color:rgba(0,0,0,0.5);color:#FFF;border-radius:25px');
+                        panel.setStyle('background-color:rgba(0,0,0,0.5);color:#FFF;border-radius:25px;vertical-align:middle');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
