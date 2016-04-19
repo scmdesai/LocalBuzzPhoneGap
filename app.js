@@ -66495,13 +66495,16 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        var panel = Ext.create('Ext.Panel', {
+                        if (!panel) {
+                            panel = Ext.create('Ext.Panel', {
                                 // fullscreen: true,
                                 html: 'Double tap on Back Button to exit',
                                 style: 'background:black'
                             });
+                        }
                         panel.showBy(Ext.get('tabbar'));
                         panel.setBottom('50px');
+                        panel.setHeight('20%');
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
