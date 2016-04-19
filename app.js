@@ -66496,25 +66496,24 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        if (!panel) {
-                            panel = Ext.create('Ext.Panel', {
-                                // fullscreen: true,
-                                html: 'Double tap on Back Button to exit',
-                                width: 200,
-                                height: 100
-                            });
-                            Ext.Viewport.add(panel);
-                            panel.show();
-                            panel.setBottom('100px');
-                            panel.setLeft('200px');
-                            panel.setHeight('100px');
-                            panel.setWidth('200px');
-                            panel.setStyle('background:black;color:#00529D;border-radius:25px');
-                            panel.setStyleHtmlContent(true);
-                            setTimeout(function() {
-                                panel.destroy();
-                            }, 3000);
-                        }
+                        panel = Ext.create('Ext.Panel', {
+                            // fullscreen: true,
+                            html: 'Double tap on Back Button to exit',
+                            width: 200,
+                            height: 100,
+                            baseCls: 'x-box'
+                        });
+                        Ext.Viewport.add(panel);
+                        panel.show();
+                        panel.setBottom('100px');
+                        panel.setLeft('200px');
+                        panel.setHeight('100px');
+                        panel.setWidth('200px');
+                        panel.setStyle('background:black;color:#00529D;border-radius:25px');
+                        panel.setStyleHtmlContent(true);
+                        setTimeout(function() {
+                            panel.destroy();
+                        }, 3000);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
