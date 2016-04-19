@@ -66501,10 +66501,10 @@ Ext.application({
                                 html: 'Double tap on Back Button to exit',
                                 style: 'background:black'
                             });
+                            panel.showBy(Ext.get('tabbar'));
+                            panel.setBottom('50px');
+                            panel.setHeight('10%');
                         }
-                        panel.showBy(Ext.get('tabbar'));
-                        panel.setBottom('50px');
-                        panel.setHeight('20%');
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
