@@ -64860,6 +64860,11 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#mymap'
             },
             {
+                fn: 'onMymapActivate',
+                event: 'activate',
+                delegate: '#mymap'
+            },
+            {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
@@ -65125,6 +65130,9 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
+    },
+    onMymapActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        console.log('Map activated');
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
