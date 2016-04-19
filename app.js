@@ -65134,9 +65134,9 @@ Ext.define('Ext.direct.Manager', {
             console.log('Getting coords');
         }, onError);
         function onError(error) {
+            Ext.getCmp('mymap').hide();
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
-            Ext.getCmp('mymap').hide();
         }
         Ext.getCmp('lookUpZipcode').addListener('action', function() {
             var postalCode = Ext.getCmp('lookUpZipcode').getValue();
