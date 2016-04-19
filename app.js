@@ -66493,7 +66493,6 @@ Ext.application({
                     e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
-                        panel.hide();
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
@@ -66504,16 +66503,17 @@ Ext.application({
                                 width: 200,
                                 height: 100
                             });
-                            //panel.showBy(Ext.get('tabbar'));
-                            // panel.showBy(Ext.get('mytabbar'),'tl-bl?');
                             Ext.Viewport.add(panel);
                             panel.show();
                             panel.setBottom('100px');
                             panel.setLeft('200px');
-                            //panel.setModal(false);
                             panel.setHeight('100px');
                             panel.setWidth('200px');
-                            panel.setStyle('background-color:black;color:#00529D;border:none');
+                            panel.setStyle('background:black;color:#00529D;border-radius:3px');
+                            panel.setStyleHtmlContent(true);
+                            panel.addAfterListener('show', function() {
+                                panel.mask();
+                            });
                         }
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
