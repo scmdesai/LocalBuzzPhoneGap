@@ -66503,7 +66503,7 @@ Ext.application({
                                 style: 'background:black'
                             });
                             //panel.showBy(Ext.get('tabbar'));
-                            panel.showBy(Ext.get('mytabbar'), 'mm-mm');
+                            panel.showBy(Ext.get('mytabbar'), 'tm-bm?');
                             // panel.setDocked('bottom');
                             panel.setHeight('10%');
                             panel.setStyle('background:black;color:white;border:none');
