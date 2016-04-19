@@ -66518,8 +66518,8 @@ Ext.application({
                             height: 100,
                             baseCls: 'x-box'
                         });
-                        if (panel) {
-                            panel.destroy();
+                        if (Ext.Viewport.getComponent('panel')) {
+                            //panel.destroy();
                             Ext.Viewport.getComponent('panel').destroy();
                         }
                         Ext.Viewport.add(panel);
