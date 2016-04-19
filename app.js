@@ -66502,13 +66502,13 @@ Ext.application({
                     e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
-                        if (panel)  {
-                            panel.destroy();
-                        }
-                        
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
+                        if (Ext.Viewport.getComponent('panel')) {
+                            //panel.destroy();
+                            Ext.Viewport.getComponent('panel').destroy();
+                        }
                         panel = Ext.create('Ext.Panel', {
                             // fullscreen: true,
                             html: 'Double Tap on Back Button To Exit',
@@ -66518,10 +66518,6 @@ Ext.application({
                             height: 100,
                             baseCls: 'x-box'
                         });
-                        if (Ext.Viewport.getComponent('panel')) {
-                            //panel.destroy();
-                            Ext.Viewport.getComponent('panel').destroy();
-                        }
                         Ext.Viewport.add(panel);
                         panel.show();
                         panel.setBottom('100px');
