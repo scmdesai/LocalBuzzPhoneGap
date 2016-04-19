@@ -66508,8 +66508,9 @@ Ext.application({
                             // panel.showBy(Ext.get('mytabbar'),'tl-bl?');
                             Ext.Viewport.add(panel);
                             panel.show();
-                            panel.setBottom('50px');
-                            panel.setModal(false);
+                            panel.setBottom('100px');
+                            panel.setLeft('200px');
+                            //panel.setModal(false);
                             panel.setHeight('100px');
                             panel.setWidth('200px');
                             panel.setStyle('background-color:black;color:#00529D;border:none');
