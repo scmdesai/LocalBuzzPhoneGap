@@ -66502,9 +66502,9 @@ Ext.application({
                                 style: 'background:black'
                             });
                             panel.showBy(Ext.get('tabbar'));
-                            panel.setBottom('10px');
+                            panel.setDocked('bottom');
                             panel.setHeight('10%');
-                            panel.setStyle('background:black;color:white;border:none');
+                            panel.setStyle('background-color:black;color:white;border:none');
                         }
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
