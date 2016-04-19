@@ -66508,10 +66508,10 @@ Ext.application({
                             // panel.showBy(Ext.get('mytabbar'),'tl-bl?');
                             Ext.Viewport.add(panel);
                             panel.show();
-                            // panel.setDocked('bottom');
+                            panel.setDocked('bottom');
                             panel.setHeight('100px');
                             panel.setWidth('200px');
-                            panel.setStyle('color:#00529D;border:none');
+                            panel.setStyle('background-color:black;color:#00529D;border:none');
                         }
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
