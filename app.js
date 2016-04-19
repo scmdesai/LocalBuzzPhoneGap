@@ -66502,8 +66502,9 @@ Ext.application({
                                 style: 'background:black'
                             });
                             panel.showBy(Ext.get('tabbar'));
-                            panel.setBottom('50px');
+                            panel.setBottom('10px');
                             panel.setHeight('10%');
+                            panel.setStyle('background:black;color:white;border:none');
                         }
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
