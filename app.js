@@ -66505,7 +66505,6 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        Ext.Viewport.getComponent('panel').destroy();
                         panel = Ext.create('Ext.Panel', {
                             // fullscreen: true,
                             html: 'Double Tap on Back Button To Exit',
@@ -66524,6 +66523,7 @@ Ext.application({
                         //panel.setStyle('background-color:rgba(0,0,0,0.7);color:#FFF;padding-left:5px;padding-top:10px;border-radius:25px;vertical-align:middle');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
+                            Ext.Viewport.getComponent('panel').destroy();
                             panel.destroy();
                         }, 500);
                     }
