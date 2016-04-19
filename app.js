@@ -66498,7 +66498,7 @@ Ext.application({
                         exitApp = true;
                         panel = Ext.create('Ext.Panel', {
                             // fullscreen: true,
-                            html: 'Double tap on Back Button to exit',
+                            html: 'Double Tap on Back Button To Exit',
                             width: 200,
                             height: 100,
                             baseCls: 'x-box'
@@ -66506,11 +66506,11 @@ Ext.application({
                         Ext.Viewport.add(panel);
                         panel.show();
                         panel.setBottom('100px');
-                        panel.setLeft('150px');
+                        panel.setLeft('170px');
                         panel.setHeight('50px');
                         panel.setWidth('300px');
-                        panel.setStyle('border-radius:25px');
-                        panel.setStyleHtmlContent(true);
+                        panel.setStyle('background-color:rgba(0,0,0,0.5);color:#FFF;border-radius:25px');
+                        // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
                         }, 1000);
