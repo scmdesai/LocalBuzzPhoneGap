@@ -66493,6 +66493,7 @@ Ext.application({
                     e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
+                        panel.hide();
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
@@ -66501,10 +66502,7 @@ Ext.application({
                                 // fullscreen: true,
                                 html: 'Double tap on Back Button to exit',
                                 width: 200,
-                                height: 100,
-                                bodyStyle: {
-                                    "background-color": "black"
-                                }
+                                height: 100
                             });
                             //panel.showBy(Ext.get('tabbar'));
                             panel.showBy(Ext.get('mytabbar'), 'tl-bl?');
@@ -66512,6 +66510,7 @@ Ext.application({
                             //panel.setHeight('10%');
                             panel.setStyle('color:#00529D;border:none');
                         }
+                        panel.show();
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
