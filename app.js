@@ -66511,7 +66511,7 @@ Ext.application({
                             panel.setWidth('200px');
                             panel.setStyle('background:black;color:#00529D;border-radius:3px');
                             panel.setStyleHtmlContent(true);
-                            panel.addAfterListener('show', function() {
+                            panel.on('afterrender', function() {
                                 panel.mask();
                             });
                         }
