@@ -66506,14 +66506,14 @@ Ext.application({
                         Ext.Viewport.add(panel);
                         panel.show();
                         panel.setBottom('100px');
-                        panel.setLeft('200px');
+                        panel.setLeft('150px');
                         panel.setHeight('50px');
                         panel.setWidth('300px');
-                        panel.setStyle('background:black;color:white;border-radius:25px');
+                        panel.setStyle('border-radius:25px');
                         panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
-                        }, 2000);
+                        }, 1000);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
