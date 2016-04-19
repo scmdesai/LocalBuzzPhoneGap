@@ -66502,6 +66502,10 @@ Ext.application({
                     e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
+                        if (panel)  {
+                            panel.destroy();
+                        }
+                        
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
@@ -66514,6 +66518,10 @@ Ext.application({
                             height: 100,
                             baseCls: 'x-box'
                         });
+                        if (panel) {
+                            panel.destroy();
+                            Ext.Viewport.getComponent('panel').destroy();
+                        }
                         Ext.Viewport.add(panel);
                         panel.show();
                         panel.setBottom('100px');
