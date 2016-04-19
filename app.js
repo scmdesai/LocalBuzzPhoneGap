@@ -66509,11 +66509,11 @@ Ext.application({
                         panel.setLeft('170px');
                         panel.setHeight('50px');
                         panel.setWidth('300px');
-                        panel.setStyle('background-color:rgba(0,0,0,0.7);color:#FFF;padding-left:5px;padding-top:10px;border-radius:25px;vertical-align:middle');
+                        //panel.setStyle('background-color:rgba(0,0,0,0.7);color:#FFF;padding-left:5px;padding-top:10px;border-radius:25px;vertical-align:middle');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
-                        }, 500);
+                        }, 360);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
