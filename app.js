@@ -66505,13 +66505,12 @@ Ext.application({
                                 height: 100
                             });
                             //panel.showBy(Ext.get('tabbar'));
-                            panel.showBy(Ext.get('mytabbar'), 'tl-bl?');
+                            // panel.showBy(Ext.get('mytabbar'),'tl-bl?');
+                            Ext.Viewport.add(panel);
+                            panel.show();
                             // panel.setDocked('bottom');
                             panel.setHeight('100px');
                             panel.setWidth('200px');
-                            panel.onAfter('show', function() {
-                                this.destroy();
-                            });
                             panel.setStyle('color:#00529D;border:none');
                         }
                     }
