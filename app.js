@@ -65125,17 +65125,20 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        console.log('Buzz activated');
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
             Ext.getCmp('locationOffText').hide();
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
+            console.log('Getting coords');
         }, onError);
         function onError(error) {
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
             Ext.getCmp('mymap').hide();
+            console.log('Not Getting coords');
             Ext.getCmp('lookUpZipcode').addListener('action', function() {
                 var postalCode = Ext.getCmp('lookUpZipcode').getValue();
                 Ext.getCmp('lookUpZipcode').setValue('');
@@ -66488,7 +66491,7 @@ Ext.application({
             function onBackKeyDown(e) {
                 var intval = setInterval(function() {
                         exitApp = false;
-                    }, 1000);
+                    }, 500);
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     e.preventDefault();
                     if (exitApp) {
@@ -66513,7 +66516,7 @@ Ext.application({
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
-                        }, 400);
+                        }, 500);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
