@@ -65125,58 +65125,35 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                Ext.getCmp('mymap').show();
-                Ext.getCmp('lookUpZipcode').hide();
-                Ext.getCmp('locationOffText').hide();
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                console.log('Getting coords');
-            }, onError);
-            function onError(error) {
-                Ext.getCmp('locationOffText').show();
-                Ext.getCmp('lookUpZipcode').show();
-                Ext.getCmp('mymap').hide();
-                Ext.getCmp('lookUpZipcode').addListener('action', function() {
-                    var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-                    Ext.getCmp('lookUpZipcode').setValue('');
-                    Ext.getCmp('mymap').show();
-                    Ext.getCmp('lookUpZipcode').hide();
-                    Ext.getCmp('locationOffText').hide();
-                    console.log(postalCode);
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        Ext.getCmp('mymap').setMapCenter({
-                            latitude: lat,
-                            longitude: long
-                        });
-                    });
-                });
-            }
-        } else {
-            console.log('Not Getting coords');
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            console.log('Getting coords');
+        }, onError);
+        function onError(error) {
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
             Ext.getCmp('mymap').hide();
-            Ext.getCmp('lookUpZipcode').addListener('action', function() {
-                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-                Ext.getCmp('lookUpZipcode').setValue('');
-                Ext.getCmp('mymap').show();
-                Ext.getCmp('lookUpZipcode').hide();
-                Ext.getCmp('locationOffText').hide();
-                console.log(postalCode);
-                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat;
-                    long = json.results[0].geometry.location.lng;
-                    Ext.getCmp('mymap').setMapCenter({
-                        latitude: lat,
-                        longitude: long
-                    });
+        }
+        Ext.getCmp('lookUpZipcode').addListener('action', function() {
+            var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+            Ext.getCmp('lookUpZipcode').setValue('');
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            console.log(postalCode);
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                Ext.getCmp('mymap').setMapCenter({
+                    latitude: lat,
+                    longitude: long
                 });
             });
-        }
+        });
     }
 }, 0, [
     "Main"
