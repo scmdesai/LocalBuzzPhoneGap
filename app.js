@@ -64939,6 +64939,7 @@ Ext.define('Ext.direct.Manager', {
 
                 }*/
         map.mapTypeControl = false;
+        var isMarkerpresent = false;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -64949,8 +64950,12 @@ Ext.define('Ext.direct.Manager', {
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
+                isMarkerpresent = isMarkerpresent || map.getBounds().contains(marker.getPosition());
             });
         });
+        if (!isMarkerpresent) {
+            Ext.Msg.alert('No Active Buzz in your location currently', 'Please check back later', null, null);
+        }
         var icons = {
                 "0": {
                     icon: 'resources/img/car.png'
