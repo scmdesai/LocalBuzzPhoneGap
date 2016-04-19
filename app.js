@@ -66501,8 +66501,9 @@ Ext.application({
                                 html: 'Double tap on Back Button to exit',
                                 style: 'background:black'
                             });
-                            panel.showBy(Ext.get('tabbar'));
-                            panel.setDocked('bottom');
+                            //panel.showBy(Ext.get('tabbar'));
+                            panel.showBy(Ext.Viewport.getActiveItem(), 'bottom');
+                            // panel.setDocked('bottom');
                             panel.setHeight('10%');
                             panel.setStyle('background-color:black;color:white;border:none');
                         }
