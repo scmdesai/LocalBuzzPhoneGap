@@ -64825,6 +64825,7 @@ Ext.define('Ext.direct.Manager', {
             cls: 'tabBarCls',
             docked: 'bottom',
             height: '8%',
+            id: 'mytabbar',
             itemId: 'mytabbar',
             padding: '5 10 0 10',
             style: 'font-size:4vw;border-top:1px solid #eee;background:white;',
@@ -66502,10 +66503,10 @@ Ext.application({
                                 style: 'background:black'
                             });
                             //panel.showBy(Ext.get('tabbar'));
-                            panel.showBy(Ext.Viewport.getActiveItem(), 'mm-mm');
+                            panel.showBy(Ext.get('mytabbar'), 'mm-mm');
                             // panel.setDocked('bottom');
                             panel.setHeight('10%');
-                            panel.setStyle('background-color:black;color:white;border:none');
+                            panel.setStyle('background:black;color:white;border:none');
                         }
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
