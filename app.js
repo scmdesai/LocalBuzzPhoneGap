@@ -66507,13 +66507,13 @@ Ext.application({
                         panel.show();
                         panel.setBottom('100px');
                         panel.setLeft('170px');
-                        panel.setHeight('50px');
+                        panel.setHeight('80px');
                         panel.setWidth('300px');
                         panel.setStyle('background-color:rgba(0,0,0,0.5);color:#FFF;border-radius:25px');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             panel.destroy();
-                        }, 1000);
+                        }, 500);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
