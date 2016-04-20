@@ -32,7 +32,7 @@
 	<preference name="StatusBarBackgroundColor" value="#105585" />
     <preference name="StatusBarStyle" value="lightcontent" />
 	
-	<preference name="android-windowSoftInputMode" value="stateUnchanged" />
+	<preference name="android-windowSoftInputMode" value="adjustResize" />
 	
 	
 	
