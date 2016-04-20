@@ -64802,6 +64802,7 @@ Ext.define('Ext.direct.Manager', {
                         styleHtmlContent: true,
                         width: '100%',
                         clearIcon: false,
+                        name: 'locationOffText',
                         autoCapitalize: true,
                         readOnly: true
                     },
@@ -66490,94 +66491,62 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         if (Ext.os.is('Android')) {
-            /*var panel;
+            var BackButtonPanel;
             var exitApp = false;
-             BackButtonPanel = Ext.create('Ext.Panel', {
-               // fullscreen: true,
-                    html: 'Double Tap on Back Button To Exit',
-                        id:'BackButtonPanel',
-                        itemId:'BackButtonPanel',
-                        width:200,
-                        height:100,
-                        baseCls: 'x-box'
-
-
+            BackButtonPanel = Ext.create('Ext.Panel', {
+                // fullscreen: true,
+                html: 'Double Tap on Back Button To Exit',
+                id: 'BackButtonPanel',
+                itemId: 'BackButtonPanel',
+                width: 200,
+                height: 100,
+                baseCls: 'x-box'
             });
-           BackButtonPanel.setBottom('100px');
-                        BackButtonPanel.setLeft('170px');
-
-                       BackButtonPanel.setHeight('50px');
-                       BackButtonPanel.setWidth('300px');*/
-            var intval = setInterval(function() {
-                    exitApp = false;
-                }, 1000);
+            BackButtonPanel.setBottom('100px');
+            BackButtonPanel.setLeft('170px');
+            BackButtonPanel.setHeight('50px');
+            BackButtonPanel.setWidth('300px');
+            // var intval = setInterval(function () { exitApp = false; }, 1000);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    var w = Ext.create('Ext.window.Toast', {
-                            html: 'Test',
-                            title: 'Title',
-                            align: 'tr'
-                        });
-                    w.show();
+                    if (exitApp) {
+                        // clearInterval(intval);
+                        navigator.app.exitApp();
+                    } else {
+                        exitApp = true;
+                        Ext.Viewport.add(BackButtonPanel);
+                        BackButtonPanel.show();
+                        setTimeout(function() {
+                            BackButtonPanel.hide();
+                        }, 1000);
+                    }
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
+                    Ext.Viewport.getActiveItem().destroy();
+                    var ds = Ext.StoreManager.lookup('MyJsonPStore');
+                    ds.clearFilter();
+                    var store = Ext.StoreManager.lookup('MyDealsStore');
+                    store.clearFilter();
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
+                    Ext.Viewport.getActiveItem().destroy();
+                    Ext.Viewport.setActiveItem(1);
+                    var store1 = Ext.StoreManager.lookup('MyDealsStore');
+                    //store.clearFilter();
+                    store1.load();
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
+                    console.log('DealsPanel1');
+                    Ext.Viewport.getActiveItem().destroy();
+                } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
+                    Ext.Viewport.getActiveItem().destroy();
+                    if (Ext.Viewport.getComponent('DealsPanel')) {
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
+                    } else {
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
+                    }
                 }
             }
         }
-        /*  if (exitApp) {
-                    clearInterval(intval);
-
-                    navigator.app.exitApp();
-                }
-                else {
-                    exitApp = true;
-                        Ext.Viewport.add(BackButtonPanel);
-                        BackButtonPanel.show();
-
-                        setTimeout(function () {BackButtonPanel.hide();}, 1000);
-                  }
-
-
-
-
-
-                 }
-
-                 else if(Ext.Viewport.getActiveItem().getItemId()==='Info'){
-                   Ext.Viewport.getActiveItem().destroy();
-                   var ds = Ext.StoreManager.lookup('MyJsonPStore');
-                   ds.clearFilter() ;
-
-                   var store = Ext.StoreManager.lookup('MyDealsStore');
-                   store.clearFilter() ;
-
-           }
-           else if(Ext.Viewport.getActiveItem().getItemId()==='DealsPanel'){
-                Ext.Viewport.getActiveItem().destroy();
-                Ext.Viewport.setActiveItem(1);
-
-
-
-                var store1 = Ext.StoreManager.lookup('MyDealsStore');
-                //store.clearFilter();
-                store1.load();
-
-               }
-                else if(Ext.Viewport.getActiveItem().getItemId()==='DealsPanel1'){
-                  console.log('DealsPanel1');
-                  Ext.Viewport.getActiveItem().destroy();
-
-
-               }
-               else if(Ext.Viewport.getActiveItem().getItemId()==='dealPicture'){
-                  Ext.Viewport.getActiveItem().destroy();
-                   if(Ext.Viewport.getComponent('DealsPanel')){
-                       Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-
-                   }
-                   else {
-                       Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
-                   }*/
         document.addEventListener("resume", Ext.bind(onResume, this), false);
         function onResume(e) {
             //Ext.Msg.alert('Resume',null,null,null);
