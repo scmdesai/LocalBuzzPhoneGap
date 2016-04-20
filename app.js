@@ -66501,14 +66501,12 @@ Ext.application({
                 html: 'Tap on Back Button Again To Exit',
                 id: 'BackButtonPanel',
                 itemId: 'BackButtonPanel',
-                width: 200,
-                height: 100,
                 baseCls: 'x-box'
             });
             BackButtonPanel.setBottom('100px');
             BackButtonPanel.setLeft('170px');
             BackButtonPanel.setHeight('50px');
-            BackButtonPanel.setWidth('300px');
+            BackButtonPanel.setWidth('100%');
             var intval = setInterval(function() {
                     exitApp = false;
                 }, 3000);
