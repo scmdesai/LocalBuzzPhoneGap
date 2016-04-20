@@ -66501,6 +66501,10 @@ Ext.application({
                 height: 100,
                 baseCls: 'x-box'
             });
+            BackButtonPanel.setBottom('100px');
+            BackButtonPanel.setLeft('170px');
+            BackButtonPanel.setHeight('50px');
+            BackButtonPanel.setWidth('300px');
             Ext.Viewport.add(BackButtonPanel);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
@@ -66512,16 +66516,11 @@ Ext.application({
                     e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
+                        BackButtonPanel.hide();
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
                         BackButtonPanel.show();
-                        BackButtonPanel.setBottom('100px');
-                        BackButtonPanel.setLeft('170px');
-                        BackButtonPanel.setHeight('50px');
-                        BackButtonPanel.setWidth('300px');
-                        //panel.setStyle('background-color:rgba(0,0,0,0.7);color:#FFF;padding-left:5px;padding-top:10px;border-radius:25px;vertical-align:middle');
-                        // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
                             BackButtonPanel.hide();
                         }, 600);
