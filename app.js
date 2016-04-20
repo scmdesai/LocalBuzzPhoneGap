@@ -65464,7 +65464,8 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                cordova.plugins.email.open({
+                                // cordova.plugins.email.open({
+                                window.plugins.email.open({
                                     to: Ext.getCmp('email').getValue(),
                                     // email addresses for TO field
                                     isHtml: false
