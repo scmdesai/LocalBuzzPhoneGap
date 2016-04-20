@@ -64795,7 +64795,7 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'textareafield',
                         centered: false,
                         height: '100%',
-                        hidden: true,
+                        hidden: false,
                         html: '<h4 class="emptyText">Uh-Oh! Location service is disabled.<br> To access the Latest Buzz near you,<br> allow Local Buzz to access your location in App Settings <br> OR <br>Enter your zipcode in the box provided.</h4>',
                         id: 'locationOffText',
                         itemId: 'locationOffText',
