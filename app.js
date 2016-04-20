@@ -66498,7 +66498,7 @@ Ext.application({
             var exitApp = false;
             BackButtonPanel = Ext.create('Ext.Panel', {
                 // fullscreen: true,
-                html: 'Double Tap on Back Button To Exit',
+                html: 'Tap on Back Button Again To Exit',
                 id: 'BackButtonPanel',
                 itemId: 'BackButtonPanel',
                 width: 200,
@@ -66511,7 +66511,7 @@ Ext.application({
             BackButtonPanel.setWidth('300px');
             var intval = setInterval(function() {
                     exitApp = false;
-                }, 1000);
+                }, 3000);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
@@ -66525,7 +66525,7 @@ Ext.application({
                         BackButtonPanel.show();
                         setTimeout(function() {
                             BackButtonPanel.hide();
-                        }, 1000);
+                        }, 3000);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
