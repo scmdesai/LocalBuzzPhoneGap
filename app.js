@@ -66505,12 +66505,12 @@ Ext.application({
             BackButtonPanel.setLeft('170px');
             BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('300px');
+            var intval = setInterval(function() {
+                    exitApp = false;
+                }, 500);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
-                var intval = setInterval(function() {
-                        exitApp = false;
-                    }, 500);
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     e.preventDefault();
                     if (exitApp) {
