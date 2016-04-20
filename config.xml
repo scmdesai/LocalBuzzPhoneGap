@@ -31,9 +31,9 @@
 	<preference name="StatusBarOverlaysWebView" value="false" />
 	<preference name="StatusBarBackgroundColor" value="#105585" />
     <preference name="StatusBarStyle" value="lightcontent" />
-	<platform name="android">
+	
 	<preference name="windowSoftInputMode" value="adjustPan"/>
-	</platform>
+	
 	
 	
 	<!-- New PhoneGap Plugins -->
