@@ -66505,7 +66505,6 @@ Ext.application({
             BackButtonPanel.setLeft('170px');
             BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('300px');
-            Ext.Viewport.add(BackButtonPanel);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
@@ -66520,9 +66519,10 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
+                        Ext.Viewport.add(BackButtonPanel);
                         BackButtonPanel.show();
                         setTimeout(function() {
-                            BackButtonPanel.hide();
+                            Ext.Viewport.getAt(0).destroy();
                         }, 600);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
