@@ -64782,6 +64782,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'map',
                         height: '100%',
+                        hidden: true,
                         id: 'mymap',
                         itemId: 'mymap',
                         styleHtmlContent: true,
@@ -66506,13 +66507,15 @@ Ext.application({
             BackButtonPanel.setLeft('170px');
             BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('300px');
-            // var intval = setInterval(function () { exitApp = false; }, 1000);
+            var intval = setInterval(function() {
+                    exitApp = false;
+                }, 1000);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
                     if (exitApp) {
-                        // clearInterval(intval);
+                        clearInterval(intval);
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
