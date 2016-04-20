@@ -66522,7 +66522,7 @@ Ext.application({
                         Ext.Viewport.add(BackButtonPanel);
                         BackButtonPanel.show();
                         setTimeout(function() {
-                            Ext.Viewport.getAt(0).destroy();
+                            Ext.Viewport.getComponent('BackButtonPanel').destroy();
                         }, 600);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
