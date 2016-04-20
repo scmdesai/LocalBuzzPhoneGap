@@ -16,7 +16,7 @@
 	<preference name="android-build-tool" value="gradle" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
-    <!--<preference name="fullscreen" value="true" /> -->
+    <preference name="fullscreen" value="false" /> 
     <preference name="webviewbounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
@@ -31,6 +31,7 @@
 	<preference name="StatusBarOverlaysWebView" value="false" />
 	<preference name="StatusBarBackgroundColor" value="#105585" />
     <preference name="StatusBarStyle" value="lightcontent" />
+	<preference name="KeyboardShrinksView" value="false" />
 	
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
@@ -54,6 +55,7 @@
     <gap:plugin name="cordova-plugin-vibration" source="npm" version="1.2.0" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.1.0" />
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
+	
 	
 	<!-- Plugin Added for Push Notification -->
 	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.5.3" />
