@@ -66515,7 +66515,6 @@ Ext.application({
                     e.preventDefault();
                     if (exitApp) {
                         clearInterval(intval);
-                        BackButtonPanel.hide();
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
