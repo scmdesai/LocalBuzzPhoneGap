@@ -65353,7 +65353,7 @@ Ext.define('Ext.direct.Manager', {
                         html: '<b>First Name</b>',
                         id: 'nameTxt',
                         itemId: 'nameTxt',
-                        style: 'word-wrap:break-word;font-family:Arial;',
+                        style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                         width: '65%'
                     }
                 ]
