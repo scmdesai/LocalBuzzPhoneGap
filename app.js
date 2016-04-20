@@ -66515,7 +66515,12 @@ Ext.application({
             // add back button listener
             function onBackKeyDown(e) {
                 if (Ext.Viewport.getActiveItem().xtype === 'Main') {
-                    Ext.toast('Hello Sencha!');
+                    var w = Ext.create('Ext.window.Toast', {
+                            html: 'Test',
+                            title: 'Title',
+                            align: 'tr'
+                        });
+                    w.show();
                 }
             }
         }
