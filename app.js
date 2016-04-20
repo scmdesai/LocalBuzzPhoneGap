@@ -64820,42 +64820,6 @@ Ext.define('Ext.direct.Manager', {
                         name: 'lookUpZipcode',
                         placeHolder: 'Enter zipcode to get the Latest Buzz'
                     }
-                ],
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                                Ext.getCmp('mymap').show();
-                                Ext.getCmp('lookUpZipcode').hide();
-                                Ext.getCmp('locationOffText').hide();
-                                latitude = position.coords.latitude;
-                                longitude = position.coords.longitude;
-                                console.log('Getting coords');
-                            }, onError);
-                            function onError(error) {
-                                Ext.getCmp('mymap').hide();
-                                Ext.getCmp('locationOffText').show();
-                                Ext.getCmp('lookUpZipcode').show();
-                            }
-                            Ext.getCmp('lookUpZipcode').addListener('action', function() {
-                                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-                                Ext.getCmp('lookUpZipcode').setValue('');
-                                Ext.getCmp('mymap').show();
-                                Ext.getCmp('lookUpZipcode').hide();
-                                Ext.getCmp('locationOffText').hide();
-                                console.log(postalCode);
-                                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                    lat = json.results[0].geometry.location.lat;
-                                    long = json.results[0].geometry.location.lng;
-                                    Ext.getCmp('mymap').setMapCenter({
-                                        latitude: lat,
-                                        longitude: long
-                                    });
-                                });
-                            });
-                        },
-                        event: 'painted'
-                    }
                 ]
             }
         ],
@@ -64898,13 +64862,13 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#mymap'
             },
             {
-                fn: 'onMymapActivate',
-                event: 'activate',
-                delegate: '#mymap'
-            },
-            {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
+                delegate: '#BuzzNearMe'
+            },
+            {
+                fn: 'onBuzzNearMeDeactivate',
+                event: 'deactivate',
                 delegate: '#BuzzNearMe'
             }
         ]
@@ -65167,10 +65131,42 @@ Ext.define('Ext.direct.Manager', {
             });
         }
     },
-    onMymapActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        console.log('Map activated');
+    onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            console.log('Getting coords');
+        }, onError);
+        function onError(error) {
+            Ext.getCmp('mymap').hide();
+            Ext.getCmp('locationOffText').show();
+            Ext.getCmp('lookUpZipcode').show();
+        }
+        Ext.getCmp('lookUpZipcode').addListener('action', function() {
+            var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+            Ext.getCmp('lookUpZipcode').setValue('');
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            console.log(postalCode);
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                Ext.getCmp('mymap').setMapCenter({
+                    latitude: lat,
+                    longitude: long
+                });
+            });
+        });
     },
-    onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {}
+    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {
+        Ext.getCmp('mymap').hide();
+        Ext.getCmp('locationOffText').show();
+        Ext.getCmp('lookUpZipcode').show();
+    }
 }, 0, [
     "Main"
 ], [
@@ -65189,47 +65185,6 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'Main'
 ], 0));
-/*   navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            Ext.getCmp('mymap').show();
-            Ext.getCmp('lookUpZipcode').hide();
-            Ext.getCmp('locationOffText').hide();
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-
-            console.log('Getting coords');
-        },onError);
-
-        function onError(error){
-            Ext.getCmp('mymap').hide();
-            Ext.getCmp('locationOffText').show();
-            Ext.getCmp('lookUpZipcode').show();
-
-
-
-
-        }
-
-        Ext.getCmp('lookUpZipcode').addListener('action',function(){
-
-        var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-         Ext.getCmp('lookUpZipcode').setValue('');
-        Ext.getCmp('mymap').show();
-        Ext.getCmp('lookUpZipcode').hide();
-        Ext.getCmp('locationOffText').hide();
-         console.log(postalCode);
-
-        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                      function(json){
-                          lat = json.results[0].geometry.location.lat;
-                          long = json.results[0].geometry.location.lng;
-
-        Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-
-
-            });
-            });*/
 
 /*
  * File: app/view/DealPicture.js
