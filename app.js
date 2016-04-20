@@ -66492,6 +66492,16 @@ Ext.application({
         if (Ext.os.is('Android')) {
             var panel;
             var exitApp = false;
+            BackButtonPanel = Ext.create('Ext.Panel', {
+                // fullscreen: true,
+                html: 'Double Tap on Back Button To Exit',
+                id: 'BackButtonPanel',
+                itemId: 'BackButtonPanel',
+                width: 200,
+                height: 100,
+                baseCls: 'x-box'
+            });
+            Ext.Viewport.add(BackButtonPanel);
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             // add back button listener
             function onBackKeyDown(e) {
@@ -66505,30 +66515,16 @@ Ext.application({
                         navigator.app.exitApp();
                     } else {
                         exitApp = true;
-                        if (Ext.Viewport.getComponent('panel')) {
-                            //panel.destroy();
-                            Ext.Viewport.getComponent('panel').destroy();
-                        }
-                        panel = Ext.create('Ext.Panel', {
-                            // fullscreen: true,
-                            html: 'Double Tap on Back Button To Exit',
-                            id: 'panel',
-                            itemId: 'panel',
-                            width: 200,
-                            height: 100,
-                            baseCls: 'x-box'
-                        });
-                        Ext.Viewport.add(panel);
-                        panel.show();
-                        panel.setBottom('100px');
-                        panel.setLeft('170px');
-                        panel.setHeight('50px');
-                        panel.setWidth('300px');
+                        BackButtonPanel.show();
+                        BackButtonPanel.setBottom('100px');
+                        BackButtonPanel.setLeft('170px');
+                        BackButtonPanel.setHeight('50px');
+                        BackButtonPanel.setWidth('300px');
                         //panel.setStyle('background-color:rgba(0,0,0,0.7);color:#FFF;padding-left:5px;padding-top:10px;border-radius:25px;vertical-align:middle');
                         // panel.setStyleHtmlContent(true);
                         setTimeout(function() {
-                            panel.destroy();
-                        }, 500);
+                            BackButtonPanel.hide();
+                        }, 600);
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
