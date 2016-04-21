@@ -64463,7 +64463,10 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.store.MapMarkerPosition', Ext.data.Store, {
     config: {
         model: 'Contact.model.mapMarkerPosition',
-        storeId: 'MapMarkerPosition'
+        storeId: 'MapMarkerPosition',
+        proxy: {
+            type: 'localstorage'
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -65012,8 +65015,10 @@ Ext.define('Ext.direct.Manager', {
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
-                markerStore.add(lat);
-                markerStore.add(long);
+                markerStore.add({
+                    'lat': lat,
+                    'long': long
+                });
             });
         });
         var icons = {
