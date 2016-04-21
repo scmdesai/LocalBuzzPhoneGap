@@ -64462,6 +64462,8 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.store.MapMarkerPosition', Ext.data.Store, {
     config: {
+        autoLoad: true,
+        autoSync: true,
         model: 'Contact.model.mapMarkerPosition',
         storeId: 'MapMarkerPosition',
         proxy: {
@@ -65195,6 +65197,9 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        var markerStore = Ext.getStore('MapMarkerPosition');
+        markerStore.load();
+        console.log(markerStore.getAllCount());
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
@@ -65220,16 +65225,6 @@ Ext.define('Ext.direct.Manager', {
                 Ext.getCmp('mymap').setMapCenter({
                     latitude: lat,
                     longitude: long
-                });
-                var markerStore = Ext.getStore('MapMarkerPosition');
-                markerStore.load();
-                console.log(markerStore.getAllCount());
-                markerStore.each(function(rec) {
-                    if (Ext.getCmp('mymap').getBounds().contains(rec)) {
-                        console.log('Marker inside boundary');
-                    } else {
-                        console.log('Marker not inside boundary');
-                    }
                 });
             });
         });
