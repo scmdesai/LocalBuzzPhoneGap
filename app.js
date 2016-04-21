@@ -64979,6 +64979,8 @@ Ext.define('Ext.direct.Manager', {
             }
         });
         function check_is_in_or_out(marker) {
+            console.log(gmap.getBounds());
+            console.log(marker.getPosition());
             return gmap.getBounds().contains(marker.getPosition());
         }
         var icons = {
