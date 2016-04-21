@@ -64958,10 +64958,6 @@ Ext.define('Ext.direct.Manager', {
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
-                if (flag_check_marker === false) {
-                    flag_check_marker = check_is_in_or_out(marker);
-                    console.log(flag_check_marker);
-                }
             });
         });
         var bounds_array;
@@ -65073,6 +65069,10 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon
                 });
+            if (flag_check_marker === false) {
+                flag_check_marker = check_is_in_or_out(marker);
+                console.log(flag_check_marker);
+            }
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
