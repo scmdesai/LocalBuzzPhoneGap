@@ -64979,7 +64979,7 @@ Ext.define('Ext.direct.Manager', {
             }
         });
         function check_is_in_or_out(marker) {
-            return map.getBounds().contains(marker.getPosition());
+            return gmap.getBounds().contains(marker.getPosition());
         }
         var icons = {
                 "0": {
