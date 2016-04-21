@@ -65213,7 +65213,7 @@ Ext.define('Ext.direct.Manager', {
                     longitude: long
                 });
                 var markerStore = Ext.getStore('MapMarkerPosition');
-                console.log(markerStore.load());
+                markerStore.load();
                 markerStore.each(function(rec) {
                     if (Ext.getCmp('mymap').getBounds().contains(rec)) {
                         console.log('Marker inside boundary');
