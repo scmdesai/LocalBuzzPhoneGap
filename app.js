@@ -64435,7 +64435,7 @@ Ext.define('Ext.direct.Manager', {
         cls: 'favorite',
         height: '100%',
         itemId: 'latestbuzz',
-        style: 'background:#fff',
+        style: 'background:#FFF',
         emptyText: '<h4 class="emptyText">No Buzz currently.Please check back later</h4>',
         inline: true,
         itemCls: 'itemCls',
@@ -64738,15 +64738,6 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'Favorites',
                 margin: '1 1 1 1',
                 modal: false,
-                items: [
-                    {
-                        xtype: 'favoriteview',
-                        height: '100%',
-                        itemId: 'favoriteview1',
-                        style: 'background:#fff;border:1px groove #C0C0C0',
-                        modal: false
-                    }
-                ],
                 listeners: [
                     {
                         fn: function(element, eOpts) {
@@ -64766,6 +64757,16 @@ Ext.define('Ext.direct.Manager', {
                             }, this);
                         },
                         event: 'painted'
+                    }
+                ],
+                items: [
+                    {
+                        xtype: 'favoriteview',
+                        docked: 'top',
+                        height: '100%',
+                        itemId: 'favoriteview1',
+                        style: 'background:#fff;border:1px groove #C0C0C0',
+                        modal: false
                     }
                 ]
             },
@@ -64946,6 +64947,7 @@ Ext.define('Ext.direct.Manager', {
 
                 }*/
         map.mapTypeControl = false;
+        var flag_check_marker = false;
         var store = Ext.getStore('MyJsonPStore');
         store.each(function(record) {
             var address = record.get('address');
@@ -64956,8 +64958,33 @@ Ext.define('Ext.direct.Manager', {
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
+                if (flag_check_marker === false) {
+                    flag_check_marker = check_is_in_or_out(marker);
+                    console.log(flag_check_marker);
+                }
             });
         });
+        var bounds_array;
+        google.maps.event.addListener(map, 'bounds_changed', function() {
+            var bounds_ = map.getBounds();
+            if (bounds_) {
+                var leftBottom = [
+                        bounds_.getSouthWest().lat(),
+                        bounds_.getSouthWest().lng()
+                    ];
+                var rightTop = [
+                        bounds_.getNorthEast().lat(),
+                        bounds_.getNorthEast().lng()
+                    ];
+                bounds_array = [
+                    leftBottom,
+                    rightTop
+                ];
+            }
+        });
+        function check_is_in_or_out(marker) {
+            return map.getBounds().contains(marker.getPosition());
+        }
         var icons = {
                 "0": {
                     icon: 'resources/img/car.png'
@@ -65151,7 +65178,6 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
             Ext.getCmp('locationOffText').hide();
-            console.log(postalCode);
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 lat = json.results[0].geometry.location.lat;
                 long = json.results[0].geometry.location.lng;
