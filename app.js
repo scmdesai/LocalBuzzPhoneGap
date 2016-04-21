@@ -64600,7 +64600,7 @@ Ext.define('Ext.direct.Manager', {
         store: 'MyJsonPStore1',
         itemTpl: [
             '<div style= "margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;border:2px groove #C0C0C0"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" /></div>',
-            '<div style="color:black;font-size:3vw;text-align:left;word-wrap:break-word;">{businessName}</div>',
+            '<div style="color:black;font-size:3vw;text-align:center; word-break: break-all;">{businessName}</div>',
             '',
             '',
             ''
