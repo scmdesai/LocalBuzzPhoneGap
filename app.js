@@ -64978,10 +64978,8 @@ Ext.define('Ext.direct.Manager', {
                 ];
             }
         });
-        function check_is_in_or_out(marker) {
-            console.log(gmap.getBounds());
-            console.log(marker.getPosition());
-            return gmap.getBounds().contains(marker.getPosition());
+        function check_is_in_or_out(m) {
+            return gmap.getBounds().contains(m);
         }
         var icons = {
                 "0": {
@@ -65072,7 +65070,7 @@ Ext.define('Ext.direct.Manager', {
                     icon: icons[category].icon
                 });
             if (flag_check_marker === false) {
-                flag_check_marker = check_is_in_or_out(marker);
+                flag_check_marker = check_is_in_or_out(m);
                 console.log(flag_check_marker);
             }
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
