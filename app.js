@@ -65008,7 +65008,7 @@ Ext.define('Ext.direct.Manager', {
                 //console.log(lat,long);
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
-                console.log(m);
+                console.log(m.getPosition());
                 addMarker(record.get('category'), record.get('businessName'), m, record);
                 markerStore.add(m);
             });
