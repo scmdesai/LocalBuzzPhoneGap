@@ -65469,12 +65469,10 @@ Ext.define('Ext.direct.Manager', {
                                     // email addresses for TO field
                                     isHtml: false
                                 }, // indicats if the body is HTML or plain text
-                                {
-                                    to: Ext.getCmp('email').getValue(),
-                                    // email addresses for TO field
-                                    isHtml: false
-                                }, // indicats if the body is HTML or plain text
-                                this);
+                                callback);
+                                function callback() {
+                                    console.log('Email working');
+                                }
                             });
                         },
                         event: 'painted'
