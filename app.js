@@ -65469,10 +65469,7 @@ Ext.define('Ext.direct.Manager', {
                                     // email addresses for TO field
                                     isHtml: false
                                 }, // indicats if the body is HTML or plain text
-                                callback);
-                                function callback() {
-                                    console.log('Email working');
-                                }
+                                callback, this);
                             });
                         },
                         event: 'painted'
