@@ -65464,17 +65464,15 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                cordova.plugins.email.open({
+                                // cordova.plugins.email.open({
+                                window.plugin.email.open({
                                     to: Ext.getCmp('email').getValue(),
                                     // email addresses for TO field
                                     isHtml: false
-                                }, // indicats if the body is HTML or plain text
-                                callback, this);
-                                function callback() {
-                                    cordova.plugins.email.open();
-                                }
+                                });
                             });
                         },
+                        // indicats if the body is HTML or plain text
                         event: 'painted'
                     }
                 ]
