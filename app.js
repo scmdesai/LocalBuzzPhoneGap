@@ -64999,6 +64999,7 @@ Ext.define('Ext.direct.Manager', {
                 }*/
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
+        var markerStore = Ext.getStore('MapMarkerPosition');
         store.each(function(record) {
             var address = record.get('address');
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
@@ -65007,7 +65008,9 @@ Ext.define('Ext.direct.Manager', {
                 //console.log(lat,long);
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
+                console.log(m);
                 addMarker(record.get('category'), record.get('businessName'), m, record);
+                markerStore.add(m);
             });
         });
         var icons = {
@@ -65074,7 +65077,6 @@ Ext.define('Ext.direct.Manager', {
                             }*/
         function addMarker(feature, businessName, m, record) {
             var ds = Ext.getStore('MyDealsStore');
-            var markerStore = Ext.getStore('MapMarkerPosition');
             ds.clearFilter();
             ds.filter('customerId', record.get('customerId'));
             ds.load();
@@ -65099,7 +65101,6 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon
                 });
-            markerStore.add(m);
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
