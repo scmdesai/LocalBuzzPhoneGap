@@ -65470,6 +65470,9 @@ Ext.define('Ext.direct.Manager', {
                                     isHtml: false
                                 }, // indicats if the body is HTML or plain text
                                 callback, this);
+                                function callback() {
+                                    cordova.plugins.email.open();
+                                }
                             });
                         },
                         event: 'painted'
