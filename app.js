@@ -64961,8 +64961,8 @@ Ext.define('Ext.direct.Manager', {
             });
         });
         var bounds_array;
-        google.maps.event.addListener(map, 'bounds_changed', function() {
-            var bounds_ = map.getBounds();
+        google.maps.event.addListener(gmap, 'bounds_changed', function() {
+            var bounds_ = gmap.getBounds();
             if (bounds_) {
                 var leftBottom = [
                         bounds_.getSouthWest().lat(),
