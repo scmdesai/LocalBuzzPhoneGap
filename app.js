@@ -64117,7 +64117,10 @@ Ext.define('Ext.direct.Manager', {
     config: {
         fields: [
             {
-                name: 'pos'
+                name: 'lat'
+            },
+            {
+                name: 'long'
             }
         ]
     }
@@ -65007,10 +65010,12 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 //console.log(lat,long);
                 var m = new google.maps.LatLng(lat, long);
+                var pos = [];
+                pos[0] = lat;
+                pos[1] = long;
                 //businessName = record.get('businessName');
-                console.log(m.getPosition());
                 addMarker(record.get('category'), record.get('businessName'), m, record);
-                markerStore.add(m);
+                markerStore.add(pos);
             });
         });
         var icons = {
