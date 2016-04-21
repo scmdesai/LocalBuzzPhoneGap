@@ -64599,9 +64599,8 @@ Ext.define('Ext.direct.Manager', {
         inline: true,
         store: 'MyJsonPStore1',
         itemTpl: [
-            '<div style= "margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;word-wrap:word-break;border:2px groove #C0C0C0"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" /></div>',
-            '<div style="color:black;font-size:2.8vw;text-align:center;overflow: hidden;',
-            '    text-overflow: ellipsis;">{businessName}</div>',
+            '<div style= "margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;border:2px groove #C0C0C0"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" /></div>',
+            '<p style="width:100;color:black;font-size:2.8vw;text-align:center;word-wrap:word-break;">{businessName}</p>',
             '',
             '',
             ''
