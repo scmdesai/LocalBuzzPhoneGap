@@ -65005,7 +65005,7 @@ Ext.define('Ext.direct.Manager', {
                 }*/
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
-        var mapMarkerPositionStore = Ext.getStore('MapMarkerPosition');
+        var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         store.each(function(record) {
             var address = record.get('address');
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
