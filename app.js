@@ -65010,12 +65010,10 @@ Ext.define('Ext.direct.Manager', {
                 long = json.results[0].geometry.location.lng;
                 //console.log(lat,long);
                 var m = new google.maps.LatLng(lat, long);
-                var pos = [];
-                pos[0] = lat;
-                pos[1] = long;
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
-                markerStore.add(pos);
+                markerStore.add(lat);
+                markerStore.add(long);
             });
         });
         var icons = {
