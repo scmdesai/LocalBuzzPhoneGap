@@ -65464,15 +65464,24 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                // cordova.plugins.email.open({
-                                window.plugin.email.open({
-                                    to: Ext.getCmp('email').getValue(),
-                                    // email addresses for TO field
-                                    isHtml: false
-                                });
+                                /* cordova.plugins.email.open({
+
+
+                                to:          Ext.getCmp('email').getValue(), // email addresses for TO field
+                                isHtml:    false, // indicats if the body is HTML or plain text
+                                });*/
+                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+                                null, [
+                                    Ext.getCmp('email').getValue()
+                                ], // TO: must be null or an array
+                                null, // CC: must be null or an array
+                                null, // BCC: must be null or an array
+                                null, // FILES: can be null, a string, or an array
+                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
+                                null);
                             });
                         },
-                        // indicats if the body is HTML or plain text
+                        // called when sh*t hits the fan
                         event: 'painted'
                     }
                 ]
