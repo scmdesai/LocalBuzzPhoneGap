@@ -65006,6 +65006,7 @@ Ext.define('Ext.direct.Manager', {
                 }*/
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
+        var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         var check_if_markers_visible = false;
         store.each(function(record) {
             var address = record.get('address');
