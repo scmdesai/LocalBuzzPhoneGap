@@ -65225,11 +65225,7 @@ Ext.define('Ext.direct.Manager', {
                 }
             });
         }, onError);
-        function onError(error) {
-            Ext.getCmp('mymap').hide();
-            Ext.getCmp('locationOffText').show();
-            Ext.getCmp('lookUpZipcode').show();
-        }
+        function onError(error) {}
         Ext.getCmp('lookUpZipcode').addListener('action', function() {
             var postalCode = Ext.getCmp('lookUpZipcode').getValue();
             Ext.getCmp('lookUpZipcode').setValue('');
