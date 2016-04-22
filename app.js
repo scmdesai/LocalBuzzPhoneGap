@@ -65203,6 +65203,24 @@ Ext.define('Ext.direct.Manager', {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
             console.log('Getting coords');
+            //var southWest =  json.results[0].geometry.bounds.southwest;
+            //var northEast =  json.results[0].geometry.bounds.northeast;
+            var bounds = Ext.getCmp('mymap').getBounds();
+            //new google.maps.LatLngBounds(southWest,northEast);
+            var check_if_markers_visible = false;
+            mapMarkerPositionStore.each(function(rec) {
+                var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                console.log(rec.get('lat'), rec.get('long'));
+                if (bounds.contains(pos)) {
+                    check_if_markers_visible = true;
+                }
+            });
+            if (mapMarkerPositionStore.getAllCount() !== 0) {
+                console.log(check_if_markers_visible);
+                if (check_if_markers_visible === false) {
+                    Ext.Msg.alert('No Buzz Found In Your Location', 'Please Check Back Later', nul, null);
+                }
+            }
         }, onError);
         function onError(error) {
             Ext.getCmp('mymap').hide();
@@ -65233,7 +65251,12 @@ Ext.define('Ext.direct.Manager', {
                         check_if_markers_visible = true;
                     }
                 });
-                console.log(check_if_markers_visible);
+                if (mapMarkerPositionStore.getAllCount() !== 0) {
+                    console.log(check_if_markers_visible);
+                    if (check_if_markers_visible === false) {
+                        Ext.Msg.alert('No Buzz Found In Your Location', 'Please Check Back Later', nul, null);
+                    }
+                }
             });
         });
     },
