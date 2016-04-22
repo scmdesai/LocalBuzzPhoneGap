@@ -64903,16 +64903,16 @@ Ext.define('Ext.direct.Manager', {
                                     var customerId = record.get('customerId');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance < 1610) {
-                                            console.log(distance);
-                                            store2.filterBy(function(rec) {
+                                        store2.filterBy(function(rec) {
+                                            if (distance < 1610) {
+                                                console.log(distance);
+                                                console.log(rec.get('businessName'));
                                                 return true;
-                                            }, this);
-                                        } else {
-                                            store2.filterBy(function(rec) {
-                                                return false;
-                                            }, this);
-                                        }
+                                            } else {
+                                                console.log(rec.get('businessName'));
+                                            }
+                                            return false;
+                                        }, this);
                                     });
                                 });
                             });
