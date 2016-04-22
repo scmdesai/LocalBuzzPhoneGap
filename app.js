@@ -64914,7 +64914,7 @@ Ext.define('Ext.direct.Manager', {
                                             console.log('False');
                                             return false;
                                             }*/
-                                            console.log(JSON.stringify(json));
+                                            console.log(JSON.parse(json));
                                         }
                                     });
                                 });
