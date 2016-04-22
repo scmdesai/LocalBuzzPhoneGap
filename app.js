@@ -64869,18 +64869,17 @@ Ext.define('Ext.direct.Manager', {
                                 var store2 = Ext.getStore('MyJsonPStore1');
                                 store1.load();
                                 store1.clearFilter();
-                                store1.filterBy(function(record) {
-                                    var flag = true;
+                                store1.each(function(record) {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
                                         if (distance <= 1610) {
-                                            flag = false;
+                                            console.log(record);
+                                            storesNearBy.add(record);
                                         }
                                     });
-                                    return flag;
-                                }, this);
-                                console.log(store1.getCount());
+                                });
+                                console.log(storesNearBy.getCount());
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
