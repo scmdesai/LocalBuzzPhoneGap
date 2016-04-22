@@ -64905,6 +64905,8 @@ Ext.define('Ext.direct.Manager', {
                                         var distance = json.rows[0].elements[0].distance.value;
                                         if (distance <= 1610) {
                                             store2.filterBy(function(rec) {
+                                                console.log(rec.get('customerId'));
+                                                console.log(customerId);
                                                 if (rec.get('customerId') === customerId) {
                                                     return true;
                                                 } else {
