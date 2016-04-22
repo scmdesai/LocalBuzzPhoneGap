@@ -64863,6 +64863,7 @@ Ext.define('Ext.direct.Manager', {
                                 longitude = position.coords.longitude;
                                 Ext.getCmp('location').hide();
                                 var storesNearBy = Ext.getStore('calculateDistance');
+                                storesNearBy.load();
                                 var store1 = Ext.getStore('MyJsonPStore');
                                 store1.load();
                                 store1.clearFilter();
@@ -64870,7 +64871,7 @@ Ext.define('Ext.direct.Manager', {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance <= 402) {
+                                        if (distance <= 1610) {
                                             storesNearBy.add(record);
                                         }
                                     });
