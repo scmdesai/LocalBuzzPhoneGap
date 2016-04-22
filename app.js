@@ -64942,7 +64942,7 @@ Ext.define('Ext.direct.Manager', {
             store1.each(function(record) {
                 var address = record.get('address');
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    var distance = json.rows[0].elemets[0].distance;
+                    var distance = json.rows[0].elements[0].distance;
                     console.log(distance);
                 });
             });
