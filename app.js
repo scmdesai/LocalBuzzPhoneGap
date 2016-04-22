@@ -64909,7 +64909,7 @@ Ext.define('Ext.direct.Manager', {
                                                 console.log(rec.get('businessName'));
                                                 return true;
                                             } else {
-                                                console.log(rec.get('businessName'));
+                                                console.log('Returning False' + rec.get('businessName'));
                                             }
                                             return false;
                                         }, this);
