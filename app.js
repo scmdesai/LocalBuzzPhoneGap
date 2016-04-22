@@ -64835,6 +64835,7 @@ Ext.define('Ext.direct.Manager', {
                                 latitude = position.coords.latitude;
                                 longitude = position.coords.longitude;
                                 Ext.getCmp('location').hide();
+                                var storesNearBy = [];
                                 var store1 = Ext.getStore('MyJsonPStore');
                                 store1.load();
                                 store1.clearFilter();
@@ -64842,12 +64843,20 @@ Ext.define('Ext.direct.Manager', {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.text;
-                                        console.log(distance);
+                                        if (distance <= "1.0 mi") {
+                                            storesNearBy.add(record);
+                                        }
                                     });
                                 });
+                                var ds = Ext.getStore('MyDealsStore');
+                                ds.clearFilter();
+                                ds.filterBy(function(record) {
+                                    return Ext.Array.indexOf(storesNearBy, record.get('customerId')) !== -1;
+                                }, this);
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
+                                var storesNearBy1 = [];
                                 var store1 = Ext.getStore('MyJsonPStore');
                                 store1.load();
                                 store1.clearFilter();
@@ -64855,9 +64864,16 @@ Ext.define('Ext.direct.Manager', {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + postalCode + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.text;
-                                        console.log(distance);
+                                        if (distance <= "1.0 mi") {
+                                            storesNearBy1.add(record);
+                                        }
                                     });
                                 });
+                                var ds = Ext.getStore('MyDealsStore');
+                                ds.clearFilter();
+                                ds.filterBy(function(record) {
+                                    return Ext.Array.indexOf(storesNearBy1, record.get('customerId')) !== -1;
+                                }, this);
                             });
                         },
                         event: 'painted'
