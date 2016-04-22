@@ -65231,9 +65231,9 @@ Ext.define('Ext.direct.Manager', {
                 Ext.getCmp('locationOffText').show();
                 Ext.getCmp('lookUpZipcode').show();
                 var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-                //Ext.getCmp('mymap').show();
-                //Ext.getCmp('lookUpZipcode').hide();
-                //Ext.getCmp('locationOffText').hide();
+                Ext.getCmp('mymap').show();
+                Ext.getCmp('lookUpZipcode').hide();
+                Ext.getCmp('locationOffText').hide();
                 console.log(postalCode);
                 $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     lat = json.results[0].geometry.location.lat;
