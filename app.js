@@ -64871,19 +64871,18 @@ Ext.define('Ext.direct.Manager', {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance <= 1610) {
+                                        if (distance <= 805) {
                                             storesNearBy.add(record);
                                         }
                                     });
                                 });
                                 console.log(storesNearBy.getAllCount());
-                            });
-                            /* var ds = Ext.getStore('MyDealsStore');
+                                var ds = Ext.getStore('MyDealsStore');
                                 ds.clearFilter();
-                                ds.filterBy(function(record){
-                                return storesNearBy.findRecord('customerId', record.get('customerId')) !== -1;
-
-                                }, this);*/
+                                ds.filterBy(function(record) {
+                                    return storesNearBy.findRecord('customerId', record.get('customerId')) !== -1;
+                                }, this);
+                            });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
                                 //var storesNearBy1 = [];
@@ -65137,7 +65136,11 @@ Ext.define('Ext.direct.Manager', {
         store.clearFilter();
         store.filter('dealStatus','Active');*/
     onLatestBuzzDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {
-        var storesNearBy = Ext.getStore('calculateDistance').removeAll();
+        var storesNearBy = Ext.getStore('calculateDistance');
+        storesNearBy.each(function(record) {
+            record.destroy();
+        });
+        console.log(storesNearBy.getAllCount());
     },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
