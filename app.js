@@ -64845,7 +64845,7 @@ Ext.define('Ext.direct.Manager', {
                                         var distance = json.rows[0].elements[0].distance.value;
                                         if (distance <= 1610) {
                                             //storesNearBy.push(record.get('customerId'));
-                                            Ext.Array.include(storesNearBy, get('customerId'));
+                                            Ext.Array.include(storesNearBy, record.get('customerId'));
                                         }
                                     });
                                 });
