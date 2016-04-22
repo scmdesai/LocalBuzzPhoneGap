@@ -64905,14 +64905,13 @@ Ext.define('Ext.direct.Manager', {
                                         var distance = json.rows[0].elements[0].distance.value;
                                         if (distance < 1610) {
                                             console.log(distance);
-                                            console.log('Returning True ' + record.get('businessName'));
                                             return true;
                                         } else {
-                                            console.log('Returning False' + record.get('businessName'));
                                             return false;
                                         }
                                     });
                                 }, this);
+                                console.log(store1.getCount());
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
