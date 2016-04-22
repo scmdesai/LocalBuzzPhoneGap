@@ -64916,6 +64916,7 @@ Ext.define('Ext.direct.Manager', {
                                         }
                                     });
                                 });
+                                console.log(store1.getCount());
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
