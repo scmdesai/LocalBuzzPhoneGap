@@ -65254,7 +65254,7 @@ Ext.define('Ext.direct.Manager', {
                 if (mapMarkerPositionStore.getAllCount() !== 0) {
                     console.log(check_if_markers_visible);
                     if (check_if_markers_visible === false) {
-                        Ext.Msg.alert('No Buzz Found In Your Location', 'Please Check Back Later', nul, null);
+                        Ext.Msg.alert('No Buzz Found In Your Location', 'Please Check Back Later', null, null);
                     }
                 }
             });
