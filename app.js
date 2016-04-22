@@ -65024,6 +65024,7 @@ Ext.define('Ext.direct.Manager', {
                 navigator.geolocation.getCurrentPosition(function showPosition(position) {
                     latitude = position.coords.latitude;
                     longitude = position.coords.longitude;
+                    console.log('Getting position');
                     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json1) {
                         var southWest = json1.results[0].geometry.bounds.southwest;
                         var northEast = json1.results[0].geometry.bounds.northeast;
@@ -65038,7 +65039,9 @@ Ext.define('Ext.direct.Manager', {
                         }
                     });
                 }, onError);
-                function onError(error) {}
+                function onError(error) {
+                    console.log('Getting position');
+                }
                 Ext.getCmp('lookUpZipcode').addListener('action', function() {
                     var postalCode = Ext.getCmp('lookUpZipcode').getValue();
                     Ext.getCmp('lookUpZipcode').setValue('');
