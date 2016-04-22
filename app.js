@@ -64849,7 +64849,7 @@ Ext.define('Ext.direct.Manager', {
                                     });
                                 });
                                 console.log(storesNearBy.length);
-                                console.log(distance);
+                                console.log(distance1);
                                 var ds = Ext.getStore('MyDealsStore');
                                 ds.clearFilter();
                                 ds.filterBy(function(record) {
