@@ -64832,6 +64832,7 @@ Ext.define('Ext.direct.Manager', {
                 title: 'Buzz Near Me',
                 iconCls: 'icon-buzz',
                 height: '100%',
+                id: 'BuzzNearMe',
                 itemId: 'BuzzNearMe',
                 margin: '1 1 1 1',
                 padding: '',
@@ -64917,7 +64918,6 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onMyMapRender',
                 event: 'maprender',
-                order: 'before',
                 delegate: '#mymap'
             },
             {
@@ -65194,6 +65194,7 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
+        Ext.get('BuzzNearMe').activate();
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
