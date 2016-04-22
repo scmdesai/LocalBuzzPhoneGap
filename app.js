@@ -64904,7 +64904,7 @@ Ext.define('Ext.direct.Manager', {
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
                                         store2.filterBy(function(rec) {
-                                            if (distance < 1610 && customerId === rec.get('customerId')) {
+                                            if (distance < 1610) {
                                                 console.log(distance);
                                                 return true;
                                             } else {
