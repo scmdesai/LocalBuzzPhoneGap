@@ -65203,14 +65203,9 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
             Ext.getCmp('locationOffText').hide();
-            latitude = 47.674;
-            //position.coords.latitude;
-            longitude = -122.1215;
-            //position.coords.longitude;
-            Ext.getCmp('mymap').setMapCenter({
-                latitude: latitude,
-                longitude: longitude
-            });
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            // Ext.getCmp('mymap').setMapCenter({latitude: latitude ,longitude: longitude});
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 var southWest = json.results[0].geometry.bounds.southwest;
                 var northEast = json.results[0].geometry.bounds.northeast;
@@ -65230,6 +65225,41 @@ Ext.define('Ext.direct.Manager', {
                     }
                 }
             });
+            if (Ext.getCmp('lookUpZipcode').getValue() !== '') {
+                Ext.getCmp('mymap').hide();
+                Ext.getCmp('locationOffText').show();
+                Ext.getCmp('lookUpZipcode').show();
+                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+                Ext.getCmp('mymap').show();
+                Ext.getCmp('lookUpZipcode').hide();
+                Ext.getCmp('locationOffText').hide();
+                console.log(postalCode);
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+                    var southWest = json.results[0].geometry.bounds.southwest;
+                    var northEast = json.results[0].geometry.bounds.northeast;
+                    var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                    var check_if_markers_visible = false;
+                    mapMarkerPositionStore.each(function(rec) {
+                        var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                        console.log(rec.get('lat'), rec.get('long'));
+                        if (bounds.contains(pos)) {
+                            check_if_markers_visible = true;
+                        }
+                    });
+                    if (mapMarkerPositionStore.getAllCount() !== 0) {
+                        console.log(check_if_markers_visible);
+                        if (check_if_markers_visible === false) {
+                            Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                        }
+                    }
+                });
+            }
         }, onError);
         function onError(error) {
             if (Ext.getCmp('lookUpZipcode').getValue() !== '') {
