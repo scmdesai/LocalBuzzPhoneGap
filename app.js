@@ -65022,6 +65022,66 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
+        //var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            // Ext.getCmp('mymap').show();
+            //Ext.getCmp('lookUpZipcode').hide();
+            // Ext.getCmp('locationOffText').hide();
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                var southWest = json.results[0].geometry.bounds.southwest;
+                var northEast = json.results[0].geometry.bounds.northeast;
+                var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                var check_if_markers_visible = false;
+                mapMarkerPositionStore.each(function(rec) {
+                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                    console.log(rec.get('lat'), rec.get('long'));
+                    if (bounds.contains(pos)) {
+                        check_if_markers_visible = true;
+                    }
+                });
+                if (mapMarkerPositionStore.getAllCount() !== 0) {
+                    console.log(check_if_markers_visible);
+                    if (check_if_markers_visible === false) {
+                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                    }
+                }
+            });
+        }, onError);
+        function onError(error) {}
+        //  Ext.getCmp('mymap').hide();
+        // Ext.getCmp('locationOffText').show();
+        //  Ext.getCmp('lookUpZipcode').show();
+        Ext.getCmp('lookUpZipcode').addListener('action', function() {
+            var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+            Ext.getCmp('lookUpZipcode').setValue('');
+            //Ext.getCmp('mymap').show();
+            //Ext.getCmp('lookUpZipcode').hide();
+            //Ext.getCmp('locationOffText').hide();
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                //Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
+                var southWest = json.results[0].geometry.bounds.southwest;
+                var northEast = json.results[0].geometry.bounds.northeast;
+                var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                var check_if_markers_visible = false;
+                mapMarkerPositionStore.each(function(rec) {
+                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                    console.log(rec.get('lat'), rec.get('long'));
+                    if (bounds.contains(pos)) {
+                        check_if_markers_visible = true;
+                    }
+                });
+                if (mapMarkerPositionStore.getAllCount() !== 0) {
+                    console.log(check_if_markers_visible);
+                    if (check_if_markers_visible === false) {
+                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                    }
+                }
+            });
+        });
         var icons = {
                 "0": {
                     icon: 'resources/img/car.png'
@@ -65194,8 +65254,8 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-        Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
+    //Ext.getCmp('BuzzNearMe').fireEvent('activate',this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
