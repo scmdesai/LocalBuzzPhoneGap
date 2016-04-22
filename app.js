@@ -65225,11 +65225,9 @@ Ext.define('Ext.direct.Manager', {
                 var southWest = json.results[0].geometry.bounds.southwest;
                 var northEast = json.results[0].geometry.bounds.northeast;
                 var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                console.log('southwest: ' + southWest);
-                console.log('northeast: ' + northEast);
                 mapMarkerPositionStore.each(function(rec) {
-                    var pos = new google.maps.LatLng(rec.lat, rec.long);
-                    console.log(rec.lat, rec.long);
+                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                    console.log(rec.get('lat'), rec.get('long'));
                     if (bounds.contains(pos)) {
                         console.log('Marker found');
                     } else {
