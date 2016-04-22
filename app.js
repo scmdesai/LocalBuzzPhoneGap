@@ -64917,12 +64917,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onMyMapRender',
                 event: 'maprender',
-                delegate: '#mymap'
-            },
-            {
-                fn: 'onMymapMaprender',
-                event: 'maprender',
-                order: 'after',
+                order: 'before',
                 delegate: '#mymap'
             },
             {
@@ -65117,9 +65112,6 @@ Ext.define('Ext.direct.Manager', {
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
-            google.maps.event.addListener(gmap, 'idle', function() {
-                console.log('Map idle');
-            });
         }
         function addInfoWindow(marker, content, record, businessName) {
             /*infoWindow = new google.maps.InfoWindow({
@@ -65202,62 +65194,6 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-    },
-    onMymapMaprender: function(map, gmap, eOpts) {
-        var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                var southWest = json.results[0].geometry.bounds.southwest;
-                var northEast = json.results[0].geometry.bounds.northeast;
-                var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                var check_if_markers_visible = false;
-                mapMarkerPositionStore.each(function(rec) {
-                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
-                    console.log(rec.get('lat'), rec.get('long'));
-                    if (bounds.contains(pos)) {
-                        check_if_markers_visible = true;
-                    }
-                });
-                if (mapMarkerPositionStore.getAllCount() !== 0) {
-                    console.log(check_if_markers_visible);
-                    if (check_if_markers_visible === false) {
-                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
-                    }
-                }
-            });
-        }, onError);
-        function onError(error) {}
-        Ext.getCmp('lookUpZipcode').addListener('action', function() {
-            var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-            Ext.getCmp('lookUpZipcode').setValue('');
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                lat = json.results[0].geometry.location.lat;
-                long = json.results[0].geometry.location.lng;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                var southWest = json.results[0].geometry.bounds.southwest;
-                var northEast = json.results[0].geometry.bounds.northeast;
-                var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                var check_if_markers_visible = false;
-                mapMarkerPositionStore.each(function(rec) {
-                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
-                    console.log(rec.get('lat'), rec.get('long'));
-                    if (bounds.contains(pos)) {
-                        check_if_markers_visible = true;
-                    }
-                });
-                if (mapMarkerPositionStore.getAllCount() !== 0) {
-                    console.log(check_if_markers_visible);
-                    if (check_if_markers_visible === false) {
-                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
-                    }
-                }
-            });
-        });
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
