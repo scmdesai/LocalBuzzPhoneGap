@@ -65007,6 +65007,7 @@ Ext.define('Ext.direct.Manager', {
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+        var check_if_markers_visible = false;
         store.each(function(record) {
             var address = record.get('address');
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
@@ -65023,11 +65024,10 @@ Ext.define('Ext.direct.Manager', {
                 navigator.geolocation.getCurrentPosition(function showPosition(position) {
                     latitude = position.coords.latitude;
                     longitude = position.coords.longitude;
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        var southWest = json.results[0].geometry.bounds.southwest;
-                        var northEast = json.results[0].geometry.bounds.northeast;
+                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json1) {
+                        var southWest = json1.results[0].geometry.bounds.southwest;
+                        var northEast = json1.results[0].geometry.bounds.northeast;
                         var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                        var check_if_markers_visible = false;
                         var pos = new google.maps.LatLng(lat, long);
                         if (bounds.contains(pos)) {
                             check_if_markers_visible = true;
@@ -65042,15 +65042,16 @@ Ext.define('Ext.direct.Manager', {
                 Ext.getCmp('lookUpZipcode').addListener('action', function() {
                     var postalCode = Ext.getCmp('lookUpZipcode').getValue();
                     Ext.getCmp('lookUpZipcode').setValue('');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    console.log(postalCode);
+                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json2) {
                         latitude = json.results[0].geometry.location.lat;
                         longitude = json.results[0].geometry.location.lng;
                         Ext.getCmp('mymap').setMapCenter({
                             latitude: latitude,
                             longitude: longitude
                         });
-                        var southWest = json.results[0].geometry.bounds.southwest;
-                        var northEast = json.results[0].geometry.bounds.northeast;
+                        var southWest = json2.results[0].geometry.bounds.southwest;
+                        var northEast = json2.results[0].geometry.bounds.northeast;
                         var bounds = new google.maps.LatLngBounds(southWest, northEast);
                         var check_if_markers_visible = false;
                         var pos = new google.maps.LatLng(lat, long);
