@@ -65083,11 +65083,6 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#LatestBuzz'
             },
             {
-                fn: 'onLatestBuzzDeactivate',
-                event: 'deactivate',
-                delegate: '#LatestBuzz'
-            },
-            {
                 fn: 'onSearchfieldKeyup',
                 event: 'keyup',
                 delegate: '#searchfield'
@@ -65135,13 +65130,6 @@ Ext.define('Ext.direct.Manager', {
 
         store.clearFilter();
         store.filter('dealStatus','Active');*/
-    onLatestBuzzDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {
-        var storesNearBy = Ext.getStore('calculateDistance');
-        storesNearBy.each(function(record) {
-            record.destroy();
-        });
-        console.log(storesNearBy.getAllCount());
-    },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
