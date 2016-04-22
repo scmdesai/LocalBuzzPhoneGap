@@ -64863,7 +64863,7 @@ Ext.define('Ext.direct.Manager', {
                                 longitude = position.coords.longitude;
                                 Ext.getCmp('location').hide();
                                 var storesNearBy = Ext.getStore('calculateDistance');
-                                storesNearBy.load();
+                                storesNearBy.removeAll();
                                 var store1 = Ext.getStore('MyJsonPStore');
                                 store1.load();
                                 store1.clearFilter();
@@ -64876,7 +64876,6 @@ Ext.define('Ext.direct.Manager', {
                                         }
                                     });
                                 });
-                                console.log(storesNearBy.getAllCount());
                                 var ds = Ext.getStore('MyDealsStore');
                                 ds.clearFilter();
                                 ds.filterBy(function(record) {
