@@ -64872,20 +64872,11 @@ Ext.define('Ext.direct.Manager', {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance <= 4000) {
-                                            storesNearBy.add(record);
+                                        if (distance <= 802) {
+                                            console.log(record.get('businessName'));
                                         }
                                     });
                                 });
-                                var ds = Ext.getStore('MyDealsStore');
-                                ds.clearFilter();
-                                storesNearBy.each(function(rec) {
-                                    storeId.push(rec.get('customerId'));
-                                });
-                                console.log(storeId.length);
-                                ds.filterBy(function(record) {
-                                    return Ext.Array.indexOf(storeId, record.get('customerId')) !== -1;
-                                }, this);
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
