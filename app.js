@@ -64906,12 +64906,10 @@ Ext.define('Ext.direct.Manager', {
                                         if (distance < 1610) {
                                             console.log(distance);
                                             store2.filterBy(function(rec) {
-                                                if (rec.get('customerId') === customerId) {
-                                                    console.log('true' + rec.get('customerId'));
-                                                    return true;
-                                                } else {
-                                                    console.log('False' + rec.get('customerId'));
-                                                }
+                                                return true;
+                                            }, this);
+                                        } else {
+                                            store2.filterBy(function(rec) {
                                                 return false;
                                             }, this);
                                         }
