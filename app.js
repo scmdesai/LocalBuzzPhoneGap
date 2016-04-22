@@ -64869,14 +64869,15 @@ Ext.define('Ext.direct.Manager', {
                                 store1.load();
                                 store1.clearFilter();
                                 store1.filterBy(function(record) {
+                                    var flag = false;
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance <= 802) {
-                                            return true;
+                                        if (distance <= 1610) {
+                                            flag = true;
                                         }
-                                        return false;
                                     });
+                                    return flag;
                                 }, this);
                                 console.log(store1.getCount());
                             });
