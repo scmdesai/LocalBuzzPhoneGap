@@ -65203,8 +65203,14 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
             Ext.getCmp('locationOffText').hide();
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
+            latitude = 47.674;
+            //position.coords.latitude;
+            longitude = -122.1215;
+            //position.coords.longitude;
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: latitude,
+                longitude: longitude
+            });
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 var southWest = json.results[0].geometry.bounds.southwest;
                 var northEast = json.results[0].geometry.bounds.northeast;
