@@ -64938,7 +64938,7 @@ Ext.define('Ext.direct.Manager', {
             longitude = position.coords.longitude;
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
-            store1.clearFilters();
+            store1.clearFilter();
             store1.each(function(record) {
                 var address = record.get('address');
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
