@@ -64869,22 +64869,17 @@ Ext.define('Ext.direct.Manager', {
                                 var store2 = Ext.getStore('MyJsonPStore1');
                                 store1.load();
                                 store1.clearFilter();
-                                store2.load();
-                                store2.clearFilter();
-                                store1.each(function(record) {
-                                    var flag = false;
+                                store1.filterBy(function(record) {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                        store2.filterBy(function(rec) {
-                                            var distance = json.rows[0].elements[0].distance.value;
-                                            if (distance <= 402) {
-                                                return true;
-                                            }
-                                            return false;
-                                        }, this);
+                                        var distance = json.rows[0].elements[0].distance.value;
+                                        if (distance <= 802) {
+                                            return true;
+                                        }
                                     });
+                                    return false;
                                 }, this);
-                                console.log(store2.getCount());
+                                console.log(store1.getCount());
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
