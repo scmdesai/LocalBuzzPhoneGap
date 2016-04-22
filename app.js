@@ -64906,6 +64906,7 @@ Ext.define('Ext.direct.Manager', {
                                         store2.filterBy(function(rec) {
                                             if (distance < 1610) {
                                                 console.log(distance);
+                                                console.log(rec.get('dealName'));
                                                 return true;
                                             } else {
                                                 return false;
