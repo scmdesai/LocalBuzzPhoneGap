@@ -64842,8 +64842,8 @@ Ext.define('Ext.direct.Manager', {
                                 store1.each(function(record) {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                        var distance = json.rows[0].elements[0].distance.text;
-                                        if (distance <= "1.0 mi") {
+                                        var distance = json.rows[0].elements[0].distance.value;
+                                        if (distance <= 1610) {
                                             storesNearBy.push(record.get('customerId'));
                                         }
                                     });
@@ -64863,8 +64863,8 @@ Ext.define('Ext.direct.Manager', {
                                 store1.each(function(record) {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + postalCode + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                        var distance = json.rows[0].elements[0].distance.text;
-                                        if (distance <= "1.0 mi") {
+                                        var distance = json.rows[0].elements[0].distance.value;
+                                        if (distance <= 1610) {
                                             storesNearBy1.push(record.get('customerId'));
                                         }
                                     });
