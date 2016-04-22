@@ -64864,6 +64864,7 @@ Ext.define('Ext.direct.Manager', {
                                 Ext.getCmp('location').hide();
                                 var storesNearBy = Ext.getStore('calculateDistance');
                                 storesNearBy.removeAll();
+                                var storeId = [];
                                 var store1 = Ext.getStore('MyJsonPStore');
                                 store1.load();
                                 store1.clearFilter();
@@ -64878,8 +64879,12 @@ Ext.define('Ext.direct.Manager', {
                                 });
                                 var ds = Ext.getStore('MyDealsStore');
                                 ds.clearFilter();
+                                storesNearBy.each(function(rec) {
+                                    storeId.push(rec.get('customerId'));
+                                });
+                                console.log(storeId.length);
                                 ds.filterBy(function(record) {
-                                    return storesNearBy.findRecord('customerId', record.get('customerId')) !== -1;
+                                    return Ext.Array.indexOf(storeId, record.get('customerId')) !== -1;
                                 }, this);
                             });
                             Ext.getCmp('location').addListener('action', function() {
