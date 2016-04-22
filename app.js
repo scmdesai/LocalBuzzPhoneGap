@@ -64898,23 +64898,24 @@ Ext.define('Ext.direct.Manager', {
                                 store1.clearFilter();
                                 store2.load();
                                 store2.clearFilter();
-                                store1.each(function(record) {
+                                store1.filterBy(function(record) {
                                     var address = record.get('address');
                                     var customerId = record.get('customerId');
-                                    $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                        var distance = json.rows[0].elements[0].distance.value;
-                                        store2.filterBy(function(rec) {
+                                    Ext.Ajax.request({
+                                        url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
+                                        method: 'GET',
+                                        success: function(json) {
+                                            var distance = json.rows[0].elements[0].distance.value;
                                             if (distance < 1610) {
-                                                console.log(distance);
-                                                console.log(rec.get('dealName'));
+                                                console.log('True');
                                                 return true;
                                             } else {
+                                                console.log('False');
                                                 return false;
                                             }
-                                        });
+                                        }
                                     });
-                                }, this);
-                                console.log(store1.getCount());
+                                });
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
