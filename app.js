@@ -64842,14 +64842,14 @@ Ext.define('Ext.direct.Manager', {
                                 store1.each(function(record) {
                                     var address = record.get('address');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                        var distance1 = json.rows[0].elements[0].distance.value;
-                                        if (distance1 <= 1610) {
+                                        var distance = json.rows[0].elements[0].distance.value;
+                                        if (distance <= 1610) {
                                             storesNearBy.push(record.get('customerId'));
                                         }
+                                        console.log(distance);
                                     });
                                 });
                                 console.log(storesNearBy.length);
-                                console.log(distance1);
                                 var ds = Ext.getStore('MyDealsStore');
                                 ds.clearFilter();
                                 ds.filterBy(function(record) {
