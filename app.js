@@ -64898,17 +64898,19 @@ Ext.define('Ext.direct.Manager', {
                                 store1.clearFilter();
                                 store2.load();
                                 store2.clearFilter();
-                                store1.filterBy(function(record) {
+                                store1.each(function(record) {
                                     var address = record.get('address');
                                     var customerId = record.get('customerId');
                                     $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                         var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance < 1610) {
-                                            console.log(distance);
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
+                                        store2.filterBy(function(rec) {
+                                            if (distance < 1610 && customerId === rec.get('customerId')) {
+                                                console.log(distance);
+                                                return true;
+                                            } else {
+                                                return false;
+                                            }
+                                        });
                                     });
                                 }, this);
                                 console.log(store1.getCount());
