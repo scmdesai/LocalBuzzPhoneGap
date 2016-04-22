@@ -65194,7 +65194,7 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-        Ext.getCmp('BuzzNearMe').activate();
+        Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
