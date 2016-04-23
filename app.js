@@ -64728,11 +64728,11 @@ Ext.define('Ext.direct.Manager', {
                     var distance = json.rows[0].elements[0].distance.value;
                     if (distance <= 1610) {
                         storesNearBy.push(record.get('customerId'));
+                        console.log(storesNearBy.length);
                         return true;
                     } else {
                         return false;
                     }
-                    console.log(storesNearBy.length);
                 });
             });
         });
