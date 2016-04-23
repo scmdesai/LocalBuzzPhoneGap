@@ -64706,11 +64706,10 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
+    onLatestbuzzPainted: function(element, eOpts) {},
+    /*var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
-        store.load();
-    },
+        store.load();*/
     onLatestbuzzInitialize: function(component, eOpts) {
         var storesNearBy = Ext.getStore('calculateDistances');
         console.log('Store Length Before is :' + storesNearBy.getAllCount());
