@@ -64604,10 +64604,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.store.calculateDistance', Ext.data.Store, {
     config: {
         model: 'Contact.model.storesNearBy',
-        storeId: 'calculateDistance',
-        proxy: {
-            type: 'localstorage'
-        }
+        storeId: 'calculateDistance'
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
