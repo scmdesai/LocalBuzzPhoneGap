@@ -64730,6 +64730,7 @@ Ext.define('Ext.direct.Manager', {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
+                        console.log(storesNearBy.length);
                         return true;
                     } else {
                         return false;
