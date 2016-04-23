@@ -64230,9 +64230,11 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.model.storesNearBy', Ext.data.Model, {
     config: {
+        useCache: false,
         fields: [
             {
-                name: 'customerId'
+                name: 'customerId',
+                persist: false
             }
         ]
     }
@@ -66862,7 +66864,9 @@ Ext.application({
         var store = Ext.getStore('MyDealsStore');
         store.load();
         var storesNearBy = Ext.getStore('calculateDistance');
+        storesNearBy.load();
         storesNearBy.removeAll();
+        console.log(storesNearBy.getAllCount());
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
