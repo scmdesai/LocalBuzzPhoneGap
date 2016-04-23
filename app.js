@@ -64713,6 +64713,9 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestbuzzInitialize: function(component, eOpts) {
         var storesNearBy = Ext.getStore('calculateDistances');
+        for (var i = 0; i < storesNearBy.getAllCount(); i++) {
+            storesNearBy.removeAt(i);
+        }
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
