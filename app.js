@@ -64659,7 +64659,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 fn: 'onLatestbuzzPainted',
-                delay: 3000,
+                delay: 30000,
                 event: 'painted'
             },
             {
@@ -64750,6 +64750,8 @@ Ext.define('Ext.direct.Manager', {
                     } else {
                         return false;
                     }
+                }, function callback() {
+                    console.log('Success');
                 });
             });
         });
