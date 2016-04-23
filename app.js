@@ -65117,6 +65117,8 @@ Ext.define('Ext.direct.Manager', {
         var store1 = Ext.getStore('calculateDistance');
         store.filterBy(function(record) {
             store.each(function(rec) {
+                console.log(rec.get('customerId'));
+                console.log(record.get('customerId'));
                 if (rec.get('customerId') === record.get('customerId')) {
                     return true;
                 } else {
