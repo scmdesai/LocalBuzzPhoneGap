@@ -65120,9 +65120,7 @@ Ext.define('Ext.direct.Manager', {
         store.load();
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
-        for (var i = 0; i < store1.getAllCount(); i++) {
-            console.log(store1.getAt(i).customerId);
-        }
+        console.log(store1.getAllCount());
     },
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
