@@ -65123,8 +65123,8 @@ Ext.define('Ext.direct.Manager', {
         console.log(store1.getAllCount());
         store1.each(function(record) {
             stores.push(record.get('customerId'));
-            console.log(record.get('customerId'));
         });
+        console.log(stores.length);
     },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
