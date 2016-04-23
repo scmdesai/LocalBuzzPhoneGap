@@ -64660,7 +64660,8 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 fn: 'onLatestbuzzPainted',
-                event: 'painted'
+                event: 'painted',
+                order: 'after'
             },
             {
                 fn: 'onLatestbuzzInitialize',
