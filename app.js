@@ -64900,23 +64900,27 @@ Ext.define('Ext.direct.Manager', {
                                 store2.clearFilter();
                                 store1.filterBy(function(record) {
                                     var address = record.get('address');
-                                    var customerId = record.get('customerId');
-                                    Ext.Ajax.request({
-                                        url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-                                        method: 'GET',
-                                        success: function(json) {
-                                            var distance = json.rows[0].elements[0].distance.value;
-                                            if (distance < 1610) {
-                                                console.log('True');
-                                                return true;
-                                            } else {
-                                                console.log('False');
-                                                return false;
+                                    var service = new google.maps.DistanceMatrixService();
+                                    service.getDistanceMatrix({
+                                        origins: new google.maps.LatLng(latitude, longitude),
+                                        destinations: address,
+                                        unitSystem: google.maps.UnitSystem.IMPERIAL
+                                    }, callback);
+                                    function callback(response, status) {
+                                        if (status == google.maps.DistanceMatrixStatus.OK) {
+                                            var origins = response.originAddresses;
+                                            var destinations = response.destinationAddresses;
+                                            for (var i = 0; i < origins.length; i++) {
+                                                var results = response.rows[i].elements;
+                                                for (var j = 0; j < results.length; j++) {
+                                                    var element = results[j];
+                                                    var distance = element.distance.text;
+                                                    console.log(distance);
+                                                }
                                             }
                                         }
-                                    }, "json");
+                                    }
                                 });
-                                console.log(store1.getCount());
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
