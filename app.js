@@ -64730,7 +64730,6 @@ Ext.define('Ext.direct.Manager', {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
-                        console.log(distance);
                         return true;
                     } else {
                         return false;
@@ -65116,7 +65115,15 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         store.load();
         var store1 = Ext.getStore('calculateDistance');
-        console.log(store1.getCount());
+        store.filterBy(function(record) {
+            store.each(function(rec) {
+                if (rec.get('customerId') === record.get('customerId')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
     },
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
