@@ -64712,7 +64712,7 @@ Ext.define('Ext.direct.Manager', {
         store.clearFilter();
         store.load();
         var store1 = Ext.getStore('MyJsonPStore');
-        console.log(Contacts.storesNearBy.length);
+        console.log(this.storesNearBy.length);
     },
     onLatestbuzzInitialize: function(component, eOpts) {
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
@@ -64728,7 +64728,7 @@ Ext.define('Ext.direct.Manager', {
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     var distance = json.rows[0].elements[0].distance.value;
                     if (distance <= 1610) {
-                        Contacts.storesNearBy.push(record.get('customerId'));
+                        this.storesNearBy.push(record.get('customerId'));
                         return true;
                     } else {
                         return false;
