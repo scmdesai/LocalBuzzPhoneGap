@@ -64661,6 +64661,10 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzPainted',
                 event: 'painted'
+            },
+            {
+                fn: 'onLatestbuzzInitialize',
+                event: 'initialize'
             }
         ]
     },
@@ -64707,6 +64711,30 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
+        var store1 = Ext.getStore('MyJsonPStore');
+        console.log(store1.getCount());
+    },
+    onLatestbuzzInitialize: function(component, eOpts) {
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            Ext.getCmp('location').hide();
+            var store1 = Ext.getStore('MyJsonPStore');
+            store1.load();
+            store1.clearFilter();
+            store1.filterBy(function(record) {
+                var address = record.get('address');
+                var customerId;
+                $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    var distance = json.rows[0].elements[0].distance.value;
+                    if (distance <= 1610) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            });
+        });
     }
 }, 0, [
     "latestbuzz"
@@ -64879,54 +64907,6 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'toolbarCls',
                         docked: 'top',
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
-                    }
-                ],
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            Ext.getCmp('location').show();
-                            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                                latitude = position.coords.latitude;
-                                longitude = position.coords.longitude;
-                                Ext.getCmp('location').hide();
-                                var storesNearBy = [];
-                                var storeId = [];
-                                var store1 = Ext.getStore('MyJsonPStore');
-                                var store2 = Ext.getStore('MyDealsStore');
-                                store1.load();
-                                store1.clearFilter();
-                                store2.load();
-                                store2.clearFilter();
-                                store1.each(function(record) {
-                                    var address = record.get('address');
-                                    storesNearBy.push(address);
-                                });
-                                console.log(storesNearBy.length);
-                            });
-                            Ext.getCmp('location').addListener('action', function() {
-                                var postalCode = Ext.getCmp('location').getValue();
-                                //var storesNearBy1 = [];
-                                var store1 = Ext.getStore('MyJsonPStore');
-                                store1.load();
-                                store1.clearFilter();
-                                store1.each(function(record) {
-                                    var address = record.get('address');
-                                    $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + postalCode + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                        var distance = json.rows[0].elements[0].distance.value;
-                                        if (distance <= 32187) {}
-                                    });
-                                });
-                            });
-                        },
-                        //storesNearBy1.push(record.get('customerId'));
-                        /* var ds = Ext.getStore('MyDealsStore');
-                                ds.clearFilter();
-                                ds.filterBy(function(record){
-                                return Ext.Array.indexOf(storesNearBy1, record.get('customerId')) !== -1;
-
-                                }, this);*/
-                        //
-                        event: 'painted'
                     }
                 ]
             },
