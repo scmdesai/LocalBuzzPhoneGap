@@ -64889,8 +64889,7 @@ Ext.define('Ext.direct.Manager', {
                                 latitude = position.coords.latitude;
                                 longitude = position.coords.longitude;
                                 Ext.getCmp('location').hide();
-                                var storesNearBy = Ext.getStore('calculateDistance');
-                                storesNearBy.removeAll();
+                                var storesNearBy = [];
                                 var storeId = [];
                                 var store1 = Ext.getStore('MyJsonPStore');
                                 var store2 = Ext.getStore('MyDealsStore');
@@ -64898,29 +64897,11 @@ Ext.define('Ext.direct.Manager', {
                                 store1.clearFilter();
                                 store2.load();
                                 store2.clearFilter();
-                                store1.filterBy(function(record) {
+                                store1.each(function(record) {
                                     var address = record.get('address');
-                                    var service = new google.maps.DistanceMatrixService();
-                                    service.getDistanceMatrix({
-                                        origins: new google.maps.LatLng(latitude, longitude),
-                                        destinations: address,
-                                        unitSystem: google.maps.UnitSystem.IMPERIAL
-                                    }, callback);
-                                    function callback(response, status) {
-                                        if (status == google.maps.DistanceMatrixStatus.OK) {
-                                            var origins = response.originAddresses;
-                                            var destinations = response.destinationAddresses;
-                                            for (var i = 0; i < origins.length; i++) {
-                                                var results = response.rows[i].elements;
-                                                for (var j = 0; j < results.length; j++) {
-                                                    var element = results[j];
-                                                    var distance = element.distance.text;
-                                                    console.log(distance);
-                                                }
-                                            }
-                                        }
-                                    }
+                                    storesNearBy.push(address);
                                 });
+                                console.log(storesNearBy.length);
                             });
                             Ext.getCmp('location').addListener('action', function() {
                                 var postalCode = Ext.getCmp('location').getValue();
