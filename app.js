@@ -64730,7 +64730,6 @@ Ext.define('Ext.direct.Manager', {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
-                        console.log(storesNearBy.length);
                         return true;
                     } else {
                         return false;
@@ -66851,6 +66850,8 @@ Ext.application({
         var postalCode;
         var store = Ext.getStore('MyDealsStore');
         store.load();
+        var storesNearBy = Ext.getStore('calculateDistance');
+        storeNearBy.removeAll();
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
