@@ -64711,6 +64711,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
+        console.log(Ext.getStore('calculateDistance').getCount());
     },
     onLatestbuzzInitialize: function(component, eOpts) {
         var storesNearBy = Ext.getStore('calculateDistance');
@@ -65115,8 +65116,8 @@ Ext.define('Ext.direct.Manager', {
     onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-        console.log(Ext.getStore('calculateDistance').getCount());
     },
+    //console.log(Ext.getStore('calculateDistance').getCount());
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
 
