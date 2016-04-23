@@ -65119,19 +65119,11 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         store.load();
         var store1 = Ext.getStore('calculateDistances');
-        store.filterBy(function(record) {
-            store.each(function(rec) {
-                //console.log(rec.get('customerId'));
-                //console.log(record.get('customerId'));
-                if (rec.get('customerId') === record.get('customerId')) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+        var stores = [];
+        store1.each(function(record) {
+            stores.push(record.get('customerId'));
         });
-        console.log('Deals Store' + store.getCount());
-        console.log('Store Nearby' + store1.getCount());
+        console.log(stores.length);
     },
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
