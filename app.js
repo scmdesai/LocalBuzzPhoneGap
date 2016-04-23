@@ -66851,7 +66851,7 @@ Ext.application({
         var store = Ext.getStore('MyDealsStore');
         store.load();
         var storesNearBy = Ext.getStore('calculateDistance');
-        storeNearBy.removeAll();
+        storesNearBy.removeAll();
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
