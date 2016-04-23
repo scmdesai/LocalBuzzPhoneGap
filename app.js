@@ -64732,9 +64732,9 @@ Ext.define('Ext.direct.Manager', {
                     } else {
                         return false;
                     }
+                    console.log(storesNearBy.length);
                 });
             });
-            console.log(storesNearBy.length);
         });
     }
 }, 0, [
