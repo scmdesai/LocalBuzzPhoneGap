@@ -65120,11 +65120,13 @@ Ext.define('Ext.direct.Manager', {
         store.load();
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
-        console.log(store1.getAllCount());
         store1.each(function(record) {
             stores.push(record.get('customerId'));
         });
         console.log(stores.length);
+        store.filterBy(function(record) {
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+        }, this);
     },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
