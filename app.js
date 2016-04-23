@@ -65122,8 +65122,8 @@ Ext.define('Ext.direct.Manager', {
         var stores = [];
         store1.each(function(record) {
             stores.push(record.get('customerId'));
+            console.log(record.get('customerId'));
         });
-        console.log(stores.length);
     },
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
