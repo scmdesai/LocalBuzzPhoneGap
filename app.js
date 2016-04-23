@@ -65121,8 +65121,8 @@ Ext.define('Ext.direct.Manager', {
         var store1 = Ext.getStore('calculateDistances');
         store.filterBy(function(record) {
             store.each(function(rec) {
-                console.log(rec.get('customerId'));
-                console.log(record.get('customerId'));
+                //console.log(rec.get('customerId'));
+                //console.log(record.get('customerId'));
                 if (rec.get('customerId') === record.get('customerId')) {
                     return true;
                 } else {
@@ -65130,6 +65130,8 @@ Ext.define('Ext.direct.Manager', {
                 }
             });
         });
+        console.log('Deals Store' + store.getCount());
+        console.log('Store Nearby' + store1.getCount());
     },
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
