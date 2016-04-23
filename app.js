@@ -64658,8 +64658,9 @@ Ext.define('Ext.direct.Manager', {
                 event: 'itemtap'
             },
             {
-                fn: 'onLatestbuzzUpdatedata',
-                event: 'updatedata'
+                fn: 'onLatestbuzzPainted',
+                delay: 3000,
+                event: 'painted'
             },
             {
                 fn: 'onLatestbuzzInitialize',
@@ -64706,7 +64707,7 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzUpdatedata: function(component, newData, eOpts) {
+    onLatestbuzzPainted: function(element, eOpts) {
         /*var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();*/
