@@ -64730,7 +64730,7 @@ Ext.define('Ext.direct.Manager', {
                 var customerId;
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     var distance = json.rows[0].elements[0].distance.value;
-                    if (distance <= 1610) {
+                    if (distance <= 1000) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
