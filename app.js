@@ -64658,8 +64658,9 @@ Ext.define('Ext.direct.Manager', {
                 event: 'itemtap'
             },
             {
-                fn: 'onLatestbuzzPainted',
-                event: 'painted'
+                fn: 'onLatestbuzzInitialize1',
+                event: 'initialize',
+                order: 'after'
             },
             {
                 fn: 'onLatestbuzzInitialize',
@@ -64706,10 +64707,22 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {},
-    /*var store = Ext.getStore('MyDealsStore');
+    onLatestbuzzInitialize1: function(component, eOpts) {
+        /*var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();*/
+        var store = Ext.getStore('MyDealsStore');
+        store.load();
+        var store1 = Ext.getStore('calculateDistances');
+        var stores = [];
+        store1.each(function(record) {
+            stores.push(record.get('customerId'));
+        });
+        console.log(stores.length);
+        store.filterBy(function(record) {
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+        }, this);
+    },
     onLatestbuzzInitialize: function(component, eOpts) {
         var storesNearBy = Ext.getStore('calculateDistances');
         console.log('Store Length Before is :' + storesNearBy.getAllCount());
@@ -64912,24 +64925,6 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'toolbarCls',
                         docked: 'top',
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
-                    }
-                ],
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            var store = Ext.getStore('MyDealsStore');
-                            store.load();
-                            var store1 = Ext.getStore('calculateDistances');
-                            var stores = [];
-                            store1.each(function(record) {
-                                stores.push(record.get('customerId'));
-                            });
-                            console.log(stores.length);
-                            store.filterBy(function(record) {
-                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                            }, this);
-                        },
-                        event: 'painted'
                     }
                 ]
             },
