@@ -66863,11 +66863,12 @@ Ext.application({
         var postalCode;
         var store = Ext.getStore('MyDealsStore');
         store.load();
-        console.log('Store Length is :' + storesNearBy.getAllCount());
         var storesNearBy = Ext.getStore('calculateDistances');
+        console.log('Store Length Before is :' + storesNearBy.getAllCount());
         for (var i = 0; i < storesNearBy.getAllCount(); i++) {
             storesNearBy.removeAt(i);
         }
+        console.log('Store Length After is :' + storesNearBy.getAllCount());
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
