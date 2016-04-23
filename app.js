@@ -64713,9 +64713,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestbuzzInitialize: function(component, eOpts) {
         var storesNearBy = Ext.getStore('calculateDistances');
+        console.log('Store Length Before is :' + storesNearBy.getAllCount());
         for (var i = 0; i < storesNearBy.getAllCount(); i++) {
             storesNearBy.removeAt(i);
         }
+        console.log('Store Length After is :' + storesNearBy.getAllCount());
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
@@ -66863,12 +66865,6 @@ Ext.application({
         var postalCode;
         var store = Ext.getStore('MyDealsStore');
         store.load();
-        var storesNearBy = Ext.getStore('calculateDistances');
-        console.log('Store Length Before is :' + storesNearBy.getAllCount());
-        for (var i = 0; i < storesNearBy.getAllCount(); i++) {
-            storesNearBy.removeAt(i);
-        }
-        console.log('Store Length After is :' + storesNearBy.getAllCount());
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
