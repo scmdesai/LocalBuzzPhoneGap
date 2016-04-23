@@ -65121,24 +65121,11 @@ Ext.define('Ext.direct.Manager', {
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
         console.log(store1.getAllCount());
-    },
-    /*var date = new Date();
-        var today = Ext.Date.format(date,'n/j/Y');
-
-
-
-        store.each(function(rec){
-            if(rec.data.dealEndDate< today){
-                rec.data.dealStatus = 'Expired';
-            }
+        store1.each(function(record) {
+            stores.push(record.get('customerId'));
+            console.log(record.get('customerId'));
         });
-
-
-
-
-
-        store.clearFilter();
-        store.filter('dealStatus','Active');*/
+    },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
