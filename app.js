@@ -64730,7 +64730,6 @@ Ext.define('Ext.direct.Manager', {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
-                        console.log(storesNearBy.length);
                         return true;
                     } else {
                         return false;
@@ -65115,7 +65114,8 @@ Ext.define('Ext.direct.Manager', {
     onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-        console.log(Ext.getStore('calculateDistance').getCount());
+        var store1 = Ext.getStore('calculateDistance');
+        console.log(store1.getCount());
     },
     /*var date = new Date();
         var today = Ext.Date.format(date,'n/j/Y');
