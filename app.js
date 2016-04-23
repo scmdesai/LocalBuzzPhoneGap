@@ -64913,6 +64913,24 @@ Ext.define('Ext.direct.Manager', {
                         docked: 'top',
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     }
+                ],
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            var store = Ext.getStore('MyDealsStore');
+                            store.load();
+                            var store1 = Ext.getStore('calculateDistances');
+                            var stores = [];
+                            store1.each(function(record) {
+                                stores.push(record.get('customerId'));
+                            });
+                            console.log(stores.length);
+                            store.filterBy(function(record) {
+                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                            }, this);
+                        },
+                        event: 'painted'
+                    }
                 ]
             },
             {
