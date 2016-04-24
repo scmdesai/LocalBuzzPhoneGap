@@ -64621,32 +64621,20 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {},
-    /*var store = Ext.getStore('MyDealsStore');
+    onLatestbuzzPainted: function(element, eOpts) {
+        var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
-        store.load();*/
-    /*var store = Ext.getStore('MyDealsStore');
-
         store.load();
-
-
         var store1 = Ext.getStore('calculateDistances');
-
         var stores = [];
-
-
-
-        store1.each(function(record){
+        store1.each(function(record) {
             stores.push(record.get('customerId'));
-
-
         });
         console.log(stores.length);
-
-        store.filterBy(function(record){
+        store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-
-        }, this);*/
+        }, this);
+    },
     onLatestbuzzInitialize: function(component, eOpts) {}
 }, 0, [
     "latestbuzz"
