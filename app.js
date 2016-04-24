@@ -60003,91 +60003,6 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
- * The Search field creates an HTML5 search input and is usually created inside a form. Because it creates an HTML
- * search input type, the visual styling of this input is slightly different to normal text input controls (the corners
- * are rounded), though the virtual keyboard displayed by the operating system is the standard keyboard control.
- *
- * As with all other form fields in Sencha Touch, the search field gains a "clear" button that appears whenever there
- * is text entered into the form, and which removes that text when tapped.
- *
- *     @example
- *     Ext.create('Ext.form.Panel', {
- *         fullscreen: true,
- *         items: [
- *             {
- *                 xtype: 'fieldset',
- *                 title: 'Search',
- *                 items: [
- *                     {
- *                         xtype: 'searchfield',
- *                         label: 'Query',
- *                         name: 'query'
- *                     }
- *                 ]
- *             }
- *         ]
- *     });
- *
- * Or on its own, outside of a form:
- *
- *     Ext.create('Ext.field.Search', {
- *         label: 'Search:',
- *         value: 'query'
- *     });
- *
- * Because search field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
- * fields provide, including getting and setting the value at runtime, validations and various events that are fired
- * as the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional
- * functionality available.
- *
- * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
- */
-(Ext.cmd.derive('Ext.field.Search', Ext.field.Text, {
-    alternateClassName: 'Ext.form.Search',
-    config: {
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        component: {
-            type: 'search'
-        },
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        ui: 'search'
-    },
-    platformConfig: [
-        {
-            platform: 'blackberry',
-            component: {
-                type: 'text'
-            }
-        }
-    ]
-}, 0, [
-    "searchfield"
-], [
-    "component",
-    "field",
-    "textfield",
-    "searchfield"
-], {
-    "component": true,
-    "field": true,
-    "textfield": true,
-    "searchfield": true
-}, [
-    "widget.searchfield"
-], 0, [
-    Ext.field,
-    'Search',
-    Ext.form,
-    'Search'
-], 0));
-
-/**
  * The Form panel presents a set of form fields and provides convenient ways to load and save data. Usually a form
  * panel just contains the set of fields you want to display, ordered inside the items configuration like this:
  *
@@ -64706,22 +64621,32 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {
-        /*var store = Ext.getStore('MyDealsStore');
+    onLatestbuzzPainted: function(element, eOpts) {},
+    /*var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();*/
-        var store = Ext.getStore('MyDealsStore');
+    /*var store = Ext.getStore('MyDealsStore');
+
         store.load();
+
+
         var store1 = Ext.getStore('calculateDistances');
+
         var stores = [];
-        store1.each(function(record) {
+
+
+
+        store1.each(function(record){
             stores.push(record.get('customerId'));
+
+
         });
         console.log(stores.length);
-        store.filterBy(function(record) {
+
+        store.filterBy(function(record){
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-        }, this);
-    },
+
+        }, this);*/
     onLatestbuzzInitialize: function(component, eOpts) {}
 }, 0, [
     "latestbuzz"
@@ -64909,15 +64834,6 @@ Ext.define('Ext.direct.Manager', {
                 layout: 'vbox',
                 modal: true,
                 items: [
-                    {
-                        xtype: 'searchfield',
-                        height: '1%',
-                        id: 'location',
-                        itemId: 'location',
-                        margin: '5 5 5 5',
-                        style: 'border:1px solid #C0C0C0;font-size:4vw;',
-                        placeHolder: '     Enter zipcode to get the latest buzz'
-                    },
                     {
                         xtype: 'latestbuzz',
                         width: 318
