@@ -65047,6 +65047,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
+        store.clearFilter();
         store.load();
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
@@ -66774,6 +66775,7 @@ Ext.application({
         var longitude;
         var postalCode;
         var store = Ext.getStore('MyDealsStore');
+        store.clearFilter();
         store.load();
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
