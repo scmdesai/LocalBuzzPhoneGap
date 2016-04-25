@@ -64057,6 +64057,9 @@ Ext.define('Ext.direct.Manager', {
                 },
                 name: 'today',
                 type: 'date'
+            },
+            {
+                name: 'dealDescription'
             }
         ]
     }
@@ -64556,13 +64559,15 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="font-size:4vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
-            '<div><img src="{dealPictureURL}" height="160" width="120"></div>',
-            '<div style="font-size:3vw;color:black">{dealName}</div>',
+            '<div style="font-size:4.5vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
+            '<!--<div><img src="{dealPictureURL}" height="160" width="120"></div>-->',
+            '',
+            '<div style="font-size:4vw;color:green;margin:5px 5px 5px 5px;">{dealName}</div>',
+            '<div style="font-size:3vw;height:160;margin:5px 5px 5px 5px;">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
-            '    <div style="font-size:3vw;color:red">Valid through {dealEndDate}</div>',
+            '    <div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    <tpl else>',
-            '        <div style="font-size:3vw;color:grey">Valid through {dealEndDate}</div>',
+            '        <div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    </tpl>',
             '',
             ''
@@ -65963,6 +65968,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '<div style="font-size:5vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
+            '<div>{dealDescription}</div>',
             '<tpl if= "dealEndDate &lt;= today"> ',
             ' <div class= "expiringDate" >Valid {dealStartDate} to {dealEndDate}</div>',
             '  <tpl else>',
@@ -66793,12 +66799,10 @@ Ext.application({
                             'customerId': record.get('customerId')
                         });
                         return true;
-                    } else //setFilterFlag(true);
-                    {
+                    } else {
                         return false;
                     }
-                }, //setFilterFlag(false);
-                2000);
+                });
             });
         });
         if (Ext.os.is('Android')) {
