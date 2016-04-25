@@ -66782,28 +66782,30 @@ Ext.application({
             storesNearBy.removeAt(i);
         }
         console.log('Store Length After is :' + storesNearBy.getAllCount());
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            var store1 = Ext.getStore('MyJsonPStore');
-            store1.load();
-            store1.clearFilter();
-            store1.filterBy(function(record) {
-                var address = record.get('address');
-                var customerId;
-                $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    var distance = json.rows[0].elements[0].distance.value;
-                    if (distance <= 10000) {
-                        storesNearBy.add({
-                            'customerId': record.get('customerId')
-                        });
-                        return true;
-                    } else {
-                        return false;
-                    }
+        setTimeout(function() {
+            navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                var store1 = Ext.getStore('MyJsonPStore');
+                store1.load();
+                store1.clearFilter();
+                store1.filterBy(function(record) {
+                    var address = record.get('address');
+                    var customerId;
+                    $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                        var distance = json.rows[0].elements[0].distance.value;
+                        if (distance <= 10000) {
+                            storesNearBy.add({
+                                'customerId': record.get('customerId')
+                            });
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    });
                 });
             });
-        });
+        }, 3000);
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;

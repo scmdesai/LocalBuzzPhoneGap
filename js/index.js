@@ -19,10 +19,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
-	    navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-		});
+	   
         this.bindEvents();
     },
     // Bind Event Listeners
