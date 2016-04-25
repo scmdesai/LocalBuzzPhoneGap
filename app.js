@@ -66820,7 +66820,7 @@ Ext.application({
         });
         while (1) {
             if (isCurrentLocation === true) {
-                break;
+                return true;
             }
         }
         if (Ext.os.is('Android')) {
