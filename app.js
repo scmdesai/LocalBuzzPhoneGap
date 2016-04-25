@@ -66803,7 +66803,7 @@ Ext.application({
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
             isCurrentLocation = true;
-            this.fireEvent('flagCurrentLocation');
+            Ext.Viewport().getActiveItem().fireEvent('flagCurrentLocation');
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
             store1.clearFilter();
