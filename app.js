@@ -66797,13 +66797,10 @@ Ext.application({
                     {
                         return false;
                     }
-                });
+                }, //setFilterFlag(false);
+                2000);
             });
-        }, //setFilterFlag(false);
-        onSuccess);
-        function onSuccess() {
-            console.log("Done Fetching data");
-        }
+        });
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
