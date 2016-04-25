@@ -64804,7 +64804,6 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.Main', Ext.tab.Panel, {
     config: {
-        activeItem: 1,
         cls: 'toolbar-icon-color',
         height: '100%',
         id: 'tabbar',
@@ -65434,6 +65433,12 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('locationOffText').show();
         Ext.getCmp('lookUpZipcode').show();
         Ext.getCmp('lookUpZipcode').setValue('');
+    },
+    initialize: function() {
+        Ext.tab.Panel.prototype.initialize.call(this);
+        if (flag_location_ready) {
+            console.log('Got Location');
+        }
     }
 }, 0, [
     "Main"
@@ -66768,6 +66773,9 @@ Ext.application({
         var latitude;
         var longitude;
         var postalCode;
+        Contacts.globals = {
+            flag_location_ready: false
+        };
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
@@ -66786,6 +66794,7 @@ Ext.application({
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
+            flag_location_ready = true;
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
             store1.clearFilter();
