@@ -65439,7 +65439,7 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('lookUpZipcode').setValue('');
     },
     onTabbarPainted: function(element, eOpts) {
-        console.log('Contact.app.flagCurrentLocation');
+        console.log(Contact.app.flagCurrentLocation);
     },
     initialize: function() {
         Ext.tab.Panel.prototype.initialize.call(this);
