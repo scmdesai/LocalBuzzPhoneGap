@@ -66938,7 +66938,7 @@ Ext.application({
             isCurrentLocation = true;
             if (task) {
                 task.cancel();
-                consle.log('got location');
+                console.log('got location');
                 var dealstore = Ext.getStore('MyDealsStore');
                 dealstore.clearFilter();
                 dealstore.load();
