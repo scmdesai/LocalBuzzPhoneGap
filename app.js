@@ -64549,6 +64549,7 @@ Ext.define('Ext.direct.Manager', {
         height: '100%',
         itemId: 'latestbuzz',
         style: 'background:#FFF',
+        styleHtmlContent: true,
         emptyText: '<h4 class="emptyText">No Buzz currently.Please check back later</h4>',
         inline: true,
         itemCls: 'itemCls',
@@ -64559,15 +64560,15 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="font-size:4.5vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
+            '<div style="font-size:4vw;text-align:center;font-style:italic;color:#00529D">{businessName}</div>',
             '<!--<div><img src="{dealPictureURL}" height="160" width="120"></div>-->',
             '',
             '<div style="font-size:4vw;color:green;margin:5px 5px 5px 5px;">{dealName}</div>',
-            '<div style="font-size:3vw;height:160;margin:5px 5px 5px 5px;">{dealDescription}</div>',
+            '<div style="font-size:3vw;font-family:Arial;">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
-            '    <div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
+            '    <div style="font-size:2.8vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    <tpl else>',
-            '        <div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
+            '        <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    </tpl>',
             '',
             ''
@@ -64822,20 +64823,18 @@ Ext.define('Ext.direct.Manager', {
                 iconCls: 'icon-bubbles',
                 id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
-                style: 'background:#FFF',
                 ui: 'dark',
                 layout: 'vbox',
                 modal: true,
                 items: [
                     {
-                        xtype: 'latestbuzz',
-                        width: 318
-                    },
-                    {
                         xtype: 'toolbar',
                         cls: 'toolbarCls',
                         docked: 'top',
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
+                    },
+                    {
+                        xtype: 'latestbuzz'
                     }
                 ]
             },
@@ -65968,7 +65967,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '<div style="font-size:5vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
-            '<div>{dealDescription}</div>',
+            '<div style="font-size:3.5vw;margin:5px 5px 5px 0px;font-family:Arial">{dealDescription}</div>',
             '<tpl if= "dealEndDate &lt;= today"> ',
             ' <div class= "expiringDate" >Valid {dealStartDate} to {dealEndDate}</div>',
             '  <tpl else>',
@@ -66756,8 +66755,8 @@ Ext.application({
         'Main',
         'FavoriteView',
         'DealsPanel',
-        'LatestBuzz',
-        'DealsPanel1'
+        'DealsPanel1',
+        'LatestBuzz'
     ],
     controllers: [
         'Contacts'
