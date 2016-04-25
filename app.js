@@ -66787,36 +66787,22 @@ Ext.application({
                 var address = record.get('address');
                 var customerId;
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    /* var distance = json.rows[0].elements[0].distance.value;
-                            if (distance <= 1000) {
-                                storesNearBy.add({'customerId':record.get('customerId')});
-
-                                return true;
-                                //setFilterFlag(true);
-                            } else {
-                                return false;
-                                //setFilterFlag(false);
-                            }
-
-
-                          */
-                    callback(json);
+                    var distance = json.rows[0].elements[0].distance.value;
+                    if (distance <= 1000) {
+                        storesNearBy.add({
+                            'customerId': record.get('customerId')
+                        });
+                        return true;
+                    } else //setFilterFlag(true);
+                    {
+                        return false;
+                    }
+                }).//setFilterFlag(false);
+                done(function() {
+                    console.log("Done Fetching data");
                 });
             });
         });
-        function callback(json) {
-            var distance = json.rows[0].elements[0].distance.value;
-            if (distance <= 1000) {
-                storesNearBy.add({
-                    'customerId': record.get('customerId')
-                });
-                return true;
-            } else //setFilterFlag(true);
-            {
-                return false;
-            }
-        }
-        //setFilterFlag(false);
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
