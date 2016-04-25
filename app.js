@@ -66938,6 +66938,19 @@ Ext.application({
             isCurrentLocation = true;
             if (task) {
                 task.cancel();
+                consle.log('got location');
+                var dealstore = Ext.getStore('MyDealsStore');
+                dealstore.clearFilter();
+                dealstore.load();
+                var store12 = Ext.getStore('calculateDistances');
+                var stores = [];
+                store12.each(function(record) {
+                    stores.push(record.get('customerId'));
+                });
+                console.log(stores.length);
+                dealstore.filterBy(function(record) {
+                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                }, this);
             }
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
@@ -66964,7 +66977,7 @@ Ext.application({
                     message: "Loading Latest Buzz.."
                 });
             }, this);
-        task.delay(500);
+        task.delay(3000);
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
