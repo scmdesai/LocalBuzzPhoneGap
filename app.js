@@ -66925,7 +66925,6 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         var storesNearBy = Ext.getStore('calculateDistances');
-        console.log('Store Length Before is :' + storesNearBy.getAllCount());
         for (var i = 0; i < storesNearBy.getAllCount(); i++) {
             storesNearBy.removeAt(i);
         }
@@ -66938,11 +66937,12 @@ Ext.application({
             isCurrentLocation = true;
             if (task) {
                 task.cancel();
-                console.log('got location');
+                console.log('Got location');
                 var dealstore = Ext.getStore('MyDealsStore');
                 dealstore.clearFilter();
                 dealstore.load();
-                var store12 = Ext.getStore('calculateDistances');
+                var store12 = Ext.getStore('calculateDistances').load();
+                console.log('Store Length Before is : ' + stores12.getAllCount());
                 var stores = [];
                 store12.each(function(record) {
                     stores.push(record.get('customerId'));
