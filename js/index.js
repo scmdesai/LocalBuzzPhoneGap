@@ -19,6 +19,10 @@
 var app = {
     // Application Constructor
     initialize: function() {
+	    navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+		});
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -29,10 +33,7 @@ var app = {
          //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 		 document.addEventListener('deviceready', function() {
 		 try{
-		 navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-		});
+		 
 		 window.analytics.startTrackerWithId('UA-67469655-6');
 		 var push = PushNotification.init({
             "android": {
