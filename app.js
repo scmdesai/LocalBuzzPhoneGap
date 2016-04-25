@@ -65439,9 +65439,7 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('lookUpZipcode').setValue('');
     },
     onTabbarPainted: function(element, eOpts) {
-        if (Contact.app.flagCurrentLocation === true) {
-            console.log('Got Location');
-        }
+        console.log('Contact.app.flagCurrentLocation');
     },
     initialize: function() {
         Ext.tab.Panel.prototype.initialize.call(this);
@@ -66803,7 +66801,6 @@ Ext.application({
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
             isCurrentLocation = true;
-            Ext.Viewport().getActiveItem().fireEvent('flagCurrentLocation');
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
             store1.clearFilter();
