@@ -66795,7 +66795,6 @@ Ext.application({
         for (var i = 0; i < storesNearBy.getAllCount(); i++) {
             storesNearBy.removeAt(i);
         }
-        console.log('Store Length After is :' + storesNearBy.getAllCount());
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
@@ -66819,6 +66818,11 @@ Ext.application({
                 });
             });
         });
+        while (1) {
+            if (isCurrentLocation === true) {
+                break;
+            }
+        }
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
