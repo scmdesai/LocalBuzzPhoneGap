@@ -66942,7 +66942,7 @@ Ext.application({
                 dealstore.clearFilter();
                 dealstore.load();
                 var store12 = Ext.getStore('calculateDistances').load();
-                console.log('Store Length Before is : ' + stores12.getAllCount());
+                console.log('Store Length Before is : ' + store12.getAllCount());
                 var stores = [];
                 store12.each(function(record) {
                     stores.push(record.get('customerId'));
