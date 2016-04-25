@@ -66935,23 +66935,6 @@ Ext.application({
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
             isCurrentLocation = true;
-            if (task) {
-                task.cancel();
-                console.log('Got location');
-                var dealstore = Ext.getStore('MyDealsStore');
-                dealstore.clearFilter();
-                dealstore.load();
-                var store12 = Ext.getStore('calculateDistances').load();
-                console.log('Store Length Before is : ' + store12.getAllCount());
-                var stores = [];
-                store12.each(function(record) {
-                    stores.push(record.get('customerId'));
-                });
-                console.log(stores.length);
-                dealstore.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);
-            }
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
             store1.clearFilter();
@@ -66959,6 +66942,10 @@ Ext.application({
                 var address = record.get('address');
                 var customerId;
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    if (task) {
+                        task.cancel();
+                        Ext.getCmp('LatestBuzz').activate();
+                    }
                     var distance = json.rows[0].elements[0].distance.value;
                     if (distance <= 10000) {
                         storesNearBy.add({
