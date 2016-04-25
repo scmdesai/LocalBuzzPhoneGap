@@ -66813,7 +66813,7 @@ Ext.application({
                 });
             });
         });
-        this.setTimeout(function() {}, 3000);
+        setTimeout(function() {}, 3000);
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
