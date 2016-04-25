@@ -66773,7 +66773,7 @@ Ext.application({
         var latitude;
         var longitude;
         var postalCode;
-        Contacts.globals = {
+        Contact.globals = {
             flag_location_ready: false
         };
         var store = Ext.getStore('MyDealsStore');
