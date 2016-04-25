@@ -66784,6 +66784,7 @@ Ext.application({
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
+        this.addEvents('flagCurrentLocation');
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
@@ -66795,10 +66796,14 @@ Ext.application({
         for (var i = 0; i < storesNearBy.getAllCount(); i++) {
             storesNearBy.removeAt(i);
         }
+        document.addEventListener("flagCurrentLocation", function() {
+            console.log('Got Location');
+        });
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
             isCurrentLocation = true;
+            this.fireEvent('flagCurrentLocation');
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
             store1.clearFilter();
@@ -66818,11 +66823,6 @@ Ext.application({
                 });
             });
         });
-        while (1) {
-            if (isCurrentLocation === true) {
-                return true;
-            }
-        }
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
