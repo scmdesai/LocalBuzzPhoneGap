@@ -66944,7 +66944,7 @@ Ext.application({
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     if (task) {
                         task.cancel();
-                        Ext.getCmp('LatestBuzz').activate();
+                        window.location.reload();
                     }
                     var distance = json.rows[0].elements[0].distance.value;
                     if (distance <= 10000) {
