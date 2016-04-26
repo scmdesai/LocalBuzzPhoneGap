@@ -66884,6 +66884,7 @@ Ext.application({
         var postalCode;
         var task;
         var isCurrentLocation = Contact.app.flagCurrentLocation;
+        var stores = [];
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
@@ -66920,7 +66921,7 @@ Ext.application({
                     store.clearFilter();
                     store.load();
                     var store1 = Ext.getStore('calculateDistances');
-                    var stores = [];
+                    Ext.Array.erase(stores, 0, stores.length);
                     store1.each(function(record) {
                         //stores.push(record.get('customerId'));
                         Ext.Array.include(stores, record.get('customerId'));
