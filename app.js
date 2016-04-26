@@ -64850,7 +64850,7 @@ Ext.define('Ext.direct.Manager', {
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
                         var userLocationStore = Ext.getStore('UserLocation');
-                        userLocationStore.removeAt(0);
+                        //userLocationStore.removeAt(0);
                         userLocationStore.add({
                             'latitude': latitude,
                             'longtitude': longitude
@@ -64918,7 +64918,7 @@ Ext.define('Ext.direct.Manager', {
             var latitude = json.results[0].geometry.location.lat;
             var longitude = json.results[0].geometry.location.lng;
             var userLocationStore = Ext.getStore('UserLocation');
-            userLocationStore.removeAt(0);
+            //userLocationStore.removeAt(0);
             userLocationStore.add({
                 'latitude': latitude,
                 'longtitude': longitude
