@@ -66890,9 +66890,18 @@ Ext.application({
                         task.cancel();
                         store.clearFilter();
                         store.load();
+                        var store1 = Ext.getStore('calculateDistances');
+                        var stores = [];
+                        store1.each(function(record) {
+                            stores.push(record.get('customerId'));
+                        });
+                        console.log(stores.length);
+                        store.filterBy(function(record) {
+                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                        }, this);
                     }
                     var distance = json.rows[0].elements[0].distance.value;
-                    if (distance <= 10000) {
+                    if (distance <= 1000) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
