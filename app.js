@@ -65453,7 +65453,10 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('locationOffText').hide();
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
-            // Ext.getCmp('mymap').setMapCenter({latitude: latitude ,longitude: longitude});
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: latitude,
+                longitude: longitude
+            });
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 var southWest = json.results[0].geometry.viewport.southwest;
                 var northEast = json.results[0].geometry.viewport.northeast;
