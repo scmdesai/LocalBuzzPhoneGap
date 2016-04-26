@@ -64803,7 +64803,10 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.store.UserLocation', Ext.data.Store, {
     config: {
         model: 'Contact.model.UserLocation',
-        storeId: 'UserLocation'
+        storeId: 'UserLocation',
+        proxy: {
+            type: 'localstorage'
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
