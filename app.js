@@ -66931,6 +66931,7 @@ Ext.application({
                     }, this);
                     //  }
                     var distance = json.rows[0].elements[0].distance.value;
+                    console.log(record.get('businessName') + distance);
                     if (distance <= 40234) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
