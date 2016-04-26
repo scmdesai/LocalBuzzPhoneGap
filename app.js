@@ -66353,9 +66353,26 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
+                title: 'Buzz',
+                iconCls: 'locate',
+                height: '100%',
+                itemId: 'Buzz',
+                margin: '1 1 1 1',
+                modal: false,
+                items: [
+                    {
+                        xtype: 'map',
+                        height: '100%',
+                        itemId: 'mymap'
+                    }
+                ]
+            },
+            {
+                xtype: 'container',
                 title: 'Buzz Near Me',
                 iconCls: 'icon-buzz',
                 height: '100%',
+                hidden: true,
                 id: 'BuzzNearMe',
                 itemId: 'BuzzNearMe',
                 margin: '1 1 1 1',
@@ -66440,6 +66457,11 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#SearchBusiness'
             },
             {
+                fn: 'onMymapMaprender',
+                event: 'maprender',
+                delegate: '#mymap'
+            },
+            {
                 fn: 'onMyMapRender',
                 event: 'maprender',
                 delegate: '#mymap'
@@ -66481,6 +66503,16 @@ Ext.define('Ext.direct.Manager', {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyDealsStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
+    },
+    onMymapMaprender: function(map, gmap, eOpts) {
+        var userLocationStore = Ext.getStore('UserLocation');
+        userLocationStore.load();
+        var latitude, longitude;
+        userLocationStore.each(function(record) {
+            latitude = record.get('latitude');
+            longitude = record.get('longitude');
+            console.log(latitude, longitude);
+        });
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
