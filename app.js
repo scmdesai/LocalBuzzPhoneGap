@@ -64660,7 +64660,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.store.UserLocation', Ext.data.Store, {
     config: {
-        model: 'Contact.model.UserLocation',
+        model: 'Contact.model.MapMarkerPosition',
         storeId: 'UserLocation',
         proxy: {
             type: 'localstorage'
@@ -64714,8 +64714,8 @@ Ext.define('Ext.direct.Manager', {
                         //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
-                            'latitude': latitude,
-                            'longitude': longitude
+                            'lat': latitude,
+                            'long': longitude
                         });
                         var rec = userLocationStore.getAllCount();
                         console.log('Store count' + rec);
