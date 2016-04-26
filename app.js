@@ -67002,17 +67002,44 @@ Ext.application({
                 Ext.getCmp('mymap').show();
                 Ext.getCmp('locationOffText').hide();
                 Ext.getCmp('lookUpZipcode').hide();
-                store.clearFilter();
-                store.load();
-                var store1 = Ext.getStore('calculateDistances');
-                var stores = [];
-                store1.each(function(record) {
-                    stores.push(record.get('customerId'));
+                var store1 = Ext.getStore('MyJsonPStore');
+                store1.load();
+                store1.clearFilter();
+                store1.filterBy(function(record) {
+                    var address = record.get('address');
+                    var customerId;
+                    $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                        if (task) {
+                            task.cancel();
+                            store.clearFilter();
+                            store.load();
+                            var store1 = Ext.getStore('calculateDistances');
+                            var stores = [];
+                            store1.each(function(record) {
+                                stores.push(record.get('customerId'));
+                            });
+                            console.log(stores.length);
+                            store.filterBy(function(record) {
+                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                            }, this);
+                        }
+                        var distance = json.rows[0].elements[0].distance.value;
+                        if (distance <= 40234) {
+                            storesNearBy.add({
+                                'customerId': record.get('customerId')
+                            });
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    });
                 });
-                console.log(stores.length);
-                store.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);
+                var task = Ext.create('Ext.util.DelayedTask', function() {
+                        Ext.Viewport.mask({
+                            xtype: 'loadmask',
+                            message: "Loading Latest Buzz.."
+                        });
+                    }, this);
             }, onError);
             function onError(error) {
                 Ext.getCmp('mymap').hide();
