@@ -64264,10 +64264,12 @@ Ext.define('Ext.direct.Manager', {
     config: {
         fields: [
             {
-                name: 'latitude'
+                name: 'latitude',
+                type: 'float'
             },
             {
-                name: 'longitude'
+                name: 'longitude',
+                type: 'float'
             }
         ]
     }
@@ -64660,7 +64662,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.store.UserLocation', Ext.data.Store, {
     config: {
-        model: 'Contact.model.MapMarkerPosition',
+        model: 'Contact.model.UserLocation',
         storeId: 'UserLocation',
         proxy: {
             type: 'localstorage'
@@ -64713,7 +64715,10 @@ Ext.define('Ext.direct.Manager', {
                         var storesNearBy = Ext.getStore('calculateDistances');
                         //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
-                        userLocationStore.add(position.coords);
+                        userLocationStore.add({
+                            'latitude': latitude,
+                            'longitude': longitude
+                        });
                         userLocationStore.load();
                         var rec = userLocationStore.getAllCount();
                         console.log('Store count' + rec);
