@@ -66507,7 +66507,7 @@ Ext.define('Ext.direct.Manager', {
     onMymapMaprender: function(map, gmap, eOpts) {
         var userLocationStore = Ext.getStore('UserLocation');
         userLocationStore.load();
-        console.log(userLocationStore.getAllCount());
+        console.log('Store length is ' + userLocationStore.getAllCount());
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
