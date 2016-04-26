@@ -66042,7 +66042,6 @@ Ext.define('Ext.direct.Manager', {
         style: '',
         styleHtmlContent: true,
         allowDeselect: true,
-        deferEmptyText: false,
         emptyText: '<h4 class="emptyText">No Buzz from this Business yet</h4>',
         store: 'MyDealsStore',
         onItemDisclosure: false,
@@ -66901,7 +66900,7 @@ Ext.application({
                         }, this);
                     }
                     var distance = json.rows[0].elements[0].distance.value;
-                    if (distance <= 1000) {
+                    if (distance <= 40234) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
