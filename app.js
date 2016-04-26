@@ -64713,6 +64713,8 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
+                        Contact.app.latitude.push(latitude);
+                        Contact.app.longitude.push(longitude);
                         //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
@@ -66356,11 +66358,8 @@ Ext.define('Ext.direct.Manager', {
         var userLocationStore = Ext.getStore('UserLocation');
         userLocationStore.load();
         var latitude, longitude;
-        userLocationStore.each(function(record) {
-            latitude = record.get('latitude');
-            longitude = record.get('longitude');
-            console.log(latitude, longitude);
-        });
+        latitude = Contact.app.latitude[0];
+        longitude = Contact.app.longitude[0];
         /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
