@@ -66913,7 +66913,8 @@ Ext.application({
                 var customerId;
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     if (task) {
-                        task.cancel();
+                        //task.cancel();
+                        task.destroy();
                         store.clearFilter();
                         store.load();
                         var store1 = Ext.getStore('calculateDistances');
@@ -66939,15 +66940,13 @@ Ext.application({
                 });
             });
         });
-        if (!task) {
-            task = Ext.create('Ext.util.DelayedTask', function() {
-                Ext.Viewport.mask({
-                    xtype: 'loadmask',
-                    message: "Loading Latest Buzz.."
-                });
-            }, this);
-            task.delay(500);
-        }
+        task = Ext.create('Ext.util.DelayedTask', function() {
+            Ext.Viewport.mask({
+                xtype: 'loadmask',
+                message: "Loading Latest Buzz.."
+            });
+        }, this);
+        task.delay(500);
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
