@@ -64778,6 +64778,9 @@ Ext.define('Ext.direct.Manager', {
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
+        stores.forEach(function(rec) {
+            Ext.Array.remove(rec);
+        });
     }
 }, 0, [
     "latestbuzz"
@@ -65537,9 +65540,6 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('locationOffText').show();
         Ext.getCmp('lookUpZipcode').show();
         Ext.getCmp('lookUpZipcode').setValue('');
-    },
-    initialize: function() {
-        Ext.tab.Panel.prototype.initialize.call(this);
     }
 }, 0, [
     "Main"
