@@ -64848,6 +64848,7 @@ Ext.define('Ext.direct.Manager', {
                         longitude = position.coords.longitude;
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
+                        var storesNearBy = Ext.getStore('calculateDistances');
                         var userLocationStore = Ext.getStore('UserLocation');
                         userLocationStore.removeAt(0);
                         userLocationStore.add({
@@ -64909,6 +64910,7 @@ Ext.define('Ext.direct.Manager', {
         console.log(postalCode);
         var store = Ext.getStore('MyDealsStore');
         var stores = [];
+        var storesNearBy = Ext.getStore('calculateDistances');
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             var latitude = json.results[0].geometry.location.lat;
             var longitude = json.results[0].geometry.location.lng;
