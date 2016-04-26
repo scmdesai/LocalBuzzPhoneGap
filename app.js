@@ -66354,16 +66354,43 @@ Ext.define('Ext.direct.Manager', {
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         var infoWindow;
-        var userLocationStore = Ext.getStore('UserLocation');
-        userLocationStore.load();
-        var latitude, longitude;
-        //navigator.geolocation.getCurrentPosition(function showPosition(position) {
-        //  latitude = position.coords.latitude;
-        //  longitude = position.coords.longitude;
-        Ext.getCmp('mymap').setMapCenter({
-            latitude: latitude,
-            longitude: longitude
-        });
+        /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                    Ext.getCmp('mymap').show();
+                    Ext.getCmp('lookUpZipcode').hide();
+                    Ext.getCmp('locationOffText').hide();
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+
+
+                },onError);
+
+                function onError(error){
+                    Ext.getCmp('locationOffText').show();
+                    Ext.getCmp('lookUpZipcode').show();
+                    Ext.getCmp('mymap').hide();
+
+                Ext.getCmp('lookUpZipcode').addListener('action',function(){
+
+                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+                Ext.getCmp('mymap').show();
+                Ext.getCmp('lookUpZipcode').hide();
+                Ext.getCmp('locationOffText').hide();
+                 console.log(postalCode);
+
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
+
+                              function(json){
+                                  lat = json.results[0].geometry.location.lat;
+                                  long = json.results[0].geometry.location.lng;
+
+                Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
+
+                    });
+                    });
+
+
+
+                        }*/
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
@@ -66388,63 +66415,63 @@ Ext.define('Ext.direct.Manager', {
                     icon: 'resources/img/car.png'
                 },
                 /*{
-                                path: fontawesome.markers.CAR,
-                                scale: 0.4,
-                                strokeWeight: 0.2,
-                                strokeColor: 'black',
-                                strokeOpacity: 1,
-                                fillColor: '#1985d0',
-                                fillOpacity: 1
-                            }*/
+                                        path: fontawesome.markers.CAR,
+                                        scale: 0.4,
+                                        strokeWeight: 0.2,
+                                        strokeColor: 'black',
+                                        strokeOpacity: 1,
+                                        fillColor: '#1985d0',
+                                        fillOpacity: 1
+                                    }*/
                 "1": {
                     icon: 'resources/img/supermarket.png'
                 },
                 /*{
-                                path: fontawesome.markers.SHOPPING_CART,
-                                scale: 0.4,
-                                strokeWeight: 0.2,
-                                strokeColor: 'black',
-                                strokeOpacity: 1,
-                                fillColor: '#1985d0',
-                                fillOpacity: 1
-                            }*/
+                                        path: fontawesome.markers.SHOPPING_CART,
+                                        scale: 0.4,
+                                        strokeWeight: 0.2,
+                                        strokeColor: 'black',
+                                        strokeOpacity: 1,
+                                        fillColor: '#1985d0',
+                                        fillOpacity: 1
+                                    }*/
                 "2": {
                     icon: 'resources/img/museum_art.png'
                 },
                 /*{
-                                path: fontawesome.markers.BULLSEYE,
-                                scale: 0.4,
-                                strokeWeight: 0.2,
-                                strokeColor: 'black',
-                                strokeOpacity: 1,
-                                fillColor: '#1985d0',
-                                fillOpacity: 1
-                            }*/
+                                        path: fontawesome.markers.BULLSEYE,
+                                        scale: 0.4,
+                                        strokeWeight: 0.2,
+                                        strokeColor: 'black',
+                                        strokeOpacity: 1,
+                                        fillColor: '#1985d0',
+                                        fillOpacity: 1
+                                    }*/
                 "3": {
                     icon: 'resources/img/dance_class.png'
                 },
                 /*{
-                                path: fontawesome.markers.CHILD,
-                                scale: 0.4,
-                                strokeWeight: 0.2,
-                                strokeColor: 'black',
-                                strokeOpacity: 1,
-                                fillColor: '#1985d0',
-                                fillOpacity: 1
-                            }*/
+                                        path: fontawesome.markers.CHILD,
+                                        scale: 0.4,
+                                        strokeWeight: 0.2,
+                                        strokeColor: 'black',
+                                        strokeOpacity: 1,
+                                        fillColor: '#1985d0',
+                                        fillOpacity: 1
+                                    }*/
                 "4": {
                     icon: 'resources/img/barber.png'
                 }
             };
         /*{
-                                path: fontawesome.markers.SCISSORS,
-                                scale: 0.4,
-                                strokeWeight: 0.2,
-                                strokeColor: 'black',
-                                strokeOpacity: 1,
-                                fillColor: '#1985d0',
-                                fillOpacity: 1
-                            }*/
+                                        path: fontawesome.markers.SCISSORS,
+                                        scale: 0.4,
+                                        strokeWeight: 0.2,
+                                        strokeColor: 'black',
+                                        strokeOpacity: 1,
+                                        fillColor: '#1985d0',
+                                        fillOpacity: 1
+                                    }*/
         function addMarker(feature, businessName, m, record) {
             var ds = Ext.getStore('MyDealsStore');
             ds.clearFilter();
@@ -66476,10 +66503,10 @@ Ext.define('Ext.direct.Manager', {
         }
         function addInfoWindow(marker, content, record, businessName) {
             /*infoWindow = new google.maps.InfoWindow({
-                content: content
+                        content: content
 
 
-            });*/
+                    });*/
             google.maps.event.addListener(marker, 'mousedown', function() {
                 if (infoWindow) {
                     infoWindow.close();
@@ -66494,21 +66521,21 @@ Ext.define('Ext.direct.Manager', {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         /* console.log('Label Clicked ' + businessName);
 
-                       var store = Ext.getStore('MyDealsStore');
-                       store.clearFilter();
-                       store.load();
+                               var store = Ext.getStore('MyDealsStore');
+                               store.clearFilter();
+                               store.load();
 
-                        store.filter('businessName',businessName);
+                                store.filter('businessName',businessName);
 
-                        if(Ext.Viewport.getComponent('DealsPanel1')){
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));if(Ext.Viewport.getComponent('Info')){
-                            }
-                            else {
-                            var view = Ext.Viewport.add({xtype:'DealsPanel1'});
-                            Ext.Viewport.setActiveItem(view);
-                            }
+                                if(Ext.Viewport.getComponent('DealsPanel1')){
+                                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));if(Ext.Viewport.getComponent('Info')){
+                                    }
+                                    else {
+                                    var view = Ext.Viewport.add({xtype:'DealsPanel1'});
+                                    Ext.Viewport.setActiveItem(view);
+                                    }
 
-                            }*/
+                                    }*/
                         var view;
                         if (Ext.Viewport.getComponent('Info')) {
                             view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
@@ -66524,29 +66551,29 @@ Ext.define('Ext.direct.Manager', {
                     /* document.getElementById('labelStoreInfo').addEventListener('mousedown',function() {
 
 
-                        console.log('Label Clicked ' + businessName);
+                                console.log('Label Clicked ' + businessName);
 
-                       var store = Ext.getStore('MyJsonPStore');
-                       store.clearFilter();
-                       //store.load();
+                               var store = Ext.getStore('MyJsonPStore');
+                               store.clearFilter();
+                               //store.load();
 
-                        //store.filter('businessName',businessName);
-                        var record = store.findRecord('businessName',businessName);
+                                //store.filter('businessName',businessName);
+                                var record = store.findRecord('businessName',businessName);
 
-                            var view;
-                            if(Ext.Viewport.getComponent('Info')){
-                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                                    var view;
+                                    if(Ext.Viewport.getComponent('Info')){
+                                    view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                                        view.setRecord(record);
+                                    }
+                                else {
+
+                                view = Ext.Viewport.add({xtype:'contactinfo'});
                                 view.setRecord(record);
-                            }
-                        else {
+                                Ext.Viewport.setActiveItem(view);
 
-                        view = Ext.Viewport.add({xtype:'contactinfo'});
-                        view.setRecord(record);
-                        Ext.Viewport.setActiveItem(view);
+                                }
 
-                        }
-
-                    });*/
+                            });*/
                     google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
@@ -66555,228 +66582,152 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
+        Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
-    //});
-    //Ext.getCmp('BuzzNearMe').fireEvent('activate',this);
-    onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
-    /*Ext.getStore('MyJsonPStore').clearFilter();
-
+    onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
-
-           var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-          if(Ext.getCmp('lookUpZipcode').getValue()!=='') {
+        var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+        if (Ext.getCmp('lookUpZipcode').getValue() !== '') {
             Ext.getCmp('mymap').hide();
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
-
-        Ext.getStore('MyJsonPStore').clearFilter();
-
-        Ext.getStore('MyJsonPStore').load();
-
-        var postalCode = Ext.getCmp('lookUpZipcode').getValue();
-
-        Ext.getCmp('mymap').show();
-        Ext.getCmp('lookUpZipcode').hide();
-        Ext.getCmp('locationOffText').hide();
-        console.log(postalCode);
-
-        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                      function(json){
-                          lat = json.results[0].geometry.location.lat;
-                          long = json.results[0].geometry.location.lng;
-
-        Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-        var southWest =  json.results[0].geometry.viewport.southwest;
-        var northEast =  json.results[0].geometry.viewport.northeast;
-        var bounds = new google.maps.LatLngBounds(southWest,northEast);
-
-
-
-        var check_if_markers_visible =false;
-        mapMarkerPositionStore.each(function(rec){
-
-            var pos = new google.maps.LatLng(rec.get('lat'),rec.get('long'));
-            console.log(rec.get('lat'),rec.get('long'));
-
-            if(bounds.contains(pos)){
-
-                check_if_markers_visible = true;
-            }
-
-
-         });
-           if(mapMarkerPositionStore.getAllCount()!==0){
-            console.log(check_if_markers_visible);
-               if(check_if_markers_visible===false){
-                   Ext.Msg.alert('No Buzz Found','Please Check Back Later',null,null);
-               }
-
-           }
+            Ext.getStore('MyJsonPStore').clearFilter();
+            Ext.getStore('MyJsonPStore').load();
+            var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            console.log(postalCode);
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                Ext.getCmp('mymap').setMapCenter({
+                    latitude: lat,
+                    longitude: long
+                });
+                var southWest = json.results[0].geometry.viewport.southwest;
+                var northEast = json.results[0].geometry.viewport.northeast;
+                var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                var check_if_markers_visible = false;
+                mapMarkerPositionStore.each(function(rec) {
+                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                    console.log(rec.get('lat'), rec.get('long'));
+                    if (bounds.contains(pos)) {
+                        check_if_markers_visible = true;
+                    }
+                });
+                if (mapMarkerPositionStore.getAllCount() !== 0) {
+                    console.log(check_if_markers_visible);
+                    if (check_if_markers_visible === false) {
+                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                    }
+                }
             });
-
-
-            }
-           var latitude,longitude;
-           navigator.geolocation.getCurrentPosition(function showPosition(position) {
-
-            //Ext.getCmp('mymap').show();
-            //Ext.getCmp('lookUpZipcode').hide();
-           // Ext.getCmp('locationOffText').hide();
+        }
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
-        var userLocationStore = Ext.getStore('UserLocation');
-        userLocationStore.load();
-        console.log('User Location store count is ' + userLocationStore.getAllCount());
-
-
-
-
-
-
-         Ext.getCmp('mymap').setMapCenter({latitude: latitude ,longitude: longitude});
-         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-         function(json){
-        var southWest =  json.results[0].geometry.viewport.southwest;
-        var northEast =  json.results[0].geometry.viewport.northeast;
-        var bounds = new google.maps.LatLngBounds(southWest,northEast);
-
-         var check_if_markers_visible =false;
-        mapMarkerPositionStore.each(function(rec){
-
-            var pos = new google.maps.LatLng(rec.get('lat'),rec.get('long'));
-            console.log(rec.get('lat'),rec.get('long'));
-
-            if(bounds.contains(pos)){
-
-                check_if_markers_visible = true;
-            }
-
-
-         });
-           if(mapMarkerPositionStore.getAllCount()!==0){
-            console.log(check_if_markers_visible);
-               if(check_if_markers_visible===false){
-                   Ext.Msg.alert('No Buzz Found','Please Check Back Later',null,null);
-               }
-
-           }
-         });
-
-
-
-
-
-        },onError);
-
-        function onError(error){
-
-            if(Ext.getCmp('zipcodeLookUp').getValue()!=='') {
-           // Ext.getCmp('mymap').hide();
-           // Ext.getCmp('locationOffText').show();
-           // Ext.getCmp('lookUpZipcode').show();
-
-            Ext.getStore('MyJsonPStore').clearFilter();
-
-        Ext.getStore('MyJsonPStore').load();
-
-        var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-
-        //Ext.getCmp('mymap').show();
-        //Ext.getCmp('lookUpZipcode').hide();
-        Ext.getCmp('locationOffText').hide();
-        console.log(postalCode);
-
-        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                      function(json){
-                          lat = json.results[0].geometry.location.lat;
-                          long = json.results[0].geometry.location.lng;
-
-        Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-        var southWest =  json.results[0].geometry.viewport.southwest;
-        var northEast =  json.results[0].geometry.viewport.northeast;
-        var bounds = new google.maps.LatLngBounds(southWest,northEast);
-
-
-
-        var check_if_markers_visible =false;
-        mapMarkerPositionStore.each(function(rec){
-
-            var pos = new google.maps.LatLng(rec.get('lat'),rec.get('long'));
-            console.log(rec.get('lat'),rec.get('long'));
-
-            if(bounds.contains(pos)){
-
-                check_if_markers_visible = true;
-            }
-
-
-         });
-           if(mapMarkerPositionStore.getAllCount()!==0){
-            console.log(check_if_markers_visible);
-               if(check_if_markers_visible===false){
-                   Ext.Msg.alert('No Buzz Found','Please Check Back Later',null,null);
-               }
-
-           }
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: latitude,
+                longitude: longitude
             });
-
-
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                var southWest = json.results[0].geometry.viewport.southwest;
+                var northEast = json.results[0].geometry.viewport.northeast;
+                var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                var check_if_markers_visible = false;
+                mapMarkerPositionStore.each(function(rec) {
+                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                    console.log(rec.get('lat'), rec.get('long'));
+                    if (bounds.contains(pos)) {
+                        check_if_markers_visible = true;
+                    }
+                });
+                if (mapMarkerPositionStore.getAllCount() !== 0) {
+                    console.log(check_if_markers_visible);
+                    if (check_if_markers_visible === false) {
+                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                    }
+                }
+            });
+        }, onError);
+        function onError(error) {
+            if (Ext.getCmp('lookUpZipcode').getValue() !== '') {
+                Ext.getCmp('mymap').hide();
+                Ext.getCmp('locationOffText').show();
+                Ext.getCmp('lookUpZipcode').show();
+                Ext.getStore('MyJsonPStore').clearFilter();
+                Ext.getStore('MyJsonPStore').load();
+                var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+                Ext.getCmp('mymap').show();
+                Ext.getCmp('lookUpZipcode').hide();
+                Ext.getCmp('locationOffText').hide();
+                console.log(postalCode);
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+                    var southWest = json.results[0].geometry.viewport.southwest;
+                    var northEast = json.results[0].geometry.viewport.northeast;
+                    var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                    var check_if_markers_visible = false;
+                    mapMarkerPositionStore.each(function(rec) {
+                        var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                        console.log(rec.get('lat'), rec.get('long'));
+                        if (bounds.contains(pos)) {
+                            check_if_markers_visible = true;
+                        }
+                    });
+                    if (mapMarkerPositionStore.getAllCount() !== 0) {
+                        console.log(check_if_markers_visible);
+                        if (check_if_markers_visible === false) {
+                            Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                        }
+                    }
+                });
             }
-
-
         }
-
-         //Ext.getCmp('lookUpZipcode').addListener('action',function(){
-
-        var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-
-        //Ext.getCmp('mymap').show();
-        //Ext.getCmp('lookUpZipcode').hide();
-        //Ext.getCmp('locationOffText').hide();
-        Ext.getStore('MyJsonPStore').clearFilter();
-
-        Ext.getStore('MyJsonPStore').load();
-
-        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ postalCode +"&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-
-                      function(json){
-                          lat = json.results[0].geometry.location.lat;
-                          long = json.results[0].geometry.location.lng;
-
-        Ext.getCmp('mymap').setMapCenter({latitude: lat ,longitude: long});
-
-        var southWest =  json.results[0].geometry.viewport.southwest;
-        var northEast =  json.results[0].geometry.viewport.northeast;
-        var bounds = new google.maps.LatLngBounds(southWest,northEast);
-
-
-
-        var check_if_markers_visible =false;
-        mapMarkerPositionStore.each(function(rec){
-
-            var pos = new google.maps.LatLng(rec.get('lat'),rec.get('long'));
-            console.log(rec.get('lat'),rec.get('long'));
-
-            if(bounds.contains(pos)){
-
-                check_if_markers_visible = true;
-            }
-
-
-         });
-           if(mapMarkerPositionStore.getAllCount()!==0){
-            console.log(check_if_markers_visible);
-               if(check_if_markers_visible===false){
-                   Ext.Msg.alert('No Buzz Found','Please Check Back Later',null,null);
-               }
-
-           }
+        Ext.getCmp('lookUpZipcode').addListener('action', function() {
+            var postalCode = Ext.getCmp('lookUpZipcode').getValue();
+            Ext.getCmp('mymap').show();
+            Ext.getCmp('lookUpZipcode').hide();
+            Ext.getCmp('locationOffText').hide();
+            Ext.getStore('MyJsonPStore').clearFilter();
+            Ext.getStore('MyJsonPStore').load();
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                Ext.getCmp('mymap').setMapCenter({
+                    latitude: lat,
+                    longitude: long
+                });
+                var southWest = json.results[0].geometry.viewport.southwest;
+                var northEast = json.results[0].geometry.viewport.northeast;
+                var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                var check_if_markers_visible = false;
+                mapMarkerPositionStore.each(function(rec) {
+                    var pos = new google.maps.LatLng(rec.get('lat'), rec.get('long'));
+                    console.log(rec.get('lat'), rec.get('long'));
+                    if (bounds.contains(pos)) {
+                        check_if_markers_visible = true;
+                    }
+                });
+                if (mapMarkerPositionStore.getAllCount() !== 0) {
+                    console.log(check_if_markers_visible);
+                    if (check_if_markers_visible === false) {
+                        Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                    }
+                }
             });
-        */
+        });
+    },
     onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {}
 }, 0, [
     "Main"
