@@ -65416,6 +65416,8 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('mymap').hide();
             Ext.getCmp('locationOffText').show();
             Ext.getCmp('lookUpZipcode').show();
+            Ext.getStore('MyJsonPStore').clearFilter();
+            Ext.getStore('MyJsonPStore').load();
             var postalCode = Ext.getCmp('lookUpZipcode').getValue();
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
@@ -65453,8 +65455,6 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('locationOffText').hide();
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
-            Ext.getStore('MyJsonPStore').clearFilter();
-            Ext.getStore('MyJsonPStore').load();
             Ext.getCmp('mymap').setMapCenter({
                 latitude: latitude,
                 longitude: longitude
