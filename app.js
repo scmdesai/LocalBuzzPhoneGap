@@ -64850,10 +64850,10 @@ Ext.define('Ext.direct.Manager', {
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
                         var userLocationStore = Ext.getStore('UserLocation');
-                        //userLocationStore.removeAt(0);
+                        userLocationStore.removeAt(0);
                         userLocationStore.add({
                             'latitude': latitude,
-                            'longtitude': longitude
+                            'longitude': longitude
                         });
                         Ext.Viewport.getActiveItem().destroy();
                         var view = Ext.Viewport.add({
@@ -64912,17 +64912,18 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         console.log(postalCode);
         var store = Ext.getStore('MyDealsStore');
+        var userLocationStore = Ext.getStore('UserLocation');
         var stores = [];
         var storesNearBy = Ext.getStore('calculateDistances');
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             var latitude = json.results[0].geometry.location.lat;
             var longitude = json.results[0].geometry.location.lng;
-            var userLocationStore = Ext.getStore('UserLocation');
-            //userLocationStore.removeAt(0);
+            userLocationStore.removeAt(0);
             userLocationStore.add({
                 'latitude': latitude,
-                'longtitude': longitude
+                'longitude': longitude
             });
+            console.log(userLocationStore.getAllCount());
             Ext.Viewport.getActiveItem().destroy();
             var view = Ext.Viewport.add({
                     xtype: 'Main'
