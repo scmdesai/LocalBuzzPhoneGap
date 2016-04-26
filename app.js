@@ -66712,7 +66712,7 @@ Ext.define('Ext.direct.Manager', {
             }
         }
         //Ext.getCmp('lookUpZipcode').addListener('action',function(){
-        var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
+        //var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
         //Ext.getCmp('mymap').show();
         //Ext.getCmp('lookUpZipcode').hide();
         //Ext.getCmp('locationOffText').hide();
