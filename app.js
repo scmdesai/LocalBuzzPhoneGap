@@ -66903,10 +66903,8 @@ Ext.application({
             console.log('Got Location');
         });
         navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = 47.6901804;
-            //position.coords.latitude;
-            longitude = -122.0381692;
-            //position.coords.longitude;
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
             isCurrentLocation = true;
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
