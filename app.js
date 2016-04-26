@@ -66917,7 +66917,7 @@ Ext.application({
                     message: "Loading Latest Buzz.."
                 });
             }, this);
-        task.delay(5000);
+        //task.delay(5000);
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
