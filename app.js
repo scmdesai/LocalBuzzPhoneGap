@@ -64846,6 +64846,7 @@ Ext.define('Ext.direct.Manager', {
                     navigator.geolocation.getCurrentPosition(function showPosition(position) {
                         latitude = position.coords.latitude;
                         longitude = position.coords.longitude;
+                        var store = Ext.getStore('MyDealsStore');
                         var userLocationStore = Ext.getStore('UserLocation');
                         userLocationStore.removeAt(0);
                         userLocationStore.add({
@@ -64904,8 +64905,9 @@ Ext.define('Ext.direct.Manager', {
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
+        console.log(postalCode);
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-            varlatitude = json.results[0].geometry.location.lat;
+            var latitude = json.results[0].geometry.location.lat;
             var longitude = json.results[0].geometry.location.lng;
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
