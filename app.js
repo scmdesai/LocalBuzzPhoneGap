@@ -66354,8 +66354,20 @@ Ext.define('Ext.direct.Manager', {
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         var infoWindow;
+        var userLocationStore = Ext.getStore('UserLocation');
+        userLocationStore.load();
+        var latitude, longitude;
+        //navigator.geolocation.getCurrentPosition(function showPosition(position) {
+        //  latitude = position.coords.latitude;
+        //  longitude = position.coords.longitude;
+        Ext.getCmp('mymap').setMapCenter({
+            latitude: latitude,
+            longitude: longitude
+        });
         map.mapTypeControl = false;
         var store = Ext.getStore('MyJsonPStore');
+        var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+        var check_if_markers_visible = false;
         store.each(function(record) {
             var address = record.get('address');
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
@@ -66365,6 +66377,10 @@ Ext.define('Ext.direct.Manager', {
                 var m = new google.maps.LatLng(lat, long);
                 //businessName = record.get('businessName');
                 addMarker(record.get('category'), record.get('businessName'), m, record);
+                mapMarkerPositionStore.add({
+                    'lat': lat,
+                    'long': long
+                });
             });
         });
         var icons = {
@@ -66372,63 +66388,63 @@ Ext.define('Ext.direct.Manager', {
                     icon: 'resources/img/car.png'
                 },
                 /*{
-                                        path: fontawesome.markers.CAR,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
+                                path: fontawesome.markers.CAR,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "1": {
                     icon: 'resources/img/supermarket.png'
                 },
                 /*{
-                                        path: fontawesome.markers.SHOPPING_CART,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
+                                path: fontawesome.markers.SHOPPING_CART,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "2": {
                     icon: 'resources/img/museum_art.png'
                 },
                 /*{
-                                        path: fontawesome.markers.BULLSEYE,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
+                                path: fontawesome.markers.BULLSEYE,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "3": {
                     icon: 'resources/img/dance_class.png'
                 },
                 /*{
-                                        path: fontawesome.markers.CHILD,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
+                                path: fontawesome.markers.CHILD,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
                 "4": {
                     icon: 'resources/img/barber.png'
                 }
             };
         /*{
-                                        path: fontawesome.markers.SCISSORS,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
+                                path: fontawesome.markers.SCISSORS,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#1985d0',
+                                fillOpacity: 1
+                            }*/
         function addMarker(feature, businessName, m, record) {
             var ds = Ext.getStore('MyDealsStore');
             ds.clearFilter();
@@ -66455,15 +66471,15 @@ Ext.define('Ext.direct.Manager', {
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon
                 });
-            var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStoreInfo" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
+            var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
         function addInfoWindow(marker, content, record, businessName) {
             /*infoWindow = new google.maps.InfoWindow({
-                        content: content
+                content: content
 
 
-                    });*/
+            });*/
             google.maps.event.addListener(marker, 'mousedown', function() {
                 if (infoWindow) {
                     infoWindow.close();
@@ -66476,29 +66492,61 @@ Ext.define('Ext.direct.Manager', {
                 console.log('Marker clicked ' + record.get('customerId'));
                 google.maps.event.addListener(infoWindow, 'domready', function() {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
-                        console.log('Label Clicked ' + businessName);
-                        var store = Ext.getStore('MyDealsStore');
-                        store.clearFilter();
-                        store.load();
-                        store.filter('businessName', businessName);
-                        var view = Ext.Viewport.add({
-                                xtype: 'DealsPanel1'
-                            });
-                        Ext.Viewport.setActiveItem(view);
-                    });
-                    document.getElementById('labelStoreInfo').addEventListener('mousedown', function() {
-                        console.log('Label Clicked ' + businessName);
-                        var store = Ext.getStore('MyJsonPStore');
-                        store.clearFilter();
-                        //store.load();
-                        //store.filter('businessName',businessName);
-                        var record = store.findRecord('businessName', businessName);
-                        var view = Ext.Viewport.add({
+                        /* console.log('Label Clicked ' + businessName);
+
+                       var store = Ext.getStore('MyDealsStore');
+                       store.clearFilter();
+                       store.load();
+
+                        store.filter('businessName',businessName);
+
+                        if(Ext.Viewport.getComponent('DealsPanel1')){
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));if(Ext.Viewport.getComponent('Info')){
+                            }
+                            else {
+                            var view = Ext.Viewport.add({xtype:'DealsPanel1'});
+                            Ext.Viewport.setActiveItem(view);
+                            }
+
+                            }*/
+                        var view;
+                        if (Ext.Viewport.getComponent('Info')) {
+                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            view.setRecord(record);
+                        } else {
+                            view = Ext.Viewport.add({
                                 xtype: 'contactinfo'
                             });
+                            view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
+                        }
+                    });
+                    /* document.getElementById('labelStoreInfo').addEventListener('mousedown',function() {
+
+
+                        console.log('Label Clicked ' + businessName);
+
+                       var store = Ext.getStore('MyJsonPStore');
+                       store.clearFilter();
+                       //store.load();
+
+                        //store.filter('businessName',businessName);
+                        var record = store.findRecord('businessName',businessName);
+
+                            var view;
+                            if(Ext.Viewport.getComponent('Info')){
+                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                                view.setRecord(record);
+                            }
+                        else {
+
+                        view = Ext.Viewport.add({xtype:'contactinfo'});
                         view.setRecord(record);
                         Ext.Viewport.setActiveItem(view);
-                    });
+
+                        }
+
+                    });*/
                     google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
@@ -66508,6 +66556,8 @@ Ext.define('Ext.direct.Manager', {
             });
         }
     },
+    //});
+    //Ext.getCmp('BuzzNearMe').fireEvent('activate',this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
     /*Ext.getStore('MyJsonPStore').clearFilter();
 
