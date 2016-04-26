@@ -65428,8 +65428,8 @@ Ext.define('Ext.direct.Manager', {
                     latitude: lat,
                     longitude: long
                 });
-                var southWest = json.results[0].geometry.bounds.southwest;
-                var northEast = json.results[0].geometry.bounds.northeast;
+                var southWest = json.results[0].geometry.viewport.southwest;
+                var northEast = json.results[0].geometry.viewport.northeast;
                 var bounds = new google.maps.LatLngBounds(southWest, northEast);
                 var check_if_markers_visible = false;
                 mapMarkerPositionStore.each(function(rec) {
@@ -65455,8 +65455,8 @@ Ext.define('Ext.direct.Manager', {
             longitude = position.coords.longitude;
             // Ext.getCmp('mymap').setMapCenter({latitude: latitude ,longitude: longitude});
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                var southWest = json.results[0].geometry.bounds.southwest;
-                var northEast = json.results[0].geometry.bounds.northeast;
+                var southWest = json.results[0].geometry.viewport.southwest;
+                var northEast = json.results[0].geometry.viewport.northeast;
                 var bounds = new google.maps.LatLngBounds(southWest, northEast);
                 var check_if_markers_visible = false;
                 mapMarkerPositionStore.each(function(rec) {
@@ -65491,8 +65491,8 @@ Ext.define('Ext.direct.Manager', {
                         latitude: lat,
                         longitude: long
                     });
-                    var southWest = json.results[0].geometry.bounds.southwest;
-                    var northEast = json.results[0].geometry.bounds.northeast;
+                    var southWest = json.results[0].geometry.viewport.southwest;
+                    var northEast = json.results[0].geometry.viewport.northeast;
                     var bounds = new google.maps.LatLngBounds(southWest, northEast);
                     var check_if_markers_visible = false;
                     mapMarkerPositionStore.each(function(rec) {
@@ -65523,8 +65523,8 @@ Ext.define('Ext.direct.Manager', {
                     latitude: lat,
                     longitude: long
                 });
-                var southWest = json.results[0].geometry.bounds.southwest;
-                var northEast = json.results[0].geometry.bounds.northeast;
+                var southWest = json.results[0].geometry.viewport.southwest;
+                var northEast = json.results[0].geometry.viewport.northeast;
                 var bounds = new google.maps.LatLngBounds(southWest, northEast);
                 var check_if_markers_visible = false;
                 mapMarkerPositionStore.each(function(rec) {
@@ -66913,9 +66913,6 @@ Ext.application({
                 var address = record.get('address');
                 var customerId;
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    // if(task){
-                    //task.cancel();
-                    //task.destroy();
                     store.clearFilter();
                     store.load();
                     var store1 = Ext.getStore('calculateDistances');
