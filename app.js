@@ -66916,6 +66916,9 @@ Ext.application({
                         store.filterBy(function(record) {
                             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                         }, this);
+                        stores.forEach(function(rec) {
+                            Ext.Array.remove(rec);
+                        });
                     }
                     var distance = json.rows[0].elements[0].distance.value;
                     if (distance <= 40234) {
@@ -67022,6 +67025,9 @@ Ext.application({
                             store.filterBy(function(record) {
                                 return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                             }, this);
+                            stores.forEach(function(rec) {
+                                Ext.Array.remove(rec);
+                            });
                         }
                         var distance = json.rows[0].elements[0].distance.value;
                         if (distance <= 40234) {
