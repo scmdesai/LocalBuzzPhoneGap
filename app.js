@@ -64994,6 +64994,16 @@ Ext.define('Ext.direct.Manager', {
                             }
                         ]
                     }
+                ],
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            Ext.getStore('MyJsonPStore').clearFilter();
+                            Ext.getStore('MyDealsStore').clearFilter();
+                            Ext.getStore('MyJsonPStore').load();
+                        },
+                        event: 'painted'
+                    }
                 ]
             },
             {
