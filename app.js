@@ -64713,8 +64713,8 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
-                        Contact.app.latitude.push(latitude);
-                        Contact.app.longitude.push(longitude);
+                        Contact.app.latitude[0] = latitude;
+                        Contact.app.longitude[0] = longitude;
                         //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
