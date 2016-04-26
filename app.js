@@ -64726,6 +64726,7 @@ Ext.define('Ext.direct.Manager', {
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
+                        Ext.Viewport.setActiveItem(view);
                         var store1 = Ext.getStore('MyJsonPStore');
                         store1.load();
                         store1.clearFilter();
@@ -64795,6 +64796,7 @@ Ext.define('Ext.direct.Manager', {
             var view = Ext.Viewport.add({
                     xtype: 'Main'
                 });
+            Ext.Viewport.setActiveItem(view);
             var store1 = Ext.getStore('MyJsonPStore');
             store1.load();
             store1.clearFilter();
