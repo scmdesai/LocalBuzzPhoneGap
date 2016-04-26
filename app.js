@@ -64719,6 +64719,10 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzItemTap',
                 event: 'itemtap'
+            },
+            {
+                fn: 'onLatestbuzzPainted',
+                event: 'painted'
             }
         ]
     },
@@ -64760,6 +64764,20 @@ Ext.define('Ext.direct.Manager', {
             console.log("Gelocation not working");
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
+    },
+    onLatestbuzzPainted: function(element, eOpts) {
+        var store = Ext.getStore('MyDealsStore');
+        store.clearFilter();
+        store.load();
+        var store1 = Ext.getStore('calculateDistances');
+        var stores = [];
+        store1.each(function(record) {
+            stores.push(record.get('customerId'));
+        });
+        console.log(stores.length);
+        store.filterBy(function(record) {
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+        }, this);
     }
 }, 0, [
     "latestbuzz"
@@ -66042,7 +66060,7 @@ Ext.define('Ext.direct.Manager', {
         style: '',
         styleHtmlContent: true,
         allowDeselect: true,
-        emptyText: '<h4 class="emptyText">No Buzz from this Business yet</h4>',
+        emptyText: '<h4 class="emptyText">No Active Buzz At This TIme.</h4>',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,
