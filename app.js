@@ -64711,7 +64711,7 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
-                        //userLocationStore.removeAt(0);
+                        userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
                             'latitude': latitude.toString(),
@@ -64787,8 +64787,8 @@ Ext.define('Ext.direct.Manager', {
             var longitude = json.results[0].geometry.location.lng;
             //userLocationStore.removeAt(0);
             userLocationStore.add({
-                'latitude': latitude,
-                'longitude': longitude
+                'latitude': latitude.toString(),
+                'longitude': longitude.toString()
             });
             console.log(userLocationStore.getAllCount());
             // Ext.Viewport.getActiveItem().destroy();
@@ -66241,8 +66241,7 @@ Ext.define('Ext.direct.Manager', {
                         mapOptions: {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
-                        },
-                        useCurrentLocation: true
+                        }
                     },
                     {
                         xtype: 'textareafield',
@@ -66354,6 +66353,17 @@ Ext.define('Ext.direct.Manager', {
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         var infoWindow;
+        var latitude, longitude;
+        var userLocationStore = Ext.getStore('UserLocation');
+        userLocationStore.load();
+        userLocationStore.each(function(record) {
+            latitude = record.get('latitude');
+            longitude = record.get('longitude');
+        });
+        Ext.getCmp('mymap').setMapCenter({
+            latitude: latitude,
+            longitude: longitude
+        });
         /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
                     Ext.getCmp('mymap').show();
                     Ext.getCmp('lookUpZipcode').hide();
