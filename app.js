@@ -64772,13 +64772,12 @@ Ext.define('Ext.direct.Manager', {
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
         store1.each(function(record) {
-            stores.push(record.get('customerId'));
+            Ext.Array.include(stores, record.get('customerId'));
         });
         console.log(stores.length);
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
-        Ext.Array.erase(stores, 0, stores.length);
     }
 }, 0, [
     "latestbuzz"
@@ -65149,7 +65148,8 @@ Ext.define('Ext.direct.Manager', {
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
         store1.each(function(record) {
-            stores.push(record.get('customerId'));
+            //stores.push(record.get('customerId'));
+            Ext.Array.include(stores, record.get('customerId'));
         });
         console.log(stores.length);
         store.filterBy(function(record) {
@@ -66908,13 +66908,13 @@ Ext.application({
                         var store1 = Ext.getStore('calculateDistances');
                         var stores = [];
                         store1.each(function(record) {
-                            stores.push(record.get('customerId'));
+                            //stores.push(record.get('customerId'));
+                            Ext.Array.include(stores, record.get('customerId'));
                         });
                         console.log(stores.length);
                         store.filterBy(function(record) {
                             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                         }, this);
-                        Ext.Array.erase(stores, 0, stores.length);
                     }
                     var distance = json.rows[0].elements[0].distance.value;
                     if (distance <= 40234) {
@@ -67015,13 +67015,13 @@ Ext.application({
                             var store1 = Ext.getStore('calculateDistances');
                             var stores = [];
                             store1.each(function(record) {
-                                stores.push(record.get('customerId'));
+                                // stores.push(record.get('customerId'));
+                                Ext.Array.include(stores, record.get('customerId'));
                             });
                             console.log(stores.length);
                             store.filterBy(function(record) {
                                 return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                             }, this);
-                            Ext.Array.erase(stores, 0, stores.length);
                         }
                         var distance = json.rows[0].elements[0].distance.value;
                         if (distance <= 40234) {
