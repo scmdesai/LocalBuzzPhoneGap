@@ -64704,13 +64704,13 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
+                    var userLocationStore = Ext.getStore('UserLocation');
                     navigator.geolocation.getCurrentPosition(function showPosition(position) {
                         latitude = position.coords.latitude;
                         longitude = position.coords.longitude;
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
-                        var userLocationStore = Ext.getStore('UserLocation');
                         //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
