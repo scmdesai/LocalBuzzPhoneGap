@@ -66484,6 +66484,14 @@ Ext.define('Ext.direct.Manager', {
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         var infoWindow;
+        var userLocationStore = Ext.getStore('UserLocation');
+        userLocationStore.load();
+        var latitude, longitude;
+        userLocationStore.each(function(record) {
+            latitude = record.get('latitude');
+            longitude = record.get('longitude');
+            console.log(latitude, longitude);
+        });
         /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
@@ -66522,6 +66530,10 @@ Ext.define('Ext.direct.Manager', {
 
                 }*/
         map.mapTypeControl = false;
+        Ext.getCmp('mymap').setMapCenter({
+            latitude: latitude,
+            longitude: longitude
+        });
         var store = Ext.getStore('MyJsonPStore');
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         var check_if_markers_visible = false;
