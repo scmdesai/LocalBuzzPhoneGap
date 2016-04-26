@@ -66882,6 +66882,7 @@ Ext.application({
         var latitude;
         var longitude;
         var postalCode;
+        var task;
         var isCurrentLocation = Contact.app.flagCurrentLocation;
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
@@ -66938,13 +66939,15 @@ Ext.application({
                 });
             });
         });
-        var task = Ext.create('Ext.util.DelayedTask', function() {
+        if (!task) {
+            task = Ext.create('Ext.util.DelayedTask', function() {
                 Ext.Viewport.mask({
                     xtype: 'loadmask',
                     message: "Loading Latest Buzz.."
                 });
             }, this);
-        task.delay(500);
+            task.delay(500);
+        }
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
