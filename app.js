@@ -65411,6 +65411,8 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        Ext.getStore('MyJsonPStore').clearFilter();
+        Ext.getStore('MyJsonPStore').load();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         if (Ext.getCmp('lookUpZipcode').getValue() !== '') {
             Ext.getCmp('mymap').hide();
