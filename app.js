@@ -66605,13 +66605,13 @@ Ext.define('Ext.direct.Manager', {
             latitude = record.get('latitude');
             longitude = record.get('longitude');
         });
+        Ext.getCmp('mymap').setMapCenter({
+            latitude: latitude,
+            longitude: longitude
+        });
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
-            Ext.getCmp('mymap').setMapCenter({
-                latitude: lat,
-                longitude: long
-            });
             var southWest = json.results[0].geometry.viewport.southwest;
             var northEast = json.results[0].geometry.viewport.northeast;
             var bounds = new google.maps.LatLngBounds(southWest, northEast);
