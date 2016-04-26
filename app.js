@@ -66996,11 +66996,23 @@ Ext.application({
         document.addEventListener("resume", Ext.bind(onResume, this), false);
         function onResume(e) {
             //Ext.Msg.alert('Resume',null,null,null);
-            Ext.getStore('MyDealsStore').load();
+            var store = Ext.getStore('MyDealsStore');
+            store.load();
             navigator.geolocation.getCurrentPosition(function showPosition(position) {
                 Ext.getCmp('mymap').show();
                 Ext.getCmp('locationOffText').hide();
                 Ext.getCmp('lookUpZipcode').hide();
+                store.clearFilter();
+                store.load();
+                var store1 = Ext.getStore('calculateDistances');
+                var stores = [];
+                store1.each(function(record) {
+                    stores.push(record.get('customerId'));
+                });
+                console.log(stores.length);
+                store.filterBy(function(record) {
+                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                }, this);
             }, onError);
             function onError(error) {
                 Ext.getCmp('mymap').hide();
