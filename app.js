@@ -64711,7 +64711,7 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
-                        userLocationStore.removeAt(0);
+                        //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
                             'latitude': latitude.toString(),
@@ -64790,7 +64790,7 @@ Ext.define('Ext.direct.Manager', {
                 'latitude': latitude.toString(),
                 'longitude': longitude.toString()
             });
-            console.log(userLocationStore.getAllCount());
+            console.log('Store count is : ' + userLocationStore.getAllCount());
             // Ext.Viewport.getActiveItem().destroy();
             var view = Ext.Viewport.add({
                     xtype: 'Main'
