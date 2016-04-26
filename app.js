@@ -65411,9 +65411,6 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        Ext.getStore('MyJsonPStore').clearFilter();
-        Ext.getStore('MyDealsStore').clearFilter();
-        Ext.getStore('MyJsonPStore').load();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         if (Ext.getCmp('lookUpZipcode').getValue() !== '') {
             Ext.getCmp('mymap').hide();
@@ -65456,6 +65453,8 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('locationOffText').hide();
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
+            Ext.getStore('MyJsonPStore').clearFilter();
+            Ext.getStore('MyJsonPStore').load();
             Ext.getCmp('mymap').setMapCenter({
                 latitude: latitude,
                 longitude: longitude
@@ -65485,6 +65484,8 @@ Ext.define('Ext.direct.Manager', {
                 Ext.getCmp('mymap').hide();
                 Ext.getCmp('locationOffText').show();
                 Ext.getCmp('lookUpZipcode').show();
+                Ext.getStore('MyJsonPStore').clearFilter();
+                Ext.getStore('MyJsonPStore').load();
                 var postalCode = Ext.getCmp('lookUpZipcode').getValue();
                 Ext.getCmp('mymap').show();
                 Ext.getCmp('lookUpZipcode').hide();
@@ -65522,6 +65523,8 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('mymap').show();
             Ext.getCmp('lookUpZipcode').hide();
             Ext.getCmp('locationOffText').hide();
+            Ext.getStore('MyJsonPStore').clearFilter();
+            Ext.getStore('MyJsonPStore').load();
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 lat = json.results[0].geometry.location.lat;
                 long = json.results[0].geometry.location.lng;
