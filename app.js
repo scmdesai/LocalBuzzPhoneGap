@@ -64264,12 +64264,10 @@ Ext.define('Ext.direct.Manager', {
     config: {
         fields: [
             {
-                name: 'latitude',
-                type: 'float'
+                name: 'latitude'
             },
             {
-                name: 'longitude',
-                type: 'float'
+                name: 'longitude'
             }
         ]
     }
@@ -64716,12 +64714,11 @@ Ext.define('Ext.direct.Manager', {
                         //userLocationStore.removeAt(0);
                         console.log(latitude, longitude);
                         userLocationStore.add({
-                            'latitude': latitude,
-                            'longitude': longitude
+                            'latitude': latitude.toString(),
+                            'longitude': longitude.toString()
                         });
+                        userLocationStore.sync();
                         userLocationStore.load();
-                        var rec = userLocationStore.getAllCount();
-                        console.log('Store count' + rec);
                         // Ext.Viewport.getActiveItem().destroy();
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
@@ -64741,6 +64738,8 @@ Ext.define('Ext.direct.Manager', {
                                 store1.each(function(record) {
                                     Ext.Array.include(stores, record.get('customerId'));
                                 });
+                                var rec = userLocationStore.getAllCount();
+                                console.log('Store count' + rec);
                                 console.log(stores.length);
                                 store.filterBy(function(record) {
                                     return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
@@ -66358,37 +66357,37 @@ Ext.define('Ext.direct.Manager', {
         var userLocationStore = Ext.getStore('UserLocation');
         userLocationStore.load();
         var latitude, longitude;
-        navigator.geolocation.getCurrentPosition(function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            Ext.getCmp('mymap').setMapCenter({
-                latitude: latitude,
-                longitude: longitude
-            });
-            map.mapTypeControl = false;
-            var store = Ext.getStore('MyJsonPStore');
-            var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-            var check_if_markers_visible = false;
-            store.each(function(record) {
-                var address = record.get('address');
-                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat;
-                    long = json.results[0].geometry.location.lng;
-                    //console.log(lat,long);
-                    var m = new google.maps.LatLng(lat, long);
-                    //businessName = record.get('businessName');
-                    addMarker(record.get('category'), record.get('businessName'), m, record);
-                    mapMarkerPositionStore.add({
-                        'lat': lat,
-                        'long': long
-                    });
+        //navigator.geolocation.getCurrentPosition(function showPosition(position) {
+        //  latitude = position.coords.latitude;
+        //  longitude = position.coords.longitude;
+        Ext.getCmp('mymap').setMapCenter({
+            latitude: latitude,
+            longitude: longitude
+        });
+        map.mapTypeControl = false;
+        var store = Ext.getStore('MyJsonPStore');
+        var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+        var check_if_markers_visible = false;
+        store.each(function(record) {
+            var address = record.get('address');
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                //console.log(lat,long);
+                var m = new google.maps.LatLng(lat, long);
+                //businessName = record.get('businessName');
+                addMarker(record.get('category'), record.get('businessName'), m, record);
+                mapMarkerPositionStore.add({
+                    'lat': lat,
+                    'long': long
                 });
             });
-            var icons = {
-                    "0": {
-                        icon: 'resources/img/car.png'
-                    },
-                    /*{
+        });
+        var icons = {
+                "0": {
+                    icon: 'resources/img/car.png'
+                },
+                /*{
                                 path: fontawesome.markers.CAR,
                                 scale: 0.4,
                                 strokeWeight: 0.2,
@@ -66397,10 +66396,10 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                    "1": {
-                        icon: 'resources/img/supermarket.png'
-                    },
-                    /*{
+                "1": {
+                    icon: 'resources/img/supermarket.png'
+                },
+                /*{
                                 path: fontawesome.markers.SHOPPING_CART,
                                 scale: 0.4,
                                 strokeWeight: 0.2,
@@ -66409,10 +66408,10 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                    "2": {
-                        icon: 'resources/img/museum_art.png'
-                    },
-                    /*{
+                "2": {
+                    icon: 'resources/img/museum_art.png'
+                },
+                /*{
                                 path: fontawesome.markers.BULLSEYE,
                                 scale: 0.4,
                                 strokeWeight: 0.2,
@@ -66421,10 +66420,10 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                    "3": {
-                        icon: 'resources/img/dance_class.png'
-                    },
-                    /*{
+                "3": {
+                    icon: 'resources/img/dance_class.png'
+                },
+                /*{
                                 path: fontawesome.markers.CHILD,
                                 scale: 0.4,
                                 strokeWeight: 0.2,
@@ -66433,11 +66432,11 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-                    "4": {
-                        icon: 'resources/img/barber.png'
-                    }
-                };
-            /*{
+                "4": {
+                    icon: 'resources/img/barber.png'
+                }
+            };
+        /*{
                                 path: fontawesome.markers.SCISSORS,
                                 scale: 0.4,
                                 strokeWeight: 0.2,
@@ -66446,54 +66445,54 @@ Ext.define('Ext.direct.Manager', {
                                 fillColor: '#1985d0',
                                 fillOpacity: 1
                             }*/
-            function addMarker(feature, businessName, m, record) {
-                var ds = Ext.getStore('MyDealsStore');
-                ds.clearFilter();
-                ds.filter('customerId', record.get('customerId'));
-                ds.load();
-                ds.filter('dealStatus', 'Active');
-                var count = ds.getCount();
-                var category;
-                if (feature === 'Auto') {
-                    category = 0;
-                } else if (feature === 'Grocery') {
-                    category = 1;
-                } else if (feature === 'Arts') {
-                    category = 2;
-                } else if (feature === 'Dance Group') {
-                    category = 3;
-                } else if (feature === 'Beauty Salon') {
-                    category = 4;
-                }
-                var marker = new google.maps.Marker({
-                        position: m,
-                        map: gmap,
-                        draggable: false,
-                        animation: google.maps.Animation.DROP,
-                        icon: icons[category].icon
-                    });
-                var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
-                addInfoWindow(marker, content, record, businessName);
+        function addMarker(feature, businessName, m, record) {
+            var ds = Ext.getStore('MyDealsStore');
+            ds.clearFilter();
+            ds.filter('customerId', record.get('customerId'));
+            ds.load();
+            ds.filter('dealStatus', 'Active');
+            var count = ds.getCount();
+            var category;
+            if (feature === 'Auto') {
+                category = 0;
+            } else if (feature === 'Grocery') {
+                category = 1;
+            } else if (feature === 'Arts') {
+                category = 2;
+            } else if (feature === 'Dance Group') {
+                category = 3;
+            } else if (feature === 'Beauty Salon') {
+                category = 4;
             }
-            function addInfoWindow(marker, content, record, businessName) {
-                /*infoWindow = new google.maps.InfoWindow({
+            var marker = new google.maps.Marker({
+                    position: m,
+                    map: gmap,
+                    draggable: false,
+                    animation: google.maps.Animation.DROP,
+                    icon: icons[category].icon
+                });
+            var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
+            addInfoWindow(marker, content, record, businessName);
+        }
+        function addInfoWindow(marker, content, record, businessName) {
+            /*infoWindow = new google.maps.InfoWindow({
                 content: content
 
 
             });*/
-                google.maps.event.addListener(marker, 'mousedown', function() {
-                    if (infoWindow) {
-                        infoWindow.close();
-                    }
-                    infoWindow = new google.maps.InfoWindow({
-                        content: content
-                    });
-                    infoWindow.open(gmap, marker);
-                    infoWindow.setContent(content);
-                    console.log('Marker clicked ' + record.get('customerId'));
-                    google.maps.event.addListener(infoWindow, 'domready', function() {
-                        document.getElementById('labelStore').addEventListener('mousedown', function() {
-                            /* console.log('Label Clicked ' + businessName);
+            google.maps.event.addListener(marker, 'mousedown', function() {
+                if (infoWindow) {
+                    infoWindow.close();
+                }
+                infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
+                infoWindow.open(gmap, marker);
+                infoWindow.setContent(content);
+                console.log('Marker clicked ' + record.get('customerId'));
+                google.maps.event.addListener(infoWindow, 'domready', function() {
+                    document.getElementById('labelStore').addEventListener('mousedown', function() {
+                        /* console.log('Label Clicked ' + businessName);
 
                        var store = Ext.getStore('MyDealsStore');
                        store.clearFilter();
@@ -66510,19 +66509,19 @@ Ext.define('Ext.direct.Manager', {
                             }
 
                             }*/
-                            var view;
-                            if (Ext.Viewport.getComponent('Info')) {
-                                view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-                                view.setRecord(record);
-                            } else {
-                                view = Ext.Viewport.add({
-                                    xtype: 'contactinfo'
-                                });
-                                view.setRecord(record);
-                                Ext.Viewport.setActiveItem(view);
-                            }
-                        });
-                        /* document.getElementById('labelStoreInfo').addEventListener('mousedown',function() {
+                        var view;
+                        if (Ext.Viewport.getComponent('Info')) {
+                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            view.setRecord(record);
+                        } else {
+                            view = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
+                            view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
+                        }
+                    });
+                    /* document.getElementById('labelStoreInfo').addEventListener('mousedown',function() {
 
 
                         console.log('Label Clicked ' + businessName);
@@ -66548,16 +66547,16 @@ Ext.define('Ext.direct.Manager', {
                         }
 
                     });*/
-                        google.maps.event.addListener(gmap, 'click', function() {
-                            if (infoWindow) {
-                                infoWindow.close();
-                            }
-                        });
+                    google.maps.event.addListener(gmap, 'click', function() {
+                        if (infoWindow) {
+                            infoWindow.close();
+                        }
                     });
                 });
-            }
-        });
+            });
+        }
     },
+    //});
     //Ext.getCmp('BuzzNearMe').fireEvent('activate',this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
     /*Ext.getStore('MyJsonPStore').clearFilter();
