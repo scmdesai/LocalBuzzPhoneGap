@@ -64889,7 +64889,10 @@ Ext.define('Ext.direct.Manager', {
                                 }
                             });
                         });
-                    });
+                    }, onError);
+                    function onError() {
+                        Ext.Msg.alert('Location Service is Disabled', 'Allow LocalBuzz To Access Your Location', null, null);
+                    }
                 },
                 left: '20%',
                 top: '24%',
@@ -66781,6 +66784,7 @@ Ext.define('Ext.direct.Manager', {
         userLocationStore.each(function(record) {
             latitude = record.get('latitude');
             longitude = record.get('longitude');
+            console.log(latitude, longitude);
         });
         Ext.getCmp('mymap').setMapCenter({
             latitude: latitude,
