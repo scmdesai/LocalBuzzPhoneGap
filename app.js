@@ -64854,6 +64854,7 @@ Ext.define('Ext.direct.Manager', {
                         var storesNearBy = Ext.getStore('calculateDistances');
                         var userLocationStore = Ext.getStore('UserLocation');
                         //userLocationStore.removeAt(0);
+                        console.log(latitude, longitude);
                         userLocationStore.add({
                             'latitude': latitude,
                             'longitude': longitude
