@@ -64859,6 +64859,8 @@ Ext.define('Ext.direct.Manager', {
                             'latitude': latitude,
                             'longitude': longitude
                         });
+                        var rec = userLocationStore.getAllCount();
+                        console.log('Store count' + rec);
                         Ext.Viewport.getActiveItem().destroy();
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
