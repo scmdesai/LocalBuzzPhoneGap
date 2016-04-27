@@ -64712,7 +64712,6 @@ Ext.define('Ext.direct.Manager', {
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
                         //userLocationStore.removeAt(0);
-                        console.log(latitude, longitude);
                         userLocationStore.add({
                             'latitude': latitude.toString(),
                             'longitude': longitude.toString()
@@ -64781,14 +64780,17 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         var userLocationStore = Ext.getStore('UserLocation');
         var stores = [];
+        var latitude;
+        var longitude;
         var storesNearBy = Ext.getStore('calculateDistances');
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-            var latitude = json.results[0].geometry.location.lat;
-            var longitude = json.results[0].geometry.location.lng;
+            latitude = json.results[0].geometry.location.lat;
+            longitude = json.results[0].geometry.location.lng;
             //userLocationStore.removeAt(0);
+            console.log(latitude, longitude);
             userLocationStore.add({
-                'latitude': latitude,
-                'longitude': longitude
+                'latitude': latitude.toString(),
+                'longitude': longitude.toString()
             });
             console.log('Store count is : ' + userLocationStore.getAllCount());
             // Ext.Viewport.getActiveItem().destroy();
