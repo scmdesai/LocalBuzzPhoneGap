@@ -66338,6 +66338,16 @@ Ext.define('Ext.direct.Manager', {
 
                         }*/
         map.mapTypeControl = false;
+        var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
+        console.log(postalCode);
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            lat = json.results[0].geometry.location.lat;
+            long = json.results[0].geometry.location.lng;
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
+            });
+        });
         var store = Ext.getStore('MyJsonPStore');
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         var check_if_markers_visible = false;
