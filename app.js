@@ -66538,7 +66538,6 @@ Ext.define('Ext.direct.Manager', {
             Ext.getStore('MyJsonPStore').clearFilter();
             Ext.getStore('MyJsonPStore').load();
             var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-            Ext.getCmp('zipcodeLookUp').setValue('');
             // Ext.getCmp('mymap').show();
             //Ext.getCmp('lookUpZipcode').hide();
             //Ext.getCmp('locationOffText').hide();
