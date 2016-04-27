@@ -66360,10 +66360,10 @@ Ext.define('Ext.direct.Manager', {
             latitude = record.get('latitude');
             longitude = record.get('longitude');
         });
-        Ext.getCmp('mymap').setMapCenter({
-            latitude: latitude,
-            longitude: longitude
-        });
+        /* Ext.getCmp('mymap').setMapCenter({
+                            latitude: latitude,
+                            longitude: longitude
+                        });*/
         /*navigator.geolocation.getCurrentPosition(function showPosition(position) {
                     Ext.getCmp('mymap').show();
                     Ext.getCmp('lookUpZipcode').hide();
