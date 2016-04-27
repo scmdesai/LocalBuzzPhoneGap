@@ -66528,8 +66528,8 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
+        Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
-    //  Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
@@ -66545,10 +66545,10 @@ Ext.define('Ext.direct.Manager', {
             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                 lat = json.results[0].geometry.location.lat;
                 long = json.results[0].geometry.location.lng;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
+                /* Ext.getCmp('mymap').setMapCenter({
+                            latitude: lat,
+                            longitude: long
+                        });*/
                 var southWest = json.results[0].geometry.viewport.southwest;
                 var northEast = json.results[0].geometry.viewport.northeast;
                 var bounds = new google.maps.LatLngBounds(southWest, northEast);
