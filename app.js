@@ -64884,7 +64884,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            Ext.Viewport.getActiveItem().destroy();
+                            //Ext.Viewport.getActiveItem().destroy();
                             Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
                         centered: false,
@@ -65617,7 +65617,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.StoreManager.lookup('MyDealsStore');
         store.clearFilter();
         //Ext.Viewport.setActiveItem(0);
-        Ext.Viewport.getActiveItem().destroy();
+        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
     },
     /*var store = Ext.getStore('UserPreferences');
 
@@ -65734,7 +65734,7 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus', 'Active');
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
-        Ext.Viewport.getActiveItem().destroy();
+        //Ext.Viewport.getActiveItem().destroy();
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter();
         var dealRecord = this.getContactinfo().getRecord();
@@ -66603,9 +66603,6 @@ Ext.define('Ext.direct.Manager', {
         Ext.getStore('MyJsonPStore').load();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         if (Ext.getCmp('zipcodeLookUp').getValue() !== '') {
-            // Ext.getCmp('mymap').hide();
-            // Ext.getCmp('locationOffText').show();
-            // Ext.getCmp('lookUpZipcode').show();
             Ext.getStore('MyJsonPStore').clearFilter();
             Ext.getStore('MyJsonPStore').load();
             var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
