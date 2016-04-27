@@ -64884,10 +64884,10 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
+                            //Ext.Viewport.getActiveItem().destroy();
+                            //Ext.Viewport.setActiveItem(Ext.Viewport.add({xtype:'DealsPanel'}));
                             Ext.Viewport.getActiveItem().destroy();
-                            Ext.Viewport.setActiveItem(Ext.Viewport.add({
-                                xtype: 'DealsPanel'
-                            }));
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                         },
                         centered: false,
                         cls: 'icon-back-button',
@@ -65778,6 +65778,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
+        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
         /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter() ;
         var dealRecord = this.getContactinfo().getRecord() ;
