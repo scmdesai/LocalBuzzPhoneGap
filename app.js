@@ -66348,9 +66348,10 @@ Ext.define('Ext.direct.Manager', {
                 longitude: long
             });
         });
-        var store = Ext.getStore('MyJsonPStore').clearFilter();
+        var store = Ext.getStore('MyJsonPStore');
         Ext.getStore('MyDealsStore').clearFilter();
         var storeDeals = Ext.getStore('MyDealsStore');
+        store.clearFilter();
         storeDeals.clearFilter();
         storeDeals.load();
         var store1 = Ext.getStore('calculateDistances');
