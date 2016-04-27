@@ -66183,7 +66183,20 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             Ext.getStore('MyJsonPStore').clearFilter();
                             Ext.getStore('MyDealsStore').clearFilter();
-                            Ext.getStore('MyJsonPStore').load();
+                            var storeName = Ext.getStore('MyJsonPStore').load();
+                            var store = Ext.getStore('MyDealsStore');
+                            store.clearFilter();
+                            store.load();
+                            var store1 = Ext.getStore('calculateDistances');
+                            var stores = [];
+                            store1.each(function(record) {
+                                //stores.push(record.get('customerId'));
+                                Ext.Array.include(stores, record.get('customerId'));
+                            });
+                            console.log(stores.length);
+                            storeName.filterBy(function(record) {
+                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                            }, this);
                         },
                         event: 'painted'
                     }
