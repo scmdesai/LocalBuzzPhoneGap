@@ -64787,8 +64787,8 @@ Ext.define('Ext.direct.Manager', {
             var longitude = json.results[0].geometry.location.lng;
             //userLocationStore.removeAt(0);
             userLocationStore.add({
-                'latitude': latitude.toString(),
-                'longitude': longitude.toString()
+                'latitude': latitude,
+                'longitude': longitude
             });
             console.log('Store count is : ' + userLocationStore.getAllCount());
             // Ext.Viewport.getActiveItem().destroy();
@@ -66602,14 +66602,11 @@ Ext.define('Ext.direct.Manager', {
         var latitudeString, longitudeString;
         var userLocationStore = Ext.getStore('UserLocation');
         console.log("Store count is : " + userLocationStore.getAllCount());
-        var location = userLocationStore.getAt(0);
-        /*userLocationStore.load();
-               userLocationStore.each(function(record){
-
-
-               });*/
-        latitude = location.latitude;
-        longitude = location.longitude;
+        userLocationStore.load();
+        userLocationStore.each(function(record) {
+            latitude = record.get('latitude');
+            longitude = record.get('longitude');
+        });
         console.log(latitude, longitude);
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
