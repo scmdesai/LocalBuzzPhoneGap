@@ -66381,7 +66381,7 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
-        console.log('Map marker count:' + mapMarkerPositionStore.getCount());
+        console.log('Map marker count:' + store.getCount());
         /* $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                         lat = json.results[0].geometry.location.lat;
                         long = json.results[0].geometry.location.lng;
