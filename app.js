@@ -66183,8 +66183,7 @@ Ext.define('Ext.direct.Manager', {
                         mapOptions: {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
-                        },
-                        useCurrentLocation: true
+                        }
                     },
                     {
                         xtype: 'textareafield',
