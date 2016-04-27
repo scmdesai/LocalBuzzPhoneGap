@@ -66296,12 +66296,6 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         var infoWindow;
         var latitude, longitude;
-        var userLocationStore = Ext.getStore('UserLocation');
-        userLocationStore.load();
-        userLocationStore.each(function(record) {
-            latitude = record.get('latitude');
-            longitude = record.get('longitude');
-        });
         /* Ext.getCmp('mymap').setMapCenter({
                             latitude: latitude,
                             longitude: longitude
@@ -66534,8 +66528,8 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-        Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
+    //  Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
