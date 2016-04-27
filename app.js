@@ -66555,8 +66555,8 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         }
-        Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     },
+    //   Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
