@@ -65620,9 +65620,7 @@ Ext.define('Ext.direct.Manager', {
         store.clearFilter();
         //Ext.Viewport.setActiveItem(0);
         Ext.Viewport.getActiveItem().destroy();
-        Ext.Viewport.setActiveItem(Ext.Viewport.add({
-            xtype: 'Main'
-        }));
+        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
     },
     /*var store = Ext.getStore('UserPreferences');
 
@@ -66127,6 +66125,7 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'container',
                 title: 'Search',
                 iconCls: 'icon-search',
+                id: 'SearchBusiness',
                 itemId: 'SearchBusiness',
                 style: '',
                 ui: 'dark',
