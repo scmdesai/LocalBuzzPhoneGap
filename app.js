@@ -67129,6 +67129,7 @@ Ext.application({
                     }
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'Info') {
                     Ext.Viewport.getActiveItem().destroy();
+                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                     var ds = Ext.StoreManager.lookup('MyJsonPStore');
                     ds.clearFilter();
                     var store = Ext.StoreManager.lookup('MyDealsStore');
@@ -67142,6 +67143,7 @@ Ext.application({
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
                     console.log('DealsPanel1');
                     Ext.Viewport.getActiveItem().destroy();
+                    Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
                     Ext.Viewport.getActiveItem().destroy();
                     if (Ext.Viewport.getComponent('DealsPanel')) {
