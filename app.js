@@ -66601,16 +66601,16 @@ Ext.define('Ext.direct.Manager', {
         var latitude, longitude;
         var latitudeString, longitudeString;
         var userLocationStore = Ext.getStore('UserLocation');
-        userLocationStore.load();
-        userLocationStore.each(function(record) {
-            latitudeString = record.get('latitude');
-            longitudeString = record.get('longitude');
-        });
-        console.log(latitudeString, longitudeString);
-        var tmp = latitudeString.split("'");
-        latitude = tmp[1];
-        var tmp1 = longitudeString.split("'");
-        longitude = tmp1[1];
+        console.log("Store count is : " + userLocationStore.getAllCount());
+        var location = userLocationStore.getAt(0);
+        /*userLocationStore.load();
+               userLocationStore.each(function(record){
+
+
+               });*/
+        latitude = location.latitude;
+        longitude = location.longitude;
+        console.log(latitude, longitude);
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
