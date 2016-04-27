@@ -64884,11 +64884,11 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            //Ext.Viewport.getActiveItem().destroy();
-                            //Ext.Viewport.setActiveItem(Ext.Viewport.add({xtype:'DealsPanel'}));
                             Ext.Viewport.getActiveItem().destroy();
-                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
+                            Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                         },
+                        //Ext.Viewport.getActiveItem().destroy();
+                        //Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                         centered: false,
                         cls: 'icon-back-button',
                         height: '100%',
