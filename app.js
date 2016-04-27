@@ -67148,9 +67148,12 @@ Ext.application({
                     Ext.Viewport.getActiveItem().destroy();
                     if (Ext.Viewport.getComponent('DealsPanel')) {
                         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                    } else {
+                    } else if (Ext.Viewport.getComponent('DealsPanel')) {
                         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel1'));
+                    } else  {
+                        Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                     }
+                    
                 }
             }
         }
