@@ -67136,7 +67136,7 @@ Ext.application({
                     store.clearFilter();
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
                     Ext.Viewport.getActiveItem().destroy();
-                    Ext.Viewport.setActiveItem(1);
+                    Ext.Viewport.setActiveItem(2);
                     var store1 = Ext.StoreManager.lookup('MyDealsStore');
                     //store.clearFilter();
                     store1.load();
