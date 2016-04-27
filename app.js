@@ -65623,7 +65623,6 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.setActiveItem(Ext.Viewport.add({
             xtype: 'Main'
         }));
-        Ext.get('tabbar').setActiveTab(1);
     },
     /*var store = Ext.getStore('UserPreferences');
 
