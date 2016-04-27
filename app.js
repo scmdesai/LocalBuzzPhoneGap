@@ -66599,19 +66599,25 @@ Ext.define('Ext.direct.Manager', {
         Ext.getStore('MyJsonPStore').load();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
         var latitude, longitude;
+        var latitudeString, longitudeString;
         var userLocationStore = Ext.getStore('UserLocation');
         userLocationStore.load();
         userLocationStore.each(function(record) {
-            latitude = record.get('latitude');
-            longitude = record.get('longitude');
+            latitudeString = record.get('latitude');
+            longitudeString = record.get('longitude');
         });
-        Ext.getCmp('mymap').setMapCenter({
-            latitude: latitude,
-            longitude: longitude
-        });
+        console.log(latitudeString, longitudeString);
+        var tmp = latitudeString.split("'");
+        latitude = tmp[1];
+        var tmp1 = longitudeString.split("'");
+        longitude = tmp1[1];
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             lat = json.results[0].geometry.location.lat;
             long = json.results[0].geometry.location.lng;
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
+            });
             var southWest = json.results[0].geometry.viewport.southwest;
             var northEast = json.results[0].geometry.viewport.northeast;
             var bounds = new google.maps.LatLngBounds(southWest, northEast);
