@@ -66493,7 +66493,8 @@ Ext.define('Ext.direct.Manager', {
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    icon: icons[category].icon
+                    icon: icons[category].icon,
+                    title: count
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
@@ -66601,24 +66602,6 @@ Ext.define('Ext.direct.Manager', {
             if (store.getCount() === 0) {
                 Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
             }
-            store.clearFilter();
-            var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-            var check_if_markers_visible = false;
-            store.each(function(record) {
-                var address = record.get('address');
-                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat;
-                    long = json.results[0].geometry.location.lng;
-                    //console.log(lat,long);
-                    var m = new google.maps.LatLng(lat, long);
-                    //businessName = record.get('businessName');
-                    addMarker(record.get('category'), record.get('businessName'), m, record);
-                    mapMarkerPositionStore.add({
-                        'lat': lat,
-                        'long': long
-                    });
-                });
-            });
         } else /* Ext.getStore('MyJsonPStore').clearFilter();
                     Ext.getStore('MyJsonPStore').load();
                     var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
@@ -66698,24 +66681,6 @@ Ext.define('Ext.direct.Manager', {
                 if (store.getCount() === 0) {
                     Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
                 }
-                store.clearFilter();
-                var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-                var check_if_markers_visible = false;
-                store.each(function(record) {
-                    var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
-                        mapMarkerPositionStore.add({
-                            'lat': lat,
-                            'long': long
-                        });
-                    });
-                });
             });
         }
     },
