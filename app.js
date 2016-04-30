@@ -66497,7 +66497,8 @@ Ext.define('Ext.direct.Manager', {
                     label: {
                         text: count.toString(),
                         color: '#ff0000',
-                        offset: new google.maps.Point(50, 0)
+                        anchorX: 50,
+                        anchorY: 50
                     }
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
