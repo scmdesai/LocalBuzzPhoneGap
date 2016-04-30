@@ -66488,16 +66488,16 @@ Ext.define('Ext.direct.Manager', {
             } else if (feature === 'Beauty Salon') {
                 category = 4;
             }
-            var marker = new google.maps.Marker({
+            var marker = new google.maps.MarkerWithLabel({
                     position: m,
                     map: gmap,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon,
-                    label: {
-                        text: count.toString(),
-                        fontStyle: 'bold',
-                        fontSize: '14px'
+                    labelContent: count.toString(),
+                    labelAnchor: new google.maps.Point(22, 0),
+                    labelStyle: {
+                        opacity: 0.75
                     }
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
