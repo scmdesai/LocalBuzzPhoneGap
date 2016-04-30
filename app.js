@@ -66494,7 +66494,7 @@ Ext.define('Ext.direct.Manager', {
                     draggable: false,
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon,
-                    labelContent: count.toString(),
+                    labelContent: "$425K",
                     labelAnchor: new google.maps.Point(22, 0),
                     labelClass: "labels",
                     labelStyle: {
