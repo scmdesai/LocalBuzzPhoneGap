@@ -66488,7 +66488,7 @@ Ext.define('Ext.direct.Manager', {
             } else if (feature === 'Beauty Salon') {
                 category = 4;
             }
-            var marker = new google.maps.MarkerWithLabel({
+            var marker = new MarkerWithLabel({
                     position: m,
                     map: gmap,
                     draggable: false,
