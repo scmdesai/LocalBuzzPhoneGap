@@ -66496,9 +66496,8 @@ Ext.define('Ext.direct.Manager', {
                     icon: icons[category].icon,
                     label: {
                         text: count.toString(),
-                        color: '#ff0000',
-                        anchorX: 50,
-                        anchorY: 50
+                        fontStyle: 'bold',
+                        fontSize: '14px'
                     }
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
