@@ -66096,6 +66096,29 @@ Ext.define('Ext.direct.Manager', {
                             }
                         ]
                     }
+                ],
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            Ext.getStore('MyJsonPStore').clearFilter();
+                            Ext.getStore('MyDealsStore').clearFilter();
+                            var storeName = Ext.getStore('MyJsonPStore').load();
+                            var store = Ext.getStore('MyDealsStore');
+                            store.clearFilter();
+                            store.load();
+                            var store1 = Ext.getStore('calculateDistances');
+                            var stores = [];
+                            store1.each(function(record) {
+                                //stores.push(record.get('customerId'));
+                                Ext.Array.include(stores, record.get('customerId'));
+                            });
+                            console.log(stores.length);
+                            storeName.filterBy(function(record) {
+                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                            }, this);
+                        },
+                        event: 'painted'
+                    }
                 ]
             },
             {
@@ -66161,30 +66184,7 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
                             zoom: 11
-                        },
-                        listeners: [
-                            {
-                                fn: function(element, eOpts) {
-                                    Ext.getStore('MyJsonPStore').clearFilter();
-                                    Ext.getStore('MyDealsStore').clearFilter();
-                                    var storeName = Ext.getStore('MyJsonPStore').load();
-                                    var store = Ext.getStore('MyDealsStore');
-                                    store.clearFilter();
-                                    store.load();
-                                    var store1 = Ext.getStore('calculateDistances');
-                                    var stores = [];
-                                    store1.each(function(record) {
-                                        //stores.push(record.get('customerId'));
-                                        Ext.Array.include(stores, record.get('customerId'));
-                                    });
-                                    console.log(stores.length);
-                                    storeName.filterBy(function(record) {
-                                        return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                                    }, this);
-                                },
-                                event: 'painted'
-                            }
-                        ]
+                        }
                     },
                     {
                         xtype: 'textareafield',
@@ -66505,7 +66505,7 @@ Ext.define('Ext.direct.Manager', {
                     icon: icons[category].icon,
                     labelContent: count.toString(),
                     labelAnchor: new google.maps.Point(-10, 50),
-                    labelClass: "labels",
+                    //labelClass: "labels",
                     labelStyle: {
                         opacity: 0.75
                     }
