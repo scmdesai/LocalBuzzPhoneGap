@@ -66289,9 +66289,18 @@ Ext.define('Ext.direct.Manager', {
         store.filter('businessName', search);
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyDealsStore').clearFilter();
-        Ext.getStore('MyJsonPStore').load();
+        var store = Ext.getStore('MyJsonPStore');
+        store.clearFilter();
+        var store1 = Ext.getStore('calculateDistances');
+        var stores = [];
+        store1.each(function(record) {
+            //stores.push(record.get('customerId'));
+            Ext.Array.include(stores, record.get('customerId'));
+        });
+        store.filterBy(function(record) {
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+        }, this);
     },
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
