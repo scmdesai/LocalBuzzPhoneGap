@@ -66505,7 +66505,7 @@ Ext.define('Ext.direct.Manager', {
                     icon: icons[category].icon,
                     labelContent: count.toString(),
                     labelAnchor: new google.maps.Point(-10, 50),
-                    //labelClass: "labels",
+                    labelClass: "labels",
                     labelStyle: {
                         opacity: 0.75
                     }
