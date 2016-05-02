@@ -66507,7 +66507,7 @@ Ext.define('Ext.direct.Manager', {
                     labelAnchor: new google.maps.Point(-10, 50),
                     labelClass: "labels",
                     labelStyle: {
-                        opacity: 0.75
+                        opacity: 1
                     }
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
