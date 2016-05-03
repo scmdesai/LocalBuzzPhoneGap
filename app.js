@@ -65930,7 +65930,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
         if (e.target.id === 'favDeal') {
-            console.log(target.getItemId());
+            console.log(target.id);
         } else {
             var pic = Ext.Viewport.add({
                     xtype: 'dealpicture'
