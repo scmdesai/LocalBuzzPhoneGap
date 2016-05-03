@@ -65929,22 +65929,22 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
-        if (e.target.type === 'button') {
+        if (e.target.id === 'favDeal') {
             var store = Ext.getStore('FavoriteDeals');
             //store.clearFilter();
             var pressingCls = 'x-button-pressed';
-            button.element.toggleCls(pressingCls);
-            var isPressed = button.element.hasCls(pressingCls);
+            Ext.getCmp('favDeal').element.toggleCls(pressingCls);
+            var isPressed = Ext.getCmp('favDeal').element.hasCls(pressingCls);
             var itemName = record.get('itemName');
             store.add(record);
             if (isPressed === true) {
-                button.setCls('fill-heart');
+                Ext.getCmp('favDeal').setCls('fill-heart');
             } else // localStorage.setItem('customerId',record.get('customerId'));
             // localStorage.setItem('isFavorite', isPressed);
             // store.add({'customerId':customerId,'isFavorite':isPressed});
             //  store.sync();
             {
-                button.setCls('empty-heart');
+                Ext.getCmp('favDeal').setCls('empty-heart');
                 // localStorage.removeItem('customerId');
                 // localStorage.removeItem('isFavorite
                 store.findRecord('itemName', itemName).destroy();
