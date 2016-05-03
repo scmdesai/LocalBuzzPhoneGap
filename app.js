@@ -64863,19 +64863,14 @@ Ext.define('Ext.direct.Manager', {
                         id: 'nameTxt1',
                         itemId: 'nameTxt1',
                         style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                        width: '65%',
-                        listeners: [
-                            {
-                                fn: function(element, eOpts) {
-                                    this.setHtml(record.get('businessName'));
-                                },
-                                event: 'painted'
-                            }
-                        ]
+                        width: '65%'
                     }
                 ]
             }
         ]
+    },
+    setRecord: function(record) {
+        this.down('#nameTxt1').setHtml(record.get('businessName'));
     }
 }, 0, [
     "dealpicture"
