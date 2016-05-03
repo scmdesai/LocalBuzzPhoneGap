@@ -64870,6 +64870,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     setRecord: function(record) {
+        (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         this.down('#nameTxt1').setHtml(record.get('businessName'));
     }
 }, 0, [
@@ -65879,7 +65880,8 @@ Ext.define('Ext.direct.Manager', {
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
             '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>',
             '',
-            '<div style="font-size:4vw;color:green">{dealName}',
+            '<div style="font-size:4vw;color:green">{dealName} </div>',
+            '<div style="text-align:right" class="empty-heart"></div>',
             '    ',
             '<!--<div style="font-size:3vw;font-family:Arial;">{dealPictureURL}</div> -->',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
