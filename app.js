@@ -65933,8 +65933,8 @@ Ext.define('Ext.direct.Manager', {
             var store = Ext.getStore('FavoriteDeals');
             //store.clearFilter();
             var pressingCls = 'x-button-pressed';
-            Ext.getCmp('favDeal').element.toggleCls(pressingCls);
-            var isPressed = Ext.getCmp('favDeal').element.hasCls(pressingCls);
+            document.getElementById('favDeal').toggleCls(pressingCls);
+            var isPressed = document.getElementById('favDeal').hasCls(pressingCls);
             var itemName = record.get('itemName');
             store.add(record);
             if (isPressed === true) {
