@@ -65930,29 +65930,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
         if (e.target.id === 'favDeal') {
-            var store = Ext.getStore('FavoriteDeals');
-            //store.clearFilter();
-            var pressingCls = 'x-button-pressed';
-            target.getEl().toggleCls(pressingCls);
-            var isPressed = target.getEl().hasCls(pressingCls);
-            var itemName = record.get('itemName');
-            store.add(record);
-            if (isPressed === true) {
-                Ext.getCmp('favDeal').setCls('fill-heart');
-            } else // localStorage.setItem('customerId',record.get('customerId'));
-            // localStorage.setItem('isFavorite', isPressed);
-            // store.add({'customerId':customerId,'isFavorite':isPressed});
-            //  store.sync();
-            {
+            if (Ext.getCmp('favDeal').getCls() === 'fill-heart') {
                 Ext.getCmp('favDeal').setCls('empty-heart');
-                // localStorage.removeItem('customerId');
-                // localStorage.removeItem('isFavorite
-                store.findRecord('itemName', itemName).destroy();
-                store.sync();
+            } else {
+                Ext.getCmp('favDeal').setCls('fill-heart');
             }
-            //console.log(customerId + isPressed);
-            //record.set('isFavorite', isPressed);
-            store.sync();
         } else {
             var pic = Ext.Viewport.add({
                     xtype: 'dealpicture'
