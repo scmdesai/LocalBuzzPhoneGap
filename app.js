@@ -66094,7 +66094,8 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
-            '<span style="font-size:6vw;font-style:italic;color:#00529D">{businessName} <button type="button" id="favDeal" style="float:right;background:none;border:none;font-size:8vw" class="empty-heart"></button>',
+            '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName} <button type="button" id="favDeal" style="float:right;background:none;border:none;font-size:8vw"',
+            '                                                                                   class="empty-heart" onclick="favDeal()"/> </div>                                                                              ></button>',
             '',
             '<div style="font-size:4vw;color:green">{dealName} </div>',
             '<!--<div style="text-align:right" class="empty-heart"></div>-->',
@@ -66121,9 +66122,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
-        if (e.target.id === 'favDeal') {
-            document.getElementById('favDeal').className = 'fill-heart';
-        } else {
+        if (e.target.id === 'favDeal') {} else {
             var pic = Ext.Viewport.add({
                     xtype: 'dealpicture'
                 });
@@ -66176,6 +66175,9 @@ Ext.define('Ext.direct.Manager', {
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
+    },
+    favDeal: function() {
+        console.log('Favorite Deal');
     }
 }, 0, [
     "latestbuzz"
