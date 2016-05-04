@@ -66339,6 +66339,16 @@ Ext.define('Ext.direct.Manager', {
                             ds.filterBy(function(record) {
                                 return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
                             }, this);
+                            var store1 = Ext.getStore('FavoriteDeals');
+                            var records1 = [];
+                            var ds1 = Ext.getStore('MyDealsStore');
+                            ds1.clearFilter();
+                            store1.each(function(rec) {
+                                records1.push(rec.get('itemName'));
+                            });
+                            ds1.filterBy(function(record) {
+                                return Ext.Array.indexOf(records1, record.get('itemName')) !== -1;
+                            }, this);
                         },
                         event: 'painted'
                     }
