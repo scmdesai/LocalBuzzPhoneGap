@@ -66496,7 +66496,9 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'favoriteview11',
-                        height: '100%'
+                        docked: 'top',
+                        height: '100%',
+                        scrollable: true
                     }
                 ]
             },
@@ -66590,6 +66592,11 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#SearchBusiness'
             },
             {
+                fn: 'onFavorites1Activate',
+                event: 'activate',
+                delegate: '#Favorites1'
+            },
+            {
                 fn: 'onMyMapRender',
                 event: 'maprender',
                 delegate: '#mymap'
@@ -66639,6 +66646,23 @@ Ext.define('Ext.direct.Manager', {
         });
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+        }, this);
+    },
+    onFavorites1Activate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        var store = Ext.getStore('UserFavoriteDeals');
+        var records = [];
+        var ds = Ext.getStore('MyDealsStore1');
+        ds.clearFilter();
+        console.log(store.getAllCount());
+        store.each(function(rec) {
+            if (rec.get('isFavorite') === true) {
+                records.push(rec.get('itemName'));
+            } else {
+                Ext.Array.remove(records, rec.get('itemName'));
+            }
+        });
+        ds.filterBy(function(record) {
+            return Ext.Array.indexOf(records, record.get('itemName')) !== -1;
         }, this);
     },
     onMyMapRender: function(map, gmap, eOpts) {
