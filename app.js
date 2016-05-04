@@ -66126,6 +66126,7 @@ Ext.define('Ext.direct.Manager', {
         if (e.target.id === 'favDeal') {
             var itemTpl = '<div><img src="{dealPictureURL}" height="100" width="100%"></div><div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div><div><button type="button" name = "{index}" id="favDeal" style="float:right;background:none;border:none;font-size:8vw" class="fill-heart" ></button></div><div style="font-size:4vw;color:green">{dealName}</div><tpl if="dealEndDate &lt;= todayplusfivedays"><div style="font-size:2.8vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div><tpl else><div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div></tpl>';
             var items = this.getViewItems();
+            console.log(items.length);
             items.forEach(function(item) {
                 var itemElement = Ext.get('favDeal');
                 itemElement.toggleCls('fill-heart');
