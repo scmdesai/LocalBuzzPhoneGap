@@ -64935,7 +64935,27 @@ Ext.define('Ext.direct.Manager', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
-        this.down('#nameTxt1').setHtml(record.get('businessName'));
+        var isFavorite = false;
+        if (record) {
+            var name = record.get('itemName');
+            var store = Ext.getStore('FavoriteDeals');
+            if (store.getAllCount() !== 0) {
+                store.each(function(rec) {
+                    if (rec.get('itemName') == name) {
+                        isFavorite = true;
+                    }
+                });
+            }
+            // console.log(store.getData());
+            if (isFavorite === true) {
+                this.down('#favDeal').setCls('fill-heart');
+            } else //store.setData({'isFavorite':isFavorite});
+            {
+                this.down('#favDeal').setCls('empty-heart');
+            }
+            // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+            this.down('#favDeal')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+        }
     }
 }, 0, [
     "dealpicture"
@@ -64957,6 +64977,16 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
+//this.down('contactpic').setData(record.data);
+/* var ds = Ext.StoreManager.lookup('MyDealsStore');
+            ds.clearFilter() ;
+            ds.filter('customerId', customerId);
+            this.down('listofdeals').setData(ds.getData()) ;*/
+/*dealsData  = ds.getData().getAt(0);
+            var dealName = 'No Deals';
+            if(dealsData) {
+                 dealName = dealsData.get('dealName');
+            }*/
 
 /*
  * File: app/view/Info.js
