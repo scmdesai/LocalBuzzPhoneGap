@@ -66097,7 +66097,7 @@ Ext.define('Ext.direct.Manager', {
         style: 'background:#fff;',
         emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your <br>Favorite Business here!</h4>',
         inline: true,
-        store: 'FavoriteDeals',
+        store: 'MyDealsStore',
         itemTpl: [
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
             '<span style="font-size:6vw;font-style:italic;color:#00529D">{businessName} </span>',
