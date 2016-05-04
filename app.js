@@ -64918,7 +64918,16 @@ Ext.define('Ext.direct.Manager', {
         var isPressed = button.element.hasCls(pressingCls);
         var record = this.getRecord();
         var itemName = record.get('itemName');
-        store.add(record);
+        store.add({
+            'itemName': record.get('itemName'),
+            'dealName': record.get('dealName'),
+            'dealStartDate': record.get('dealStartDate'),
+            'dealEndDate': record.get('dealEndDate'),
+            'dealStatus': record.get('dealStatus'),
+            'dealDescription': record.get('deaDescription'),
+            'customerId': record.get('customerId'),
+            'businessName': record.get('businessName')
+        });
         if (isPressed === true) {
             button.setCls('fill-heart');
         } else // localStorage.setItem('customerId',record.get('customerId'));
