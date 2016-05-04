@@ -66129,7 +66129,7 @@ Ext.define('Ext.direct.Manager', {
             console.log(items.length);
             items.forEach(function(item) {
                 var itemElement = Ext.get('favDeal');
-                itemElement.toggleCls('fill-heart');
+                itemElement.setCls('fill-heart');
             });
         } else {
             var pic = Ext.Viewport.add({
