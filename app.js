@@ -66105,13 +66105,8 @@ Ext.define('Ext.direct.Manager', {
             '    <tpl else>',
             '        <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    </tpl>',
-            '    <div><button id="favDealBtn" class=\'empty-heart\' style="float:right" onclick="myFunction()"></button></div>',
-            '<script>',
-            'function myFunction() {',
-            '    console.log(\'Fav btn tapped\');',
-            '    document.getElementById("favDealBtn").className = "fill-heart";',
-            '}',
-            '</script>',
+            '    <div><button id="favDealBtn" class=\'empty-heart\' style="float:right"></button></div>',
+            '',
             '    ',
             '',
             ''
@@ -66128,6 +66123,9 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
+        if (e.target.id === 'favDealBtn') {
+            document.getElementById("favDealBtn").className = "fill-heart";
+        }
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
             });
