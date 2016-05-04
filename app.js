@@ -66127,6 +66127,9 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
+        e.target.addListener(this, 'mousedown', function() {
+            console.log(this.id);
+        });
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
             });
