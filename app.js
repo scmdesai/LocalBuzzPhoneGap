@@ -64213,6 +64213,7 @@ Ext.define('Ext.direct.Manager', {
         idProperty: '',
         fields: [
             {
+                allowNull: false,
                 name: 'itemName',
                 type: 'auto'
             },
