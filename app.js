@@ -64954,7 +64954,7 @@ Ext.define('Ext.direct.Manager', {
         button.element.toggleCls(pressingCls);
         var isPressed = button.element.hasCls(pressingCls);
         var record = this.getRecord();
-        var customerId = record.get('itemName');
+        var itemName = record.get('itemName');
         store.add({
             'itemName': itemName,
             'isFavorite': isPressed
