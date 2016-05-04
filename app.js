@@ -64981,10 +64981,10 @@ Ext.define('Ext.direct.Manager', {
         var isFavorite = false;
         if (record) {
             var name = record.get('itemName');
-            var store = Ext.getStore('FavoriteDeals');
+            var store = Ext.getStore('UserFavoriteDeals');
             if (store.getAllCount() !== 0) {
                 store.each(function(rec) {
-                    if (rec.get('itemName') == name) {
+                    if (rec.get('itemName') === name) {
                         isFavorite = true;
                     }
                 });
