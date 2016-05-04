@@ -66108,6 +66108,7 @@ Ext.define('Ext.direct.Manager', {
             '    <div><button id="favDealBtn" class=\'empty-heart\' style="float:right" onclick="myFunction()"></button></div>',
             '<script>',
             'function myFunction() {',
+            '    console.log(\'Fav btn tapped\');',
             '    document.getElementById("favDealBtn").className = "fill-heart";',
             '}',
             '</script>',
@@ -66123,10 +66124,6 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzPainted',
                 event: 'painted'
-            },
-            {
-                fn: 'onButtonTap',
-                event: 'tap'
             }
         ]
     },
@@ -66182,9 +66179,6 @@ Ext.define('Ext.direct.Manager', {
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
-    },
-    onButtonTap: function(button, e, eOpts) {
-        console.log('Fav Button tapped');
     }
 }, 0, [
     "latestbuzz"
