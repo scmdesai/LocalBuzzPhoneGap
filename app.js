@@ -66123,13 +66123,14 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzPainted',
                 event: 'painted'
+            },
+            {
+                fn: 'onButtonTap',
+                event: 'tap'
             }
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
-        e.target.addListener(this, 'mousedown', function() {
-            console.log(this.id);
-        });
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
             });
@@ -66181,6 +66182,9 @@ Ext.define('Ext.direct.Manager', {
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
+    },
+    onButtonTap: function(button, e, eOpts) {
+        console.log('Fav Button tapped');
     }
 }, 0, [
     "latestbuzz"
