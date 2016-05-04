@@ -66478,6 +66478,7 @@ Ext.define('Ext.direct.Manager', {
                             var records = [];
                             var ds = Ext.getStore('MyDealsStore1');
                             ds.clearFilter();
+                            console.log(store.getAllCount());
                             store.each(function(rec) {
                                 if (rec.get('isFavorite') === true) {
                                     records.push(rec.get('itemName'));
