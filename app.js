@@ -66095,7 +66095,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
             '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>                                                                              ',
-            '<div><button class=\'empty-heart\' style="float:right" onclick="function(){class=\'fill-heart\';}"></button></div>',
+            '<div><button class=\'empty-heart\' style="float:right" onclick="function(){document.getElementById(\'favDeal\').innerHTML=\'Test\';}"></button></div>',
             '<div style="font-size:4vw;color:green">{dealName}</div>',
             '<!--<div style="text-align:right" class="empty-heart"></div>-->',
             '    ',
