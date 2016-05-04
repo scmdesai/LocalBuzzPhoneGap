@@ -64879,6 +64879,14 @@ Ext.define('Ext.direct.Manager', {
                         width: 70
                     },
                     {
+                        xtype: 'button',
+                        cls: 'empty-heart',
+                        id: 'favDeal',
+                        itemId: 'favDeal',
+                        ui: 'plain',
+                        iconCls: ''
+                    },
+                    {
                         xtype: 'component',
                         cls: 'contact-name',
                         disabled: true,
@@ -64891,7 +64899,39 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onFavDealTap',
+                event: 'tap',
+                delegate: '#favDeal'
+            }
         ]
+    },
+    onFavDealTap: function(button, e, eOpts) {
+        var store = Ext.getStore('FavoriteDeals');
+        //store.clearFilter();
+        var pressingCls = 'x-button-pressed';
+        button.element.toggleCls(pressingCls);
+        var isPressed = button.element.hasCls(pressingCls);
+        var record = this.getRecord();
+        var itemName = record.get('itemName');
+        store.add(record);
+        if (isPressed === true) {
+            button.setCls('fill-heart');
+        } else // localStorage.setItem('customerId',record.get('customerId'));
+        // localStorage.setItem('isFavorite', isPressed);
+        // store.add({'customerId':customerId,'isFavorite':isPressed});
+        //  store.sync();
+        {
+            button.setCls('empty-heart');
+            // localStorage.removeItem('customerId');
+            // localStorage.removeItem('isFavorite
+            store.findRecord('itemName', itemName).destroy();
+            store.sync();
+        }
+        //console.log(customerId + isPressed);
+        store.sync();
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
@@ -65902,7 +65942,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
-            '<span style="font-size:6vw;font-style:italic;color:#00529D">{businessName} <button type="button" id="favDeal" style="float:right;background:none;border:none" class="empty-heart"></button>',
+            '<span style="font-size:6vw;font-style:italic;color:#00529D">{businessName} <button type="button" id="favDeal" style="float:right;background:none;border:none;font-size:8vw" class="empty-heart"></button>',
             '',
             '<div style="font-size:4vw;color:green">{dealName} </div>',
             '<!--<div style="text-align:right" class="empty-heart"></div>-->',
