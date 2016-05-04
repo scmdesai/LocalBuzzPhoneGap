@@ -66095,8 +66095,6 @@ Ext.define('Ext.direct.Manager', {
             '',
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
             '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>                                                                              ',
-            '<div><button type="button" name = "{index}" id="favDeal" style="float:right;background:none;border:none;font-size:8vw"',
-            '        class="empty-heart" ></button></div>',
             '',
             '<div style="font-size:4vw;color:green">{dealName}</div>',
             '<!--<div style="text-align:right" class="empty-heart"></div>-->',
@@ -66123,16 +66121,10 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
-        if (e.target.id === 'favDeal') {
-            var itemTpl = '<div><img src="{dealPictureURL}" height="100" width="100%"></div><div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div><div><button type="button" name = "{index}" id="favDeal" style="float:right;background:none;border:none;font-size:8vw" class="fill-heart" ></button></div><div style="font-size:4vw;color:green">{dealName}</div><tpl if="dealEndDate &lt;= todayplusfivedays"><div style="font-size:2.8vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div><tpl else><div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div></tpl>';
-            var items = this.getViewItems();
-            console.log(items.length);
-            this.getItemAt(index).addCls('fill-heart');
-        } else {
-            var pic = Ext.Viewport.add({
-                    xtype: 'dealpicture'
-                });
-            /*console.log("Data View is: ") ;
+        var pic = Ext.Viewport.add({
+                xtype: 'dealpicture'
+            });
+        /*console.log("Data View is: ") ;
         console.log(dataview) ;
         console.log("Index is: " + index) ;
         console.log("Target is: ") ;
@@ -66141,31 +66133,30 @@ Ext.define('Ext.direct.Manager', {
         console.log(e) ;
         console.log("Event Options is: ") ;
         console.log(eOpts) ;*/
-            pic.setRecord(record);
-            Ext.getStore('LocalStore').add(record);
-            //Ext.Viewport.add(pic);
-            Ext.Viewport.setActiveItem(pic);
-            //_gaq.push(['_trackEvent', 'Images', 'Click', 'Deal Picture', 0]);
-            //analytics.trackEvent(record.get('customerId'), 'DealClick', record.get('dealName'));
-            var showPosition;
-            if (navigator.geolocation) {
-                //if you have the geolocation, run the showPosition function
-                navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-                    console.log('LatestBuzz View Analytics' + latitude + "," + longitude);
-                    // api call for postal code and track event
-                    $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-                        //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
-                        //analytics.addCustomDimension('1', record.get('customerId'));
-                        analytics.trackEvent(record.get('dealName'), json.postalCodes[0].postalCode, record.get('customerId'));
-                    });
+        pic.setRecord(record);
+        Ext.getStore('LocalStore').add(record);
+        //Ext.Viewport.add(pic);
+        Ext.Viewport.setActiveItem(pic);
+        //_gaq.push(['_trackEvent', 'Images', 'Click', 'Deal Picture', 0]);
+        //analytics.trackEvent(record.get('customerId'), 'DealClick', record.get('dealName'));
+        var showPosition;
+        if (navigator.geolocation) {
+            //if you have the geolocation, run the showPosition function
+            navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                console.log('LatestBuzz View Analytics' + latitude + "," + longitude);
+                // api call for postal code and track event
+                $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+                    //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
+                    //analytics.addCustomDimension('1', record.get('customerId'));
+                    analytics.trackEvent(record.get('dealName'), json.postalCodes[0].postalCode, record.get('customerId'));
                 });
-            } else {
-                //geolocation not happening
-                console.log("Gelocation not working");
-                analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
-            }
+            });
+        } else {
+            //geolocation not happening
+            console.log("Gelocation not working");
+            analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
     onLatestbuzzPainted: function(element, eOpts) {
