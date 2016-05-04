@@ -64639,6 +64639,8 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.store.UserFavoriteDeals', Ext.data.Store, {
     config: {
+        autoLoad: true,
+        autoSync: true,
         model: 'Contact.model.UserFavoriteDeals',
         storeId: 'UserFavoriteDeals'
     }
