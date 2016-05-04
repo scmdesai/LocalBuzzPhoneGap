@@ -66128,8 +66128,7 @@ Ext.define('Ext.direct.Manager', {
             var items = this.getViewItems();
             console.log(items.length);
             items.forEach(function(item) {
-                var itemElement = Ext.get('favDeal');
-                itemElement.replaceCls('empty-heart', 'fill-heart');
+                item.setCls('fill-heart');
             });
         } else {
             var pic = Ext.Viewport.add({
