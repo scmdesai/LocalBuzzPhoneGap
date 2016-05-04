@@ -66095,10 +66095,8 @@ Ext.define('Ext.direct.Manager', {
             '',
             '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
             '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>                                                                              ',
-            '<button type="button" id="favDeal" style="float:right;background:none;border:none;font-size:8vw"',
-            '        class="empty-heart" onclick="favDeal(){',
-            '                                     console.log(\'Inside Fav Deal\');',
-            '                                     }"></button>',
+            '<div><button type="button" id="favDeal" style="float:right;background:none;border:none;font-size:8vw"',
+            '        class="empty-heart" ></button></div>',
             '',
             '<div style="font-size:4vw;color:green">{dealName}</div>',
             '<!--<div style="text-align:right" class="empty-heart"></div>-->',
@@ -66125,7 +66123,9 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
-        if (e.target.id === 'favDeal') {} else {
+        if (e.target.id === 'favDeal') {
+            this.setCls('fill-heart');
+        } else {
             var pic = Ext.Viewport.add({
                     xtype: 'dealpicture'
                 });
