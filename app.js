@@ -66128,7 +66128,7 @@ Ext.define('Ext.direct.Manager', {
             var items = this.getViewItems();
             console.log(items.length);
             items.forEach(function(item) {
-                this.getElementById('favDeal').className = 'fill-heart';
+                document.getElementById('favDeal').className = 'fill-heart';
             });
         } else {
             var pic = Ext.Viewport.add({
