@@ -66124,7 +66124,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
         if (e.target.id === 'favDealBtn') {
-            var el = this.element;
+            var el = e.target.element;
             el.dom.style.backgroundColor = 'red';
         }
         var pic = Ext.Viewport.add({
