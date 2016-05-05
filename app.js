@@ -66130,7 +66130,18 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.MyDataView1', Ext.dataview.DataView, {
     config: {
         store: 'MyDealsStore',
-        useComponents: true
+        useComponents: true,
+        itemTpl: [
+            '',
+            '<div><img src="{dealPictureURL}" height="100" width="100%"></div>',
+            '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>                                                                              ',
+            '<div style="font-size:5vw;color:black;font-weight:normal;font-family:Arial">{dealName}</div>',
+            '<div style="font-size:3.5vw;margin:5px 5px 5px 0px;font-family:Arial">{dealDescription}</div>',
+            '<tpl if= "dealEndDate &lt;= today"> ',
+            ' <div class= "expiringDate" >Valid {dealStartDate} to {dealEndDate}</div>',
+            '  <tpl else>',
+            '        <div class= "dateValidity" >Valid {dealStartDate} to {dealEndDate}</div></tpl>'
+        ]
     }
 }, 0, [
     "mydataview1"
