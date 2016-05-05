@@ -66094,7 +66094,8 @@ Ext.define('Ext.direct.Manager', {
     },
     updateRecord: function(record) {
         // Provide an implementation to update this container's child items
-        Ext.dataview.component.ListItem.prototype.updateRecord.apply(this, arguments);
+        //this.callParent(arguments);
+        console.log(record.get('dealName'));
         this.down('#dealDetails').setHtml(record.get('dealName'));
     }
 }, 0, 0, [
