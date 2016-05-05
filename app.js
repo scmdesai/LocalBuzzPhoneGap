@@ -66126,6 +66126,7 @@ Ext.define('Ext.direct.Manager', {
         if (e.target.id === 'favDealBtn') {
             var el = Ext.get('favDealBtn');
             document.getElementById("favDealBtn").className = "fill-heart";
+            console.log(el.getAttribute('class'));
         }
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
