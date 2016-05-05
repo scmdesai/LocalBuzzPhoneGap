@@ -66125,7 +66125,7 @@ Ext.define('Ext.direct.Manager', {
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
         if (e.target.id === 'favDealBtn') {
             var el = e.target;
-            dataview.getAt(index).addCls('fill-heart');
+            dataview.getAt(index).replaceCls('empty-heart', 'fill-heart');
         }
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
