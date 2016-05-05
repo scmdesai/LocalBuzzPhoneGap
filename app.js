@@ -66116,7 +66116,8 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 fn: 'onLatestbuzzInitialize',
-                event: 'initialize'
+                event: 'initialize',
+                order: 'after'
             }
         ]
     },
