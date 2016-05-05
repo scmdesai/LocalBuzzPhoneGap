@@ -66113,19 +66113,12 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzPainted',
                 event: 'painted'
-            },
-            {
-                fn: 'onLatestbuzzInitialize',
-                event: 'initialize',
-                order: 'after'
             }
         ]
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
-        if (e.target.id === 'favDealBtn') {
-            var el = e.target;
-            var ele = document.getElementsByClassName('empty-heart');
-            ele[0].set = 'blue';
+        if (e.target.id === 'btn') {
+            target.toggleCls('fill-heart');
         }
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
@@ -66178,11 +66171,6 @@ Ext.define('Ext.direct.Manager', {
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
-    },
-    onLatestbuzzInitialize: function(component, eOpts) {
-        Ext.get('btn').on('tap', function(button) {
-            button.toggleCls('fill-heart');
-        });
     }
 }, 0, [
     "latestbuzz"
