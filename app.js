@@ -65937,9 +65937,9 @@ Ext.define('Ext.direct.Manager', {
         //var picture = button.getParent().getParent().getRecord().get('dealPictureURL');
         var record = Ext.getStore('LocalStore').getAt(0);
         //console.log(businessName.customerId);
-        //window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.customerId , null, null, record.dealPictureURL);
-        window.plugins.socialsharing.share(null, null, record.get('dealPictureURL'), null);
+        window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName'), record.get('dealName') + '\n' + record.get('dealDescription') + '\nValid through' + record.get('dealEndDate'));
     },
+    //window.plugins.socialsharing.share(null, null,record.get('dealPictureURL'),null);
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
