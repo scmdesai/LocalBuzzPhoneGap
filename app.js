@@ -66280,7 +66280,40 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             ''
+        ],
+        listeners: [
+            {
+                fn: 'onFavoriteviewItemTap',
+                event: 'itemtap'
+            }
         ]
+    },
+    onFavoriteviewItemTap: function(dataview, index, target, record, e, eOpts) {
+        var showPosition;
+        if (navigator.geolocation) {
+            //if you have the geolocation, run the showPosition function
+            navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                console.log('Inside Analytics module: ' + latitude + "," + longitude);
+                // api call for postal code and track event
+                $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+                    //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
+                    //analytics.addCustomDimension('1', record.get('customerId'));
+                    analytics.trackEvent(record.get('dealName'), json.postalCodes[0].postalCode, record.get('customerId'));
+                });
+            });
+        } else {
+            //geolocation not happening
+            console.log("Gelocation not working");
+            analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
+        }
+        Ext.getStore('LocalStore').add(record);
+        var pic = Ext.Viewport.add({
+                xtype: 'dealpicture'
+            });
+        pic.setRecord(record);
+        Ext.Viewport.setActiveItem(pic);
     }
 }, 0, [
     "favoriteview11"
