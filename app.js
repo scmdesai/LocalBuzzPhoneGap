@@ -66118,7 +66118,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onLatestbuzzItemTap: function(dataview, index, target, record, e, eOpts) {
         if (e.target.id === 'btn') {
-            dataview.getAt(index).setTpl('<button class="fill-heart"></button>');
+            dataview.getAt(index).setTpl('<h1>tEST</h1>');
         }
         var pic = Ext.Viewport.add({
                 xtype: 'dealpicture'
