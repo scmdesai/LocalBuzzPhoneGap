@@ -65061,6 +65061,7 @@ Ext.define('Ext.direct.Manager', {
         var isFavorite = false;
         if (record) {
             var name = record.get('itemName');
+            this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('UserFavoriteDeals');
             if (store.getAllCount() !== 0) {
                 store.each(function(rec) {
@@ -65939,7 +65940,7 @@ Ext.define('Ext.direct.Manager', {
         var record = Ext.getStore('LocalStore').getAt(0);
         //console.log(businessName.customerId);
         //window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,record.get('dealDescription'),null );
-        window.plugins.socialsharing.share(record.get('dealName'), null, null, null);
+        window.plugins.socialsharing.share(null, record.get('dealName'), null, null);
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
