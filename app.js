@@ -65938,7 +65938,7 @@ Ext.define('Ext.direct.Manager', {
         //var picture = button.getParent().getParent().getRecord().get('dealPictureURL');
         var record = Ext.getStore('LocalStore').getAt(0);
         //console.log(businessName.customerId);
-        window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName') + '\n' + record.get('dealName') + '\n' + record.get('dealDescription') + '\nValid through' + record.get('dealEndDate'), null, null, null);
+        window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName') + '\n' + record.get('dealName') + '\n' + record.get('dealDescription') + '\nValid through' + record.get('dealEndDate'), null, record.get('dealDescription'), null);
     },
     //window.plugins.socialsharing.share(null, null,record.get('dealPictureURL'),null);
     onDealBackBtn1Tap: function(button, e, eOpts) {
