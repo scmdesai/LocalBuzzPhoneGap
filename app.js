@@ -66093,7 +66093,7 @@ Ext.define('Ext.direct.Manager', {
             '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>                                                                              ',
             '',
             '<div style="font-size:4vw;color:green">{dealName}</div>',
-            '<button id="favDealBtn" style="float:right" class="empty-heart"></button>',
+            '',
             '',
             '',
             '    ',
@@ -66479,7 +66479,7 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             var store = Ext.getStore('UserFavoriteDeals');
                             var records = [];
-                            var ds = Ext.getStore('MyDealsStore1');
+                            var ds = Ext.getStore('MyDealsStore');
                             ds.clearFilter();
                             console.log(store.getAllCount());
                             store.each(function(rec) {
