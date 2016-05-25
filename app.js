@@ -66473,70 +66473,98 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'Favorites',
                 margin: '1 1 1 1',
                 modal: false,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            var store = Ext.getStore('UserPreferences');
-                            var records = [];
-                            var ds = Ext.getStore('MyJsonPStore1');
-                            ds.clearFilter();
-                            store.each(function(rec) {
-                                if (rec.get('isFavorite') === true) {
-                                    records.push(rec.get('customerId'));
-                                } else {
-                                    Ext.Array.remove(records, rec.get('customerId'));
-                                }
-                            });
-                            ds.filterBy(function(record) {
-                                return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
-                            }, this);
-                        },
-                        event: 'painted'
-                    }
-                ],
                 items: [
                     {
-                        xtype: 'favoriteview',
+                        xtype: 'tabpanel',
                         docked: 'top',
-                        height: '100%'
-                    }
-                ]
-            },
-            {
-                xtype: 'container',
-                title: 'Favorites',
-                iconCls: 'icon-star-favorite',
-                height: '100%',
-                itemId: 'Favorites1',
-                margin: '1 1 1 1',
-                modal: false,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            var store = Ext.getStore('UserFavoriteDeals');
-                            var records = [];
-                            var ds = Ext.getStore('MyDealsStore');
-                            ds.clearFilter();
-                            console.log(store.getAllCount());
-                            store.each(function(rec) {
-                                if (rec.get('isFavorite') === true) {
-                                    records.push(rec.get('itemName'));
-                                } else {
-                                    Ext.Array.remove(records, rec.get('itemName'));
-                                }
-                            });
-                            ds.filterBy(function(record) {
-                                return Ext.Array.indexOf(records, record.get('itemName')) !== -1;
-                            }, this);
-                        },
-                        event: 'painted'
-                    }
-                ],
-                items: [
-                    {
-                        xtype: 'favoriteview11',
-                        docked: 'top',
-                        height: '100%'
+                        height: '100%',
+                        items: [
+                            {
+                                xtype: 'container',
+                                title: 'Favorite Stores',
+                                cls: 'icon-star-full',
+                                height: '100%',
+                                itemId: 'favStores',
+                                minHeight: '100%',
+                                scrollable: true,
+                                layout: {
+                                    type: 'vbox',
+                                    align: 'stretchmax'
+                                },
+                                items: [
+                                    {
+                                        xtype: 'favoriteview',
+                                        docked: 'top',
+                                        height: '100%',
+                                        minHeight: '100%'
+                                    }
+                                ],
+                                listeners: [
+                                    {
+                                        fn: function(element, eOpts) {
+                                            var store = Ext.getStore('UserPreferences');
+                                            var records = [];
+                                            var ds = Ext.getStore('MyJsonPStore1');
+                                            ds.clearFilter();
+                                            store.each(function(rec) {
+                                                if (rec.get('isFavorite') === true) {
+                                                    records.push(rec.get('customerId'));
+                                                } else {
+                                                    Ext.Array.remove(records, rec.get('customerId'));
+                                                }
+                                            });
+                                            ds.filterBy(function(record) {
+                                                return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
+                                            }, this);
+                                        },
+                                        event: 'painted'
+                                    }
+                                ]
+                            },
+                            {
+                                xtype: 'container',
+                                title: 'Favorites',
+                                height: '100%',
+                                itemId: 'Favorites1',
+                                margin: '1 1 1 1',
+                                layout: 'vbox',
+                                modal: false,
+                                listeners: [
+                                    {
+                                        fn: function(element, eOpts) {
+                                            var store = Ext.getStore('UserFavoriteDeals');
+                                            var records = [];
+                                            var ds = Ext.getStore('MyDealsStore');
+                                            ds.clearFilter();
+                                            console.log(store.getAllCount());
+                                            store.each(function(rec) {
+                                                if (rec.get('isFavorite') === true) {
+                                                    records.push(rec.get('itemName'));
+                                                } else {
+                                                    Ext.Array.remove(records, rec.get('itemName'));
+                                                }
+                                            });
+                                            ds.filterBy(function(record) {
+                                                return Ext.Array.indexOf(records, record.get('itemName')) !== -1;
+                                            }, this);
+                                        },
+                                        event: 'painted'
+                                    }
+                                ],
+                                items: [
+                                    {
+                                        xtype: 'favoriteview11',
+                                        docked: 'top',
+                                        height: '100%'
+                                    }
+                                ]
+                            }
+                        ],
+                        tabBar: {
+                            docked: 'top',
+                            style: 'color:#00529D',
+                            ui: 'plain'
+                        }
                     }
                 ]
             },
