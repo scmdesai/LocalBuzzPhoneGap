@@ -65941,7 +65941,25 @@ Ext.define('Ext.direct.Manager', {
         //console.log(businessName.customerId);
         var pic = Ext.getCmp('dealPicture');
         //window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,record.get('dealDescription'),null );
-        window.plugins.socialsharing.shareViaWhatsApp('Hi!Check out the latest deal from ' + record.get('businessName') + '\n' + record.get('dealName') + '\n' + record.get('dealDescription') + '\nValid through' + record.get('dealEndDate'), null, null, record.get('dealPicture'), null);
+        //window.plugins.socialsharing.shareViaWhatsApp('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,null,record.get('dealPicture'),null);
+        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, gotFS, fail);
+        function gotFS(fileSystem) {
+            fileSystem.root.getFile("test.png", {
+                create: true,
+                exclusive: false
+            }, gotFileEntry, fail);
+        }
+        function gotFileEntry(fileEntry) {
+            fileEntry.createWriter(gotFileWriter, fail);
+        }
+        function gotFileWriter(writer) {
+            writer.onwriteend = function(evt) {};
+            writer.write(record.get('dealPicture'));
+        }
+        function fail(error) {
+            console.log(error.code);
+        }
+        window.plugins.socialsharing.share(null, null, 'test.png', null);
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
