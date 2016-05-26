@@ -65942,7 +65942,7 @@ Ext.define('Ext.direct.Manager', {
         var pic = Ext.getCmp('dealPicture');
         //window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,record.get('dealDescription'),null );
         //window.plugins.socialsharing.shareViaWhatsApp('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,null,record.get('dealPicture'),null);
-        window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, gotFS, fail);
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
         function gotFS(fileSystem) {
             fileSystem.root.getFile("test.png", {
                 create: true,
@@ -65958,6 +65958,7 @@ Ext.define('Ext.direct.Manager', {
         }
         function fail(error) {
             console.log(error.code);
+            Ext.Msg.alert('ERROR', null, null, null);
         }
         window.plugins.socialsharing.share(null, null, 'test.png', null);
     },
