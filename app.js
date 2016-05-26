@@ -65960,7 +65960,7 @@ Ext.define('Ext.direct.Manager', {
                 console.log(error.code);
                 Ext.Msg.alert('ERROR',null,null,null);
             }*/
-        window.plugins.socialsharing.share(null, null, "'" + record.get('dealPictureURL') + "'", null);
+        window.plugins.socialsharing.share(null, null, record.get('dealPictureURL'), null);
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
