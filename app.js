@@ -65961,7 +65961,7 @@ Ext.define('Ext.direct.Manager', {
                 console.log(error.code);
                 Ext.Msg.alert('ERROR',null,null,null);
             }*/
-        window.plugins.socialsharing.share('Hi!Check out the latest deal', null, 'data:image/png;base64,' + record.get('dealPictureURL'), null);
+        window.plugins.socialsharing.share('<div>Hi!Check out the latest deal</div>', null, record.get('dealPictureURL'), null);
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
