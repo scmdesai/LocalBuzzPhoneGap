@@ -65953,7 +65953,7 @@ Ext.define('Ext.direct.Manager', {
             fileEntry.createWriter(gotFileWriter, fail);
         }
         function gotFileWriter(writer) {
-            Ext.Msg.alert('FILE', null, null, null);
+            Ext.Msg.alert('FILE', record.get('dealPictureURL'), null, null);
             writer.write(record.get('dealPictureURL'));
         }
         function fail(error) {
