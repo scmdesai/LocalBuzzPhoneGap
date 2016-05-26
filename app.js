@@ -65940,7 +65940,7 @@ Ext.define('Ext.direct.Manager', {
         var record = Ext.getStore('LocalStore').getAt(0);
         //console.log(businessName.customerId);
         var pic = Ext.getCmp('dealPicture');
-        //var txt = '<div><img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:160;width:100%;" /></div> +<div style="font-size:6vw;color:green">{dealName}</div>+<div style="font-size:5vw;color:black">{dealDescription}</div>+<div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>';
+        //vat txt = '<div><img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:160;width:100%;" /></div> +<div style="font-size:6vw;color:green">{dealName}</div>+<div style="font-size:5vw;color:black">{dealDescription}</div>+<div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>';
         //window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,record.get('dealDescription'),null );
         //window.plugins.socialsharing.shareViaWhatsApp('Hi!Check out the latest deal from ' + record.get('businessName')+'\n'+record.get('dealName') + '\n' +record.get('dealDescription')+ '\nValid through' +record.get('dealEndDate'),null,null,record.get('dealPicture'),null);
         /*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
@@ -65961,7 +65961,7 @@ Ext.define('Ext.direct.Manager', {
                 console.log(error.code);
                 Ext.Msg.alert('ERROR',null,null,null);
             }*/
-        window.plugins.socialsharing.share(pic.getHtml(), null, null, null);
+        window.plugins.socialsharing.share('Hi!Check out the latest deal', null, 'data:image/png;base64,' + record.get('dealPictureURL'), null);
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
