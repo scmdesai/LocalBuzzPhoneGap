@@ -65954,7 +65954,7 @@ Ext.define('Ext.direct.Manager', {
         }
         function gotFileWriter(writer) {
             writer.onwriteend = function(evt) {};
-            writer.write(record.get('dealPicture'));
+            writer.write(record.get('dealPictureURL'));
         }
         function fail(error) {
             console.log(error.code);
