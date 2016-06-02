@@ -64219,7 +64219,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 defaultValue: false,
-                name: 'isFavorite',
+                name: 'isFav',
                 type: 'boolean'
             }
         ]
@@ -65037,7 +65037,7 @@ Ext.define('Ext.direct.Manager', {
         var itemName = record.get('itemName');
         store.add({
             'itemName': itemName,
-            'isFavorite': isPressed
+            'isFav': isPressed
         });
         if (isPressed === true) {
             button.setCls('fill-heart');
@@ -65053,32 +65053,33 @@ Ext.define('Ext.direct.Manager', {
             store.sync();
         }
         //console.log(customerId + isPressed);
-        record.set('isFavorite', isPressed);
+        record.set('isFav', isPressed);
         store.sync();
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
-        var isFavorite = false;
+        var isFav = false;
         if (record) {
             var name = record.get('itemName');
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('UserFavoriteDeals');
             if (store.getAllCount() !== 0) {
+                Ext.Msg.alert(store.getAllCount(), null, null, null);
                 store.each(function(rec) {
                     if (rec.get('itemName') === name) {
-                        isFavorite = true;
+                        isFav = true;
                     }
                 });
             }
             // console.log(store.getData());
-            if (isFavorite === true) {
+            if (isFav === true) {
                 this.down('#favDeal').setCls('fill-heart');
             } else //store.setData({'isFavorite':isFavorite});
             {
                 this.down('#favDeal').setCls('empty-heart');
             }
             // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
-            this.down('#favDeal')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+            this.down('#favDeal')[isFav ? 'addCls' : 'removeCls']('x-button-pressed');
         }
     }
 }, 0, [
