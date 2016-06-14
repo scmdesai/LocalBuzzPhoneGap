@@ -66518,7 +66518,7 @@ Ext.define('Ext.direct.Manager', {
                                             ds.clearFilter();
                                             console.log(store.getAllCount());
                                             store.each(function(rec) {
-                                                if (rec.get('isFavorite') === true) {
+                                                if (rec.get('isFav') === true) {
                                                     records.push(rec.get('itemName'));
                                                 } else {
                                                     Ext.Array.remove(records, rec.get('itemName'));
