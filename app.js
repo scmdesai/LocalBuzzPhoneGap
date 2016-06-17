@@ -65830,8 +65830,6 @@ Ext.define('Ext.direct.Manager', {
                 window.plugins.socialsharing.share(null, null, res.filePath, null);
             }
         }, 'jpg', 50, 'myScreenShot');
-        Ext.get('dealpictureBackBtn').show();
-        Ext.get('share').show();
     },
     //window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from '+record.get('businessName')+'\n'+record.get('dealName')+'\n'+  record.get('dealDescription')+'\nValid Through '+ record.get('dealEndDate'),null,null,null);
     onDealBackBtn1Tap: function(button, e, eOpts) {
