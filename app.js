@@ -65827,7 +65827,7 @@ Ext.define('Ext.direct.Manager', {
                 console.error(error);
             } else {
                 //Ext.Msg.alert(res.filePath,null,null,null); //should be path/to/myScreenshot.jpg
-                window.plugins.socialsharing.share(null, null, res.filePath, null);
+                window.plugins.socialsharing.share(null, 'Hi!Check out the Latest Buzz from LocalBuzz', res.filePath, null);
                 Ext.getCmp('dealpictureBackBtn').show();
                 Ext.get('share').show();
             }
