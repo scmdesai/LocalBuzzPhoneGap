@@ -65827,7 +65827,8 @@ Ext.define('Ext.direct.Manager', {
             }
         }, //should be path/to/myScreenshot.jpg
         'jpg', 50, 'myScreenShot');
-        window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from ' + record.get('businessName') + '\n' + record.get('dealName') + '\n' + record.get('dealDescription') + '\nValid Through ' + record.get('dealEndDate'), null, null, null);
+        //window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from '+record.get('businessName')+'\n'+record.get('dealName')+'\n'+  record.get('dealDescription')+'\nValid Through '+ record.get('dealEndDate'),null,null,null);
+        window.plugins.socialsharing.share(null, null, 'myScreenShot.jpg', null);
     },
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
