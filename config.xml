@@ -75,6 +75,11 @@
 	<!--email-->
 	<gap:plugin name="cordova-plugin-email-composer" version="0.8.3" source="npm" /> 
 	
+	
+	<!--screenshot-->
+	<gap:plugin name="com.darktalker.cordova.screenshot" version="0.1.5" source="npm" /> 
+	
+	
 
 	
 	<!-- <gap:plugin name="com.analytics.google" version="1.2.2" />
