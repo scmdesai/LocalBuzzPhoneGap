@@ -65820,7 +65820,7 @@ Ext.define('Ext.direct.Manager', {
                 console.log(error.code);
                 Ext.Msg.alert('ERROR',null,null,null);
             }*/
-        Ext.getCmp('dealpictureBackBtn').setHidden(true);
+        Ext.getCmp('dealpictureBackBtn').hide();
         Ext.get('share').hide();
         navigator.screenshot.save(function(error, res) {
             if (error) {
@@ -65828,6 +65828,8 @@ Ext.define('Ext.direct.Manager', {
             } else {
                 //Ext.Msg.alert(res.filePath,null,null,null); //should be path/to/myScreenshot.jpg
                 window.plugins.socialsharing.share(null, null, res.filePath, null);
+                Ext.getCmp('dealpictureBackBtn').show();
+                Ext.get('share').show();
             }
         }, 'jpg', 50, 'myScreenShot');
     },
