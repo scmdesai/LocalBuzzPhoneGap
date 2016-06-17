@@ -65820,7 +65820,7 @@ Ext.define('Ext.direct.Manager', {
                 console.log(error.code);
                 Ext.Msg.alert('ERROR',null,null,null);
             }*/
-        Ext.get('dealpictureBackBtn').hide();
+        Ext.getCmp('dealpictureBackBtn').setHidden(true);
         Ext.get('share').hide();
         navigator.screenshot.save(function(error, res) {
             if (error) {
