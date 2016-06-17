@@ -64895,7 +64895,7 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'icon-back-button',
                         height: '100%',
                         id: 'dealpictureBackBtn',
-                        itemId: 'mybutton',
+                        itemId: 'dealpictureBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
                         ui: 'plain',
@@ -64917,6 +64917,7 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'icon-share',
                         docked: 'right',
                         height: '100%',
+                        id: 'share',
                         itemId: 'share',
                         margin: '5 10 10 10',
                         style: 'font-family:Arial;',
@@ -65819,6 +65820,8 @@ Ext.define('Ext.direct.Manager', {
                 console.log(error.code);
                 Ext.Msg.alert('ERROR',null,null,null);
             }*/
+        Ext.get('dealpictureBackBtn').hide();
+        Ext.get('share').hide();
         navigator.screenshot.save(function(error, res) {
             if (error) {
                 console.error(error);
@@ -65827,6 +65830,8 @@ Ext.define('Ext.direct.Manager', {
                 window.plugins.socialsharing.share(null, null, res.filePath, null);
             }
         }, 'jpg', 50, 'myScreenShot');
+        Ext.get('dealpictureBackBtn').show();
+        Ext.get('share').show();
     },
     //window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from '+record.get('businessName')+'\n'+record.get('dealName')+'\n'+  record.get('dealDescription')+'\nValid Through '+ record.get('dealEndDate'),null,null,null);
     onDealBackBtn1Tap: function(button, e, eOpts) {
