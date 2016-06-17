@@ -65823,7 +65823,7 @@ Ext.define('Ext.direct.Manager', {
             if (error) {
                 console.error(error);
             } else {
-                console.log('ok', res.filePath);
+                Ext.Msg.alert(res.filePath, null, null, null);
             }
         }, //should be path/to/myScreenshot.jpg
         'jpg', 50, 'myScreenShot');
