@@ -65823,13 +65823,12 @@ Ext.define('Ext.direct.Manager', {
             if (error) {
                 console.error(error);
             } else {
-                Ext.Msg.alert(res.filePath, null, null, null);
+                //Ext.Msg.alert(res.filePath,null,null,null); //should be path/to/myScreenshot.jpg
+                window.plugins.socialsharing.share(null, null, res.filePath, null);
             }
-        }, //should be path/to/myScreenshot.jpg
-        'jpg', 50, 'myScreenShot');
-        //window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from '+record.get('businessName')+'\n'+record.get('dealName')+'\n'+  record.get('dealDescription')+'\nValid Through '+ record.get('dealEndDate'),null,null,null);
-        window.plugins.socialsharing.share(null, null, 'myScreenShot.jpg', null);
+        }, 'jpg', 50, 'myScreenShot');
     },
+    //window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from '+record.get('businessName')+'\n'+record.get('dealName')+'\n'+  record.get('dealDescription')+'\nValid Through '+ record.get('dealEndDate'),null,null,null);
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
