@@ -66643,9 +66643,9 @@ Ext.define('Ext.direct.Manager', {
                     draggable: false,
                     animation: google.maps.Animation.DROP,
                     icon: icons[category].icon,
-                    labelContent: count.toString(),
-                    labelAnchor: new google.maps.Point(-10, 50)
+                    labelContent: count.toString()
                 });
+            // labelAnchor: new google.maps.Point(-10, 50),
             //labelClass: "labels",
             // labelStyle: {opacity: 1.0}
             /*var marker = new google.maps.Marker({
