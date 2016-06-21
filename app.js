@@ -64905,7 +64905,6 @@ Ext.define('Ext.direct.Manager', {
                 disabled: true,
                 docked: 'bottom',
                 height: '',
-                html: '<b>Business Name</b>',
                 id: 'nameTxt2',
                 itemId: 'nameTxt2',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
@@ -64988,7 +64987,7 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
-            this.down('#nameTxt1').setHtml(rec.get('phoneNumber'));
+            this.down('#nameTxt2').setHtml('<i class="icon-phone"></i>' + rec.get('phoneNumber'));
         }
     }
 }, 0, [
