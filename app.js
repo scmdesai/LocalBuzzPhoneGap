@@ -66653,7 +66653,8 @@ Ext.define('Ext.direct.Manager', {
                         });*/
             var marker = new google.maps.Marker({
                     position: m,
-                    map: gmap
+                    map: gmap,
+                    icon: category
                 });
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
