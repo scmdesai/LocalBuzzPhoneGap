@@ -64988,7 +64988,7 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
-            this.down('#nameTxt2').setHtml('<div style="font-size:1px;"><i class="icon-phone" style="padding:15px 0px 15px 0px;"></i>' + rec.get('phoneNumber') + '</div><i class="icon-email" style="font-size:1px;padding:15px 0px 15px 0px;"></i>' + rec.get('emailAddress'));
+            this.down('#nameTxt2').setHtml('<div style="font-size:10px;"><i class="icon-phone" style="padding:15px 0px 15px 0px;"></i>' + rec.get('phoneNumber') + '</div><div style="font-size:10px;"><i class="icon-email" style="padding:15px 0px 15px 0px;"></i>' + rec.get('emailAddress') + '</div>');
         }
     }
 }, 0, [
