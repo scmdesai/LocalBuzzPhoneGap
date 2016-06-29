@@ -64905,7 +64905,7 @@ Ext.define('Ext.direct.Manager', {
                 disabled: true,
                 docked: 'bottom',
                 height: '',
-                html: '<u onclick="showStoreDetails()">Click here for store info ',
+                html: '<button onclick="showStoreDetails()">Click here for store info </button>',
                 id: 'nameTxt2',
                 itemId: 'nameTxt2',
                 margin: '5 0 5 0',
