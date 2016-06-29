@@ -64988,7 +64988,7 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
-            this.down('#nameTxt2').setHtml('<div style="font-size:1vw;"><i class="icon-phone" style="font-size:1vw;padding:15px 15px 15px 15px;"></i>' + rec.get('phoneNumber') + '</div><div style="font-size:1vw;"><i class="icon-email" style="font-size:1vw;padding:15px 15px 15px 15px;"></i>' + rec.get('emailAddress') + '</div><div style="font-size:1vw;"><i class="icon-location" style="font-size:1vw;padding:15px 15px 15px 15px;"></i>' + rec.get('address') + '</div><div style="font-size:1vw;"><i class="icon-globe" style="font-size:1vw;padding:15px 15px 15px 15px;"></i>' + rec.get('websiteDisplayName') + '</div>');
+            this.down('#nameTxt2').setHtml('<div style="font-size:3vw;"><i class="icon-phone" style="font-size:1vw!important;padding:15px 15px 15px 15px;"></i>' + rec.get('phoneNumber') + '</div><div style="font-size:3vw;"><i class="icon-email" style="font-size:1vw!important;padding:15px 15px 15px 15px;"></i>' + rec.get('emailAddress') + '</div><div style="font-size:3vw;"><i class="icon-location" style="font-size:1vw!important;padding:15px 15px 15px 15px;"></i>' + rec.get('address') + '</div><div style="font-size:3vw;"><i class="icon-globe" style="font-size:1vw!important;padding:15px 15px 15px 15px;"></i>' + rec.get('websiteDisplayName') + '</div>');
         }
     }
 }, 0, [
