@@ -64905,7 +64905,7 @@ Ext.define('Ext.direct.Manager', {
                 disabled: true,
                 docked: 'bottom',
                 height: '',
-                html: '<button onclick="showStoreDetails()">Click here for store info </button>',
+                html: '<button onclick="showStoreDetails(){Ext.Msg.alert(\'Showing Details\',null,null,null);}">Click here for store info </button>',
                 id: 'nameTxt2',
                 itemId: 'nameTxt2',
                 margin: '5 0 5 0',
@@ -64991,9 +64991,6 @@ Ext.define('Ext.direct.Manager', {
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
         }
-    },
-    showStoreDetails: function() {
-        Ext.Msg.alert('Showing Details', null, null, null);
     }
 }, 0, [
     "dealpicture"
