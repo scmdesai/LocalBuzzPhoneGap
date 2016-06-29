@@ -64886,7 +64886,7 @@ Ext.define('Ext.direct.Manager', {
         style: 'background:#fff;',
         width: '100%',
         layout: 'vbox',
-        scrollable: 'vertical',
+        scrollable: true,
         tpl: [
             '<div><img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:160;width:100%;" /></div>',
             '<div style="font-size:6vw;color:green">{dealName}</div>',
@@ -64899,20 +64899,6 @@ Ext.define('Ext.direct.Manager', {
             '    '
         ],
         items: [
-            {
-                xtype: 'component',
-                cls: 'contact-name',
-                disabled: true,
-                docked: 'bottom',
-                height: '',
-                html: '<button onclick="showStoreDetails(){Ext.Msg.alert(\'Showing Details\',null,null,null);}">Click here for store info </button>',
-                id: 'nameTxt2',
-                itemId: 'nameTxt2',
-                margin: '5 0 5 0',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                styleHtmlContent: true,
-                width: '65%'
-            },
             {
                 xtype: 'toolbar',
                 cls: 'toolbarCls',
@@ -64977,6 +64963,136 @@ Ext.define('Ext.direct.Manager', {
                         itemId: 'nameTxt1',
                         style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                         width: '65%'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-phone',
+                disabled: false,
+                docked: 'bottom',
+                height: '8vh',
+                hidden: false,
+                html: '',
+                id: 'phoneNumber1',
+                itemId: 'phoneNumber1',
+                style: 'font-size:2vw !important',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'phoneNumber',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                // console.log(Ext.getCmp('phoneNumber').getValue());
+                                var numberToDial = Ext.getCmp('phoneNumber').getValue();
+                                window.location = 'tel:' + numberToDial;
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-email',
+                docked: 'bottom',
+                height: '8vh',
+                id: 'email1',
+                itemId: 'email1',
+                style: 'font-family:Arial;font-size:2vw',
+                styleHtmlContent: true,
+                clearIcon: false,
+                inputCls: '',
+                label: '',
+                name: 'emailAddress',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                /* cordova.plugins.email.open({
+
+
+                                to:          Ext.getCmp('email').getValue(), // email addresses for TO field
+                                isHtml:    false, // indicats if the body is HTML or plain text
+                                });*/
+                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+                                null, [
+                                    Ext.getCmp('email').getValue()
+                                ], // TO: must be null or an array
+                                null, // CC: must be null or an array
+                                null, // BCC: must be null or an array
+                                null, // FILES: can be null, a string, or an array
+                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
+                                null);
+                            });
+                        },
+                        // called when sh*t hits the fan
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-globe',
+                disabled: false,
+                docked: 'bottom',
+                height: '8vh',
+                hidden: false,
+                id: 'website2',
+                itemId: 'website2',
+                maxHeight: '30%',
+                minHeight: '',
+                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:3vw',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'websiteDisplayName',
+                placeHolder: 'Not Listed',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var url = Ext.getCmp('website').getValue();
+                                window.open(url, '_system', 'location=yes');
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
+                disabled: false,
+                docked: 'bottom',
+                height: '10vh',
+                id: 'address1',
+                itemId: 'address1',
+                style: 'font-size:3vw;font-family:Arial',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                maxRows: 2,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
                     }
                 ]
             }
