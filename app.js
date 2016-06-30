@@ -65012,7 +65012,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'icon-location',
                 disabled: false,
                 docked: 'bottom',
-                height: '10vh',
+                height: '12vh',
                 id: 'address1',
                 itemId: 'address1',
                 style: 'font-size:4vw;font-family:Arial',
