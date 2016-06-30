@@ -64873,7 +64873,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealPicture', Ext.form.Panel, {
+(Ext.cmd.derive('Contact.view.DealPicture', Ext.Panel, {
     alternateClassName: [
         'dealPicture'
     ],
@@ -65135,7 +65135,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     setRecord: function(record) {
-        (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('itemName');
             var businessName = record.get('businessName');
@@ -65155,13 +65155,11 @@ Ext.define('Ext.direct.Manager', {
     "component",
     "container",
     "panel",
-    "formpanel",
     "dealpicture"
 ], {
     "component": true,
     "container": true,
     "panel": true,
-    "formpanel": true,
     "dealpicture": true
 }, [
     "widget.dealpicture"
