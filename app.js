@@ -65140,11 +65140,6 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
-            Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
-            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
-            Ext.getCmp('website2').setValue(rec.get('websiteDisplayName'));
-            Ext.getCmp('website3').setValue(rec.get('website'));
-            Ext.getCmp('address1').setValue(rec.get('address'));
         }
     }
 }, 0, [
@@ -65169,6 +65164,11 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
+/* Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
+            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
+            Ext.getCmp('website2').setValue(rec.get('websiteDisplayName'));
+            Ext.getCmp('website3').setValue(rec.get('website'));
+            Ext.getCmp('address1').setValue(rec.get('address'));*/
 
 /*
  * File: app/view/Info.js
