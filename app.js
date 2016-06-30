@@ -64967,46 +64967,13 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
-                xtype: 'textareafield',
-                baseCls: 'customfield',
-                cls: 'icon-location',
-                disabled: false,
-                docked: 'bottom',
-                height: '10vh',
-                id: 'address1',
-                itemId: 'address1',
-                style: 'font-size:3vw;font-family:Arial',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'address',
-                readOnly: true,
-                maxRows: 2,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
-                                }
-                                Ext.device.Device.openURL(url);
-                            });
-                        },
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
                 xtype: 'textfield',
                 cls: 'icon-email',
                 docked: 'bottom',
                 height: '8vh',
                 id: 'email1',
                 itemId: 'email1',
-                style: 'font-family:Arial;font-size:2vw',
+                style: 'font-family:Arial;font-size:3vw',
                 styleHtmlContent: true,
                 clearIcon: false,
                 inputCls: '',
@@ -65040,6 +65007,39 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
+                disabled: false,
+                docked: 'bottom',
+                height: '10vh',
+                id: 'address1',
+                itemId: 'address1',
+                style: 'font-size:4vw;font-family:Arial',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                maxRows: 2,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
                 xtype: 'textfield',
                 cls: 'icon-globe',
                 disabled: false,
@@ -65050,7 +65050,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'website2',
                 maxHeight: '30%',
                 minHeight: '',
-                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:3vw',
+                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4vw',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'websiteDisplayName',
