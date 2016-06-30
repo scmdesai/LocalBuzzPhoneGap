@@ -64967,6 +64967,38 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
+                disabled: false,
+                docked: 'bottom',
+                id: 'address1',
+                itemId: 'address1',
+                style: 'font-size:4vw;font-family:Arial',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                maxRows: 2,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
                 xtype: 'textfield',
                 cls: 'icon-email',
                 docked: 'bottom',
@@ -64992,7 +65024,7 @@ Ext.define('Ext.direct.Manager', {
                                 });*/
                                 window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
                                 null, [
-                                    Ext.getCmp('email').getValue()
+                                    Ext.getCmp('email1').getValue()
                                 ], // TO: must be null or an array
                                 null, // CC: must be null or an array
                                 null, // BCC: must be null or an array
@@ -65002,38 +65034,6 @@ Ext.define('Ext.direct.Manager', {
                             });
                         },
                         // called when sh*t hits the fan
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
-                xtype: 'textareafield',
-                baseCls: 'customfield',
-                cls: 'icon-location',
-                disabled: false,
-                docked: 'bottom',
-                id: 'address1',
-                itemId: 'address1',
-                style: 'font-size:4vw;font-family:Arial',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'address',
-                readOnly: true,
-                maxRows: 2,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
-                                }
-                                Ext.device.Device.openURL(url);
-                            });
-                        },
                         event: 'painted'
                     }
                 ]
@@ -65059,7 +65059,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                var url = Ext.getCmp('website').getValue();
+                                var url = Ext.getCmp('website2').getValue();
                                 window.open(url, '_system', 'location=yes');
                             });
                         },
@@ -65087,7 +65087,7 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
                                 // console.log(Ext.getCmp('phoneNumber').getValue());
-                                var numberToDial = Ext.getCmp('phoneNumber').getValue();
+                                var numberToDial = Ext.getCmp('phoneNumber1').getValue();
                                 window.location = 'tel:' + numberToDial;
                             });
                         },
