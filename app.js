@@ -65106,6 +65106,10 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
+            this.down('#phoneNumber1').setHtml(record.get('phoneNumber'));
+            this.down('#email1').setHtml(record.get('emailAddress'));
+            this.down('#address1').setHtml(record.get('address'));
+            this.down('#website2').setHtml(record.get('websiteDisplayName'));
         }
     }
 }, 0, [
