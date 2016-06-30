@@ -64873,7 +64873,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealPicture', Ext.Panel, {
+(Ext.cmd.derive('Contact.view.DealPicture', Ext.form.Panel, {
     alternateClassName: [
         'dealPicture'
     ],
@@ -65099,14 +65099,13 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     setRecord: function(record) {
-        (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
+        (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('itemName');
             var businessName = record.get('businessName');
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
-            Ext.get('phoneNumber1').set(record.get('phoneNumber'));
         }
     }
 }, 0, [
@@ -65115,11 +65114,13 @@ Ext.define('Ext.direct.Manager', {
     "component",
     "container",
     "panel",
+    "formpanel",
     "dealpicture"
 ], {
     "component": true,
     "container": true,
     "panel": true,
+    "formpanel": true,
     "dealpicture": true
 }, [
     "widget.dealpicture"
