@@ -64981,7 +64981,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'address1',
                 itemId: 'address1',
                 margin: '0 15 0 15',
-                style: 'font-size:4vw;font-family:Arial;text-align: left',
+                style: 'font-size:3vw;font-family:Arial;text-align: left',
                 styleHtmlContent: true,
                 top: '70%',
                 width: '90%',
