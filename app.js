@@ -64900,7 +64900,7 @@ Ext.define('Ext.direct.Manager', {
         layout: {
             type: 'vbox',
             align: 'stretchmax',
-            pack: 'center'
+            pack: 'end'
         },
         items: [
             {
