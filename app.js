@@ -64899,7 +64899,8 @@ Ext.define('Ext.direct.Manager', {
         ],
         layout: {
             type: 'vbox',
-            align: 'stretchmax'
+            align: 'stretchmax',
+            pack: 'center'
         },
         items: [
             {
@@ -64966,6 +64967,42 @@ Ext.define('Ext.direct.Manager', {
                         itemId: 'nameTxt1',
                         style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                         width: '65%'
+                    }
+                ]
+            },
+            {
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
+                disabled: false,
+                docked: 'bottom',
+                height: '13vh',
+                hidden: false,
+                id: 'address1',
+                itemId: 'address1',
+                margin: '0 15 0 15',
+                padding: '15 10 10 10',
+                style: 'font-size:4.2vw;font-family:Arial;text-align:top',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                maxRows: 2,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
                     }
                 ]
             },
@@ -65093,42 +65130,6 @@ Ext.define('Ext.direct.Manager', {
                                 // console.log(Ext.getCmp('phoneNumber').getValue());
                                 var numberToDial = Ext.getCmp('phoneNumber1').getValue();
                                 window.location = 'tel:' + numberToDial;
-                            });
-                        },
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
-                xtype: 'textareafield',
-                baseCls: 'customfield',
-                cls: 'icon-location',
-                disabled: false,
-                docked: 'bottom',
-                height: '13vh',
-                hidden: false,
-                id: 'address1',
-                itemId: 'address1',
-                margin: '0 15 0 15',
-                padding: '15 10 10 10',
-                style: 'font-size:3vw;font-family:Arial;text-align:top',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'address',
-                readOnly: true,
-                maxRows: 2,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
-                                }
-                                Ext.device.Device.openURL(url);
                             });
                         },
                         event: 'painted'
