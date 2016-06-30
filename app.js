@@ -64974,6 +64974,7 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'textfield',
                 cls: 'icon-email',
                 height: '8vh',
+                hidden: true,
                 id: 'email1',
                 itemId: 'email1',
                 margin: '0 15 0 15',
@@ -65015,7 +65016,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'icon-globe',
                 disabled: false,
                 height: '8vh',
-                hidden: false,
+                hidden: true,
                 id: 'website2',
                 itemId: 'website2',
                 margin: '0 15 0 15',
@@ -65073,7 +65074,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'icon-phone',
                 disabled: false,
                 height: '8vh',
-                hidden: false,
+                hidden: true,
                 html: '',
                 id: 'phoneNumber1',
                 itemId: 'phoneNumber1',
@@ -65102,6 +65103,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'icon-location',
                 disabled: false,
                 height: '13vh',
+                hidden: true,
                 id: 'address1',
                 itemId: 'address1',
                 margin: '0 15 0 15',
@@ -65140,6 +65142,11 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
+            Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
+            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
+            Ext.getCmp('website2').setValue(rec.get('websiteDisplayName'));
+            Ext.getCmp('website3').setValue(rec.get('website'));
+            Ext.getCmp('address1').setValue(rec.get('address'));
         }
     }
 }, 0, [
@@ -65164,11 +65171,6 @@ Ext.define('Ext.direct.Manager', {
     0,
     'dealPicture'
 ], 0));
-/* Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
-            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
-            Ext.getCmp('website2').setValue(rec.get('websiteDisplayName'));
-            Ext.getCmp('website3').setValue(rec.get('website'));
-            Ext.getCmp('address1').setValue(rec.get('address'));*/
 
 /*
  * File: app/view/Info.js
