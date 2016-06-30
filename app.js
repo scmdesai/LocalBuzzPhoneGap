@@ -64989,7 +64989,7 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 name: 'address',
                 readOnly: true,
-                maxRows: 2,
+                maxRows: 1,
                 listeners: [
                     {
                         fn: function(element, eOpts) {
