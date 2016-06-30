@@ -64899,8 +64899,7 @@ Ext.define('Ext.direct.Manager', {
         ],
         layout: {
             type: 'vbox',
-            align: 'stretchmax',
-            pack: 'end'
+            align: 'stretchmax'
         },
         items: [
             {
