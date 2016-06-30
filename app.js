@@ -64967,27 +64967,32 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
-                xtype: 'textfield',
-                cls: 'icon-phone',
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
                 disabled: false,
                 docked: 'bottom',
-                height: '8vh',
-                hidden: false,
-                html: '',
-                id: 'phoneNumber1',
-                itemId: 'phoneNumber1',
-                style: 'font-size:2vw !important',
+                height: '10vh',
+                id: 'address1',
+                itemId: 'address1',
+                style: 'font-size:3vw;font-family:Arial',
                 styleHtmlContent: true,
                 clearIcon: false,
-                name: 'phoneNumber',
+                name: 'address',
                 readOnly: true,
+                maxRows: 2,
                 listeners: [
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                // console.log(Ext.getCmp('phoneNumber').getValue());
-                                var numberToDial = Ext.getCmp('phoneNumber').getValue();
-                                window.location = 'tel:' + numberToDial;
+                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
                             });
                         },
                         event: 'painted'
@@ -65064,32 +65069,27 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
-                xtype: 'textareafield',
-                baseCls: 'customfield',
-                cls: 'icon-location',
+                xtype: 'textfield',
+                cls: 'icon-phone',
                 disabled: false,
                 docked: 'bottom',
-                height: '10vh',
-                id: 'address1',
-                itemId: 'address1',
-                style: 'font-size:3vw;font-family:Arial',
+                height: '8vh',
+                hidden: false,
+                html: '',
+                id: 'phoneNumber1',
+                itemId: 'phoneNumber1',
+                style: 'font-size:2vw !important',
                 styleHtmlContent: true,
                 clearIcon: false,
-                name: 'address',
+                name: 'phoneNumber',
                 readOnly: true,
-                maxRows: 2,
                 listeners: [
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
-                                }
-                                Ext.device.Device.openURL(url);
+                                // console.log(Ext.getCmp('phoneNumber').getValue());
+                                var numberToDial = Ext.getCmp('phoneNumber').getValue();
+                                window.location = 'tel:' + numberToDial;
                             });
                         },
                         event: 'painted'
@@ -65106,6 +65106,7 @@ Ext.define('Ext.direct.Manager', {
             this.down('#nameTxt1').setHtml(record.get('businessName'));
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
+            this.down('#phoneNumber').setData(rec.getData());
         }
     }
 }, 0, [
