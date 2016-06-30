@@ -64885,10 +64885,9 @@ Ext.define('Ext.direct.Manager', {
         itemId: 'dealPicture',
         style: 'background:#fff;',
         width: '100%',
-        layout: 'vbox',
-        scrollable: true,
+        scrollable: 'both',
         tpl: [
-            '<div><img src="{dealPictureURL}" height="100" style="margin:5px 5px 5px 5px;width:100%;" /></div>',
+            '<div><img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:100px;width:100%;" /></div>',
             '<div style="font-size:6vw;color:green">{dealName}</div>',
             '<div style="font-size:5vw;color:black">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
@@ -64898,6 +64897,11 @@ Ext.define('Ext.direct.Manager', {
             '    </tpl>',
             '    '
         ],
+        layout: {
+            type: 'vbox',
+            align: 'stretchmax',
+            pack: 'center'
+        },
         items: [
             {
                 xtype: 'toolbar',
@@ -64969,7 +64973,6 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'textfield',
                 cls: 'icon-email',
-                docked: 'bottom',
                 height: '8vh',
                 id: 'email1',
                 itemId: 'email1',
@@ -65011,7 +65014,6 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'textfield',
                 cls: 'icon-globe',
                 disabled: false,
-                docked: 'bottom',
                 height: '8vh',
                 hidden: false,
                 id: 'website2',
@@ -65070,7 +65072,6 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'textfield',
                 cls: 'icon-phone',
                 disabled: false,
-                docked: 'bottom',
                 height: '8vh',
                 hidden: false,
                 html: '',
@@ -65100,8 +65101,7 @@ Ext.define('Ext.direct.Manager', {
                 baseCls: 'customfield',
                 cls: 'icon-location',
                 disabled: false,
-                docked: 'bottom',
-                height: '12vh',
+                height: '13vh',
                 id: 'address1',
                 itemId: 'address1',
                 margin: '0 15 0 15',
