@@ -65107,6 +65107,9 @@ Ext.define('Ext.direct.Manager', {
             var store = Ext.getStore('MyJsonPStore');
             var rec = store.findRecord('businessName', businessName);
             Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
+            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
+            Ext.getCmp('website2').setValue(rec.get('websiteDisplayName'));
+            Ext.getCmp('address1').setValue(rec.get('address'));
         }
     }
 }, 0, [
