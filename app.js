@@ -64986,7 +64986,10 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textareafield',
-                cls: 'icon-location',
+                cls: [
+                    'icon-location',
+                    'custmfield'
+                ],
                 disabled: false,
                 height: '15vh',
                 hidden: false,
