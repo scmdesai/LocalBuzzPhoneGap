@@ -98,7 +98,8 @@ $list-header-bg-color: $base-color;
     text-align:center;
     vertical-align:middle;
     font-family:Arial;
-    font-size:4vw
+    font-size:4vw;
+    border-bottom:none;   
 
 
 
