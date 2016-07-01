@@ -64986,7 +64986,6 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textareafield',
-                baseCls: 'customfield',
                 cls: 'icon-location',
                 disabled: false,
                 height: '15vh',
@@ -64995,7 +64994,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'address1',
                 margin: '0 15 0 15',
                 padding: '10 10 10 10',
-                style: 'font-size:4vw;font-family:Arial;vertical-align:middle',
+                style: 'font-size:3.5vw;font-family:Arial;vertical-align:middle',
                 styleHtmlContent: true,
                 top: '70%',
                 width: '90%',
