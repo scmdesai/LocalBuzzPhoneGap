@@ -64883,6 +64883,7 @@ Ext.define('Ext.direct.Manager', {
         html: '',
         id: 'dealPicture',
         itemId: 'dealPicture',
+        margin: '5 5 5 5',
         style: 'background:#fff;',
         width: '100%',
         scrollable: false,
