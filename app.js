@@ -66646,7 +66646,7 @@ Ext.define('Ext.direct.Manager', {
             //stores.push(record.get('customerId'));
             Ext.Array.include(stores, record.get('customerId'));
         });
-        Ext.msg.alert(stores.length);
+        Ext.Msg.alert(stores.length, null, null, null);
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
