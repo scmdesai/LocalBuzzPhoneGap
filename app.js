@@ -64835,7 +64835,7 @@ Ext.define('Ext.direct.Manager', {
                     }, this);
                     var distance = json.rows[0].elements[0].distance.value;
                     console.log(record.get('businessName') + distance);
-                    if (distance <= 40234) {
+                    if (distance <= 80468) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
@@ -66290,13 +66290,6 @@ Ext.define('Ext.direct.Manager', {
         store.load();
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
-        store1.each(function(record) {
-            Ext.Array.include(stores, record.get('customerId'));
-        });
-        console.log(stores.length);
-        store.filterBy(function(record) {
-            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-        }, this);
     }
 }, 0, [
     "latestbuzz"
@@ -66316,6 +66309,19 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'LatestBuzz'
 ], 0));
+/*store1.each(function(record){
+            Ext.Array.include(stores,record.get('customerId'));
+
+
+
+        });
+        console.log(stores.length);
+
+        store.filterBy(function(record){
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+
+        }, this);
+        */
 
 /*
  * File: app/view/FavoriteView.js
