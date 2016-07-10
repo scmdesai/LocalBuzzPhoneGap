@@ -66649,14 +66649,21 @@ Ext.define('Ext.direct.Manager', {
         store.load();
         var store1 = Ext.getStore('calculateDistances');
         var stores = [];
-        store1.each(function(record) {
-            //stores.push(record.get('customerId'));
-            Ext.Array.include(stores, record.get('customerId'));
-        });
-        store.filterBy(function(record) {
-            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-        }, this);
     },
+    /*store1.each(function(record){
+            //stores.push(record.get('customerId'));
+            Ext.Array.include(stores,record.get('customerId'));
+
+
+        });
+
+
+        store.filterBy(function(record){
+
+
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+
+        }, this);*/
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
