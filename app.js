@@ -65005,7 +65005,9 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'container',
                 id: 'dealimage',
-                itemId: 'dealimage'
+                itemId: 'dealimage',
+                layout: 'vbox',
+                scrollable: false
             }
         ],
         listeners: [
