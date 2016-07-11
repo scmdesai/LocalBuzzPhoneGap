@@ -64905,7 +64905,7 @@ Ext.define('Ext.direct.Manager', {
         width: '100%',
         scrollable: true,
         tpl: [
-            '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:30%;width:50%;border:none;"/></div>',
+            '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:40%;width:80%;border:none;"/></div>',
             '<div style="font-size:6vw;color:green">{dealName}</div>',
             '<div style="font-size:5vw;color:black">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
@@ -65015,15 +65015,6 @@ Ext.define('Ext.direct.Manager', {
                 }
             },
             {
-                xtype: 'component',
-                cls: 'contact-name',
-                disabled: true,
-                id: 'nameTxt3',
-                itemId: 'nameTxt3',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                width: '65%'
-            },
-            {
                 xtype: 'textareafield',
                 baseCls: 'customfield',
                 cls: 'icon-location',
@@ -65032,9 +65023,10 @@ Ext.define('Ext.direct.Manager', {
                 height: '9vh',
                 id: 'address1',
                 itemId: 'address1',
-                padding: '0 0 15 0',
+                padding: '0 0 15 20',
                 style: 'font-size:4.2vw;font-family:Arial',
                 styleHtmlContent: true,
+                top: '91%',
                 width: '95%',
                 clearIcon: false,
                 name: 'address',
@@ -65071,6 +65063,7 @@ Ext.define('Ext.direct.Manager', {
                 minHeight: '',
                 style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
+                top: '80%',
                 width: '95%',
                 clearIcon: false,
                 name: 'websiteDisplayName',
@@ -65103,6 +65096,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '0 0 5 5',
                 style: 'font-size:3vw !important',
                 styleHtmlContent: true,
+                top: '70%',
                 width: '95%',
                 clearIcon: false,
                 name: 'phoneNumber',
