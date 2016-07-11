@@ -64905,7 +64905,7 @@ Ext.define('Ext.direct.Manager', {
         width: '100%',
         scrollable: true,
         tpl: [
-            '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:40%;width:90%;border:none;"/></div>',
+            '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:40%;width:95%;border:none;"/></div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
             '    <div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
             '    <tpl else>',
@@ -64986,6 +64986,16 @@ Ext.define('Ext.direct.Manager', {
                         width: '65%'
                     }
                 ]
+            },
+            {
+                xtype: 'component',
+                cls: 'contact-name',
+                disabled: true,
+                height: '',
+                id: 'nameTxt3',
+                itemId: 'nameTxt3',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
+                width: '65%'
             },
             {
                 xtype: 'component',
@@ -65141,12 +65151,14 @@ Ext.define('Ext.direct.Manager', {
         var record = Ext.getStore('LocalStore').getAt(0);
         if (record.get('dealImageURL').toString().charAt(0) === 'h') {
             this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:100%;width:100%;border:none;"/>');
-        }
-    },
-    /*this.down('#dealimage').element.addListener('tap',function(){
+        } else /*this.down('#dealimage').element.addListener('tap',function(){
         		var view = Ext.Viewport.add({xtype:'DealImage'});
         		view.showBy(Ext.getCmp('dealimage'));
         	});*/
+        {
+            this.down('#dealimage').setHtml('<div style="font-size:6vw;color:green">{dealName}</div><div style="font-size:5vw;color:black">{dealDescription}</div>');
+        }
+    },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
