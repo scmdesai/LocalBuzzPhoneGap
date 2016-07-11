@@ -65002,10 +65002,14 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
+                docked: 'top',
                 id: 'dealimage',
                 itemId: 'dealimage',
-                layout: 'vbox',
-                scrollable: false
+                scrollable: true,
+                layout: {
+                    type: 'vbox',
+                    align: 'stretchmax'
+                }
             },
             {
                 xtype: 'textareafield',
