@@ -65004,6 +65004,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'container',
                 height: '30%',
+                hidden: true,
                 id: 'dealimage',
                 itemId: 'dealimage',
                 scrollable: true,
