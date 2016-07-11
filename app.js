@@ -65156,7 +65156,7 @@ Ext.define('Ext.direct.Manager', {
         		view.showBy(Ext.getCmp('dealimage'));
         	});*/
         {
-            this.down('#dealimage').setHtml('<div style="font-size:6vw;color:green">' + record.get('dealName') + '</div><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div>');
+            this.down('#nameTxt3').setHtml('<div style="font-size:6vw;color:green">' + record.get('dealName') + '</div><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div>');
         }
     },
     setRecord: function(record) {
