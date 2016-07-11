@@ -64905,12 +64905,8 @@ Ext.define('Ext.direct.Manager', {
         width: '100%',
         scrollable: true,
         tpl: [
-            '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:40%;width:95%;border:none;"/></div>',
-            '<tpl if="dealEndDate &lt;= todayplusfivedays">',
-            '    <div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
-            '    <tpl else>',
-            '        <div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
-            '    </tpl>',
+            '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:30%;width:95%;border:none;"/></div>',
+            '',
             ' ',
             ' ',
             '    '
@@ -65151,13 +65147,13 @@ Ext.define('Ext.direct.Manager', {
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
         if (record.get('dealImageURL').toString().charAt(0) === 'h') {
-            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:50%;width:100%;border:none;"/>');
+            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:50%;width:100%;border:none;"/><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div><div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from' + record.get('dealStartDate') + ' through ' + record.get('dealEndDate') + '</div>');
         } else /*this.down('#dealimage').element.addListener('tap',function(){
         		var view = Ext.Viewport.add({xtype:'DealImage'});
         		view.showBy(Ext.getCmp('dealimage'));
         	});*/
         {
-            this.down('#nameTxt3').setHtml('<div style="font-size:6vw;color:green">' + record.get('dealName') + '</div><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div>');
+            this.down('#nameTxt3').setHtml('<div style="font-size:6vw;color:green">' + record.get('dealName') + '</div><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div><div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from' + record.get('dealStartDate') + ' through ' + record.get('dealEndDate') + '</div>');
         }
     },
     setRecord: function(record) {
