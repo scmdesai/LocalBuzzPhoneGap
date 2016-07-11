@@ -65001,9 +65001,31 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'nameTxt2',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                 width: '65%'
+            },
+            {
+                xtype: 'container',
+                id: 'dealimage',
+                itemId: 'dealimage'
+            }
+        ],
+        listeners: [
+            {
+                fn: 'onDealimageShow',
+                event: 'show',
+                delegate: '#dealimage'
             }
         ]
     },
+    onDealimageShow: function(component, eOpts) {
+        var record = Ext.getStore('LocalStore').getAt(0);
+        if (record.get('dealImageURL').toString().charAt(0) === 'h') {
+            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:100%;width:100%;border:none;"/>');
+        }
+    },
+    /*this.down('#dealimage').element.addListener('tap',function(){
+        		var view = Ext.Viewport.add({xtype:'DealImage'});
+        		view.showBy(Ext.getCmp('dealimage'));
+        	});*/
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
