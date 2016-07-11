@@ -65150,13 +65150,13 @@ Ext.define('Ext.direct.Manager', {
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
         if (record.get('dealImageURL').toString().charAt(0) === 'h') {
-            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:100%;width:100%;border:none;"/>');
+            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:80%;width:100%;border:none;"/>');
         } else /*this.down('#dealimage').element.addListener('tap',function(){
         		var view = Ext.Viewport.add({xtype:'DealImage'});
         		view.showBy(Ext.getCmp('dealimage'));
         	});*/
         {
-            this.down('#nameTxt3').setHtml('<div style="font-size:6vw;color:green">' + record.get('dealName') + '</div><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div>');
+            this.down('#dealimage').setHtml('<div style="font-size:6vw;color:green">' + record.get('dealName') + '</div><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div>');
         }
     },
     setRecord: function(record) {
