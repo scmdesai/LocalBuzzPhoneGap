@@ -64903,9 +64903,8 @@ Ext.define('Ext.direct.Manager', {
         padding: '5 5 5 5',
         style: 'background:#fff;',
         width: '100%',
-        scrollable: false,
+        scrollable: true,
         tpl: [
-            '<div><img src="{dealPictureURL}" style="margin:5px 5px 5px 5px;height:100px;width:100%;" /></div>',
             '<div style="font-size:6vw;color:green">{dealName}</div>',
             '<div style="font-size:5vw;color:black">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
@@ -65008,6 +65007,118 @@ Ext.define('Ext.direct.Manager', {
                 top: '40%',
                 layout: 'vbox',
                 scrollable: false
+            },
+            {
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
+                disabled: false,
+                docked: 'bottom',
+                height: '12vh',
+                id: 'address1',
+                itemId: 'address1',
+                margin: '0 15 0 15',
+                style: 'font-size:4.2vw;font-family:Arial',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                maxRows: 2,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-globe',
+                disabled: false,
+                docked: 'bottom',
+                height: '',
+                hidden: false,
+                id: 'website3',
+                itemId: 'website3',
+                margin: '0 15 0 15',
+                maxHeight: '30%',
+                minHeight: '',
+                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'websiteDisplayName',
+                placeHolder: 'Not Listed',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var url = Ext.getCmp('website2').getValue();
+                                window.open(url, '_system', 'location=yes');
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-phone',
+                disabled: false,
+                docked: 'bottom',
+                height: '',
+                hidden: false,
+                html: '',
+                id: 'phoneNumber1',
+                itemId: 'phoneNumber1',
+                margin: '5 15 0 15',
+                maxHeight: '30%',
+                minHeight: '',
+                padding: '15 10 10 10',
+                style: 'font-size:3vw !important',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'phoneNumber',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                // console.log(Ext.getCmp('phoneNumber').getValue());
+                                var numberToDial = Ext.getCmp('phoneNumber1').getValue();
+                                window.location = 'tel:' + numberToDial;
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-globe',
+                disabled: false,
+                height: '',
+                hidden: true,
+                id: 'website2',
+                itemId: 'website2',
+                margin: '0 15 0 15',
+                maxHeight: '30%',
+                minHeight: '',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'website',
+                readOnly: true
             }
         ],
         listeners: [
@@ -65033,6 +65144,12 @@ Ext.define('Ext.direct.Manager', {
             var name = record.get('itemName');
             var businessName = record.get('businessName');
             this.down('#nameTxt1').setHtml(record.get('businessName'));
+            var store = Ext.getStore('MyJsonPStore');
+            var rec = store.findRecord('businessName', businessName);
+            Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
+            Ext.getCmp('website3').setValue(rec.get('websiteDisplayName'));
+            Ext.getCmp('website2').setValue(rec.get('website'));
+            Ext.getCmp('address1').setValue(rec.get('address'));
         }
     }
 }, 0, [
