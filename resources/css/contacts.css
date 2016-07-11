@@ -91,6 +91,24 @@ $list-header-bg-color: $base-color;
 
 }
 
+
+.customfield {
+    margin:5px 5px 5px 5px;
+    height:12vh;
+    font-weight:normal;
+    vertical-align:middle;
+    font-family:Arial;
+    font-size:4vw
+
+
+
+
+
+
+
+}
+
+
 .custmfield {
     margin:5px 5px 5px 5px;
     height:12vh;
