@@ -65034,13 +65034,6 @@ Ext.define('Ext.direct.Manager', {
             var name = record.get('itemName');
             var businessName = record.get('businessName');
             this.down('#nameTxt1').setHtml(record.get('businessName'));
-            var store = Ext.getStore('MyJsonPStore');
-            var rec = store.findRecord('businessName', businessName);
-            Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
-            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
-            Ext.getCmp('website2').setValue(rec.get('websiteDisplayName'));
-            Ext.getCmp('website3').setValue(rec.get('website'));
-            Ext.getCmp('address1').setValue(rec.get('address'));
         }
     }
 }, 0, [
