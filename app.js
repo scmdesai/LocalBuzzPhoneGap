@@ -65015,7 +65015,6 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'textareafield',
                 baseCls: 'custmfield1',
-                cls: 'icon-location',
                 disabled: false,
                 docked: 'bottom',
                 height: '9vh',
