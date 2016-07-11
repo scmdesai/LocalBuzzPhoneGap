@@ -65014,6 +65014,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textareafield',
+                baseCls: '',
                 cls: 'icon-location1',
                 disabled: false,
                 docked: 'bottom',
@@ -65059,7 +65060,7 @@ Ext.define('Ext.direct.Manager', {
                 minHeight: '',
                 style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
-                top: '70%',
+                top: '71%',
                 width: '95%',
                 clearIcon: false,
                 name: 'websiteDisplayName',
