@@ -64905,6 +64905,7 @@ Ext.define('Ext.direct.Manager', {
         width: '100%',
         scrollable: true,
         tpl: [
+            '<img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:100%;width:100%;border:none;"/>',
             '<div style="font-size:6vw;color:green">{dealName}</div>',
             '<div style="font-size:5vw;color:black">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
@@ -65002,14 +65003,24 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'container',
-                docked: 'top',
+                height: '30%',
                 id: 'dealimage',
                 itemId: 'dealimage',
                 scrollable: true,
                 layout: {
                     type: 'vbox',
-                    align: 'stretchmax'
+                    align: 'stretchmax',
+                    pack: 'center'
                 }
+            },
+            {
+                xtype: 'component',
+                cls: 'contact-name',
+                disabled: true,
+                id: 'nameTxt3',
+                itemId: 'nameTxt3',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
+                width: '65%'
             },
             {
                 xtype: 'textareafield',
@@ -65093,7 +65104,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '0 0 5 5',
                 style: 'font-size:3vw !important',
                 styleHtmlContent: true,
-                top: '60%',
+                top: '50%',
                 width: '95%',
                 clearIcon: false,
                 name: 'phoneNumber',
