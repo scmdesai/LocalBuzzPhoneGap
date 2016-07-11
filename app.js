@@ -64906,8 +64906,6 @@ Ext.define('Ext.direct.Manager', {
         scrollable: true,
         tpl: [
             '<div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:40%;width:80%;border:none;"/></div>',
-            '<div style="font-size:6vw;color:green">{dealName}</div>',
-            '<div style="font-size:5vw;color:black">{dealDescription}</div>',
             '<tpl if="dealEndDate &lt;= todayplusfivedays">',
             '    <div style="font-size:3vw;color:red;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
             '    <tpl else>',
