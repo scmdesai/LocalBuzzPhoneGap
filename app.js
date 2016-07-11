@@ -65023,7 +65023,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'address1',
                 margin: '0 0 0 5',
                 padding: '5 0 100 10',
-                style: 'font-size:1vw!important;font-family:Arial',
+                style: 'font-size:1vw;font-family:Arial',
                 styleHtmlContent: true,
                 top: '80%',
                 width: '95%',
