@@ -64913,7 +64913,7 @@ Ext.define('Ext.direct.Manager', {
             '    <tpl else>',
             '        <div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from {dealStartDate} through {dealEndDate}</div>',
             '    </tpl>',
-            ' <div><img src="{dealImageURL}" style="margin:5px 5px 5px 5px;height:100%;width:100%;" /></div>   ',
+            ' ',
             ' ',
             '    '
         ],
