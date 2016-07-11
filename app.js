@@ -64386,7 +64386,12 @@ Ext.define('Ext.direct.Manager', {
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
         var test = Ext.Date.add(date, Ext.Date.DAY, 3);
-        /* if(records.data.get('dealEndDate') < today) {
+    }
+}, 0, 0, 0, 0, 0, 0, [
+    Contact.store,
+    'MyDealsStore'
+], 0));
+/* if(records.data.get('dealEndDate') < today) {
 
 
                            records.data.set('dealStatus','Expired');
@@ -64399,18 +64404,19 @@ Ext.define('Ext.direct.Manager', {
                            records.data.set('dealStatus','Active');
 
                        }*/
-        records.forEach(function(rec) {
-            if (rec.data.dealEndDate < today) {
+/*records.forEach(function(rec){
+            if(rec.data.dealEndDate < today){
                 rec.data.dealStatus = 'Expired';
             }
+
         });
+
+
+
+
+
         //store.clearFilter();
-        store.filter('dealStatus', 'Active');
-    }
-}, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
-    'MyDealsStore'
-], 0));
+        store.filter('dealStatus','Active');*/
 
 /*
  * File: app/store/UserPreferences.js
@@ -64632,7 +64638,12 @@ Ext.define('Ext.direct.Manager', {
         var date = new Date();
         var today = Ext.Date.format(date, 'n/j/Y');
         var test = Ext.Date.add(date, Ext.Date.DAY, 3);
-        /* if(records.data.get('dealEndDate') < today) {
+    }
+}, 0, 0, 0, 0, 0, 0, [
+    Contact.store,
+    'MyDealsStore1'
+], 0));
+/* if(records.data.get('dealEndDate') < today) {
 
 
                            records.data.set('dealStatus','Expired');
@@ -64645,18 +64656,19 @@ Ext.define('Ext.direct.Manager', {
                            records.data.set('dealStatus','Active');
 
                        }*/
-        records.forEach(function(rec) {
-            if (rec.data.dealEndDate < today) {
+/*records.forEach(function(rec){
+            if(rec.data.dealEndDate < today){
                 rec.data.dealStatus = 'Expired';
             }
+
         });
+
+
+
+
+
         //store.clearFilter();
-        store.filter('dealStatus', 'Active');
-    }
-}, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
-    'MyDealsStore1'
-], 0));
+        store.filter('dealStatus','Active');*/
 
 /*
  * File: app/store/MyStore.js
