@@ -65014,7 +65014,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textareafield',
-                baseCls: '',
+                baseCls: 'customfield',
                 cls: 'icon-location1',
                 disabled: false,
                 docked: 'bottom',
@@ -65025,7 +65025,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '10 5 0 5',
                 style: 'font-size:4.2vw;font-family:Arial;brder:none!important',
                 styleHtmlContent: true,
-                top: '85%',
+                top: '82%',
                 width: '95%',
                 clearIcon: false,
                 name: 'address',
