@@ -65012,13 +65012,12 @@ Ext.define('Ext.direct.Manager', {
         ],
         listeners: [
             {
-                fn: 'onDealimageShow',
-                event: 'show',
-                delegate: '#dealimage'
+                fn: 'onDealPictureShow',
+                event: 'show'
             }
         ]
     },
-    onDealimageShow: function(component, eOpts) {
+    onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
         if (record.get('dealImageURL').toString().charAt(0) === 'h') {
             this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin:5px 5px 5px 5px;height:100%;width:100%;border:none;"/>');
