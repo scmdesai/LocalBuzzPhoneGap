@@ -65069,6 +65069,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'website3',
                 itemId: 'website3',
                 minHeight: '',
+                padding: '0 0 10 10',
                 style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
                 top: '77%',
