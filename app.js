@@ -64988,10 +64988,11 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'component',
                 cls: 'contact-name',
                 disabled: true,
-                height: '',
+                height: 10,
                 id: 'nameTxt3',
                 itemId: 'nameTxt3',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0',
+                top: '20%',
                 width: '65%'
             },
             {
