@@ -65101,6 +65101,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'phoneNumber1',
                 itemId: 'phoneNumber1',
                 margin: '0 0 0 5',
+                padding: '0 0 10 10',
                 style: 'font-size:2vw !important',
                 styleHtmlContent: true,
                 top: '65%',
