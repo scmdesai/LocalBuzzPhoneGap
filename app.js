@@ -64039,9 +64039,10 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 convert: function(v, rec) {
-                    var date = new Date();
-                    var test = Ext.Date.add(date, Ext.Date.DAY, 5);
-                    return Ext.Date.format(test, 'n/j/Y');
+                    var d = new Date();
+                    d.setDate(d.getDate() + 5);
+                    //test.setDate(Ext.Date.add(date,Ext.Date.DAY,5));
+                    return Ext.Date.format(d, 'n/j/Y');
                 },
                 dateFormat: 'n/j/Y',
                 name: 'todayplusfivedays',
@@ -64394,32 +64395,6 @@ Ext.define('Ext.direct.Manager', {
     Contact.store,
     'MyDealsStore'
 ], 0));
-/* if(records.data.get('dealEndDate') < today) {
-
-
-                           records.data.set('dealStatus','Expired');
-
-
-
-                       }
-                       else {
-
-                           records.data.set('dealStatus','Active');
-
-                       }*/
-/*records.forEach(function(rec){
-            if(rec.data.dealEndDate < today){
-                rec.data.dealStatus = 'Expired';
-            }
-
-        });
-
-
-
-
-
-        //store.clearFilter();
-        store.filter('dealStatus','Active');*/
 
 /*
  * File: app/store/UserPreferences.js
@@ -66211,13 +66186,10 @@ Ext.define('Ext.direct.Manager', {
             '<div style="font-size:6vw;font-style:italic;color:#00529D">{businessName}</div>                                                                              ',
             '',
             '<div style="font-size:4vw;color:green">{dealName}</div>',
-            '',
-            '',
-            '',
-            '    ',
+            '   ',
             '<!--<div style="font-size:3vw;font-family:Arial;">{dealPictureURL}</div> -->',
-            '<tpl if="dealEndDate &lt;= todayplusfivedays">',
-            '    <div style="font-size:2.8vw;color:red;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
+            '<tpl if="dealEndDate &lt; todayplusfivedays">',
+            '    <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    <tpl else>',
             '        <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    </tpl>',
