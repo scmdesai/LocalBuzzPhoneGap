@@ -64880,7 +64880,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'nameTxt2',
                 itemId: 'nameTxt2',
                 left: '40%',
-                margin: '5 5 5 5',
+                margin: '10 5 5 5',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                 top: '51%',
                 width: '65%'
@@ -65034,7 +65034,7 @@ Ext.define('Ext.direct.Manager', {
         	});*/
             this.down('#nameTxt3').hide();
         } else {
-            this.down('#nameTxt3').setHtml('<img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:5vw;color:black">' + record.get('dealDescription') + '</div><br><br><div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
+            this.down('#nameTxt3').setHtml('<img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:5vw;">' + record.get('dealDescription') + '</div><br><br><div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
             this.down('#dealimage').hide();
         }
     },
