@@ -64982,7 +64982,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '0 0 5 10',
                 style: 'font-size:2vw !important',
                 styleHtmlContent: true,
-                top: '55%',
+                top: '56%',
                 width: '90%',
                 clearIcon: false,
                 name: 'phoneNumber',
