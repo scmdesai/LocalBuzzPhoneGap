@@ -64880,6 +64880,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'nameTxt2',
                 itemId: 'nameTxt2',
                 left: '40%',
+                margin: '5 5 5 5',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                 top: '51%',
                 width: '65%'
