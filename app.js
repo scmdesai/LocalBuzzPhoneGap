@@ -64862,8 +64862,25 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'component',
+                disabled: true,
+                docked: 'top',
+                height: '250px',
+                id: 'dealimage',
+                itemId: 'dealimage',
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            console.log('Deal Image painted');
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'component',
                 cls: 'contact-name',
                 disabled: true,
+                docked: 'top',
                 height: '250px',
                 id: 'nameTxt3',
                 itemId: 'nameTxt3',
@@ -64884,22 +64901,6 @@ Ext.define('Ext.direct.Manager', {
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
                 top: '51%',
                 width: '65%'
-            },
-            {
-                xtype: 'component',
-                disabled: true,
-                docked: 'top',
-                height: '250px',
-                id: 'dealimage',
-                itemId: 'dealimage',
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            console.log('Deal Image painted');
-                        },
-                        event: 'painted'
-                    }
-                ]
             },
             {
                 xtype: 'textareafield',
