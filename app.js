@@ -64867,6 +64867,8 @@ Ext.define('Ext.direct.Manager', {
                 height: '250px',
                 id: 'dealimage',
                 itemId: 'dealimage',
+                top: '1%',
+                width: '95%',
                 listeners: [
                     {
                         fn: function(element, eOpts) {
