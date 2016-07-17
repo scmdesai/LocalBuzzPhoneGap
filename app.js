@@ -64862,11 +64862,14 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'component',
+                cls: 'contact-name',
                 disabled: true,
                 docked: 'top',
                 height: '250px',
                 id: 'dealimage',
                 itemId: 'dealimage',
+                left: '2%',
+                padding: '10 10 10 10',
                 top: '1%',
                 width: '95%',
                 listeners: [
