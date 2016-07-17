@@ -67290,9 +67290,10 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.DealImage', Ext.Panel, {
     config: {
+        height: '100%',
         id: 'DealImage',
         itemId: 'DealImage',
-        layout: 'vbox',
+        width: '100%',
         scrollable: true,
         tpl: [
             '<tpl if="dealImageURL">',
@@ -67302,11 +67303,15 @@ Ext.define('Ext.direct.Manager', {
             '    </tpl>',
             '    '
         ],
+        layout: {
+            type: 'vbox',
+            align: 'stretchmax'
+        },
         items: [
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    Ext.Viewport.getActiveItem().destroy();
+                    Ext.Viewport.getComponent('DealImage').destroy();
                 },
                 docked: 'right',
                 id: 'close',
