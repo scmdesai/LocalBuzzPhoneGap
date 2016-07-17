@@ -64881,7 +64881,7 @@ Ext.define('Ext.direct.Manager', {
                                         xtype: 'DealImage'
                                     });
                                 view.setRecord(record);
-                                view.showBy(element);
+                                Ext.Viewport.setActiveItem(view);
                             });
                         },
                         event: 'painted'
