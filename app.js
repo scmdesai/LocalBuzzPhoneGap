@@ -67311,7 +67311,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    Ext.Viewport.getComponent('DealImage').destroy();
+                    Ext.get('DealImage').destroy();
                 },
                 docked: 'right',
                 id: 'close',
