@@ -65036,7 +65036,7 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'DealImage'
                 });
             view.setRecord(record);
-            Ext.Viewport.setActiveItem(view);
+            view.showBy(component);
         });
     },
     onDealPictureShow: function(component, eOpts) {
@@ -67304,7 +67304,8 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    Ext.Viewport.getActiveItem().destroy();
+                    var view = this.up('DealImage');
+                    view.destroy();
                 },
                 docked: 'right',
                 id: 'close',
