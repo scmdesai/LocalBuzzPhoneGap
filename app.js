@@ -65026,9 +65026,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
-        if (record.get('dealImageURL').toString().charAt(0) === 'h') {
+        if (record.get('dealImageURL')) {
+            console.log('Showing Deal Image');
             //this.down('#dealimage').setHtml('<img src="' +record.get('dealImageURL')+ '" style="margin:5px 5px 5px 5px;height:30%;width:100%;border:none;"/><div style="font-size:5vw;color:black">'+record.get('dealDescription')+'</div><div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from'+ record.get('dealStartDate')+' through '+ record.get('dealEndDate')+'</div>');
             this.down('#dealimage').element.addListener('tap', function() {
+                console.log('DealImage Tap');
                 var view = Ext.Viewport.add({
                         xtype: 'DealImage'
                     });
