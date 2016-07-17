@@ -64876,6 +64876,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
+                                var record = Ext.getStore('LocalStore').getAt(0);
                                 console.log('DealImage Tap');
                                 var view = Ext.Viewport.add({
                                         xtype: 'DealImage'
