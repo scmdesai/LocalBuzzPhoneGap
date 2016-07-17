@@ -65032,7 +65032,8 @@ Ext.define('Ext.direct.Manager', {
                 var view = Ext.Viewport.add({
                         xtype: 'DealImage'
                     });
-                view.showBy(Ext.getCmp('dealimage'));
+                view.setRecord(record);
+                Ext.Viewport.setActiveItem(view);
             });
             this.down('#nameTxt3').hide();
         } else {
