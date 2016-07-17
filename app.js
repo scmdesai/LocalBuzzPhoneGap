@@ -64875,7 +64875,14 @@ Ext.define('Ext.direct.Manager', {
                 listeners: [
                     {
                         fn: function(element, eOpts) {
-                            console.log('Deal Image painted');
+                            element.addListener('tap', function() {
+                                console.log('DealImage Tap');
+                                var view = Ext.Viewport.add({
+                                        xtype: 'DealImage'
+                                    });
+                                view.setRecord(record);
+                                view.showBy(element);
+                            });
                         },
                         event: 'painted'
                     }
