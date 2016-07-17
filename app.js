@@ -64782,8 +64782,7 @@ Ext.define('Ext.direct.Manager', {
         scrollable: true,
         tpl: [
             '<tpl if="dealImageURL">',
-            '<div><img src="{dealImageURL}" style="height:250px;width:95%;border:none;"/></div>',
-            '<div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid  {dealStartDate} - {dealEndDate}</div>',
+            '<div><img src="{dealImageURL}" style="height:249px;width:99%;border:none;"/></div>',
             ' ',
             '    </tpl>',
             '    '
@@ -64865,7 +64864,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 docked: 'top',
-                height: '250px',
+                height: '25px',
                 id: 'dealimage',
                 itemId: 'dealimage',
                 left: '2%',
