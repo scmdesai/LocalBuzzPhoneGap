@@ -64886,18 +64886,11 @@ Ext.define('Ext.direct.Manager', {
                 width: '65%'
             },
             {
-                xtype: 'container',
-                height: '30%',
-                hidden: true,
+                xtype: 'component',
+                disabled: true,
+                height: '',
                 id: 'dealimage',
-                itemId: 'dealimage',
-                styleHtmlContent: true,
-                scrollable: true,
-                layout: {
-                    type: 'vbox',
-                    align: 'stretchmax',
-                    pack: 'center'
-                }
+                itemId: 'dealimage'
             },
             {
                 xtype: 'textareafield',
@@ -65019,8 +65012,8 @@ Ext.define('Ext.direct.Manager', {
         ],
         listeners: [
             {
-                fn: 'onDealimageHiddenChange',
-                event: 'hiddenchange',
+                fn: 'onDealimageShow',
+                event: 'show',
                 delegate: '#dealimage'
             },
             {
@@ -65029,8 +65022,8 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onDealimageHiddenChange: function(component, value, oldValue, eOpts) {
-        component.addListener('tap', function() {
+    onDealimageShow: function(component, eOpts) {
+        component.element.addListener('tap', function() {
             console.log('DealImage Tap');
             var view = Ext.Viewport.add({
                     xtype: 'DealImage'
