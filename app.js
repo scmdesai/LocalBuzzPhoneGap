@@ -64864,7 +64864,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 docked: 'top',
-                height: '25px',
+                height: '250px',
                 id: 'dealimage',
                 itemId: 'dealimage',
                 left: '2%',
