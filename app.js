@@ -65030,7 +65030,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onDealimageHiddenChange: function(component, value, oldValue, eOpts) {
-        component.element.addListener('tap', function() {
+        component.addListener('tap', function() {
             console.log('DealImage Tap');
             var view = Ext.Viewport.add({
                     xtype: 'DealImage'
