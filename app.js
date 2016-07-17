@@ -64888,9 +64888,18 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'component',
                 disabled: true,
-                height: '',
+                docked: 'top',
+                height: '250px',
                 id: 'dealimage',
-                itemId: 'dealimage'
+                itemId: 'dealimage',
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            console.log('Deal Image painted');
+                        },
+                        event: 'painted'
+                    }
+                ]
             },
             {
                 xtype: 'textareafield',
@@ -65012,25 +65021,10 @@ Ext.define('Ext.direct.Manager', {
         ],
         listeners: [
             {
-                fn: 'onDealimageShow',
-                event: 'show',
-                delegate: '#dealimage'
-            },
-            {
                 fn: 'onDealPictureShow',
                 event: 'show'
             }
         ]
-    },
-    onDealimageShow: function(component, eOpts) {
-        component.element.addListener('tap', function() {
-            console.log('DealImage Tap');
-            var view = Ext.Viewport.add({
-                    xtype: 'DealImage'
-                });
-            view.setRecord(record);
-            Ext.Viewport.setActiveItem(view);
-        });
     },
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
