@@ -65109,6 +65109,7 @@ Ext.define('Ext.direct.Manager', {
             Ext.getCmp('website3').setValue(rec.get('websiteDisplayName'));
             Ext.getCmp('website2').setValue(rec.get('website'));
             Ext.getCmp('address1').setValue(rec.get('address'));
+            Ext.getCmp('email1').setValue(rec.get('email'));
         }
     }
 }, 0, [
