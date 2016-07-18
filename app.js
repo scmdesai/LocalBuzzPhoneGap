@@ -64882,7 +64882,7 @@ Ext.define('Ext.direct.Manager', {
                                         xtype: 'DealImage'
                                     });
                                 view.setRecord(record);
-                                Ext.Viewport.setActiveItem(view);
+                                view.showBy(Ext.get('dealPicture'));
                             });
                         },
                         event: 'painted'
@@ -67293,6 +67293,7 @@ Ext.define('Ext.direct.Manager', {
         height: '100%',
         id: 'DealImage',
         itemId: 'DealImage',
+        minHeight: '100%',
         width: '100%',
         scrollable: true,
         tpl: [
