@@ -67310,16 +67310,24 @@ Ext.define('Ext.direct.Manager', {
         },
         items: [
             {
-                xtype: 'button',
-                handler: function(button, e) {
-                    Ext.get('DealImage').destroy();
-                },
-                docked: 'right',
-                id: 'close',
-                itemId: 'close',
-                style: 'color:#00529D;font-size:5vw',
-                ui: 'plain',
-                iconCls: 'delete'
+                xtype: 'toolbar',
+                cls: 'toolbarCls',
+                docked: 'top',
+                items: [
+                    {
+                        xtype: 'button',
+                        handler: function(button, e) {
+                            //Ext.get('DealImage').destroy();
+                            Ext.Viewport.getComponent('DealImage').destroy();
+                        },
+                        docked: 'right',
+                        id: 'close',
+                        itemId: 'close',
+                        style: 'color:#00529D;font-size:5vw',
+                        ui: 'plain',
+                        iconCls: 'delete'
+                    }
+                ]
             }
         ]
     }
