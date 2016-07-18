@@ -66340,7 +66340,7 @@ Ext.define('Ext.direct.Manager', {
                                     {
                                         fn: function(element, eOpts) {
                                             Ext.getCmp('searchfield').setValue("");
-                                            Ext.getCmp('searchfield').disable();
+                                            document.getElementById('searchfield').blur();
                                         },
                                         event: 'painted'
                                     }
@@ -66496,11 +66496,6 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#searchfield'
             },
             {
-                fn: 'onSearchfieldFocus',
-                event: 'focus',
-                delegate: '#searchfield'
-            },
-            {
                 fn: 'onSearchBusinessActivate',
                 event: 'activate',
                 delegate: '#SearchBusiness'
@@ -66541,9 +66536,6 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         store.filter('businessName', search);
-    },
-    onSearchfieldFocus: function(textfield, e, eOpts) {
-        Ext.getCmp('searchfield').enable();
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyDealsStore').clearFilter();
