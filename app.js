@@ -67292,7 +67292,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.DealImage', Ext.Panel, {
     config: {
-        height: '50%',
+        height: '70%',
         id: 'DealImage',
         itemId: 'DealImage',
         margin: '10 10 10 0',
