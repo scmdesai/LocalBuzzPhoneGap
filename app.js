@@ -67293,7 +67293,7 @@ Ext.define('Ext.direct.Manager', {
         height: '95%',
         id: 'DealImage',
         itemId: 'DealImage',
-        margin: '10 10 10 5',
+        margin: '10 10 10 0',
         style: 'background:#FFF;border:1px solid #00529D',
         width: '95%',
         scrollable: true,
