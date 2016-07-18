@@ -66060,7 +66060,7 @@ Ext.define('Ext.direct.Manager', {
             '<tpl if="dealEndDate &lt; todayplusfivedays">',
             '    <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;border-bottom:2px ridge #c0c0c0;">Valid through {dealEndDate}</div>',
             '    <tpl else>',
-            '        <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;border-bottom:2px ridge #c0c0c0;">Valid through {dealEndDate}</div>',
+            '        <div style="font-size:2.8vw;color:grey;margin:5px 5px 5px 5px;">Valid through {dealEndDate}</div>',
             '    </tpl>',
             '    <br>',
             '',
