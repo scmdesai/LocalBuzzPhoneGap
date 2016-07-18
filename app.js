@@ -64933,7 +64933,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '10 5 0 5',
                 style: 'font-size:4.2vw;font-family:Arial;brder:none!important',
                 styleHtmlContent: true,
-                top: '75%',
+                top: '85%',
                 width: '95%',
                 clearIcon: false,
                 name: 'address',
@@ -64969,7 +64969,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '0 0 10 10',
                 style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
-                top: '65%',
+                top: '75%',
                 width: '90%',
                 clearIcon: false,
                 name: 'websiteDisplayName',
@@ -64983,6 +64983,49 @@ Ext.define('Ext.direct.Manager', {
                                 window.open(url, '_system', 'location=yes');
                             });
                         },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-email1',
+                height: '8vh',
+                id: 'email1',
+                itemId: 'email1',
+                margin: '0 0 0 5',
+                padding: '0 0 5 10',
+                style: 'font-family:Arial;font-size:4.5vw',
+                styleHtmlContent: true,
+                top: '65%',
+                width: '90%',
+                clearIcon: false,
+                inputCls: '',
+                label: '',
+                name: 'emailAddress',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                /* cordova.plugins.email.open({
+
+
+                                to:          Ext.getCmp('email').getValue(), // email addresses for TO field
+                                isHtml:    false, // indicats if the body is HTML or plain text
+                                });*/
+                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+                                null, [
+                                    Ext.getCmp('email1').getValue()
+                                ], // TO: must be null or an array
+                                null, // CC: must be null or an array
+                                null, // BCC: must be null or an array
+                                null, // FILES: can be null, a string, or an array
+                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
+                                null);
+                            });
+                        },
+                        // called when sh*t hits the fan
                         event: 'painted'
                     }
                 ]
