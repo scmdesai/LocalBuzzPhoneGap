@@ -66543,7 +66543,7 @@ Ext.define('Ext.direct.Manager', {
         store.filter('businessName', search);
     },
     onSearchfieldFocus: function(textfield, e, eOpts) {
-        textfield.enable();
+        Ext.getCmp('searchfield').enable();
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         Ext.getStore('MyDealsStore').clearFilter();
