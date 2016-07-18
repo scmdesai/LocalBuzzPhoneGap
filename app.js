@@ -67290,11 +67290,9 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.DealImage', Ext.Panel, {
     config: {
-        height: '100%',
         id: 'DealImage',
         itemId: 'DealImage',
-        minHeight: '100%',
-        style: 'background:#FFF',
+        style: 'background:#FFF;border:1px solid #00529D',
         width: '100%',
         scrollable: true,
         tpl: [
