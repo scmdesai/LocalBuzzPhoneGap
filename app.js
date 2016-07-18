@@ -64875,15 +64875,17 @@ Ext.define('Ext.direct.Manager', {
                 listeners: [
                     {
                         fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var record = Ext.getStore('LocalStore').getAt(0);
-                                console.log('DealImage Tap');
-                                var view = Ext.Viewport.add({
-                                        xtype: 'DealImage'
-                                    });
-                                view.setRecord(record);
-                                view.showBy(Ext.get('dealPicture'));
-                            });
+                            var record = Ext.getStore('LocalStore').getAt(0);
+                            if (record.get('dealImageURL')) {
+                                element.addListener('tap', function() {
+                                    console.log('DealImage Tap');
+                                    var view = Ext.Viewport.add({
+                                            xtype: 'DealImage'
+                                        });
+                                    view.setRecord(record);
+                                    view.showBy(Ext.get('dealPicture'));
+                                });
+                            }
                         },
                         event: 'painted'
                     }
