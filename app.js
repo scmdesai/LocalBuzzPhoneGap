@@ -67294,11 +67294,12 @@ Ext.define('Ext.direct.Manager', {
         id: 'DealImage',
         itemId: 'DealImage',
         minHeight: '100%',
+        style: 'background:#FFF',
         width: '100%',
         scrollable: true,
         tpl: [
             '<tpl if="dealImageURL">',
-            '<div><img src="{dealImageURL}" style="margin:10px 10px 10px 10px;height:100%;width:100%;"/></div>',
+            '<div><img src="{dealImageURL}" style="height:100%;width:100%;"/></div>',
             '',
             ' ',
             '    </tpl>',
@@ -67311,8 +67312,9 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'toolbar',
-                cls: 'toolbarCls',
                 docked: 'top',
+                style: 'background:#FFF;border:none',
+                ui: 'plain',
                 items: [
                     {
                         xtype: 'button',
