@@ -64994,7 +64994,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'email1',
                 itemId: 'email1',
                 margin: '0 0 0 5',
-                padding: '0 0 0 10',
+                padding: '5 0 0 10',
                 style: 'font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
                 top: '65%',
