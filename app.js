@@ -65209,7 +65209,7 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'component',
                 disabled: true,
                 docked: 'top',
-                height: 250,
+                height: '250px',
                 id: 'storeImage',
                 itemId: 'storeImage',
                 left: '2%',
@@ -65428,7 +65428,7 @@ Ext.define('Ext.direct.Manager', {
                 height: '15%',
                 margin: '0 5 0 15',
                 style: 'font-family:Arial;font-size:5vw',
-                top: '80%',
+                top: '70%',
                 ui: 'confirm',
                 width: '90%',
                 text: 'Get The Latest Buzz!'
