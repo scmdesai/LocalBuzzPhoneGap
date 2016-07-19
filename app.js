@@ -65206,21 +65206,188 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
-                xtype: 'dataview',
-                overflow: 'hidden',
-                flex: 10,
-                height: '100%',
+                xtype: 'component',
+                disabled: true,
+                docked: 'top',
+                height: 250,
+                id: 'storeImage',
+                itemId: 'storeImage',
+                left: '2%',
                 margin: '5 5 5 5',
-                padding: '5 5 5 5',
-                style: 'overflow: hidden;background:#fff;',
+                padding: '10 10 10 10',
+                top: '1%',
+                width: '95%',
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            var record = Ext.getStore('LocalStore').getAt(0);
+                            if (record.get('dealImageURL')) {
+                                element.addListener('tap', function() {
+                                    console.log('DealImage Tap');
+                                    var view = Ext.Viewport.add({
+                                            xtype: 'DealImage'
+                                        });
+                                    view.setRecord(record);
+                                    view.showBy(Ext.get('dealPicture'));
+                                });
+                            }
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textareafield',
+                baseCls: 'customfield',
+                cls: 'icon-location',
+                disabled: false,
+                docked: 'bottom',
+                height: '11vh',
+                id: 'address',
+                itemId: 'address',
+                margin: '0 5 0 5',
+                style: 'font-size:4.2vw;font-family:Arial',
                 styleHtmlContent: true,
-                ui: '',
-                width: '98%',
-                scrollable: false,
-                itemTpl: [
-                    '<img src = "{pictureURL}" style="height:100%;width:95%;margin-left:5px;margin-top:2px;"/>'
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                maxRows: 2,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-globe',
+                disabled: false,
+                docked: 'bottom',
+                height: '10vh',
+                hidden: false,
+                id: 'website1',
+                itemId: 'website1',
+                margin: '0 15 0 15',
+                minHeight: '',
+                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'websiteDisplayName',
+                placeHolder: 'Not Listed',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var url = Ext.getCmp('website').getValue();
+                                window.open(url, '_system', 'location=yes');
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-email',
+                docked: 'bottom',
+                height: '10vh',
+                id: 'email',
+                itemId: 'email',
+                margin: '0 5 0 5',
+                style: 'font-size:4.5vw;font-family: arial',
+                styleHtmlContent: true,
+                clearIcon: false,
+                inputCls: '',
+                label: '',
+                name: 'emailAddress',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                /* cordova.plugins.email.open({
+
+
+                                to:          Ext.getCmp('email').getValue(), // email addresses for TO field
+                                isHtml:    false, // indicats if the body is HTML or plain text
+                                });*/
+                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+                                null, [
+                                    Ext.getCmp('email').getValue()
+                                ], // TO: must be null or an array
+                                null, // CC: must be null or an array
+                                null, // BCC: must be null or an array
+                                null, // FILES: can be null, a string, or an array
+                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
+                                null);
+                            });
+                        },
+                        // called when sh*t hits the fan
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: [
+                    'icon-phone',
+                    'customfield2'
                 ],
-                store: 'MyJsonPStore'
+                disabled: false,
+                docked: 'bottom',
+                height: '10vh',
+                hidden: false,
+                html: '',
+                id: 'phoneNumber',
+                itemId: 'phoneNumber',
+                margin: '0 5 0 5',
+                padding: '15 10 10 10',
+                style: 'font-size:4.5vw;font-family: arial',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'phoneNumber',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                // console.log(Ext.getCmp('phoneNumber').getValue());
+                                var numberToDial = Ext.getCmp('phoneNumber').getValue();
+                                window.location = 'tel:' + numberToDial;
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
+            },
+            {
+                xtype: 'textfield',
+                cls: 'icon-globe',
+                disabled: false,
+                height: '',
+                hidden: true,
+                id: 'website',
+                itemId: 'website',
+                margin: '0 15 0 15',
+                maxHeight: '30%',
+                minHeight: '',
+                styleHtmlContent: true,
+                clearIcon: false,
+                name: 'website',
+                readOnly: true
             },
             {
                 xtype: 'button',
@@ -65257,159 +65424,14 @@ Ext.define('Ext.direct.Manager', {
                         });
                     Ext.Viewport.setActiveItem(view);
                 },
-                height: '',
-                margin: '0 5 0 5',
+                docked: 'top',
+                height: '15%',
+                margin: '0 5 0 15',
                 style: 'font-family:Arial;font-size:5vw',
+                top: '80%',
                 ui: 'confirm',
+                width: '90%',
                 text: 'Get The Latest Buzz!'
-            },
-            {
-                xtype: 'textfield',
-                cls: 'icon-phone',
-                disabled: false,
-                height: '',
-                hidden: false,
-                html: '',
-                id: 'phoneNumber',
-                itemId: 'phoneNumber',
-                margin: '5 15 0 15',
-                maxHeight: '30%',
-                minHeight: '',
-                padding: '15 10 10 10',
-                style: 'font-size:3vw !important',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'phoneNumber',
-                readOnly: true,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                // console.log(Ext.getCmp('phoneNumber').getValue());
-                                var numberToDial = Ext.getCmp('phoneNumber').getValue();
-                                window.location = 'tel:' + numberToDial;
-                            });
-                        },
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
-                xtype: 'textfield',
-                cls: 'icon-email',
-                id: 'email',
-                itemId: 'email',
-                margin: '0 15 0 15',
-                style: 'font-family:Arial;font-size:4.5vw',
-                styleHtmlContent: true,
-                clearIcon: false,
-                inputCls: '',
-                label: '',
-                name: 'emailAddress',
-                readOnly: true,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                /* cordova.plugins.email.open({
-
-
-                                to:          Ext.getCmp('email').getValue(), // email addresses for TO field
-                                isHtml:    false, // indicats if the body is HTML or plain text
-                                });*/
-                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
-                                null, [
-                                    Ext.getCmp('email').getValue()
-                                ], // TO: must be null or an array
-                                null, // CC: must be null or an array
-                                null, // BCC: must be null or an array
-                                null, // FILES: can be null, a string, or an array
-                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
-                                null);
-                            });
-                        },
-                        // called when sh*t hits the fan
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
-                xtype: 'textfield',
-                cls: 'icon-globe',
-                disabled: false,
-                height: '',
-                hidden: true,
-                id: 'website',
-                itemId: 'website',
-                margin: '0 15 0 15',
-                maxHeight: '30%',
-                minHeight: '',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'website',
-                readOnly: true
-            },
-            {
-                xtype: 'textfield',
-                cls: 'icon-globe',
-                disabled: false,
-                height: '',
-                hidden: false,
-                id: 'website1',
-                itemId: 'website1',
-                margin: '0 15 0 15',
-                maxHeight: '30%',
-                minHeight: '',
-                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'websiteDisplayName',
-                placeHolder: 'Not Listed',
-                readOnly: true,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var url = Ext.getCmp('website').getValue();
-                                window.open(url, '_system', 'location=yes');
-                            });
-                        },
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
-                xtype: 'textareafield',
-                baseCls: 'customfield',
-                cls: 'icon-location',
-                disabled: false,
-                height: '12vh',
-                id: 'address',
-                itemId: 'address',
-                margin: '0 15 0 15',
-                style: 'font-size:4.2vw;font-family:Arial',
-                styleHtmlContent: true,
-                clearIcon: false,
-                name: 'address',
-                readOnly: true,
-                maxRows: 2,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
-                                }
-                                Ext.device.Device.openURL(url);
-                            });
-                        },
-                        event: 'painted'
-                    }
-                ]
             }
         ],
         listeners: [
@@ -65465,6 +65487,7 @@ Ext.define('Ext.direct.Manager', {
             }
             //console.log(customerId + isFavorite );
             this.down('#nameTxt').setHtml(name);
+            this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:100%;width:95%;margin-left:5px;margin-top:2px;"/>');
             // console.log(store.getData());
             if (isFavorite === true) {
                 this.down('#favbutton').setCls('fill-star');
