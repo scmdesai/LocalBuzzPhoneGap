@@ -65232,7 +65232,7 @@ Ext.define('Ext.direct.Manager', {
                 docked: 'top',
                 height: '250px',
                 id: 'storeImage1',
-                itemId: 'storeImage',
+                itemId: 'storeImage1',
                 left: '2%',
                 padding: '10 10 10 10',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0;',
@@ -65405,10 +65405,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onFavbuttonTap1',
                 event: 'tap',
                 delegate: '#favbutton1'
-            },
-            {
-                fn: 'onDealPictureShow',
-                event: 'show'
             }
         ]
     },
@@ -65441,17 +65437,6 @@ Ext.define('Ext.direct.Manager', {
         record.set('isFavorite', isPressed);
         store.sync();
     },
-    onDealPictureShow: function(component, eOpts) {
-        var record = Ext.getStore('LocalStore').getAt(0);
-        if (record.get('dealImageURL')) {
-            console.log('Showing Deal Image');
-            //this.down('#dealimage').setHtml('<img src="' +record.get('dealImageURL')+ '" style="margin:5px 5px 5px 5px;height:30%;width:100%;border:none;"/><div style="font-size:5vw;color:black">'+record.get('dealDescription')+'</div><div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from'+ record.get('dealStartDate')+' through '+ record.get('dealEndDate')+'</div>');
-            this.down('#nameTxt3').hide();
-        } else {
-            this.down('#dealimage').setHtml('<img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:5vw;">' + record.get('dealDescription') + '</div><br><br><div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
-        }
-    },
-    // this.down('#dealimage').hide();
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
@@ -65467,8 +65452,8 @@ Ext.define('Ext.direct.Manager', {
                 });
             }
             //console.log(customerId + isFavorite );
-            this.down('#nameTxt4').setHtml(name);
-            this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:100%;width:95%;margin-left:5px;margin-top:2px;"/>');
+            this.down('#nameTxt1').setHtml(name);
+            this.down('#storeImage1').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:100%;width:95%;margin-left:5px;margin-top:2px;"/>');
             // console.log(store.getData());
             if (isFavorite === true) {
                 this.down('#favbutton1').setCls('fill-star');
