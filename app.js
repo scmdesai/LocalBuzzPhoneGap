@@ -67345,12 +67345,14 @@ Ext.define('Ext.direct.Manager', {
         width: '95%',
         scrollable: true,
         tpl: [
+            '<div id="wrapper">',
             '<tpl if="dealImageURL">',
-            '<div><img src="{dealImageURL}" style="height:100%;width:100%;"/></div>',
+            '<div id="scroller"><img src="{dealImageURL}" style="height:100%;width:100%;"/></div>',
             '',
             ' ',
             '    </tpl>',
-            '    '
+            ' </div>   ',
+            ''
         ],
         layout: {
             type: 'vbox',
@@ -67378,7 +67380,22 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onDealImageShow',
+                event: 'show'
+            }
         ]
+    },
+    onDealImageShow: function(component, eOpts) {
+        var myScroll = new IScroll('#wrapper', {
+                zoom: true,
+                scrollX: true,
+                scrollY: true,
+                mouseWheel: true,
+                wheelAction: 'zoom'
+            });
     }
 }, 0, [
     "DealImage"
