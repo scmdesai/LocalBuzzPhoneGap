@@ -66716,6 +66716,12 @@ Ext.define('Ext.direct.Manager', {
                                     }*/
                 "4": {
                     icon: 'resources/img/barber.png'
+                },
+                "5": {
+                    icon: 'resources/img/restaurant.png'
+                },
+                "6": {
+                    icon: 'resources/img/flag-export.png'
                 }
             };
         /*{
@@ -66735,16 +66741,20 @@ Ext.define('Ext.direct.Manager', {
             ds.filter('dealStatus', 'Active');
             var count = ds.getCount();
             var category;
-            if (feature === 'Auto') {
+            if (feature === 'Automotives') {
                 category = 0;
             } else if (feature === 'Grocery') {
                 category = 1;
-            } else if (feature === 'Arts') {
+            } else if (feature === 'Art & Crafts') {
                 category = 2;
-            } else if (feature === 'Dance Group') {
+            } else if (feature === 'Performing Arts') {
                 category = 3;
-            } else if (feature === 'Beauty Salon') {
+            } else if (feature === 'Salon & Spa') {
                 category = 4;
+            } else if (feature === 'Restaurant') {
+                category = 5;
+            } else {
+                category = 6;
             }
             /* var marker = new MarkerWithLabel ({
                             position: m,
