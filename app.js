@@ -65147,7 +65147,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.Info', Ext.Panel, {
+(Ext.cmd.derive('Contact.view.Info', Ext.form.Panel, {
     config: {
         fullscreen: true,
         html: '',
@@ -65158,13 +65158,6 @@ Ext.define('Ext.direct.Manager', {
         style: 'background:#fff;',
         width: '100%',
         scrollable: true,
-        tpl: [
-            '<tpl if="dealImageURL">',
-            '<div><img src="{dealImageURL}" style="margin: 0px 5px 0px 5px;height:250px;width:95%;border:none;"/></div>',
-            ' ',
-            '    </tpl>',
-            '    '
-        ],
         layout: {
             type: 'vbox',
             align: 'stretchmax'
@@ -65460,7 +65453,7 @@ Ext.define('Ext.direct.Manager', {
     },
     // this.down('#dealimage').hide();
     setRecord: function(record) {
-        (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
+        (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
             var isFavorite = record.get('isFavorite');
@@ -65511,11 +65504,13 @@ Ext.define('Ext.direct.Manager', {
     "component",
     "container",
     "panel",
+    "formpanel",
     "contactinfo"
 ], {
     "component": true,
     "container": true,
     "panel": true,
+    "formpanel": true,
     "contactinfo": true
 }, [
     "widget.contactinfo"
