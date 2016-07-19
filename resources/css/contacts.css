@@ -111,6 +111,18 @@ $list-header-bg-color: $base-color;
 }
 
 
+.customfield2 {
+    border-bottom:none!important;
+    margin:5px 5px 5px 5px;
+    height:9vh;
+    font-weight:normal;
+    vertical-align:middle;
+    font-family:Arial;
+    font-size:3vw
+
+}
+
+
 .custmfield {
     margin:5px 5px 5px 5px;
     height:12vh;
@@ -149,7 +161,14 @@ $list-header-bg-color: $base-color;
 
 }
 
-
+.wrapper {
+    position:absolute; 
+    z-index:1;
+    top:45px; bottom:48px; left:0;
+    width:100%;
+    background:#aaa;
+    overflow:auto;
+}
 
 
 

@@ -65216,7 +65216,7 @@ Ext.define('Ext.direct.Manager', {
                 margin: '5 5 5 5',
                 padding: '10 10 10 10',
                 top: '1%',
-                width: '95%',
+                width: '97%',
                 listeners: [
                     {
                         fn: function(element, eOpts) {
@@ -65272,7 +65272,10 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textfield',
-                cls: 'icon-globe',
+                cls: [
+                    'icon-globe',
+                    'customfield2'
+                ],
                 disabled: false,
                 docked: 'bottom',
                 height: '10vh',
@@ -65283,6 +65286,7 @@ Ext.define('Ext.direct.Manager', {
                 minHeight: '',
                 style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
+                top: '91%',
                 clearIcon: false,
                 name: 'websiteDisplayName',
                 placeHolder: 'Not Listed',
@@ -65301,7 +65305,10 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textfield',
-                cls: 'icon-email',
+                cls: [
+                    'icon-email',
+                    'customfield2'
+                ],
                 docked: 'bottom',
                 height: '10vh',
                 id: 'email',
@@ -65309,8 +65316,8 @@ Ext.define('Ext.direct.Manager', {
                 margin: '0 5 0 5',
                 style: 'font-size:4.5vw;font-family: arial',
                 styleHtmlContent: true,
+                top: '86%',
                 clearIcon: false,
-                inputCls: '',
                 label: '',
                 name: 'emailAddress',
                 readOnly: true,
@@ -65357,6 +65364,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '15 10 10 10',
                 style: 'font-size:4.5vw;font-family: arial',
                 styleHtmlContent: true,
+                top: '79%',
                 clearIcon: false,
                 name: 'phoneNumber',
                 readOnly: true,
@@ -65425,10 +65433,10 @@ Ext.define('Ext.direct.Manager', {
                     Ext.Viewport.setActiveItem(view);
                 },
                 docked: 'top',
-                height: '15%',
+                height: '10%',
                 margin: '0 5 0 15',
                 style: 'font-family:Arial;font-size:5vw',
-                top: '70%',
+                top: '71%',
                 ui: 'confirm',
                 width: '90%',
                 text: 'Get The Latest Buzz!'
