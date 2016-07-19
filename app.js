@@ -65246,7 +65246,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'address',
                 itemId: 'address',
                 margin: '0 5 0 5',
-                padding: '10 10 10 10',
+                padding: '10 10 10 30',
                 style: 'font-size:3vw;font-family: arial',
                 styleHtmlContent: true,
                 top: '80%',
