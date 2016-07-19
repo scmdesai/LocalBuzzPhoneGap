@@ -64918,7 +64918,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                var url = Ext.getCmp('website4').getValue();
+                                var url = Ext.getCmp('website5').getValue();
                                 window.open(url, '_system', 'location=yes');
                             });
                         },
