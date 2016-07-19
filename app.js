@@ -64853,7 +64853,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'storeImage1',
                 left: '2%',
                 padding: '10 10 10 10',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0;',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:none;',
                 top: '1%',
                 width: '95%'
             },
@@ -64881,7 +64881,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
+                                var queryString = encodeURIComponent(Ext.getCmp('address2').getValue());
                                 var url;
                                 if (Ext.os.is('Android')) {
                                     url = 'geo:0,0?q=' + queryString;
@@ -64918,7 +64918,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                var url = Ext.getCmp('website2').getValue();
+                                var url = Ext.getCmp('website4').getValue();
                                 window.open(url, '_system', 'location=yes');
                             });
                         },
@@ -64955,7 +64955,7 @@ Ext.define('Ext.direct.Manager', {
                                 });*/
                                 window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
                                 null, [
-                                    Ext.getCmp('email1').getValue()
+                                    Ext.getCmp('email2').getValue()
                                 ], // TO: must be null or an array
                                 null, // CC: must be null or an array
                                 null, // BCC: must be null or an array
@@ -64993,7 +64993,7 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
                                 // console.log(Ext.getCmp('phoneNumber').getValue());
-                                var numberToDial = Ext.getCmp('phoneNumber1').getValue();
+                                var numberToDial = Ext.getCmp('phoneNumber2').getValue();
                                 window.location = 'tel:' + numberToDial;
                             });
                         },
@@ -65016,6 +65016,50 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 name: 'website',
                 readOnly: true
+            },
+            {
+                xtype: 'button',
+                handler: function(button, e) {
+                    var store = Ext.getStore('MyDealsStore');
+                    var date = new Date();
+                    var today = Ext.Date.format(date, 'n/j/Y');
+                    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
+                    //var today = Ext.Date.format(test,'n/j/Y');
+                    //store.clearFilter();
+                    store.load();
+                    /*store.each(function(rec)
+                    {
+
+
+                    //console.log('Deal End Date: ' + rec.get('dealEndDate'));
+                    //console.log('Tdays date is : ' + today);
+
+                    if(rec.get('dealEndDate') < today) {
+
+                        console.log(rec.get('dealName'));
+                        rec.set('dealStatus','Expired');
+
+
+
+                    }
+
+
+
+                });*/
+                    //store.filter('dealStatus','Active');
+                    var view = Ext.Viewport.add({
+                            xtype: 'DealsPanel'
+                        });
+                    Ext.Viewport.setActiveItem(view);
+                },
+                docked: 'top',
+                height: '10%',
+                margin: '0 5 0 15',
+                style: 'font-family:Arial;font-size:5vw',
+                top: '42%',
+                ui: 'confirm',
+                width: '90%',
+                text: 'Get The Latest Buzz!'
             }
         ],
         listeners: [
@@ -66292,50 +66336,6 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 name: 'website',
                 readOnly: true
-            },
-            {
-                xtype: 'button',
-                handler: function(button, e) {
-                    var store = Ext.getStore('MyDealsStore');
-                    var date = new Date();
-                    var today = Ext.Date.format(date, 'n/j/Y');
-                    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
-                    //var today = Ext.Date.format(test,'n/j/Y');
-                    //store.clearFilter();
-                    store.load();
-                    /*store.each(function(rec)
-                    {
-
-
-                    //console.log('Deal End Date: ' + rec.get('dealEndDate'));
-                    //console.log('Tdays date is : ' + today);
-
-                    if(rec.get('dealEndDate') < today) {
-
-                        console.log(rec.get('dealName'));
-                        rec.set('dealStatus','Expired');
-
-
-
-                    }
-
-
-
-                });*/
-                    //store.filter('dealStatus','Active');
-                    var view = Ext.Viewport.add({
-                            xtype: 'DealsPanel'
-                        });
-                    Ext.Viewport.setActiveItem(view);
-                },
-                docked: 'top',
-                height: '10%',
-                margin: '0 5 0 15',
-                style: 'font-family:Arial;font-size:5vw',
-                top: '42%',
-                ui: 'confirm',
-                width: '90%',
-                text: 'Get The Latest Buzz!'
             }
         ],
         listeners: [
