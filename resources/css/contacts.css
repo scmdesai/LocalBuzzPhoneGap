@@ -112,13 +112,14 @@ $list-header-bg-color: $base-color;
 
 
 .customfield2 {
-    border-bottom:none!important;
+    
     margin:5px 5px 5px 5px;
     height:9vh;
     font-weight:normal;
     vertical-align:middle;
     font-family:Arial;
-    font-size:3vw
+    font-size:3vw;
+     border-bottom:2px ridge #c0c0c0;
 
 }
 
