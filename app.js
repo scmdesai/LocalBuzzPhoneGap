@@ -66036,7 +66036,10 @@ Ext.define('Ext.direct.Manager', {
                     window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.URI, null);
                 }
             }, 50);
-            Ext.get('share').show();
+            //Ext.get('share').show();
+            var view = Ext.Viewport.getComponent('DealPicture');
+            view.setRecord(record);
+            Ext.Viewport.setActiveItem(view);
         } else {
             navigator.screenshot.save(function(error, res) {
                 if (error) {
