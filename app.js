@@ -64589,20 +64589,19 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.WelcomeScreen', Ext.Panel, {
     config: {
-        html: '<div style="text-align:center"><h3>Welcome to Local Buzz</h3><br><h5>Find the Latest Buzz around You!</h5><br><br><h3><br>OR</h3><br></div>',
-        style: 'background:#FFF',
+        style: 'background:#FFF;color:#00529D!important',
         styleHtmlContent: true,
         items: [
             {
                 xtype: 'textfield',
                 cls: 'searchfield',
-                height: '10%',
+                height: '12%',
                 id: 'zipcodeLookUp',
                 itemId: 'zipcodeLookUp',
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black',
-                top: '40%',
+                top: '27%',
                 clearIcon: false,
                 name: 'zipcodeLookUp',
                 placeHolder: '       Enter Zipcode'
@@ -64667,11 +64666,34 @@ Ext.define('Ext.direct.Manager', {
                         Ext.Msg.alert('Location Service is Disabled', 'Allow LocalBuzz To Access Your Location', null, null);
                     }
                 },
+                height: '8%',
                 left: '20%',
                 style: 'font-size:5vw;font-family:Arial',
-                top: '24%',
+                top: '1%',
                 ui: 'action',
                 text: 'Use Current Location'
+            },
+            {
+                xtype: 'component',
+                cls: 'contact-name',
+                disabled: true,
+                docked: 'top',
+                height: '',
+                html: '<br><div style="text-align:center;"><h3 style="color:#00529D"><b>Welcome to Local Buzz</h3><br><h5 style="color:#00529D">Find the Latest Buzz around You!</h3></div>',
+                id: 'nameTxt4',
+                itemId: 'nameTxt2',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;color:#00529D!important;',
+                styleHtmlContent: true
+            },
+            {
+                xtype: 'component',
+                cls: 'contact-name',
+                disabled: true,
+                html: '<div  style="text-align:center;"><br><h2 style="color:#00529D">OR</h2><br><br><br></div>',
+                id: 'nameTxt5',
+                itemId: 'nameTxt3',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
+                styleHtmlContent: true
             }
         ],
         listeners: [
