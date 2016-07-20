@@ -64789,15 +64789,6 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            Ext.Viewport.getActiveItem().destroy();
-                            Ext.getStore('LocalStore').removeAt(0);
-                            if (Ext.Viewport.getComponent('DealsPanel')) {
-                                Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
-                            } else {
-                                Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
-                            }
-                        },
                         centered: false,
                         cls: 'icon-back-button',
                         height: '100%',
