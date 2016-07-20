@@ -64595,7 +64595,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'textfield',
                 cls: 'searchfield',
-                height: '12%',
+                height: '9vh',
                 id: 'zipcodeLookUp',
                 itemId: 'zipcodeLookUp',
                 left: '18%',
@@ -64666,7 +64666,7 @@ Ext.define('Ext.direct.Manager', {
                         Ext.Msg.alert('Location Service is Disabled', 'Allow LocalBuzz To Access Your Location', null, null);
                     }
                 },
-                height: '8%',
+                height: '9vh',
                 left: '20%',
                 style: 'font-size:5vw;font-family:Arial',
                 top: '1%',
