@@ -66557,6 +66557,7 @@ Ext.define('Ext.direct.Manager', {
         store.filter('businessName', search);
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        document.getElementById('searchfield').blur();
         Ext.getStore('MyDealsStore').clearFilter();
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
