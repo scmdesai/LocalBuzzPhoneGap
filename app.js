@@ -66002,18 +66002,29 @@ Ext.define('Ext.direct.Manager', {
             }*/
         Ext.getCmp('dealpictureBackBtn').hide();
         Ext.get('share').hide();
-        navigator.screenshot.save(function(error, res) {
-            if (error) {
-                console.error(error);
-            } else {
-                //Ext.Msg.alert(res.filePath,null,null,null); //should be path/to/myScreenshot.jpg
-                window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.filePath, null);
-                if (!Ext.os.is('Android')) {
-                    Ext.getCmp('dealpictureBackBtn').show();
+        if (Ext.os.is('Android')) {
+            navigator.screenshot.URI(function(error, res) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    html = '<img style="width:100%;" src="' + res.URI + '">';
+                    document.body.innerHTML = html;
+                    window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.URI, null);
+                    Ext.get('share').show();
                 }
-                Ext.get('share').show();
-            }
-        }, 'jpg', 50, 'myScreenShot');
+            }, 50);
+        } else {
+            navigator.screenshot.save(function(error, res) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    //Ext.Msg.alert(res.filePath,null,null,null); //should be path/to/myScreenshot.jpg
+                    window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.filePath, null);
+                    Ext.getCmp('dealpictureBackBtn').show();
+                    Ext.get('share').show();
+                }
+            }, 'jpg', 50, 'myScreenShot');
+        }
     },
     //window.plugins.socialsharing.share('Hi! Check out the Latest Buzz from '+record.get('businessName')+'\n'+record.get('dealName')+'\n'+  record.get('dealDescription')+'\nValid Through '+ record.get('dealEndDate'),null,null,null);
     onDealBackBtn1Tap: function(button, e, eOpts) {
