@@ -61,7 +61,7 @@
 	
 	
 	<!-- Plugin Added for Push Notification -->
-	<gap:plugin name="phonegap-plugin-push" source="npm" version="1.5.3" />
+	<gap:plugin name="phonegap-plugin-push" source="npm"  />
 	<!-- Plugin Added for Google Analytics -->
 	<gap:plugin name="cordova-plugin-google-analytics"  source="npm" version="0.8.1"/>
 	<!-- End Google Analytics -->
