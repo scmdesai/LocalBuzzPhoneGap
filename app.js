@@ -67486,7 +67486,6 @@ Ext.application({
         'UserLocation'
     ],
     views: [
-        'Info1',
         'Picture',
         'List',
         'DealPicture',
@@ -67497,7 +67496,8 @@ Ext.application({
         'DealsPanel1',
         'WelcomeScreen',
         'LatestBuzz',
-        'DealImage'
+        'DealImage',
+        'Info'
     ],
     controllers: [
         'Contacts'
