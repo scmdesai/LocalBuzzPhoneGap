@@ -65219,43 +65219,6 @@ Ext.define('Ext.direct.Manager', {
                 width: '97%'
             },
             {
-                xtype: 'textareafield',
-                baseCls: 'customfield',
-                cls: 'icon-location',
-                disabled: false,
-                docked: 'bottom',
-                height: '12vh',
-                id: 'address',
-                itemId: 'address',
-                margin: '0 5 0 5',
-                padding: '10 10 10 30',
-                style: 'font-size:3vw;font-family: arial;vertical-align:middle',
-                styleHtmlContent: true,
-                top: '80%',
-                width: '95%',
-                clearIcon: false,
-                name: 'address',
-                readOnly: true,
-                maxRows: 2,
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
-                                }
-                                Ext.device.Device.openURL(url);
-                            });
-                        },
-                        event: 'painted'
-                    }
-                ]
-            },
-            {
                 xtype: 'textfield',
                 cls: [
                     'icon-globe',
@@ -65421,13 +65384,51 @@ Ext.define('Ext.direct.Manager', {
                     Ext.Viewport.setActiveItem(view);
                 },
                 docked: 'top',
-                height: '10%',
+                height: '7%',
                 margin: '0 5 0 15',
                 style: 'font-family:Arial;font-size:5vw',
                 top: '42%',
                 ui: 'confirm',
                 width: '90%',
                 text: 'Get The Latest Buzz!'
+            },
+            {
+                xtype: 'textareafield',
+                cls: [
+                    'icon-location1',
+                    'customfield'
+                ],
+                disabled: false,
+                docked: 'bottom',
+                height: '9vh',
+                id: 'address',
+                itemId: 'address',
+                margin: '0 0 0 5',
+                padding: '10 5 0 5',
+                style: 'font-size:4.2vw;font-family:Arial;brder:none!important',
+                styleHtmlContent: true,
+                top: '82%',
+                width: '95%',
+                clearIcon: false,
+                name: 'address',
+                readOnly: true,
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.addListener('tap', function() {
+                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
+                                var url;
+                                if (Ext.os.is('Android')) {
+                                    url = 'geo:0,0?q=' + queryString;
+                                } else {
+                                    url = 'maps:q=' + queryString;
+                                }
+                                Ext.device.Device.openURL(url);
+                            });
+                        },
+                        event: 'painted'
+                    }
+                ]
             }
         ],
         listeners: [
