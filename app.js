@@ -66027,12 +66027,13 @@ Ext.define('Ext.direct.Manager', {
         Ext.getCmp('dealpictureBackBtn').hide();
         Ext.get('share').hide();
         if (Ext.os.is('Android')) {
+            Ext.get('share').hide();
             navigator.screenshot.URI(function(error, res) {
                 if (error) {
                     console.error(error);
                 } else {
-                    html = '<img style="width:100%;" src="' + res.URI + '">';
-                    document.body.innerHTML = html;
+                    //html = '<img style="width:100%;" src="'+res.URI+'">';
+                    //document.body.innerHTML = html;
                     window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.URI, null);
                 }
             }, 50);
