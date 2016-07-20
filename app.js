@@ -64602,6 +64602,7 @@ Ext.define('Ext.direct.Manager', {
                 padding: '5 5 5 5',
                 style: 'border:1px solid black',
                 top: '27%',
+                width: '60%',
                 clearIcon: false,
                 name: 'zipcodeLookUp',
                 placeHolder: '       Enter Zipcode'
@@ -64671,6 +64672,7 @@ Ext.define('Ext.direct.Manager', {
                 style: 'font-size:5vw;font-family:Arial',
                 top: '1%',
                 ui: 'action',
+                width: '60%',
                 text: 'Use Current Location'
             },
             {
