@@ -66010,9 +66010,9 @@ Ext.define('Ext.direct.Manager', {
                     html = '<img style="width:100%;" src="' + res.URI + '">';
                     document.body.innerHTML = html;
                     window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.URI, null);
-                    Ext.get('share').show();
                 }
             }, 50);
+            Ext.get('share').show();
         } else {
             navigator.screenshot.save(function(error, res) {
                 if (error) {
