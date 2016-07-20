@@ -64856,6 +64856,9 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'button',
+                        handler: function(button, e) {
+                            button.hide();
+                        },
                         cls: 'icon-share',
                         docked: 'right',
                         height: '100%',
