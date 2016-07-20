@@ -65106,8 +65106,9 @@ Ext.define('Ext.direct.Manager', {
         ],
         listeners: [
             {
-                fn: 'onShareRelease',
-                event: 'release',
+                fn: 'onShareTap',
+                event: 'tap',
+                order: 'before',
                 delegate: '#share'
             },
             {
@@ -65116,8 +65117,8 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onShareRelease: function(button, e, eOpts) {
-        button.setHidden(true);
+    onShareTap: function(button, e, eOpts) {
+        Ext.Msg.alert('Share', null, null, null);
     },
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
