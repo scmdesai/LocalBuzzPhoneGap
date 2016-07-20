@@ -65821,16 +65821,11 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.setActiveItem(info);
         //console.log(info);*/
         var view;
-        if (Ext.Viewport.getComponent('Info')) {
-            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-            view.setRecord(record);
-        } else {
-            view = Ext.Viewport.add({
-                xtype: 'contactinfo'
-            });
-            view.setRecord(record);
-            Ext.Viewport.setActiveItem(view);
-        }
+        view = Ext.Viewport.add({
+            xtype: 'contactinfo'
+        });
+        view.setRecord(record);
+        Ext.Viewport.setActiveItem(view);
         var storeName = Ext.getStore('MyJsonPStore');
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
