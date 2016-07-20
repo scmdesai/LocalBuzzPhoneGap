@@ -66008,7 +66008,9 @@ Ext.define('Ext.direct.Manager', {
             } else {
                 //Ext.Msg.alert(res.filePath,null,null,null); //should be path/to/myScreenshot.jpg
                 window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.filePath, null);
-                Ext.getCmp('dealpictureBackBtn').show();
+                if (!Ext.os.is('Android')) {
+                    Ext.getCmp('dealpictureBackBtn').show();
+                }
                 Ext.get('share').show();
             }
         }, 'jpg', 50, 'myScreenShot');
