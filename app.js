@@ -65106,19 +65106,10 @@ Ext.define('Ext.direct.Manager', {
         ],
         listeners: [
             {
-                fn: 'onShareTap',
-                event: 'tap',
-                order: 'before',
-                delegate: '#share'
-            },
-            {
                 fn: 'onDealPictureShow',
                 event: 'show'
             }
         ]
-    },
-    onShareTap: function(button, e, eOpts) {
-        Ext.Msg.alert('Share', null, null, null);
     },
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
