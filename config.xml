@@ -29,7 +29,7 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
 	<preference name="StatusBarOverlaysWebView" value="false" />
-	<preference name="StatusBarBackgroundColor" value="#105585" />
+	<preference name="StatusBarBackgroundColor" value="#00529D" />
     <preference name="StatusBarStyle" value="lightcontent" />
 	
 	<preference name="android-windowSoftInputMode" value="adjustNothing" />

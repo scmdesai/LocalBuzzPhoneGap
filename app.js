@@ -66347,7 +66347,8 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'toolbar',
                         cls: 'toolbarCls',
                         docked: 'top',
-                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
+                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>',
+                        style: 'font-family:Mistral;font-size:6vw;'
                     },
                     {
                         xtype: 'latestbuzz'
