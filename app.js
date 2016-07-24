@@ -64920,7 +64920,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 height: '',
-                html: '<tpl if="dealImageURL"><p style="font-size:2.3vw;"> Click on picture to enlarge</tpl>',
+                html: '<p style="font-size:2.3vw;"> Click on picture to enlarge</p>',
                 id: 'nameTxt3',
                 itemId: 'nameTxt3',
                 left: '40%',
@@ -65116,8 +65116,10 @@ Ext.define('Ext.direct.Manager', {
         console.log(record.get('dealImageURL'));
         if (record.get('dealImageURL')) {
             this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin: 0px 5px 0px 5px;height:40vh;width:95%;border:none;"/>');
+            this.down('#nameTxt3').show();
         } else {
             this.down('#dealimage').setHtml('<img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:5vw;">' + record.get('dealDescription') + '</div><br><br><div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
+            this.down('#nameTxt3').hide();
         }
     },
     setRecord: function(record) {
