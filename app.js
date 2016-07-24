@@ -64889,7 +64889,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 docked: 'top',
-                height: '250px',
+                height: '40vh',
                 id: 'dealimage',
                 itemId: 'dealimage',
                 left: '2%',
@@ -65101,7 +65101,7 @@ Ext.define('Ext.direct.Manager', {
         var record = Ext.getStore('LocalStore').getAt(0);
         console.log(record.get('dealImageURL'));
         if (record.get('dealImageURL')) {
-            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin: 0px 5px 0px 5px;height:250px;width:95%;border:none;"/>');
+            this.down('#dealimage').setHtml('<img src="' + record.get('dealImageURL') + '" style="margin: 0px 5px 0px 5px;height:40vh;width:95%;border:none;"/>');
         } else {
             this.down('#dealimage').setHtml('<img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:5vw;">' + record.get('dealDescription') + '</div><br><br><div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
         }
@@ -65218,7 +65218,7 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'component',
                 disabled: true,
                 docked: 'top',
-                height: '320px',
+                height: '40vh',
                 id: 'storeImage',
                 itemId: 'storeImage',
                 left: '2%',
