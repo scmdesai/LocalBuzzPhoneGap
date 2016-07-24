@@ -64894,7 +64894,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'dealimage',
                 left: '2%',
                 padding: '10 10 10 10',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0;background:#FFF',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;background:#FFF',
                 top: '1%',
                 width: '95%',
                 listeners: [
@@ -67594,6 +67594,7 @@ Ext.application({
                     Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'dealPicture') {
                     Ext.Viewport.getActiveItem().destroy();
+                    Ext.getStore('LocalStore').removeAt(0);
                     if (Ext.Viewport.getComponent('DealsPanel')) {
                         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                     } else if (Ext.Viewport.getComponent('DealsPanel')) {
