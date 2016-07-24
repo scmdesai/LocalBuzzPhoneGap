@@ -66533,6 +66533,7 @@ Ext.define('Ext.direct.Manager', {
             height: '8%',
             id: 'mytabbar',
             itemId: 'mytabbar',
+            padding: '0 5 5 5',
             style: 'font-size:4vw;border-top:1px solid #eee;background:white;',
             ui: 'plain',
             modal: false,
