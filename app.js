@@ -66347,8 +66347,7 @@ Ext.define('Ext.direct.Manager', {
                         xtype: 'toolbar',
                         cls: 'toolbarCls',
                         docked: 'top',
-                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>',
-                        style: 'font-family:Mistral;font-size:6vw;'
+                        html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
                         xtype: 'latestbuzz'
@@ -66534,7 +66533,6 @@ Ext.define('Ext.direct.Manager', {
             height: '8%',
             id: 'mytabbar',
             itemId: 'mytabbar',
-            padding: '2 10 0 10',
             style: 'font-size:4vw;border-top:1px solid #eee;background:white;',
             ui: 'plain',
             modal: false,
