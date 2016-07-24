@@ -64893,7 +64893,6 @@ Ext.define('Ext.direct.Manager', {
                 id: 'dealimage',
                 itemId: 'dealimage',
                 left: '2%',
-                padding: '10 10 10 10',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;background:#FFF;border:2px dotted #c0c0c0',
                 top: '1%',
                 width: '98%',
