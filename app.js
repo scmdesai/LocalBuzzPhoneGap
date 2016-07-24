@@ -66156,9 +66156,9 @@ Ext.define('Ext.direct.Manager', {
             '<div style="border-bottom:2px groove #c0c0c0;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;">',
             '    <div class="list-item">',
             '        <img class="photo" src="{dealPictureURL}" />',
-            '        <br>',
             '        <div style="font-size:4vw;text-align:left;"><b>{businessName}</b></div>',
-            '        <div style="font-size:3vw;text-align:left;">Ends {dealEndDate}</div>',
+            '        <div style="font-size:3vw;text-align:left;word-wrap: break-word;">{dealDescription}</div>',
+            '        <div style="font-size:2.5vw;text-align:left;">Ends {dealEndDate}</div>',
             '    </div>'
         ],
         listeners: [
