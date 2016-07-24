@@ -64664,7 +64664,7 @@ Ext.define('Ext.direct.Manager', {
                         });
                     }, onError);
                     function onError() {
-                        Ext.Msg.alert('Location Service is Disabled', 'Allow LocalBuzz To Access Your Location', null, null);
+                        Ext.Msg.alert('Location Service is Disabled', 'Allow LocalBuzz To access your location', null, null);
                     }
                 },
                 height: '9vh',
@@ -66578,6 +66578,15 @@ Ext.define('Ext.direct.Manager', {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
+        var store1 = Ext.getStore('calculateDistances');
+        var stores = [];
+        store1.each(function(record) {
+            //stores.push(record.get('customerId'));
+            Ext.Array.include(stores, record.get('customerId'));
+        });
+        store.filterBy(function(record) {
+            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+        }, this);
         store.filter('businessName', search);
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
