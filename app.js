@@ -64894,7 +64894,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'dealimage',
                 left: '2%',
                 padding: '10 10 10 10',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0;',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0;background:#FFF',
                 top: '1%',
                 width: '95%',
                 listeners: [
@@ -64915,19 +64915,6 @@ Ext.define('Ext.direct.Manager', {
                         event: 'painted'
                     }
                 ]
-            },
-            {
-                xtype: 'component',
-                cls: 'contact-name',
-                disabled: true,
-                docked: 'top',
-                height: '250px',
-                hidden: true,
-                id: 'nameTxt3',
-                itemId: 'nameTxt3',
-                margin: '5px 5px 5px 5px',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;border:2px dotted #c0c0c0:background:#FFF',
-                width: '95%'
             },
             {
                 xtype: 'component',
