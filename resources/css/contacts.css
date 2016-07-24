@@ -194,7 +194,8 @@ $list-header-bg-color: $base-color;
 
 /* photos */
 .photo {
-    border: 1px solid #999;   
+    border: 1px solid #999; 
+    margin:5px 5px 5px 5px;
 }
 
 
