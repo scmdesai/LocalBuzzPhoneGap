@@ -64894,9 +64894,9 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'dealimage',
                 left: '2%',
                 padding: '10 10 10 10',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;background:#FFF',
+                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;background:#FFF;border:2px dotted #c0c0c0',
                 top: '1%',
-                width: '95%',
+                width: '98%',
                 listeners: [
                     {
                         fn: function(element, eOpts) {
