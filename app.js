@@ -64805,10 +64805,10 @@ Ext.define('Ext.direct.Manager', {
         width: '100%',
         scrollable: true,
         tpl: [
-            '<tpl if="dealImageURL">',
+            '<!--<tpl if="dealImageURL">',
             '<div><img src="{dealImageURL}" style="margin: 0px 5px 0px 5px;height:250px;width:95%;border:none;"/></div>',
             ' ',
-            '    </tpl>',
+            '    </tpl>-->',
             '    '
         ],
         layout: {
@@ -65101,14 +65101,11 @@ Ext.define('Ext.direct.Manager', {
     onDealPictureShow: function(component, eOpts) {
         var record = Ext.getStore('LocalStore').getAt(0);
         if (record.get('dealImageURL')) {
-            console.log('Showing Deal Image');
-            //this.down('#dealimage').setHtml('<img src="' +record.get('dealImageURL')+ '" style="margin:5px 5px 5px 5px;height:30%;width:100%;border:none;"/><div style="font-size:5vw;color:black">'+record.get('dealDescription')+'</div><div style="font-size:3vw;color:grey;margin:5px 5px 5px 5px;">Valid from'+ record.get('dealStartDate')+' through '+ record.get('dealEndDate')+'</div>');
-            this.down('#nameTxt3').hide();
+            this.down('#dealimage').setHtml('<img src="{dealImageURL}" style="margin: 0px 5px 0px 5px;height:250px;width:95%;border:none;"/>');
         } else {
             this.down('#dealimage').setHtml('<img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:5vw;">' + record.get('dealDescription') + '</div><br><br><div style="font-size:4vw;margin:5px 5px 5px 5px;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
         }
     },
-    // this.down('#dealimage').hide();
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
