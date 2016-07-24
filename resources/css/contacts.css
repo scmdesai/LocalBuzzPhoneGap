@@ -31,7 +31,7 @@ $list-header-bg-color: $base-color;
 }
 
 .emptyText {
-    
+
     color: #C0C0C0 !important;
     position: absolute !important;
     text-align:center !important;
@@ -112,14 +112,14 @@ $list-header-bg-color: $base-color;
 
 
 .customfield2 {
-    
+
     margin:5px 5px 5px 5px;
     height:9vh;
     font-weight:normal;
     vertical-align:middle;
     font-family:Arial;
     font-size:3vw;
-     border-bottom:2px ridge #c0c0c0;
+    border-bottom:2px ridge #c0c0c0;
 
 }
 
@@ -171,7 +171,31 @@ $list-header-bg-color: $base-color;
     overflow:auto;
 }
 
+/* list item rows */
+.list-item {
+    overflow: hidden;
+    white-space: nowrap;
+}
 
+.list-item .photo {
+    float: left;
+    margin-right: 10px;
+    width: 20vw;
+    height: 12vh;
+}
+
+.list-item h1 {
+    white-space: nowrap;
+}
+
+.list-item span {
+    font-size: 75%;
+}
+
+/* photos */
+.photo {
+    border: 1px solid #999;   
+}
 
 
 
