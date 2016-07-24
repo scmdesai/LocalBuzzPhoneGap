@@ -64920,7 +64920,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 height: '',
-                html: '<p style="font-size:2.3vw;text-align:left"> Click on picture to enlarge',
+                html: '<tpl if="dealImageURL"><p style="font-size:2.3vw;"> Click on picture to enlarge</tpl>',
                 id: 'nameTxt3',
                 itemId: 'nameTxt3',
                 left: '40%',
@@ -67438,11 +67438,11 @@ Ext.define('Ext.direct.Manager', {
         scrollable: true,
         tpl: [
             '<div id="wrapper">',
-            '<!--<tpl if="dealImageURL">-->',
+            '<tpl if="dealImageURL">',
             '<div id="scroller"><img src="{dealImageURL}" style="height:100%;width:100%;"/></div>',
             '',
             ' ',
-            '   <!-- </tpl> -->',
+            '    </tpl> ',
             ' </div>   ',
             ''
         ],
