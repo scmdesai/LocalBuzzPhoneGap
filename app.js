@@ -64895,7 +64895,7 @@ Ext.define('Ext.direct.Manager', {
                 left: '2%',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;background:#FFF;border:2px dotted #c0c0c0',
                 top: '1%',
-                width: '98%',
+                width: '97%',
                 listeners: [
                     {
                         fn: function(element, eOpts) {
@@ -66139,7 +66139,7 @@ Ext.define('Ext.direct.Manager', {
         store: 'MyDealsStore',
         itemTpl: [
             '',
-            '<div><img src="{dealPictureURL}" height="160px" width="100%" style="border:2px ridge #c0c0c0;"></div>',
+            '<div><img src="{dealPictureURL}" height="100vh" width="100%" style="border:2px ridge #c0c0c0;"></div>',
             '<div style="margin:5px 5px 5px 5px;font-size:6vw;color:#00529D">{businessName}</div>                                                                              ',
             '',
             '<div style="font-size:5vw;color:green;margin:5px 5px 5px 5px;">{dealName}</div>',
