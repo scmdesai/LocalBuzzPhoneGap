@@ -66153,12 +66153,12 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '<!--<div style="font-size:3vw;font-family:Arial;">{dealPictureURL}</div> -->',
-            '<div style="border-bottom:2px groove #c0c0c0;margin:5px 5px 5px 5px;padding:1px 1px 1px 1px;">',
+            '<div style="border-bottom:2px groove #c0c0c0;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;">',
             '    <div class="list-item">',
             '        <img class="photo" src="{dealPictureURL}" />',
             '        <br>',
-            '        <div style="font-size:4vw;">{businessName}</div>',
-            '        <div style="font-size:3vw;">Ends {dealEndDate}</div>',
+            '        <div style="font-size:4vw;text-align:left;"><b>{businessName}</b></div>',
+            '        <div style="font-size:3vw;text-align:left;">Ends {dealEndDate}</div>',
             '    </div>'
         ],
         listeners: [
@@ -66341,7 +66341,9 @@ Ext.define('Ext.direct.Manager', {
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
-                        xtype: 'latestbuzz'
+                        xtype: 'latestbuzz',
+                        docked: 'top',
+                        styleHtmlContent: false
                     }
                 ]
             },
