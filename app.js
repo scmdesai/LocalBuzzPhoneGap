@@ -64666,15 +64666,17 @@ Ext.define('Ext.direct.Manager', {
                         timeout: 5000
                     });
                     function onError() {
-                        // Ext.Msg.alert('Location service is disabled','Allow LocalBuzz to access your location',null,null);
-                        Ext.Msg.show({
-                            title: 'Location service is disabled',
-                            message: 'Allow LocalBuzz to access your location',
-                            buttons: Ext.MessageBox.OK,
-                            iconCls: Ext.MessageBox.INFO
-                        });
+                        Ext.Msg.alert('Location service is disabled', 'Allow LocalBuzz to access your location', null, null);
                     }
                 },
+                /* Ext.Msg.show({
+                            title: 'Location service is disabled',
+                            message: 'Allow LocalBuzz to access your location',
+
+                            buttons: Ext.MessageBox.OK,
+                            iconCls: Ext.MessageBox.INFO
+
+                            });*/
                 height: '9vh',
                 left: '20%',
                 style: 'font-size:5vw;font-family:Arial',
@@ -66183,7 +66185,7 @@ Ext.define('Ext.direct.Manager', {
             '        <img class="photo" src="{dealPictureURL}"  />',
             '        ',
             '        <div style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:0px 5px 5px 5px;"><b>{dealName}</b></div>',
-            '        <div style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;"><b>{businessName}</b></div>',
+            '        <div style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:orange"><b>{businessName}</b></div>',
             '        ',
             '        <div style="font-size:2.8vw;text-align:left;word-wrap: break-word;padding:0px 0px 0px 5px;">{dealDescription}</div>',
             '        ',
@@ -66371,7 +66373,8 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'latestbuzz',
-                        docked: 'top'
+                        docked: 'top',
+                        styleHtmlContent: false
                     }
                 ]
             },
