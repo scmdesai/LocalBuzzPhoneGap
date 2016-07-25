@@ -64666,17 +64666,15 @@ Ext.define('Ext.direct.Manager', {
                         timeout: 5000
                     });
                     function onError() {
-                        Ext.Msg.alert('Location service is disabled', 'Allow LocalBuzz to access your location', null, null);
-                    }
-                },
-                /* Ext.Msg.show({
+                        // Ext.Msg.alert('Location service is disabled','Allow LocalBuzz to access your location',null,null);
+                        Ext.Msg.show({
                             title: 'Location service is disabled',
                             message: 'Allow LocalBuzz to access your location',
-
                             buttons: Ext.MessageBox.OK,
                             iconCls: Ext.MessageBox.INFO
-
-                            });*/
+                        });
+                    }
+                },
                 height: '9vh',
                 left: '20%',
                 style: 'font-size:5vw;font-family:Arial',
