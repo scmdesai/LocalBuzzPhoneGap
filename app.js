@@ -65633,7 +65633,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '',
-            '<div style="margin:5px 5px 5px 0px;font-size:5vw;color:#00529D;font-weight:bold;font-family:Arial">{dealName}</div>',
+            '<div style="margin:5px 5px 5px 0px;font-size:5vw;color:green;font-weight:bold;font-family:Arial">{dealName}</div>',
             '<div style="font-size:3.5vw;margin:5px 5px 5px 0px;font-family:Arial"><b>{dealDescription}</b></div>',
             '<tpl if= "dealEndDate &lt;= today"> ',
             ' <div class= "expiringDate" >Valid {dealStartDate} - {dealEndDate}</div>',
