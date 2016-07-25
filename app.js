@@ -65579,7 +65579,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.List', Ext.dataview.List, {
     config: {
         disableSelection: true,
-        emptyText: '<h4 class="emptyText">Find Stores Registed With Local Buzz Here!</h4>',
+        emptyText: '<h4 class="emptyText">Find stores registed with Local Buzz here!</h4>',
         store: 'MyJsonPStore',
         grouped: true,
         itemTpl: [
@@ -65631,7 +65631,7 @@ Ext.define('Ext.direct.Manager', {
         style: '',
         styleHtmlContent: true,
         allowDeselect: true,
-        emptyText: '<h4 class="emptyText">No Active Buzz At This TIme.</h4>',
+        emptyText: '<h4 class="emptyText">No active Buzz at this tIme.</h4>',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,
@@ -66162,7 +66162,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
-        emptyText: '<h4 class="emptyText">No Active Buzz At This TIme.</h4>',
+        emptyText: '<h4 class="emptyText">No active Buzz at this tIme.</h4>',
         store: 'MyDealsStore',
         itemTpl: [
             '',
@@ -66296,7 +66296,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         itemId: 'favoriteview',
         style: 'background:#fff;',
-        emptyText: '<h4 class="emptyText">You can see the the Latest Buzz from your <br>Favorite Business here!</h4>',
+        emptyText: '<h4 class="emptyText">You can see your Favorite Business here!</h4>',
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
@@ -67050,7 +67050,7 @@ Ext.define('Ext.direct.Manager', {
                     return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                 }, this);
                 if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
                 }
             });
         }
