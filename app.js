@@ -66714,7 +66714,7 @@ Ext.define('Ext.direct.Manager', {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
         if (store.getCount() === 0) {
-            Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+            Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
         }
         store.clearFilter();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
@@ -66972,7 +66972,7 @@ Ext.define('Ext.direct.Manager', {
                 return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
             }, this);
             if (store.getCount() === 0) {
-                Ext.Msg.alert('No Buzz Found', 'Please Check Back Later', null, null);
+                Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
             }
         } else /* Ext.getStore('MyJsonPStore').clearFilter();
                     Ext.getStore('MyJsonPStore').load();
