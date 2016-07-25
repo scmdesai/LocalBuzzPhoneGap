@@ -66361,6 +66361,7 @@ Ext.define('Ext.direct.Manager', {
                 iconCls: 'icon-localbuzzicon',
                 id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
+                style: 'background:#fff',
                 ui: 'dark',
                 layout: 'vbox',
                 modal: true,
