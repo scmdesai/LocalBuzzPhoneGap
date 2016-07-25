@@ -66158,6 +66158,7 @@ Ext.define('Ext.direct.Manager', {
         id: 'latestbuzz1',
         itemId: 'latestbuzz1',
         padding: '5 5 5 5',
+        style: 'background:#fff!important',
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
