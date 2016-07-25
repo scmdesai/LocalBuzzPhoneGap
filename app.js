@@ -64667,7 +64667,7 @@ Ext.define('Ext.direct.Manager', {
                     });
                     function onError() {
                         // Ext.Msg.alert(null,'Location service is disabled',null,null);
-                        Ext.MessageBox.show({
+                        Ext.Msg.show({
                             title: 'Location service is disabled',
                             msg: 'Allow LocalBuzz to access your location',
                             buttons: Ext.MessageBox.OK,
