@@ -67591,8 +67591,8 @@ Ext.application({
                 itemId: 'BackButtonPanel',
                 baseCls: 'x-box'
             });
-            BackButtonPanel.setBottom('2%');
-            BackButtonPanel.setLeft('5%');
+            BackButtonPanel.setBottom('10%');
+            BackButtonPanel.setLeft('50%');
             //BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('100%');
             BackButtonPanel.setCls('backButtonPanel');
