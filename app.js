@@ -66180,7 +66180,7 @@ Ext.define('Ext.direct.Manager', {
             '',
             '',
             '<!--<div style="font-size:3vw;font-family:Arial;">{dealPictureURL}</div> -->',
-            '<div style="border-bottom:2px groove #c0c0c0;padding:0px 5px 5px 5px;">',
+            '<div style="border:2px outset #c0c0c0;padding:0px 5px 5px 5px;margin:0px 5px 5px 5px;">',
             '    <div class="list-item">',
             '        <img class="photo" src="{dealPictureURL}"  />',
             '        ',
