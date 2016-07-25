@@ -66159,6 +66159,7 @@ Ext.define('Ext.direct.Manager', {
         itemId: 'latestbuzz1',
         padding: '5 5 5 5',
         style: 'background:#FFF',
+        styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
         emptyText: '<h4 class="emptyText">No Active Buzz At This TIme.</h4>',
@@ -66372,8 +66373,7 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'latestbuzz',
-                        docked: 'top',
-                        styleHtmlContent: false
+                        docked: 'top'
                     }
                 ]
             },
