@@ -64664,7 +64664,7 @@ Ext.define('Ext.direct.Manager', {
                         });
                     }, onError);
                     function onError() {
-                        Ext.Msg.alert('Location Service is Disabled', 'Allow LocalBuzz To access your location', null, null);
+                        Ext.Msg.alert('Location service is disabled', 'Allow Local Buzz to access your location', null, null);
                     }
                 },
                 height: '9vh',
