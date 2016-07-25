@@ -64671,6 +64671,7 @@ Ext.define('Ext.direct.Manager', {
                                 xtype: 'AlertBox'
                             });
                         view.setHtml('<div class="alert-box error"><span>error: </span>Location service is disabled</div>');
+                        Ext.Viewport.setActiveItem(view);
                     }
                 },
                 height: '9vh',
