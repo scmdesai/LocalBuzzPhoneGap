@@ -64666,7 +64666,7 @@ Ext.define('Ext.direct.Manager', {
                         timeout: 5000
                     });
                     function onError() {
-                        Ext.Msg.alert('Location service is disabled', 'Allow LocalBuzz to access your location', null, null);
+                        Ext.Msg.alert('Location service is disabled', 'Allow Local Buzz to access your location', null, null);
                     }
                 },
                 /* Ext.Msg.show({
@@ -66374,8 +66374,7 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'latestbuzz',
-                        docked: 'top',
-                        styleHtmlContent: false
+                        docked: 'top'
                     }
                 ]
             },
@@ -66764,58 +66763,16 @@ Ext.define('Ext.direct.Manager', {
                 "0": {
                     icon: 'resources/img/car.png'
                 },
-                /*{
-                                        path: fontawesome.markers.CAR,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
                 "1": {
                     icon: 'resources/img/supermarket.png'
                 },
-                /*{
-                                        path: fontawesome.markers.SHOPPING_CART,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
                 "2": {
-                    icon: 'resources/img/museum_art.png'
-                },
-                /*{
-                                        path: fontawesome.markers.BULLSEYE,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
-                "3": {
-                    icon: 'resources/img/dance_class.png'
-                },
-                /*{
-                                        path: fontawesome.markers.CHILD,
-                                        scale: 0.4,
-                                        strokeWeight: 0.2,
-                                        strokeColor: 'black',
-                                        strokeOpacity: 1,
-                                        fillColor: '#1985d0',
-                                        fillOpacity: 1
-                                    }*/
-                "4": {
                     icon: 'resources/img/barber.png'
                 },
-                "5": {
+                "3": {
                     icon: 'resources/img/restaurant.png'
                 },
-                "6": {
+                "4": {
                     icon: 'resources/img/flag-export.png'
                 }
             };
@@ -66836,20 +66793,16 @@ Ext.define('Ext.direct.Manager', {
             ds.filter('dealStatus', 'Active');
             var count = ds.getCount();
             var category;
-            if (feature === 'Automotives') {
+            if (feature === 'Automotive') {
                 category = 0;
-            } else if (feature === 'Grocery') {
+            } else if (feature === 'Shopping') {
                 category = 1;
-            } else if (feature === 'Art & Crafts') {
-                category = 2;
-            } else if (feature === 'Performing Arts') {
-                category = 3;
             } else if (feature === 'Salon & Spa') {
-                category = 4;
-            } else if (feature === 'Restaurant') {
-                category = 5;
+                category = 2;
+            } else if (feature === 'Restaurants') {
+                category = 3;
             } else {
-                category = 6;
+                category = 4;
             }
             /* var marker = new MarkerWithLabel ({
                             position: m,
