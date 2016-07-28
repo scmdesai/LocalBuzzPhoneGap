@@ -64330,7 +64330,7 @@ Ext.define('Ext.direct.Manager', {
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://services.appsonmobile.com/demoStores',
+            url: 'http://services.appsonmobile.com/stores',
             reader: {
                 type: 'json'
             }
@@ -64370,7 +64370,7 @@ Ext.define('Ext.direct.Manager', {
             type: 'jsonp',
             simpleSortMode: true,
             sortParam: '{dealEndDate:DESC}',
-            url: 'http://services.appsonmobile.com/demoDeals',
+            url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
             }
