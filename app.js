@@ -64330,7 +64330,7 @@ Ext.define('Ext.direct.Manager', {
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://services.appsonmobile.com/stores',
+            url: 'http://services.appsonmobile.com/demoStores',
             reader: {
                 type: 'json'
             }
@@ -64370,7 +64370,7 @@ Ext.define('Ext.direct.Manager', {
             type: 'jsonp',
             simpleSortMode: true,
             sortParam: '{dealEndDate:DESC}',
-            url: 'http://services.appsonmobile.com/deals',
+            url: 'http://services.appsonmobile.com/demoDeals',
             reader: {
                 type: 'json'
             }
@@ -65260,6 +65260,7 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 label: '',
                 name: 'emailAddress',
+                placeHolder: 'Not Listed',
                 readOnly: true,
                 listeners: [
                     {
@@ -65308,6 +65309,7 @@ Ext.define('Ext.direct.Manager', {
                 width: '95%',
                 clearIcon: false,
                 name: 'phoneNumber',
+                placeHolder: 'Not Listed',
                 readOnly: true,
                 listeners: [
                     {
@@ -65401,6 +65403,7 @@ Ext.define('Ext.direct.Manager', {
                 width: '95%',
                 clearIcon: false,
                 name: 'address',
+                placeHolder: 'Not Listed',
                 readOnly: true,
                 listeners: [
                     {
