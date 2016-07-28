@@ -67164,37 +67164,23 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onPanelActivate',
                 event: 'activate'
+            },
+            {
+                fn: 'onDealsPanelPainted',
+                event: 'painted'
             }
         ]
     },
     onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('MyDealsStore');
         store.load();
-    }
-}, 0, [
-    "DealsPanel"
-], [
-    "component",
-    "container",
-    "panel",
-    "DealsPanel"
-], {
-    "component": true,
-    "container": true,
-    "panel": true,
-    "DealsPanel": true
-}, [
-    "widget.DealsPanel"
-], 0, [
-    Contact.view,
-    'DealsPanel'
-], 0));
-//Ext.Viewport.getActiveItem().destroy();
-//store.filter('dealStatus','Active');
-//var date = new Date();
-//var today = Ext.Date.format(date,'n/j/Y');
-//var test = Ext.Date.add(date,Ext.Date.DAY,0);
-/*var today = Ext.Date.format(test,'n/j/Y');
+    },
+    //Ext.Viewport.getActiveItem().destroy();
+    //store.filter('dealStatus','Active');
+    //var date = new Date();
+    //var today = Ext.Date.format(date,'n/j/Y');
+    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
+    /*var today = Ext.Date.format(test,'n/j/Y');
 
 
         Ext.Viewport.add(newActiveItem);
@@ -67223,6 +67209,28 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
+    onDealsPanelPainted: function(element, eOpts) {
+        var store = Ext.getStore('MyDealsStore');
+        store.load();
+    }
+}, 0, [
+    "DealsPanel"
+], [
+    "component",
+    "container",
+    "panel",
+    "DealsPanel"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "DealsPanel": true
+}, [
+    "widget.DealsPanel"
+], 0, [
+    Contact.view,
+    'DealsPanel'
+], 0));
 
 /*
  * File: app/view/DealsPanel1.js
