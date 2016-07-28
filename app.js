@@ -66600,7 +66600,13 @@ Ext.define('Ext.direct.Manager', {
         store.filterBy(function(record) {
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
         }, this);
-        store.filter('businessName', search);
+        //store.filter('businessName',search);
+        var myfilter = new Ext.util.Filter({
+                filterFn: function(rec) {
+                    return rec.get('businessName').indexOf(search) > -1;
+                }
+            });
+        store.filter(myfilter);
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         document.getElementById('searchfield').blur();
