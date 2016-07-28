@@ -65608,7 +65608,7 @@ Ext.define('Ext.direct.Manager', {
             '  <tpl else>',
             '        <div class= "dateValidity" > {dealStartDate} - {dealEndDate}</div></tpl>',
             '-->',
-            '<div style="border:2px dotted #c0c0c0;padding:1px 5px 5px 5px;margin:0px 5px 5px 5px;">',
+            '<div style="border:2px dotted #c0c0c0;padding:1px 5px 5px 5px;margin:0px 5px 5px 5px;"/>',
             '    <div class="list-item">',
             '        <tpl if= "dealImageURL">',
             '            <img class="photo" src="{dealImageURL}"  />',
@@ -65622,7 +65622,7 @@ Ext.define('Ext.direct.Manager', {
             '        <div style="font-size:2.8vw;text-align:left;word-wrap: break-word;padding:0px 0px 0px 5px;">{dealDescription}</div>',
             '        ',
             '        <div style="font-size:2.5vw;color:grey;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</div>',
-            '    </div>',
+            '   ',
             '',
             '',
             '',
@@ -65749,7 +65749,6 @@ Ext.define('Ext.direct.Manager', {
         stores: [
             'MyJsonPStore',
             'MyDealsStore',
-            'MyJsonPStore1',
             'UserPreferences'
         ],
         refs: {
