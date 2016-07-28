@@ -65622,7 +65622,7 @@ Ext.define('Ext.direct.Manager', {
             '        <div style="font-size:2.8vw;text-align:left;word-wrap: break-word;padding:0px 0px 0px 5px;">{dealDescription}</div>',
             '        ',
             '        <div style="font-size:2.5vw;color:grey;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</div>',
-            '    </div>',
+            '   ',
             '',
             '',
             '',
