@@ -66494,15 +66494,7 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
                             zoom: 11
-                        },
-                        listeners: [
-                            {
-                                fn: function(component, eOpts) {
-                                    component.disable();
-                                },
-                                event: 'initialize'
-                            }
-                        ]
+                        }
                     },
                     {
                         xtype: 'textareafield',
@@ -66531,14 +66523,6 @@ Ext.define('Ext.direct.Manager', {
                         clearIcon: false,
                         name: 'lookUpZipcode',
                         placeHolder: 'Enter zipcode to get the Latest Buzz'
-                    }
-                ],
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            Ext.getCmp('mymap').disable();
-                        },
-                        event: 'painted'
                     }
                 ]
             }
@@ -66912,7 +66896,6 @@ Ext.define('Ext.direct.Manager', {
     },
     //   Ext.getCmp('BuzzNearMe').fireEvent('activate', this);
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        Ext.getCmp('mymap').disable();
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
@@ -67104,9 +67087,7 @@ Ext.define('Ext.direct.Manager', {
                         });
                     }
                 }*/
-    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {
-        Ext.getCmp('mymap').disable();
-    }
+    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {}
 }, 0, [
     "Main"
 ], [
