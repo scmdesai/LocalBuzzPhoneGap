@@ -66484,6 +66484,7 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'map',
+                        disabled: true,
                         height: '100%',
                         hidden: false,
                         id: 'mymap',
