@@ -66745,7 +66745,7 @@ Ext.define('Ext.direct.Manager', {
                   return false;
               });
           });*/
-        $('#mymap').on('click', 'a', function(e) {
+        $(gmap).on('click', 'a', function(e) {
             e.preventDefault();
             window.open($(this).attr('href'), '_system', 'location=yes');
         });
