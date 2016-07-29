@@ -66494,7 +66494,15 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
                             zoom: 11
-                        }
+                        },
+                        listeners: [
+                            {
+                                fn: function(component, eOpts) {
+                                    component.disable();
+                                },
+                                event: 'initialize'
+                            }
+                        ]
                     },
                     {
                         xtype: 'textareafield',
@@ -66639,7 +66647,6 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         var infoWindow;
         var latitude, longitude;
-        gmap.disable();
         /* Ext.getCmp('mymap').setMapCenter({
                             latitude: latitude,
                             longitude: longitude
@@ -66724,9 +66731,6 @@ Ext.define('Ext.direct.Manager', {
                     'long': long
                 });
             });
-        });
-        google.maps.event.addListenerOnce(gmap, 'idle', function() {
-            Ext.getCmp('mymap').enable();
         });
         $(gmap).on('click', 'a', function(e) {
             e.preventDefault();
