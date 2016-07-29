@@ -66528,10 +66528,10 @@ Ext.define('Ext.direct.Manager', {
                         bottom: '1%',
                         disabled: true,
                         docked: 'bottom',
-                        height: '1vh',
+                        height: '2vh',
                         id: 'storeImage1',
                         itemId: 'storeImage1',
-                        left: '80%',
+                        left: '76%',
                         width: '100%',
                         listeners: [
                             {
