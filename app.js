@@ -66333,7 +66333,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'container',
                 title: 'Latest Buzz',
-                iconCls: 'icon-localbuzzicon',
+                iconCls: 'icon-localbuzzicon_latest',
                 id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
                 style: 'background:#fff',
