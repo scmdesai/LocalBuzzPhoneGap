@@ -66493,7 +66493,19 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
                             zoom: 11
-                        }
+                        },
+                        listeners: [
+                            {
+                                fn: function(element, eOpts) {
+                                    google.maps.event.addListenerOnce(gmap, 'mouseover', function() {
+                                        $("#map a").click(function() {
+                                            return false;
+                                        });
+                                    });
+                                },
+                                event: 'painted'
+                            }
+                        ]
                     },
                     {
                         xtype: 'textareafield',
@@ -66739,11 +66751,6 @@ Ext.define('Ext.direct.Manager', {
             });
         });
         google.maps.event.addListenerOnce(gmap, 'idle', function() {
-            $("#map a").click(function() {
-                return false;
-            });
-        });
-        google.maps.event.addListenerOnce(gmap, 'mouseover', function() {
             $("#map a").click(function() {
                 return false;
             });
