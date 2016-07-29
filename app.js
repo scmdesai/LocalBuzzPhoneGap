@@ -66536,7 +66536,8 @@ Ext.define('Ext.direct.Manager', {
                         listeners: [
                             {
                                 fn: function(element, eOpts) {
-                                    element.addListener('tap', function() {
+                                    element.addListener('tap', function(e) {
+                                        e.preventDefault();
                                         var url = "https://www.google.com/intl/en_US/help/terms_maps.html";
                                         window.open(url, '_system', 'location=yes');
                                     });
