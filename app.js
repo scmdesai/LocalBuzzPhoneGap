@@ -66484,7 +66484,7 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'map',
-                        disabled: true,
+                        disabled: false,
                         height: '100%',
                         hidden: false,
                         id: 'mymap',
@@ -66494,15 +66494,7 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
                             zoom: 11
-                        },
-                        listeners: [
-                            {
-                                fn: function(element, eOpts) {
-                                    Ext.getCmp('mymap').disable();
-                                },
-                                event: 'painted'
-                            }
-                        ]
+                        }
                     },
                     {
                         xtype: 'textareafield',
@@ -66647,6 +66639,7 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         var infoWindow;
         var latitude, longitude;
+        gmap.disable();
         /* Ext.getCmp('mymap').setMapCenter({
                             latitude: latitude,
                             longitude: longitude
