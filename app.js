@@ -66739,7 +66739,7 @@ Ext.define('Ext.direct.Manager', {
             });
         });
         google.maps.event.addListenerOnce(gmap, 'idle', function() {
-            $("#map a").click(function() {
+            $("#mymap a").click(function() {
                 return false;
             });
         });
