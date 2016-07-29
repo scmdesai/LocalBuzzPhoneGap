@@ -66522,30 +66522,14 @@ Ext.define('Ext.direct.Manager', {
                         clearIcon: false,
                         name: 'lookUpZipcode',
                         placeHolder: 'Enter zipcode to get the Latest Buzz'
-                    },
+                    }
+                ],
+                listeners: [
                     {
-                        xtype: 'component',
-                        bottom: '1%',
-                        disabled: true,
-                        docked: 'bottom',
-                        height: '2vh',
-                        id: 'storeImage1',
-                        itemId: 'storeImage1',
-                        left: '76%',
-                        width: '100%',
-                        listeners: [
-                            {
-                                fn: function(element, eOpts) {},
-                                /*element.addListener('tap',function(e){
-
-                                    e.preventDefault();
-                                    var url = "https://www.google.com/intl/en_US/help/terms_maps.html";
-                                    window.open(url, '_system', 'location=yes');
-
-                                    });*/
-                                event: 'painted'
-                            }
-                        ]
+                        fn: function(element, eOpts) {
+                            Ext.getCmp('mymap').disable();
+                        },
+                        event: 'painted'
                     }
                 ]
             }
@@ -66739,12 +66723,9 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
-        /*  google.maps.event.addListenerOnce(gmap, 'idle', function(){
-
-              $("#map a").click(function(){
-                  return false;
-              });
-          });*/
+        google.maps.event.addListenerOnce(gmap, 'idle', function() {
+            Ext.getCmp('mymap').enable();
+        });
         $(gmap).on('click', 'a', function(e) {
             e.preventDefault();
             window.open($(this).attr('href'), '_system', 'location=yes');
@@ -67116,7 +67097,9 @@ Ext.define('Ext.direct.Manager', {
                         });
                     }
                 }*/
-    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {}
+    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {
+        Ext.getCmp('mymap').disable();
+    }
 }, 0, [
     "Main"
 ], [
