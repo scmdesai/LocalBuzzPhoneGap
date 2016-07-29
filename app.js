@@ -66745,9 +66745,9 @@ Ext.define('Ext.direct.Manager', {
                   return false;
               });
           });*/
-        $('#map').on('click', 'a', function(e) {
+        $('#mymap').on('click', 'a', function(e) {
             e.preventDefault();
-            window.open($(this).attr('href'), '_blank');
+            window.open($(this).attr('href'), '_system', 'location=yes');
         });
         /* $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                         lat = json.results[0].geometry.location.lat;
