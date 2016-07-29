@@ -66738,11 +66738,12 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
-        google.maps.event.addListenerOnce(gmap, 'idle', function() {
-            $("#map a").click(function() {
-                return false;
-            });
-        });
+        /*  google.maps.event.addListenerOnce(gmap, 'idle', function(){
+
+              $("#map a").click(function(){
+                  return false;
+              });
+          });*/
         google.maps.event.addListenerOnce(gmap, 'mouseover', function() {
             $("#map a").click(function() {
                 return false;
