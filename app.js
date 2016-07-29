@@ -66493,7 +66493,15 @@ Ext.define('Ext.direct.Manager', {
                             disableDefaultUI: true,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
                             zoom: 11
-                        }
+                        },
+                        listeners: [
+                            {
+                                fn: function(element, eOpts) {
+                                    Ext.getCmp('mymap').disable();
+                                },
+                                event: 'painted'
+                            }
+                        ]
                     },
                     {
                         xtype: 'textareafield',
