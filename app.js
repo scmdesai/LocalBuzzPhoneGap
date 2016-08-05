@@ -66159,12 +66159,12 @@ Ext.define('Ext.direct.Manager', {
             '    <div class="list-item">',
             '        <img class="photo" src="{dealPictureURL}"  />',
             '        ',
-            '        <div style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:0px 5px 5px 5px;"><b>{dealName}</b></div>',
+            '        <br><div style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:0px 5px 5px 5px;"><b>{dealName}</b></div>',
             '        <div style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500"><b>{businessName}</b></div>',
             '        ',
             '        <div style="font-size:2.8vw;text-align:left;word-wrap: break-word;padding:0px 0px 0px 5px;">{dealDescription}</div>',
             '        ',
-            '        <div style="font-size:2.5vw;color:grey;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</div>',
+            '        <div style="font-size:2.8vw;color:grey;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</div>',
             '    </div>'
         ],
         listeners: [
@@ -66441,6 +66441,14 @@ Ext.define('Ext.direct.Manager', {
                 margin: '1 1 1 1',
                 modal: false,
                 items: [
+                    {
+                        xtype: 'toolbar',
+                        cls: 'toolbarCls',
+                        docked: 'top',
+                        html: '<h1 style=" color:#00529D;font-size:6vw;text-align:center;padding-top:10px">My Favorites</h1>',
+                        style: 'background:white;color:#00529D;',
+                        ui: 'plain'
+                    },
                     {
                         xtype: 'favoriteview',
                         docked: 'top',
