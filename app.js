@@ -65592,7 +65592,7 @@ Ext.define('Ext.direct.Manager', {
         style: '',
         styleHtmlContent: true,
         allowDeselect: true,
-        emptyText: '<h4 class="emptyText">No active Buzz at this tIme.</h4>',
+        emptyText: '<h4 class="emptyText">No active buzz at this tIme.</h4>',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,
@@ -66137,7 +66137,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
-        emptyText: '<h4 class="emptyText">No active Buzz at this tIme.</h4>',
+        emptyText: '<h4 class="emptyText">No active buzz at this tIme.</h4>',
         store: 'MyDealsStore',
         itemTpl: [
             '',
@@ -66271,7 +66271,7 @@ Ext.define('Ext.direct.Manager', {
     config: {
         itemId: 'favoriteview',
         style: 'background:#fff;',
-        emptyText: '<h4 class="emptyText">You can see your Favorite Business here!</h4>',
+        emptyText: '<h4 class="emptyText">You can see your favorite business here!</h4>',
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
@@ -66349,7 +66349,7 @@ Ext.define('Ext.direct.Manager', {
                     },
                     {
                         xtype: 'latestbuzz',
-                        docked: 'top'
+                        styleHtmlContent: false
                     }
                 ]
             },
