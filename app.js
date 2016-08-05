@@ -65477,7 +65477,7 @@ Ext.define('Ext.direct.Manager', {
             }
             //console.log(customerId + isFavorite );
             this.down('#nameTxt').setHtml(name);
-            this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:100%;width:95%;margin-left:5px;margin-top:2px;"/>');
+            this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:40vh;width:95%;margin-left:5px;margin-top:2px;"/>');
             // console.log(store.getData());
             if (isFavorite === true) {
                 this.down('#favbutton').setCls('fill-star');
@@ -65619,12 +65619,12 @@ Ext.define('Ext.direct.Manager', {
             '               <img class="photo" src="resources/img/localbuzzicon.png" />',
             '        </tpl>',
             '        ',
-            '        <div style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:0px 5px 5px 5px;"><b>{dealName}</b></div>',
+            '       <br> <div style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:0px 5px 5px 5px;"><b>{dealName}</b></div>',
             '        <div style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500"><b>{businessName}</b></div>',
             '        ',
             '        <div style="font-size:2.8vw;text-align:left;word-wrap: break-word;padding:0px 0px 0px 5px;">{dealDescription}</div>',
             '        ',
-            '        <div style="font-size:2.5vw;color:grey;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</div>',
+            '        <div style="font-size:2.8vw;color:grey;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</div>',
             '   ',
             '',
             '',
