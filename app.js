@@ -66807,6 +66807,7 @@ Ext.define('Ext.direct.Manager', {
                 category = 3;
             } else if (feature === 'Performing Arts') {
                 category = 4;
+            } else if (feature === 'Art & Crafts') {
                 category = 5;
             } else if (feature === 'Education') {
                 category = 6;
