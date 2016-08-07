@@ -66136,7 +66136,6 @@ Ext.define('Ext.direct.Manager', {
         itemId: 'latestbuzz1',
         padding: '5 5 5 5',
         style: 'background:#fff!important',
-        styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
         emptyText: '<h4 class="emptyText">No active buzz at this tIme.</h4>',
@@ -66339,7 +66338,6 @@ Ext.define('Ext.direct.Manager', {
                 id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
                 style: 'background:#fff',
-                styleHtmlContent: true,
                 ui: 'dark',
                 layout: 'vbox',
                 modal: true,
@@ -66351,7 +66349,8 @@ Ext.define('Ext.direct.Manager', {
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
-                        xtype: 'latestbuzz'
+                        xtype: 'latestbuzz',
+                        styleHtmlContent: false
                     }
                 ]
             },
