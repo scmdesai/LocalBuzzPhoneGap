@@ -64847,7 +64847,8 @@ Ext.define('Ext.direct.Manager', {
                         html: '<b>Business Name</b>',
                         id: 'nameTxt1',
                         itemId: 'nameTxt1',
-                        style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
+                        padding: '0 0 0 15',
+                        style: 'word-wrap:break-word;font-family:Arial;font-size:5.5vw',
                         width: '65%'
                     }
                 ]
