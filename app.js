@@ -66768,7 +66768,7 @@ Ext.define('Ext.direct.Manager', {
                     icon: 'resources/img/restaurant.png'
                 },
                 "4": {
-                    icon: 'resources/img/dance_class.png'
+                    icon: 'resources/img/museum_industry.png'
                 },
                 "5": {
                     icon: 'resources/img/museum_art.png'
@@ -66803,11 +66803,11 @@ Ext.define('Ext.direct.Manager', {
                 category = 1;
             } else if (feature === 'Salon & Spa') {
                 category = 2;
-            } else if (feature === 'Restaurants') {
+            } else if (feature === 'Food & Dining') {
                 category = 3;
-            } else if (feature === 'Performing Arts') {
+            } else if (feature === 'Services') {
                 category = 4;
-            } else if (feature === 'Art & Crafts') {
+            } else if (feature === 'Art') {
                 category = 5;
             } else if (feature === 'Education') {
                 category = 6;
