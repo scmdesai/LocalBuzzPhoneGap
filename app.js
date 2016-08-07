@@ -65193,7 +65193,8 @@ Ext.define('Ext.direct.Manager', {
                         html: '<b>Business Name</b>',
                         id: 'nameTxt',
                         itemId: 'nameTxt',
-                        style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
+                        padding: '0 0 0 15',
+                        style: 'word-wrap:break-word;font-family:Arial;font-size:5.5vw',
                         width: '65%'
                     }
                 ]
@@ -66275,7 +66276,7 @@ Ext.define('Ext.direct.Manager', {
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
-            '<div style= "margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;border:2px groove #C0C0C0"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" height="120"  /></div>',
+            '<div style= "margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;border:2px groove #C0C0C0"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" height="120px"  /></div>',
             '<div style="width:120px;color:black;font-size:2.8vw;text-align:center; ">{businessName}</div>',
             '',
             '',
@@ -66348,8 +66349,7 @@ Ext.define('Ext.direct.Manager', {
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
-                        xtype: 'latestbuzz',
-                        styleHtmlContent: false
+                        xtype: 'latestbuzz'
                     }
                 ]
             },
