@@ -66807,7 +66807,7 @@ Ext.define('Ext.direct.Manager', {
                 category = 3;
             } else if (feature === 'Services') {
                 category = 4;
-            } else if (feature === 'Art') {
+            } else if (feature === 'Arts') {
                 category = 5;
             } else if (feature === 'Education') {
                 category = 6;
