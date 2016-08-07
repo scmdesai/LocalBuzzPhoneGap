@@ -66339,6 +66339,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
                 style: 'background:#fff',
+                styleHtmlContent: true,
                 ui: 'dark',
                 layout: 'vbox',
                 modal: true,
