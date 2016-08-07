@@ -66768,6 +66768,15 @@ Ext.define('Ext.direct.Manager', {
                     icon: 'resources/img/restaurant.png'
                 },
                 "4": {
+                    icon: 'resources/img/dance_class.png'
+                },
+                "5": {
+                    icon: 'resources/img/museum_art.png'
+                },
+                "6": {
+                    icon: 'resources/img/daycare.png'
+                },
+                "7": {
                     icon: 'resources/img/flag-export.png'
                 }
             };
@@ -66796,8 +66805,13 @@ Ext.define('Ext.direct.Manager', {
                 category = 2;
             } else if (feature === 'Restaurants') {
                 category = 3;
-            } else {
+            } else if (feature === 'Performing Arts') {
                 category = 4;
+                category = 5;
+            } else if (feature === 'Education') {
+                category = 6;
+            } else {
+                category = 7;
             }
             /* var marker = new MarkerWithLabel ({
                             position: m,
