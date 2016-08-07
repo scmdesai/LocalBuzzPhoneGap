@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.appsonmobile.localbuzz" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>LocalBuzz</name>
+    <name>Local Buzz</name>
     <description>
-        LocalBuzz App
+        Local Buzz App
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
