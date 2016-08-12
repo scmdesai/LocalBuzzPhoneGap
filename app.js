@@ -60003,6 +60003,91 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
+ * The Search field creates an HTML5 search input and is usually created inside a form. Because it creates an HTML
+ * search input type, the visual styling of this input is slightly different to normal text input controls (the corners
+ * are rounded), though the virtual keyboard displayed by the operating system is the standard keyboard control.
+ *
+ * As with all other form fields in Sencha Touch, the search field gains a "clear" button that appears whenever there
+ * is text entered into the form, and which removes that text when tapped.
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'Search',
+ *                 items: [
+ *                     {
+ *                         xtype: 'searchfield',
+ *                         label: 'Query',
+ *                         name: 'query'
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * Or on its own, outside of a form:
+ *
+ *     Ext.create('Ext.field.Search', {
+ *         label: 'Search:',
+ *         value: 'query'
+ *     });
+ *
+ * Because search field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
+ * fields provide, including getting and setting the value at runtime, validations and various events that are fired
+ * as the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional
+ * functionality available.
+ *
+ * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
+ */
+(Ext.cmd.derive('Ext.field.Search', Ext.field.Text, {
+    alternateClassName: 'Ext.form.Search',
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        component: {
+            type: 'search'
+        },
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        ui: 'search'
+    },
+    platformConfig: [
+        {
+            platform: 'blackberry',
+            component: {
+                type: 'text'
+            }
+        }
+    ]
+}, 0, [
+    "searchfield"
+], [
+    "component",
+    "field",
+    "textfield",
+    "searchfield"
+], {
+    "component": true,
+    "field": true,
+    "textfield": true,
+    "searchfield": true
+}, [
+    "widget.searchfield"
+], 0, [
+    Ext.field,
+    'Search',
+    Ext.form,
+    'Search'
+], 0));
+
+/**
  * The Form panel presents a set of form fields and provides convenient ways to load and save data. Usually a form
  * panel just contains the set of fields you want to display, ordered inside the items configuration like this:
  *
@@ -64545,15 +64630,16 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.WelcomeScreen', Ext.Panel, {
+(Ext.cmd.derive('Contact.view.WelcomeScreen', Ext.form.Panel, {
     config: {
         style: 'background:#FFF;color:#00529D!important',
         styleHtmlContent: true,
         items: [
             {
-                xtype: 'textfield',
+                xtype: 'searchfield',
                 cls: 'searchfield',
                 height: '9vh',
+                html: '',
                 id: 'zipcodeLookUp',
                 itemId: 'zipcodeLookUp',
                 left: '18%',
@@ -64568,7 +64654,7 @@ Ext.define('Ext.direct.Manager', {
                 },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
-                placeHolder: '     Enter Zipcode'
+                placeHolder: '  Enter zipcode'
             },
             {
                 xtype: 'button',
@@ -64642,10 +64728,10 @@ Ext.define('Ext.direct.Manager', {
                             });*/
                 height: '9vh',
                 left: '20%',
-                style: 'background:#00529D;border:1px solid #00529D;color:white',
+                style: 'background:#00529D;border:1px solid #00529D;color:white!important',
                 styleHtmlContent: true,
                 top: '1%',
-                ui: 'confirm',
+                ui: 'plain',
                 width: '60%',
                 text: 'Use Current Location'
             },
@@ -64739,11 +64825,13 @@ Ext.define('Ext.direct.Manager', {
 }, 0, 0, [
     "component",
     "container",
-    "panel"
+    "panel",
+    "formpanel"
 ], {
     "component": true,
     "container": true,
-    "panel": true
+    "panel": true,
+    "formpanel": true
 }, 0, 0, [
     Contact.view,
     'WelcomeScreen'
