@@ -64651,7 +64651,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var postalCode = textfield.getValue();
+                    var postalCode = Ext.get('zipcode').getValue();
                     console.log(postalCode);
                     var store = Ext.getStore('MyDealsStore');
                     var userLocationStore = Ext.getStore('UserLocation');
@@ -64707,11 +64707,13 @@ Ext.define('Ext.direct.Manager', {
                     });
                 },
                 height: '9vh',
+                id: 'zipcode',
+                itemId: 'zipcode',
                 left: '80%',
                 margin: '5 5 5 5',
-                style: 'font-size:5vw;font-family:Arial;color:white',
+                style: 'font-size:5vw;font-family:Arial;color:white!important',
                 top: '27%',
-                ui: 'action-round',
+                ui: 'action',
                 width: '15%',
                 iconCls: 'arrow_right'
             },
