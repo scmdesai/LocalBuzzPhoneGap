@@ -64563,7 +64563,7 @@ Ext.define('Ext.direct.Manager', {
                 width: '60%',
                 component: {
                     xtype: 'input',
-                    type: 'tel',
+                    type: 'number',
                     fastFocus: true
                 },
                 clearIcon: false,
@@ -64647,75 +64647,6 @@ Ext.define('Ext.direct.Manager', {
                 ui: 'action',
                 width: '60%',
                 text: 'Use Current Location'
-            },
-            {
-                xtype: 'button',
-                handler: function(button, e) {
-                    var postalCode = Ext.get('zipcode').getValue();
-                    console.log(postalCode);
-                    var store = Ext.getStore('MyDealsStore');
-                    var userLocationStore = Ext.getStore('UserLocation');
-                    var stores = [];
-                    var latitude;
-                    var longitude;
-                    var storesNearBy = Ext.getStore('calculateDistances');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        latitude = json.results[0].geometry.location.lat;
-                        longitude = json.results[0].geometry.location.lng;
-                        //userLocationStore.removeAt(0);
-                        console.log(latitude, longitude);
-                        userLocationStore.add({
-                            'latitude': latitude.toString(),
-                            'longitude': longitude.toString()
-                        });
-                        console.log('Store count is : ' + userLocationStore.getAllCount());
-                        // Ext.Viewport.getActiveItem().destroy();
-                        var view = Ext.Viewport.add({
-                                xtype: 'Main'
-                            });
-                        Ext.Viewport.setActiveItem(view);
-                        var store1 = Ext.getStore('MyJsonPStore');
-                        store1.load();
-                        store1.clearFilter();
-                        store1.filterBy(function(record) {
-                            var address = record.get('address');
-                            var customerId;
-                            $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                store.clearFilter();
-                                store.load();
-                                var store1 = Ext.getStore('calculateDistances');
-                                Ext.Array.erase(stores, 0, stores.length);
-                                store1.each(function(record) {
-                                    Ext.Array.include(stores, record.get('customerId'));
-                                });
-                                console.log(stores.length);
-                                store.filterBy(function(record) {
-                                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                                }, this);
-                                var distance = json.rows[0].elements[0].distance.value;
-                                console.log(record.get('businessName') + distance);
-                                if (distance <= 80468) {
-                                    storesNearBy.add({
-                                        'customerId': record.get('customerId')
-                                    });
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            });
-                        });
-                    });
-                },
-                height: '9vh',
-                id: 'zipcode',
-                itemId: 'zipcode',
-                left: '80%',
-                margin: '5 5 5 5',
-                style: 'font-size:5vw;font-family:Arial;color:white!important',
-                top: '27%',
-                ui: 'action',
-                width: '15%',
-                iconCls: 'arrow_right'
             },
             {
                 xtype: 'component',
