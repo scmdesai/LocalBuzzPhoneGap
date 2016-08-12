@@ -64817,7 +64817,7 @@ Ext.define('Ext.direct.Manager', {
                 left: '20%',
                 style: 'font-size:5vw',
                 top: '1%',
-                ui: 'confirm',
+                ui: 'action',
                 width: '60%',
                 text: 'Use Current Location'
             },
@@ -64845,41 +64845,9 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'button',
-                handler: function(button, e) {
-                    var store = Ext.getStore('MyDealsStore');
-                    var date = new Date();
-                    var today = Ext.Date.format(date, 'n/j/Y');
-                    //var test = Ext.Date.add(date,Ext.Date.DAY,0);
-                    //var today = Ext.Date.format(test,'n/j/Y');
-                    //store.clearFilter();
-                    store.load();
-                    /*store.each(function(rec)
-                    {
-
-
-                    //console.log('Deal End Date: ' + rec.get('dealEndDate'));
-                    //console.log('Tdays date is : ' + today);
-
-                    if(rec.get('dealEndDate') < today) {
-
-                        console.log(rec.get('dealName'));
-                        rec.set('dealStatus','Expired');
-
-
-
-                    }
-
-
-
-                });*/
-                    //store.filter('dealStatus','Active');
-                    var view = Ext.Viewport.add({
-                            xtype: 'DealsPanel'
-                        });
-                    Ext.Viewport.setActiveItem(view);
-                },
                 docked: 'top',
                 height: '7%',
+                hidden: true,
                 margin: '0 5 0 15',
                 style: 'font-family:Arial;font-size:5vw',
                 top: '45%',
