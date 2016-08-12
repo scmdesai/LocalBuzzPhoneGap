@@ -64642,7 +64642,7 @@ Ext.define('Ext.direct.Manager', {
                             });*/
                 height: '9vh',
                 left: '20%',
-                style: 'background:#00529D;',
+                style: 'background:#00529D;border:1px solid #00529D;color:white',
                 styleHtmlContent: true,
                 top: '1%',
                 ui: 'confirm',
