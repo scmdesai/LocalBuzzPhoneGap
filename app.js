@@ -60003,91 +60003,6 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
- * The Search field creates an HTML5 search input and is usually created inside a form. Because it creates an HTML
- * search input type, the visual styling of this input is slightly different to normal text input controls (the corners
- * are rounded), though the virtual keyboard displayed by the operating system is the standard keyboard control.
- *
- * As with all other form fields in Sencha Touch, the search field gains a "clear" button that appears whenever there
- * is text entered into the form, and which removes that text when tapped.
- *
- *     @example
- *     Ext.create('Ext.form.Panel', {
- *         fullscreen: true,
- *         items: [
- *             {
- *                 xtype: 'fieldset',
- *                 title: 'Search',
- *                 items: [
- *                     {
- *                         xtype: 'searchfield',
- *                         label: 'Query',
- *                         name: 'query'
- *                     }
- *                 ]
- *             }
- *         ]
- *     });
- *
- * Or on its own, outside of a form:
- *
- *     Ext.create('Ext.field.Search', {
- *         label: 'Search:',
- *         value: 'query'
- *     });
- *
- * Because search field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
- * fields provide, including getting and setting the value at runtime, validations and various events that are fired
- * as the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional
- * functionality available.
- *
- * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
- */
-(Ext.cmd.derive('Ext.field.Search', Ext.field.Text, {
-    alternateClassName: 'Ext.form.Search',
-    config: {
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        component: {
-            type: 'search'
-        },
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        ui: 'search'
-    },
-    platformConfig: [
-        {
-            platform: 'blackberry',
-            component: {
-                type: 'text'
-            }
-        }
-    ]
-}, 0, [
-    "searchfield"
-], [
-    "component",
-    "field",
-    "textfield",
-    "searchfield"
-], {
-    "component": true,
-    "field": true,
-    "textfield": true,
-    "searchfield": true
-}, [
-    "widget.searchfield"
-], 0, [
-    Ext.field,
-    'Search',
-    Ext.form,
-    'Search'
-], 0));
-
-/**
  * The Form panel presents a set of form fields and provides convenient ways to load and save data. Usually a form
  * panel just contains the set of fields you want to display, ordered inside the items configuration like this:
  *
@@ -64636,7 +64551,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         items: [
             {
-                xtype: 'searchfield',
+                xtype: 'textfield',
                 cls: 'searchfield',
                 height: '9vh',
                 id: 'zipcodeLookUp',
@@ -64648,11 +64563,12 @@ Ext.define('Ext.direct.Manager', {
                 width: '60%',
                 component: {
                     xtype: 'input',
-                    type: 'number',
+                    type: 'tel',
                     fastFocus: true
                 },
                 clearIcon: false,
-                name: 'zipcodeLookUp'
+                name: 'zipcodeLookUp',
+                placeHolder: '     Enter Zipcode'
             },
             {
                 xtype: 'button',
@@ -64726,11 +64642,78 @@ Ext.define('Ext.direct.Manager', {
                             });*/
                 height: '9vh',
                 left: '20%',
-                style: 'font-size:5vw;font-family:Arial',
+                style: 'font-size:5vw;font-family:Arial;color:white',
                 top: '1%',
                 ui: 'action',
                 width: '60%',
                 text: 'Use Current Location'
+            },
+            {
+                xtype: 'button',
+                handler: function(button, e) {
+                    var postalCode = textfield.getValue();
+                    console.log(postalCode);
+                    var store = Ext.getStore('MyDealsStore');
+                    var userLocationStore = Ext.getStore('UserLocation');
+                    var stores = [];
+                    var latitude;
+                    var longitude;
+                    var storesNearBy = Ext.getStore('calculateDistances');
+                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                        latitude = json.results[0].geometry.location.lat;
+                        longitude = json.results[0].geometry.location.lng;
+                        //userLocationStore.removeAt(0);
+                        console.log(latitude, longitude);
+                        userLocationStore.add({
+                            'latitude': latitude.toString(),
+                            'longitude': longitude.toString()
+                        });
+                        console.log('Store count is : ' + userLocationStore.getAllCount());
+                        // Ext.Viewport.getActiveItem().destroy();
+                        var view = Ext.Viewport.add({
+                                xtype: 'Main'
+                            });
+                        Ext.Viewport.setActiveItem(view);
+                        var store1 = Ext.getStore('MyJsonPStore');
+                        store1.load();
+                        store1.clearFilter();
+                        store1.filterBy(function(record) {
+                            var address = record.get('address');
+                            var customerId;
+                            $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                                store.clearFilter();
+                                store.load();
+                                var store1 = Ext.getStore('calculateDistances');
+                                Ext.Array.erase(stores, 0, stores.length);
+                                store1.each(function(record) {
+                                    Ext.Array.include(stores, record.get('customerId'));
+                                });
+                                console.log(stores.length);
+                                store.filterBy(function(record) {
+                                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                                }, this);
+                                var distance = json.rows[0].elements[0].distance.value;
+                                console.log(record.get('businessName') + distance);
+                                if (distance <= 80468) {
+                                    storesNearBy.add({
+                                        'customerId': record.get('customerId')
+                                    });
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            });
+                        });
+                    });
+                },
+                height: '9vh',
+                left: '80%',
+                margin: '5 5 5 5',
+                style: 'font-size:5vw;font-family:Arial;color:white',
+                top: '27%',
+                ui: 'action-round',
+                width: '15%',
+                iconCls: 'arrow_right'
             },
             {
                 xtype: 'component',
