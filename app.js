@@ -64642,7 +64642,8 @@ Ext.define('Ext.direct.Manager', {
                             });*/
                 height: '9vh',
                 left: '20%',
-                style: 'font-size:5vw;font-family:Arial;color:white!important',
+                style: 'background:#00529D!important;font-size:5vw;font-family:Arial;color:white !important',
+                styleHtmlContent: true,
                 top: '1%',
                 ui: 'action',
                 width: '60%',
