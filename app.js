@@ -64642,10 +64642,10 @@ Ext.define('Ext.direct.Manager', {
                             });*/
                 height: '9vh',
                 left: '20%',
-                style: 'font-size:5vw;font-family:Arial;color:white !important;background:#00529D!important;',
+                style: 'background:#00529D;',
                 styleHtmlContent: true,
                 top: '1%',
-                ui: 'action',
+                ui: 'confirm',
                 width: '60%',
                 text: 'Use Current Location'
             },
