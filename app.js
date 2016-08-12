@@ -64815,7 +64815,7 @@ Ext.define('Ext.direct.Manager', {
                             });*/
                 height: '9vh',
                 left: '20%',
-                styleHtmlContent: true,
+                style: 'font-size:5vw',
                 top: '1%',
                 ui: 'confirm',
                 width: '60%',
