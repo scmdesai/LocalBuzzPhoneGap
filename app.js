@@ -64512,7 +64512,6 @@ Ext.define('Ext.direct.Manager', {
             type: 'jsonp',
             simpleSortMode: true,
             sortParam: '{dealEndDate:DESC}',
-            timeout: 300000,
             url: 'http://services.appsonmobile.com/demoDeals',
             reader: {
                 type: 'json'
@@ -64695,7 +64694,6 @@ Ext.define('Ext.direct.Manager', {
         storeId: 'MyJsonPStore',
         proxy: {
             type: 'jsonp',
-            timeout: 300000,
             url: 'http://services.appsonmobile.com/demoStores',
             reader: {
                 type: 'json'
@@ -64769,12 +64767,7 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
-                        store.clearFilter();
-                        store.load();
-                        // var store1 = Ext.getStore('calculateDistances');
-                        Ext.Array.erase(stores, 0, stores.length);
                         userLocationStore.removeAll();
-                        storesNearBy.removeAll();
                         userLocationStore.add({
                             'latitude': latitude.toString(),
                             'longitude': longitude.toString()
@@ -64793,9 +64786,23 @@ Ext.define('Ext.direct.Manager', {
                             var address = record.get('address');
                             var customerId;
                             $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                                store.clearFilter();
+                                store.load();
+                                var store1 = Ext.getStore('calculateDistances');
+                                Ext.Array.erase(stores, 0, stores.length);
+                                store1.each(function(record) {
+                                    Ext.Array.include(stores, record.get('customerId'));
+                                });
+                                var rec = userLocationStore.getAllCount();
+                                console.log('Store count' + rec);
+                                console.log(stores.length);
+                                store.filterBy(function(record) {
+                                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                                }, this);
                                 var distance = json.rows[0].elements[0].distance.value;
                                 console.log(record.get('businessName') + distance);
-                                if (distance <= 40234) {
+                                if (distance <= 80468) /*40234*/
+                                {
                                     storesNearBy.add({
                                         'customerId': record.get('customerId')
                                     });
@@ -64803,9 +64810,6 @@ Ext.define('Ext.direct.Manager', {
                                 } else {
                                     return false;
                                 }
-                                store.filterBy(function(record) {
-                                    return Ext.Array.indexOf(storesNearBy, record.get('customerId')) !== -1;
-                                }, this);
                             });
                         });
                     }, onError, {
@@ -64918,7 +64922,7 @@ Ext.define('Ext.direct.Manager', {
                     }, this);
                     var distance = json.rows[0].elements[0].distance.value;
                     console.log(record.get('businessName') + distance);
-                    if (distance <= 40234) {
+                    if (distance <= 80468) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
@@ -65954,7 +65958,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.controller.LocalBuzz', Ext.app.Controller, {
     config: {
         stores: [
-            'MyJsonPStore',
+            null,
             'MyDealsStore',
             'UserPreferences'
         ],
