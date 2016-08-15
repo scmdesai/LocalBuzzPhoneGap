@@ -64158,18 +64158,6 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 name: 'distance'
-            },
-            {
-                name: 'planType'
-            },
-            {
-                name: 'signupStatus'
-            },
-            {
-                name: 'startDate'
-            },
-            {
-                name: 'endDate'
             }
         ]
     }
