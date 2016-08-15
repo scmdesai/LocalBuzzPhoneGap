@@ -66878,7 +66878,6 @@ Ext.define('Ext.direct.Manager', {
         map.mapTypeControl = false;
         var userLocationStore = Ext.getStore('UserLocation');
         userLocationStore.load();
-        console.log('UserLocationStore.getCount() is : ' + serLocationStore.getCount());
         if (userLocationStore.getCount() !== 0) {
             latitude = userLocationStore.get('latitude');
             longitude = userLocationStore.get('longitude');
