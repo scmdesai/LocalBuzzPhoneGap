@@ -66882,7 +66882,6 @@ Ext.define('Ext.direct.Manager', {
         if (userLocationStore.getCount() !== 0) {
             latitude = userLocationStore.get('latitude');
             longitude = userLocationStore.get('longitude');
-            console.log(latitude + ',' + longitude);
             Ext.getCmp('mymap').setMapCenter({
                 latitude: latitude,
                 longitude: longitude
