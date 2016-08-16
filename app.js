@@ -64753,7 +64753,7 @@ Ext.define('Ext.direct.Manager', {
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('calculateDistances');
-                        userLocationStore.removeAll();
+                        //userLocationStore.removeAt(0);
                         userLocationStore.add({
                             'latitude': latitude.toString(),
                             'longitude': longitude.toString()
@@ -66542,8 +66542,7 @@ Ext.define('Ext.direct.Manager', {
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
-                        xtype: 'latestbuzz',
-                        styleHtmlContent: false
+                        xtype: 'latestbuzz'
                     }
                 ]
             },
@@ -66875,27 +66874,16 @@ Ext.define('Ext.direct.Manager', {
 
                         }*/
         map.mapTypeControl = false;
-        var userLocationStore = Ext.getStore('UserLocation');
-        userLocationStore.load();
-        if (userLocationStore.getCount() !== 0) {
-            latitude = userLocationStore.get('latitude');
-            longitude = userLocationStore.get('longitude');
+        var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
+        console.log(postalCode);
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            lat = json.results[0].geometry.location.lat;
+            long = json.results[0].geometry.location.lng;
             Ext.getCmp('mymap').setMapCenter({
-                latitude: latitude,
-                longitude: longitude
+                latitude: lat,
+                longitude: long
             });
-        } else {
-            var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-            console.log(postalCode);
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                lat = json.results[0].geometry.location.lat;
-                long = json.results[0].geometry.location.lng;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-            });
-        }
+        });
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         var store1 = Ext.getStore('calculateDistances');
