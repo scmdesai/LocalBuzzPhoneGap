@@ -64889,12 +64889,12 @@ Ext.define('Ext.direct.Manager', {
                     store12.each(function(record) {
                         Ext.Array.include(stores, record.get('customerId'));
                     });
-                    console.log(stores.length);
+                    // console.log(stores.length);
                     store.filterBy(function(record) {
                         return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                     }, this);
                     var distance = json.rows[0].elements[0].distance.value;
-                    console.log(record.get('businessName') + distance);
+                    // console.log(record.get('businessName') + distance);
                     if (distance <= 80468) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
@@ -66862,6 +66862,7 @@ Ext.define('Ext.direct.Manager', {
                                 }*/
         map.mapTypeControl = false;
         var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
+        console.log('zipcode is :' + Ext.getCmp('zipcodeLookUp').getValue());
         if (Ext.getCmp('zipcodeLookUp').getValue() !== '') {
             navigator.geolocation.getCurrentPosition(function showPosition(position) {
                 lat = position.coords.latitude;
