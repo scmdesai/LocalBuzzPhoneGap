@@ -64655,6 +64655,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.store.MyJsonPStore', Ext.data.Store, {
     config: {
         autoLoad: true,
+        groupField: 'category',
         model: 'Contact.model.Contact',
         storeId: 'MyJsonPStore',
         proxy: {
@@ -65722,7 +65723,7 @@ Ext.define('Ext.direct.Manager', {
         disableSelection: true,
         emptyText: '<h4 class="emptyText">Find stores registed with Local Buzz here!</h4>',
         store: 'MyJsonPStore',
-        grouped: false,
+        grouped: true,
         itemTpl: [
             '<div style="font-family:Arial;font-size:5vw">{businessName}</div>',
             ''
@@ -66861,15 +66862,26 @@ Ext.define('Ext.direct.Manager', {
                                 }*/
         map.mapTypeControl = false;
         var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-        console.log(postalCode);
-        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-            lat = json.results[0].geometry.location.lat;
-            long = json.results[0].geometry.location.lng;
-            Ext.getCmp('mymap').setMapCenter({
-                latitude: lat,
-                longitude: long
+        if (Ext.getCmp('zipcodeLookUp').getValue() !== '') {
+            navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+                Ext.getCmp('mymap').setMapCenter({
+                    latitude: lat,
+                    longitude: long
+                });
             });
-        });
+        } else {
+            console.log(postalCode);
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                Ext.getCmp('mymap').setMapCenter({
+                    latitude: lat,
+                    longitude: long
+                });
+            });
+        }
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         var store1 = Ext.getStore('calculateDistances');
