@@ -66854,14 +66854,14 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         var infoWindow;
         var latitude, longitude;
-        /* navigator.geolocation.getCurrentPosition(function showPosition(position){
-                    lat = position.coords.latitude;
-                    long = position.coords.longitude;
-                    Ext.getCmp('mymap').setMapCenter({
-                        latitude: lat,
-                        longitude: long
-                    });
-                   });*/
+        navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
+            });
+        });
         /* Ext.getCmp('mymap').setMapCenter({
                                     latitude: latitude,
                                     longitude: longitude
