@@ -66506,7 +66506,7 @@ Ext.define('Ext.direct.Manager', {
         modal: true,
         layout: {
             type: 'card',
-            animation: 'slide',
+            animation: false,
             'animation.direction': 'right'
         },
         items: [
@@ -66710,6 +66710,26 @@ Ext.define('Ext.direct.Manager', {
                         clearIcon: false,
                         name: 'lookUpZipcode',
                         placeHolder: 'Enter zipcode to get the Latest Buzz'
+                    },
+                    {
+                        xtype: 'container',
+                        docked: 'right',
+                        height: '3vh',
+                        itemId: 'mycontainer5',
+                        left: '70%',
+                        top: '97%',
+                        width: '100%',
+                        listeners: [
+                            {
+                                fn: function(element, eOpts) {
+                                    element.addListener('tap', function() {
+                                        var url = "https://www.google.com/intl/en_US/help/terms_maps.html";
+                                        window.open(url, '_system', 'location=yes');
+                                    });
+                                },
+                                event: 'painted'
+                            }
+                        ]
                     }
                 ]
             }
