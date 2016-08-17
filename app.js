@@ -64672,7 +64672,7 @@ Ext.define('Ext.direct.Manager', {
             sortProperty: 'category'
         },
         sorters: {
-            property: 'distance'
+            property: 'category'
         }
     }
 }, 0, 0, 0, 0, [
