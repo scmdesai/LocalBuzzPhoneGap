@@ -64750,9 +64750,9 @@ Ext.define('Ext.direct.Manager', {
                             $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                 store.clearFilter();
                                 store.load();
-                                var store1 = Ext.getStore('calculateDistances');
+                                var store12 = Ext.getStore('calculateDistances');
                                 Ext.Array.erase(stores, 0, stores.length);
-                                store1.each(function(record) {
+                                store12.each(function(record) {
                                     Ext.Array.include(stores, record.get('customerId'));
                                 });
                                 var rec = userLocationStore.getAllCount();
@@ -64865,9 +64865,9 @@ Ext.define('Ext.direct.Manager', {
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     store.clearFilter();
                     store.load();
-                    var store1 = Ext.getStore('calculateDistances');
+                    var store12 = Ext.getStore('calculateDistances');
                     Ext.Array.erase(stores, 0, stores.length);
-                    store1.each(function(record) {
+                    store12.each(function(record) {
                         Ext.Array.include(stores, record.get('customerId'));
                     });
                     console.log(stores.length);
