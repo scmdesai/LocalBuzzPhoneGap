@@ -64670,9 +64670,6 @@ Ext.define('Ext.direct.Manager', {
                 return record.get('category');
             },
             sortProperty: 'category'
-        },
-        sorters: {
-            property: 'category'
         }
     }
 }, 0, 0, 0, 0, [
@@ -67635,10 +67632,6 @@ Ext.application({
         Ext.util.Format.undef = function(value, defaultValue) {
             return Ext.isDefined(value) ? value : defaultValue;
         };
-        var storesNearBy = Ext.getStore('calculateDistances');
-        for (var i = 0; i < storesNearBy.getAllCount(); i++) {
-            storesNearBy.removeAt(i);
-        }
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
