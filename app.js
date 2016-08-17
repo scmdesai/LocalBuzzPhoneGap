@@ -67113,22 +67113,7 @@ Ext.define('Ext.direct.Manager', {
         Ext.getStore('MyJsonPStore').clearFilter();
         Ext.getStore('MyJsonPStore').load();
         var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-        if (Ext.getCmp('zipcodeLookUp').getValue() !== '') {
-            var store = Ext.getStore('MyJsonPStore');
-            store.clearFilter();
-            var store1 = Ext.getStore('calculateDistances');
-            var stores = [];
-            store1.each(function(record) {
-                //stores.push(record.get('customerId'));
-                Ext.Array.include(stores, record.get('customerId'));
-            });
-            store.filterBy(function(record) {
-                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-            }, this);
-            if (store.getCount() === 0) {
-                Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-            }
-        } else {
+        if (Ext.getCmp('zipcodeLookUp').getValue()) {
             var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
             console.log(postalCode);
             console.log('zipcode is :' + Ext.getCmp('zipcodeLookUp').getValue());
