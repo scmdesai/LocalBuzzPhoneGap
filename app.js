@@ -67162,17 +67162,26 @@ Ext.define('Ext.direct.Manager', {
                                 }
                             });*/
         {
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                // Ext.getCmp('mymap').show();
-                //Ext.getCmp('lookUpZipcode').hide();
-                //Ext.getCmp('locationOffText').hide();
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
+            console.log(Ext.getCmp('zipcodeLookUp').getValue());
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
                 Ext.getCmp('mymap').setMapCenter({
-                    latitude: latitude,
-                    longitude: longitude
+                    latitude: lat,
+                    longitude: long
                 });
-                /*  $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            });
+            // navigator.geolocation.getCurrentPosition(function showPosition(position) {
+            // Ext.getCmp('mymap').show();
+            //Ext.getCmp('lookUpZipcode').hide();
+            //Ext.getCmp('locationOffText').hide();
+            //latitude = position.coords.latitude;
+            // longitude = position.coords.longitude;
+            // Ext.getCmp('mymap').setMapCenter({
+            //    latitude: latitude,
+            //   longitude: longitude
+            // });
+            /*  $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                 var southWest = json.results[0].geometry.viewport.southwest;
                                 var northEast = json.results[0].geometry.viewport.northeast;
                                 var bounds = new google.maps.LatLngBounds(southWest, northEast);
@@ -67191,23 +67200,23 @@ Ext.define('Ext.direct.Manager', {
                                     }
                                 }
                             });*/
-                var store = Ext.getStore('MyJsonPStore');
-                store.clearFilter();
-                var store1 = Ext.getStore('calculateDistances');
-                var stores = [];
-                store1.each(function(record) {
-                    //stores.push(record.get('customerId'));
-                    Ext.Array.include(stores, record.get('customerId'));
-                });
-                store.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
+            var store = Ext.getStore('MyJsonPStore');
+            store.clearFilter();
+            var store1 = Ext.getStore('calculateDistances');
+            var stores = [];
+            store1.each(function(record) {
+                //stores.push(record.get('customerId'));
+                Ext.Array.include(stores, record.get('customerId'));
             });
+            store.filterBy(function(record) {
+                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+            }, this);
+            if (store.getCount() === 0) {
+                Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+            }
         }
     },
+    // });
     onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {}
 }, 0, [
     "Main"
