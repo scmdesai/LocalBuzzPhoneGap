@@ -1,8 +1,3 @@
-var Contact = Contact || {};
-if (!Contact.controller) Contact.controller = {};
-if (!Contact.model) Contact.model = {};
-if (!Contact.store) Contact.store = {};
-if (!Contact.view) Contact.view = {};
 var Ext = Ext || {};
 if (!Ext.app) Ext.app = {};
 if (!Ext.behavior) Ext.behavior = {};
@@ -46,6 +41,11 @@ if (!Ext.util.paintmonitor) Ext.util.paintmonitor = {};
 if (!Ext.util.sizemonitor) Ext.util.sizemonitor = {};
 if (!Ext.util.translatable) Ext.util.translatable = {};
 if (!Ext.viewport) Ext.viewport = {};
+var LocalBuzz = LocalBuzz || {};
+if (!LocalBuzz.controller) LocalBuzz.controller = {};
+if (!LocalBuzz.model) LocalBuzz.model = {};
+if (!LocalBuzz.store) LocalBuzz.store = {};
+if (!LocalBuzz.view) LocalBuzz.view = {};
 var dealPicture = dealPicture || {};
 /* 
  * Helper code for compiler optimization
@@ -64108,7 +64108,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.model.Contact', Ext.data.Model, {
+(Ext.cmd.derive('LocalBuzz.model.Contact', Ext.data.Model, {
     config: {
         fields: [
             {
@@ -64162,7 +64162,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.model,
+    LocalBuzz.model,
     'Contact'
 ], 0));
 
@@ -64180,7 +64180,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.model.Deal', Ext.data.Model, {
+(Ext.cmd.derive('LocalBuzz.model.Deal', Ext.data.Model, {
     config: {
         fields: [
             {
@@ -64243,7 +64243,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.model,
+    LocalBuzz.model,
     'Deal'
 ], 0));
 
@@ -64261,7 +64261,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.model.UserPreferences', Ext.data.Model, {
+(Ext.cmd.derive('LocalBuzz.model.UserPreferences', Ext.data.Model, {
     config: {
         idProperty: '',
         fields: [
@@ -64277,7 +64277,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.model,
+    LocalBuzz.model,
     'UserPreferences'
 ], 0));
 
@@ -64295,7 +64295,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.model.MapMarkerPosition', Ext.data.Model, {
+(Ext.cmd.derive('LocalBuzz.model.MapMarkerPosition', Ext.data.Model, {
     config: {
         fields: [
             {
@@ -64307,7 +64307,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.model,
+    LocalBuzz.model,
     'MapMarkerPosition'
 ], 0));
 
@@ -64325,7 +64325,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.model.storesNearBy', Ext.data.Model, {
+(Ext.cmd.derive('LocalBuzz.model.storesNearBy', Ext.data.Model, {
     config: {
         useCache: false,
         fields: [
@@ -64336,7 +64336,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.model,
+    LocalBuzz.model,
     'storesNearBy'
 ], 0));
 
@@ -64354,7 +64354,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.model.UserLocation', Ext.data.Model, {
+(Ext.cmd.derive('LocalBuzz.model.UserLocation', Ext.data.Model, {
     config: {
         fields: [
             {
@@ -64366,7 +64366,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.model,
+    LocalBuzz.model,
     'UserLocation'
 ], 0));
 
@@ -64384,7 +64384,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.ContactStore', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.ContactStore', Ext.data.Store, {
     config: {
         autoLoad: true,
         autoSync: true,
@@ -64452,7 +64452,7 @@ Ext.define('Ext.direct.Manager', {
         ],
         groupDir: 'ASC',
         groupField: 'category',
-        model: 'Contact.model.Contact',
+        model: 'LocalBuzz.model.Contact',
         storeId: 'ContactStore',
         proxy: {
             type: 'localstorage'
@@ -64473,7 +64473,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
+    LocalBuzz.store,
     'ContactStore'
 ], 0));
 
@@ -64491,17 +64491,17 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.MyDealsStore', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.MyDealsStore', Ext.data.Store, {
     config: {
         autoLoad: true,
-        model: 'Contact.model.Deal',
+        model: 'LocalBuzz.model.Deal',
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
             simpleSortMode: true,
             sortParam: '{dealEndDate:DESC}',
             timeout: 300000,
-            url: 'http://services.appsonmobile.com/demoDeals',
+            url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
             }
@@ -64523,7 +64523,7 @@ Ext.define('Ext.direct.Manager', {
         var test = Ext.Date.add(date, Ext.Date.DAY, 3);
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
+    LocalBuzz.store,
     'MyDealsStore'
 ], 0));
 
@@ -64541,12 +64541,12 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.UserPreferences', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.UserPreferences', Ext.data.Store, {
     config: {
         autoLoad: true,
         autoSync: true,
         clearOnPageLoad: false,
-        model: 'Contact.model.UserPreferences',
+        model: 'LocalBuzz.model.UserPreferences',
         remoteFilter: true,
         storeId: 'UserPreferences',
         proxy: {
@@ -64556,7 +64556,7 @@ Ext.define('Ext.direct.Manager', {
         }
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
+    LocalBuzz.store,
     'UserPreferences'
 ], 0));
 
@@ -64574,13 +64574,13 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.LocalStore', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.LocalStore', Ext.data.Store, {
     config: {
-        model: 'Contact.model.Deal',
+        model: 'LocalBuzz.model.Deal',
         storeId: 'LocalStore'
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
+    LocalBuzz.store,
     'LocalStore'
 ], 0));
 
@@ -64598,16 +64598,16 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.MapMarkerPositionStore', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.MapMarkerPositionStore', Ext.data.Store, {
     config: {
-        model: 'Contact.model.MapMarkerPosition',
+        model: 'LocalBuzz.model.MapMarkerPosition',
         storeId: 'MapMarkerPositionStore',
         proxy: {
             type: 'localstorage'
         }
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
+    LocalBuzz.store,
     'MapMarkerPositionStore'
 ], 0));
 
@@ -64625,16 +64625,16 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.UserLocation', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.UserLocation', Ext.data.Store, {
     config: {
-        model: 'Contact.model.UserLocation',
+        model: 'LocalBuzz.model.UserLocation',
         storeId: 'UserLocation',
         proxy: {
             type: 'localstorage'
         }
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
+    LocalBuzz.store,
     'UserLocation'
 ], 0));
 
@@ -64652,16 +64652,16 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.MyJsonPStore', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.MyJsonPStore', Ext.data.Store, {
     config: {
         autoLoad: true,
         groupField: 'category',
-        model: 'Contact.model.Contact',
+        model: 'LocalBuzz.model.Contact',
         storeId: 'MyJsonPStore',
         proxy: {
             type: 'jsonp',
             timeout: 300000,
-            url: 'http://services.appsonmobile.com/demoStores',
+            url: 'http://services.appsonmobile.com/stores',
             reader: {
                 type: 'json'
             }
@@ -64670,12 +64670,12 @@ Ext.define('Ext.direct.Manager', {
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
 ], 0, [
-    Contact.store,
+    LocalBuzz.store,
     'MyJsonPStore'
 ], 0));
 
 /*
- * File: app/store/calculateDistances.js
+ * File: app/store/StoreCalculateDistances.js
  *
  * This file was generated by Sencha Architect version 3.2.0.
  * http://www.sencha.com/products/architect/
@@ -64688,14 +64688,14 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.store.calculateDistances', Ext.data.Store, {
+(Ext.cmd.derive('LocalBuzz.store.StoreCalculateDistances', Ext.data.Store, {
     config: {
-        model: 'Contact.model.storesNearBy',
-        storeId: 'calculateDistances'
+        model: 'LocalBuzz.model.storesNearBy',
+        storeId: 'StoreCalculateDistances'
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.store,
-    'calculateDistances'
+    LocalBuzz.store,
+    'StoreCalculateDistances'
 ], 0));
 
 /*
@@ -64712,7 +64712,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.WelcomeScreen', Ext.form.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.WelcomeScreen', Ext.form.Panel, {
     config: {
         style: 'background:#FFF;color:#00529D!important',
         styleHtmlContent: true,
@@ -64747,14 +64747,12 @@ Ext.define('Ext.direct.Manager', {
                         longitude = position.coords.longitude;
                         var store = Ext.getStore('MyDealsStore');
                         var stores = [];
-                        var storesNearBy = Ext.getStore('calculateDistances');
+                        var storesNearBy = Ext.getStore('StoreCalculateDistances');
                         //userLocationStore.removeAt(0);
                         userLocationStore.add({
                             'latitude': latitude.toString(),
                             'longitude': longitude.toString()
                         });
-                        userLocationStore.sync();
-                        userLocationStore.load();
                         // Ext.Viewport.getActiveItem().destroy();
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
@@ -64769,7 +64767,7 @@ Ext.define('Ext.direct.Manager', {
                             $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                                 store.clearFilter();
                                 store.load();
-                                var store12 = Ext.getStore('calculateDistances');
+                                var store12 = Ext.getStore('StoreCalculateDistances');
                                 Ext.Array.erase(stores, 0, stores.length);
                                 store12.each(function(record) {
                                     Ext.Array.include(stores, record.get('customerId'));
@@ -64859,7 +64857,7 @@ Ext.define('Ext.direct.Manager', {
         var stores = [];
         var latitude;
         var longitude;
-        var storesNearBy = Ext.getStore('calculateDistances');
+        var storesNearBy = Ext.getStore('StoreCalculateDistances');
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             latitude = json.results[0].geometry.location.lat;
             longitude = json.results[0].geometry.location.lng;
@@ -64884,7 +64882,7 @@ Ext.define('Ext.direct.Manager', {
                 $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     store.clearFilter();
                     store.load();
-                    var store12 = Ext.getStore('calculateDistances');
+                    var store12 = Ext.getStore('StoreCalculateDistances');
                     Ext.Array.erase(stores, 0, stores.length);
                     store12.each(function(record) {
                         Ext.Array.include(stores, record.get('customerId'));
@@ -64918,7 +64916,7 @@ Ext.define('Ext.direct.Manager', {
     "panel": true,
     "formpanel": true
 }, 0, 0, [
-    Contact.view,
+    LocalBuzz.view,
     'WelcomeScreen'
 ], 0));
 
@@ -64936,7 +64934,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealPicture', Ext.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.DealPicture', Ext.Panel, {
     alternateClassName: [
         'dealPicture'
     ],
@@ -65300,7 +65298,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.dealpicture"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'DealPicture',
     0,
     'dealPicture'
@@ -65320,7 +65318,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.Info', Ext.form.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.Info', Ext.form.Panel, {
     config: {
         disabled: false,
         height: '100%',
@@ -65700,7 +65698,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.contactinfo"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'Info'
 ], 0));
 
@@ -65718,7 +65716,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.List', Ext.dataview.List, {
+(Ext.cmd.derive('LocalBuzz.view.List', Ext.dataview.List, {
     config: {
         disableSelection: true,
         emptyText: '<h4 class="emptyText">Find stores registed with Local Buzz here!</h4>',
@@ -65746,7 +65744,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.contactlist"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'List'
 ], 0));
 
@@ -65764,7 +65762,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.ListOfDeals', Ext.dataview.List, {
+(Ext.cmd.derive('LocalBuzz.view.ListOfDeals', Ext.dataview.List, {
     config: {
         height: '100%',
         html: '',
@@ -65910,7 +65908,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.listofdeals"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'ListOfDeals'
 ], 0));
 
@@ -65928,7 +65926,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.controller.LocalBuzz', Ext.app.Controller, {
+(Ext.cmd.derive('LocalBuzz.controller.LocalBuzz', Ext.app.Controller, {
     config: {
         stores: [
             'MyJsonPStore',
@@ -66240,7 +66238,7 @@ Ext.define('Ext.direct.Manager', {
         store.load();
     }
 }, 0, 0, 0, 0, 0, 0, [
-    Contact.controller,
+    LocalBuzz.controller,
     'LocalBuzz'
 ], 0));
 
@@ -66258,7 +66256,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.Picture', Ext.Container, {
+(Ext.cmd.derive('LocalBuzz.view.Picture', Ext.Container, {
     config: {
         overflow: 'hidden',
         height: '100%',
@@ -66289,7 +66287,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.contactpic"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'Picture'
 ], 0));
 
@@ -66307,7 +66305,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.LatestBuzz', Ext.dataview.DataView, {
+(Ext.cmd.derive('LocalBuzz.view.LatestBuzz', Ext.dataview.DataView, {
     config: {
         height: '100%',
         html: '',
@@ -66405,7 +66403,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
-        var store1 = Ext.getStore('calculateDistances');
+        var store1 = Ext.getStore('StoreCalculateDistances');
         var stores = [];
         store1.each(function(record) {
             Ext.Array.include(stores, record.get('customerId'));
@@ -66430,7 +66428,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.latestbuzz"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'LatestBuzz'
 ], 0));
 
@@ -66448,7 +66446,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.FavoriteView', Ext.dataview.DataView, {
+(Ext.cmd.derive('LocalBuzz.view.FavoriteView', Ext.dataview.DataView, {
     config: {
         itemId: 'favoriteview',
         style: 'background:#fff;',
@@ -66477,7 +66475,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.favoriteview"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'FavoriteView'
 ], 0));
 
@@ -66495,7 +66493,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.Main', Ext.tab.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.Main', Ext.tab.Panel, {
     config: {
         cls: 'toolbar-icon-color',
         height: '100%',
@@ -66596,7 +66594,7 @@ Ext.define('Ext.direct.Manager', {
                             var store = Ext.getStore('MyDealsStore');
                             store.clearFilter();
                             store.load();
-                            var store1 = Ext.getStore('calculateDistances');
+                            var store1 = Ext.getStore('StoreCalculateDistances');
                             var stores = [];
                             store1.each(function(record) {
                                 //stores.push(record.get('customerId'));
@@ -66803,7 +66801,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyDealsStore');
         store.clearFilter();
         store.load();
-        var store1 = Ext.getStore('calculateDistances');
+        var store1 = Ext.getStore('StoreCalculateDistances');
         var stores = [];
         store1.each(function(record) {
             Ext.Array.include(stores, record.get('customerId'));
@@ -66817,7 +66815,7 @@ Ext.define('Ext.direct.Manager', {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
-        var store1 = Ext.getStore('calculateDistances');
+        var store1 = Ext.getStore('StoreCalculateDistances');
         var stores = [];
         store1.each(function(record) {
             //stores.push(record.get('customerId'));
@@ -66839,7 +66837,7 @@ Ext.define('Ext.direct.Manager', {
         Ext.getStore('MyDealsStore').clearFilter();
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
-        var store1 = Ext.getStore('calculateDistances');
+        var store1 = Ext.getStore('StoreCalculateDistances');
         var stores = [];
         store1.each(function(record) {
             //stores.push(record.get('customerId'));
@@ -66854,14 +66852,21 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         var infoWindow;
         var latitude, longitude;
-        if (!Ext.getCmp('zipcodeLookUp').getValue()) {
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                lat = position.coords.latitude;
-                long = position.coords.longitude;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
+        if (Ext.getCmp('zipcodeLookUp').getValue()) {
+            /* navigator.geolocation.getCurrentPosition(function showPosition(position){
+                    lat = position.coords.latitude;
+                    long = position.coords.longitude;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+                   });*/
+            var userLocation = Ext.getStore('UserLocation');
+            lat = userLocation.getAt(0).get('latitude');
+            long = userLocation.getAt(0).get('longitude');
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
             });
         }
         /* Ext.getCmp('mymap').setMapCenter({
@@ -66909,19 +66914,26 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
         if (Ext.getCmp('zipcodeLookUp').getValue() !== '') {
             var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-            console.log(Ext.getCmp('zipcodeLookUp').getValue());
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                lat = json.results[0].geometry.location.lat;
-                long = json.results[0].geometry.location.lng;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
+            /* console.log(Ext.getCmp('zipcodeLookUp').getValue());
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+                });*/
+            var userLocation = Ext.getStore('UserLocation');
+            lat = userLocation.getAt(0).get('latitude');
+            long = userLocation.getAt(0).get('longitude');
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
             });
         }
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
-        var store1 = Ext.getStore('calculateDistances');
+        var store1 = Ext.getStore('StoreCalculateDistances');
         var stores = [];
         store1.each(function(record) {
             //stores.push(record.get('customerId'));
@@ -67153,54 +67165,68 @@ Ext.define('Ext.direct.Manager', {
             var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
             console.log(postalCode);
             console.log('zipcode is :' + Ext.getCmp('zipcodeLookUp').getValue());
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                lat = json.results[0].geometry.location.lat;
-                long = json.results[0].geometry.location.lng;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                var store = Ext.getStore('MyJsonPStore');
-                store.clearFilter();
-                var store1 = Ext.getStore('calculateDistances');
-                var stores = [];
-                store1.each(function(record) {
-                    //stores.push(record.get('customerId'));
-                    Ext.Array.include(stores, record.get('customerId'));
-                });
-                store.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
+            /* $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });*/
+            var userLocation = Ext.getStore('UserLocation');
+            lat = userLocation.getAt(0).get('latitude');
+            long = userLocation.getAt(0).get('longitude');
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
             });
+            var store = Ext.getStore('MyJsonPStore');
+            store.clearFilter();
+            var store1 = Ext.getStore('StoreCalculateDistances');
+            var stores = [];
+            store1.each(function(record) {
+                //stores.push(record.get('customerId'));
+                Ext.Array.include(stores, record.get('customerId'));
+            });
+            store.filterBy(function(record) {
+                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+            }, this);
+            if (store.getCount() === 0) {
+                Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+            }
         } else //});
+        // });
         {
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                lat = position.coords.latitude;
-                long = position.coords.longitude;
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                var store = Ext.getStore('MyJsonPStore');
-                store.clearFilter();
-                var store1 = Ext.getStore('calculateDistances');
-                var stores = [];
-                store1.each(function(record) {
-                    //stores.push(record.get('customerId'));
-                    Ext.Array.include(stores, record.get('customerId'));
-                });
-                store.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
+            /* navigator.geolocation.getCurrentPosition(function showPosition(position){
+                    lat = position.coords.latitude;
+                    long = position.coords.longitude;
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });*/
+            var userLocation = Ext.getStore('UserLocation');
+            lat = userLocation.getAt(0).get('latitude');
+            long = userLocation.getAt(0).get('longitude');
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
             });
+            var store = Ext.getStore('MyJsonPStore');
+            store.clearFilter();
+            var store1 = Ext.getStore('StoreCalculateDistances');
+            var stores = [];
+            store1.each(function(record) {
+                //stores.push(record.get('customerId'));
+                Ext.Array.include(stores, record.get('customerId'));
+            });
+            store.filterBy(function(record) {
+                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+            }, this);
+            if (store.getCount() === 0) {
+                Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+            }
         }
     },
+    // });
     onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {}
 }, 0, [
     "Main"
@@ -67217,7 +67243,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.Main"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'Main'
 ], 0));
 /* Ext.getCmp('mymap').hide();
@@ -67239,7 +67265,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealsPanel', Ext.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.DealsPanel', Ext.Panel, {
     config: {
         height: '100%',
         id: 'DealsPanel',
@@ -67356,7 +67382,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.DealsPanel"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'DealsPanel'
 ], 0));
 
@@ -67374,7 +67400,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealsPanel1', Ext.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.DealsPanel1', Ext.Panel, {
     config: {
         height: '100%',
         id: 'DealsPanel1',
@@ -67491,7 +67517,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.DealsPanel1"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'DealsPanel1'
 ], 0));
 
@@ -67509,7 +67535,7 @@ Ext.define('Ext.direct.Manager', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealImage', Ext.Panel, {
+(Ext.cmd.derive('LocalBuzz.view.DealImage', Ext.Panel, {
     config: {
         height: '70%',
         id: 'DealImage',
@@ -67586,7 +67612,7 @@ Ext.define('Ext.direct.Manager', {
 }, [
     "widget.DealImage"
 ], 0, [
-    Contact.view,
+    LocalBuzz.view,
     'DealImage'
 ], 0));
 
@@ -67624,7 +67650,7 @@ Ext.application({
         'MapMarkerPositionStore',
         'UserLocation',
         'MyJsonPStore',
-        'calculateDistances'
+        'StoreCalculateDistances'
     ],
     views: [
         'Picture',
@@ -67644,7 +67670,7 @@ Ext.application({
         'LocalBuzz'
     ],
     icon: 'icon.png',
-    name: 'Contact',
+    name: 'LocalBuzz',
     launch: function() {
         var postalCode;
         var store = Ext.getStore('MyDealsStore');
@@ -67656,6 +67682,8 @@ Ext.application({
         Ext.util.Format.undef = function(value, defaultValue) {
             return Ext.isDefined(value) ? value : defaultValue;
         };
+        var userLocationStore = Ext.getStore('UserLocation');
+        userLocationStore.removeAll();
         if (Ext.os.is('Android')) {
             var BackButtonPanel;
             var exitApp = false;
@@ -67720,92 +67748,12 @@ Ext.application({
                 }
             }
         }
-        document.addEventListener("resume", Ext.bind(onResume, this), false);
-        function onResume(e) {}
-        //Ext.Msg.alert('Resume',null,null,null);
-        /* var store = Ext.getStore('MyDealsStore');
-            store.load();
-            navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                Ext.getCmp('mymap').show();
-                Ext.getCmp('locationOffText').hide();
-                Ext.getCmp('lookUpZipcode').hide();
-                 var store1 = Ext.getStore('MyJsonPStore');
-                    store1.load();
-                    store1.clearFilter();
-                    store1.filterBy(function(record) {
-                        var address = record.get('address');
-                        var customerId;
-                        $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM",
-                           function(json) {
-                               if(task){
-
-                                task.cancel();
-                                store.clearFilter();
-                                store.load();
-
-                                var store1 = Ext.getStore('calculateDistances');
-
-                                var stores = [];
-
-                              store1.each(function(record){
-                              // stores.push(record.get('customerId'));
-                                  Ext.Array.include(stores,record.get('customerId'));
-
-
-        });
-        console.log(stores.length);
-
-        store.filterBy(function(record){
-            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-
-        }, this);
-
-
-
-
-
-                               }
-                            var distance = json.rows[0].elements[0].distance.value;
-                            if (distance <= 40234) {
-                                storesNearBy.add({'customerId':record.get('customerId')});
-
-                                return true;
-
-                            } else {
-                                return false;
-
-                            }
-
-
-
-                                              });
-                    });
-
-
-
-        var task = Ext.create('Ext.util.DelayedTask', function() {
-            Ext.Viewport.mask({ xtype: 'loadmask',
-                               message: "Loading Latest Buzz.." });
-        }, this);
-        },onError);
-
-
-
-            function onError(error){
-
-                Ext.getCmp('mymap').hide();
-                Ext.getCmp('locationOffText').show();
-                Ext.getCmp('lookUpZipcode').show();
-
-
-
-            }*/
-        Ext.create('Contact.view.WelcomeScreen', {
+        Ext.create('LocalBuzz.view.WelcomeScreen', {
             fullscreen: true
         });
     }
 });
 
 // @tag full-page
-// @require H:\Apps\Sencha Architect Apps\AnroidBackButton\app.js
+// @require H:\Apps\Sencha Architect Apps\LocalBuzzRelease\app.js
 
