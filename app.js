@@ -66829,7 +66829,7 @@ Ext.define('Ext.direct.Manager', {
         //store.filter('businessName',search);
         var myfilter = new Ext.util.Filter({
                 filterFn: function(rec) {
-                    return rec.get('businessName').indexOf(search) > -1;
+                    return (rec.get('businessName').indexOf(search) || rec.get('category').indexOf(search)) > -1;
                 }
             });
         store.filter(myfilter);
