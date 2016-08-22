@@ -64780,7 +64780,7 @@ Ext.define('Ext.direct.Manager', {
                                 }, this);
                                 var distance = json.rows[0].elements[0].distance.value;
                                 console.log(record.get('businessName') + distance);
-                                if (distance <= 80468) /*40234*/
+                                if (distance <= 50000) /*40234*/
                                 {
                                     storesNearBy.add({
                                         'customerId': record.get('customerId')
@@ -64893,7 +64893,7 @@ Ext.define('Ext.direct.Manager', {
                     }, this);
                     var distance = json.rows[0].elements[0].distance.value;
                     // console.log(record.get('businessName') + distance);
-                    if (distance <= 80468) {
+                    if (distance <= 50000) {
                         storesNearBy.add({
                             'customerId': record.get('customerId')
                         });
