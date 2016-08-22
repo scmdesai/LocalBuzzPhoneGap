@@ -66452,6 +66452,7 @@ Ext.define('Ext.direct.Manager', {
         style: 'background:#fff;',
         emptyText: '<h4 class="emptyText">You can see your favorite business here!</h4>',
         inline: true,
+        store: 'MyJsonPStore',
         itemTpl: [
             '<div style= "margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;border:2px groove #C0C0C0"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100" height="120px"  /></div>',
             '<div style="width:120px;color:black;font-size:2.8vw;text-align:center; ">{businessName}</div>',
