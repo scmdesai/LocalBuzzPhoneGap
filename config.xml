@@ -37,27 +37,27 @@
 	
 	
 	<!-- New PhoneGap Plugins -->
-	<gap:plugin name="cordova-plugin-battery-status" source="npm"  />
-    <gap:plugin name="cordova-plugin-camera" source="npm"  />
-    <gap:plugin name="cordova-plugin-media-capture" source="npm"  />
+	<plugin name="cordova-plugin-battery-status" source="npm"  />
+    <plugin name="cordova-plugin-camera" source="npm"  />
+    <plugin name="cordova-plugin-media-capture" source="npm"  />
 	<!-- Comment out the console plugin as it is causing issues on Android -->
     <!-- <gap:plugin name="cordova-plugin-console" source="npm" version="1.0.1" /> -->
-    <gap:plugin name="cordova-plugin-contacts" source="npm"  />
-    <gap:plugin name="cordova-plugin-device" source="npm"  />
-    <gap:plugin name="cordova-plugin-device-motion" source="npm"  />
-    <gap:plugin name="cordova-plugin-device-orientation" source="npm"  />
-    <gap:plugin name="cordova-plugin-dialogs" source="npm"  />
-    <gap:plugin name="cordova-plugin-file" source="npm"  />
-    <gap:plugin name="cordova-plugin-file-transfer" source="npm"  />
-    <gap:plugin name="cordova-plugin-geolocation" source="npm"  />
-    <gap:plugin name="cordova-plugin-globalization" source="npm"  />
-    <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
-    <gap:plugin name="cordova-plugin-media" source="npm"  />
-    <gap:plugin name="cordova-plugin-network-information" source="npm"  />
-    <gap:plugin name="cordova-plugin-splashscreen" source="npm"  />
-    <gap:plugin name="cordova-plugin-vibration" source="npm"  />
-	<gap:plugin name="cordova-plugin-whitelist" source="npm"  />
-	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
+    <plugin name="cordova-plugin-contacts" source="npm"  />
+    <plugin name="cordova-plugin-device" source="npm"  />
+    <plugin name="cordova-plugin-device-motion" source="npm"  />
+    <plugin name="cordova-plugin-device-orientation" source="npm"  />
+    <plugin name="cordova-plugin-dialogs" source="npm"  />
+    <plugin name="cordova-plugin-file" source="npm"  />
+    <plugin name="cordova-plugin-file-transfer" source="npm"  />
+    <plugin name="cordova-plugin-geolocation" source="npm"  />
+    <plugin name="cordova-plugin-globalization" source="npm"  />
+    <plugin name="cordova-plugin-inappbrowser" source="npm"  />
+    <plugin name="cordova-plugin-media" source="npm"  />
+    <plugin name="cordova-plugin-network-information" source="npm"  />
+    <plugin name="cordova-plugin-splashscreen" source="npm"  />
+    <plugin name="cordova-plugin-vibration" source="npm"  />
+	<plugin name="cordova-plugin-whitelist" source="npm"  />
+	<plugin name="cordova-plugin-statusbar" source="npm" />
 	
 	
 	<!-- Plugin Added for Push Notification -->
@@ -68,21 +68,21 @@
 
 
 	<!-- Plugin Added for Google Analytics -->
-	<gap:plugin name="cordova-plugin-google-analytics"  source="npm" />
+	<plugin name="cordova-plugin-google-analytics"  source="npm" />
 	<!-- End Google Analytics -->
 	
 	<!-- Plugin Added for Geolocation -->
-	<gap:plugin name="cordova-plugin-geolocation"  source="npm" />
+	<plugin name="cordova-plugin-geolocation"  source="npm" />
 	<!-- End Geolocation -->
 	<!--social sharing -->
-	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+	<plugin name="cordova-plugin-x-socialsharing" source="npm" />
 	
 	<!--email-->
-	<gap:plugin name="cordova-plugin-email-composer"  source="npm" /> 
+	<plugin name="cordova-plugin-email-composer"  source="npm" /> 
 	
 	
 	<!--screenshot-->
-	<gap:plugin name="com.darktalker.cordova.screenshot"  source="npm" /> 
+	<plugin name="com.darktalker.cordova.screenshot"  source="npm" /> 
 	
 	
  
@@ -128,24 +128,20 @@
     <icon src="icon.png"/>
 	
 	
-	<icon gap:platform="ios" height="57" src="/res/icon/ios/icon-57-1x.png" width="57" />
-    <icon gap:platform="ios" height="60" src="/res/icon/ios/icon-60-1x.png" width="60" />
-	 <icon gap:platform="ios" height="72" src="/res/icon/ios/icon-72-1x.png" width="72" />
-    <icon gap:platform="ios" height="76" src="/res/icon/ios/icon-76-1x.png" width="76" />
-    <icon gap:platform="ios" height="120" src="/res/icon/ios/icon-60-2x.png" width="120" />
-    <icon gap:platform="ios" height="152" src="/res/icon/ios/icon-76-2x.png" width="152" />
-    <icon gap:platform="android" gap:qualifier="ldpi" src="/res/icon/android/icon-36-ldpi.png" />
-    <icon gap:platform="android" gap:qualifier="mdpi" src="/res/icon/android/icon-48-mdpi.png" />
-    <icon gap:platform="android" gap:qualifier="hdpi" src="/res/icon/android/icon-72-hdpi.png" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" src="/res/icon/android/icon-96-xhdpi.png" />
-    <icon gap:platform="blackberry" src="www/res/icon/blackberry/icon-80.png" />
-    <icon gap:platform="blackberry" gap:state="hover" src="www/res/icon/blackberry/icon-80.png" />
-    <icon gap:platform="webos" src="www/res/icon/webos/icon-64.png" />
-    <icon gap:platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
-    <icon gap:platform="winphone" gap:role="background" src="www/res/icon/windows-phone/icon-173-tile.png" />
-	<!-- <gap:splash src="splash.png" /> -->
-	<gap:splash src="images/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
-    <gap:splash gap:platform="android" gap:qualifier="ldpi" src="www/res/screen/android/ldpi.png" />
+	<icon platform="ios" height="57" src="/res/icon/ios/icon-57-1x.png" width="57" />
+    <icon platform="ios" height="60" src="/res/icon/ios/icon-60-1x.png" width="60" />
+	 <icon platform="ios" height="72" src="/res/icon/ios/icon-72-1x.png" width="72" />
+    <icon platform="ios" height="76" src="/res/icon/ios/icon-76-1x.png" width="76" />
+    <icon platform="ios" height="120" src="/res/icon/ios/icon-60-2x.png" width="120" />
+    <icon platform="ios" height="152" src="/res/icon/ios/icon-76-2x.png" width="152" />
+    <icon platform="android" gap:qualifier="ldpi" src="/res/icon/android/icon-36-ldpi.png" />
+    <icon platform="android" gap:qualifier="mdpi" src="/res/icon/android/icon-48-mdpi.png" />
+    <icon platform="android" gap:qualifier="hdpi" src="/res/icon/android/icon-72-hdpi.png" />
+    <icon platform="android" gap:qualifier="xhdpi" src="/res/icon/android/icon-96-xhdpi.png" />
+   
+	<splash src="splash.png" />
+	<splash src="images/Default-568h@2x.png" platform="ios" width="640" height="1136" />
+    <!--<gap:splash gap:platform="android" gap:qualifier="ldpi" src="www/res/screen/android/ldpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="mdpi" src="www/res/screen/android/mdpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="hdpi" src="www/res/screen/android/hdpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="xhdpi" src="www/res/screen/android/xhdpi.png" />
@@ -155,7 +151,7 @@
     <gap:splash gap:platform="ios" height="1136" src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
     <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
-    <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
+    <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />-->
     <access origin="*" />
 	<!-- Commenting out Amazon Analytics -->
 	<!--Amazon Mobile Analytics  -->
