@@ -54,7 +54,7 @@
     <plugin name="cordova-plugin-inappbrowser" source="npm"  />
     <plugin name="cordova-plugin-media" source="npm"  />
     <plugin name="cordova-plugin-network-information" source="npm"  />
-    <plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
+    <plugin name="cordova-plugin-splashscreen" source="npm" />
     <plugin name="cordova-plugin-vibration" source="npm"  />
 	<plugin name="cordova-plugin-whitelist" source="npm"  />
 	<plugin name="cordova-plugin-statusbar" source="npm" />
@@ -141,9 +141,11 @@
      
 	<splash src="images/Default-568h@2x.png" platform="ios" width="640" height="1136" />
 	<splash src="splash.png" />
-	<splash platform="ios" height="480" src="/res/screen/ios/screen-iphone-portrait.png" width="320" />
-    <splash platform="ios" height="960" src="/res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
+	<splash platform="ios" height="480" src="/res/screen/ios/screen-iphone-portrait-1x.png" width="320" />
+    <splash platform="ios" height="960" src="/res/screen/ios/screen-iphone-portrait-1-2x.png" width="640" />
     <splash platform="ios" height="1136" src="/res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
+	<splash platform="ios" height="1334" src="/res/screen/ios/screen-iphone-portrait-6-1x.png" width="750" />
+	<splash platform="ios" height="2208" src="/res/screen/ios/screen-iphone-portrait-6plus-1x.png" width="1242" />
     <!--<splash platform="ios" height="1024" src="/res/screen/ios/screen-ipad-portrait.png" width="768" />
     <splash platform="ios" height="768" src="/res/screen/ios/screen-ipad-landscape.png" width="1024" />-->
     <!--<gap:splash gap:platform="android" gap:qualifier="ldpi" src="www/res/screen/android/ldpi.png" />
