@@ -4,7 +4,7 @@
     <description>
         Local Buzz App
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
+    <author email="info@appsonmobile.com" href="http://appsonmobile.com">
         PhoneGap Team
     </author>
     <content src="index.html" />
@@ -54,7 +54,7 @@
     <plugin name="cordova-plugin-inappbrowser" source="npm"  />
     <plugin name="cordova-plugin-media" source="npm"  />
     <plugin name="cordova-plugin-network-information" source="npm"  />
-    <plugin name="cordova-plugin-splashscreen" source="npm"  />
+    <plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
     <plugin name="cordova-plugin-vibration" source="npm"  />
 	<plugin name="cordova-plugin-whitelist" source="npm"  />
 	<plugin name="cordova-plugin-statusbar" source="npm" />
@@ -134,13 +134,13 @@
     <icon platform="ios" height="76" src="/res/icon/ios/icon-76-1x.png" width="76" />
     <icon platform="ios" height="120" src="/res/icon/ios/icon-60-2x.png" width="120" />
     <icon platform="ios" height="152" src="/res/icon/ios/icon-76-2x.png" width="152" />
-    <icon platform="android" gap:qualifier="ldpi" src="/res/icon/android/icon-36-ldpi.png" />
-    <icon platform="android" gap:qualifier="mdpi" src="/res/icon/android/icon-48-mdpi.png" />
-    <icon platform="android" gap:qualifier="hdpi" src="/res/icon/android/icon-72-hdpi.png" />
-    <icon platform="android" gap:qualifier="xhdpi" src="/res/icon/android/icon-96-xhdpi.png" />
-   
+    <icon platform="android" qualifier="ldpi" src="/res/icon/android/icon-36-ldpi.png" />
+    <icon platform="android" qualifier="mdpi" src="/res/icon/android/icon-48-mdpi.png" />
+    <icon platform="android" qualifier="hdpi" src="/res/icon/android/icon-72-hdpi.png" />
+    <icon platform="android" qualifier="xhdpi" src="/res/icon/android/icon-96-xhdpi.png" />
+     
+	<splash src="images/Default-568h@2x.png" platform="ios" width="640" height="1136" />
 	<splash src="splash.png" />
-	<!--<splash src="images/Default-568h@2x.png" platform="ios" width="640" height="1136" />-->
     <!--<gap:splash gap:platform="android" gap:qualifier="ldpi" src="www/res/screen/android/ldpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="mdpi" src="www/res/screen/android/mdpi.png" />
     <gap:splash gap:platform="android" gap:qualifier="hdpi" src="www/res/screen/android/hdpi.png" />
