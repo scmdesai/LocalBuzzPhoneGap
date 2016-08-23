@@ -61,7 +61,9 @@
 	
 	
 	<!-- Plugin Added for Push Notification -->
-	<gap:plugin name="phonegap-plugin-push" source="npm" param name="SENDER_ID" value="226322216862" />
+	<gap:plugin name="phonegap-plugin-push" source="npm">
+		<param name="SENDER_ID" value="226322216862"/>
+	</plugin>
 	<!-- Plugin Added for Google Analytics -->
 	<gap:plugin name="cordova-plugin-google-analytics"  source="npm" />
 	<!-- End Google Analytics -->
