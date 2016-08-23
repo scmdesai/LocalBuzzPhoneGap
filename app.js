@@ -64557,14 +64557,10 @@ Ext.define('Ext.direct.Manager', {
                 style: 'border:1px solid black',
                 top: '27%',
                 width: '60%',
-                component: {
-                    xtype: 'input',
-                    type: 'number',
-                    fastFocus: true
-                },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
-                placeHolder: '      Enter zipcode'
+                maxLength: 5,
+                placeHolder: 'Enter zipcode'
             },
             {
                 xtype: 'button',
@@ -64679,6 +64675,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
+        var regex = '^\\d{5}(?:[-\\s]\\d{4})?$';
+        if (!regex.test(postalCode)) {
+            e.preventDefault();
+            Ext.Msg.alert("Error!", "Enter valid zipcode", null, null);
+        }
         console.log(postalCode);
         var store = Ext.getStore('MyDealsStore');
         var userLocationStore = Ext.getStore('UserLocation');
