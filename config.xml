@@ -72,7 +72,7 @@
 	<!-- End Google Analytics -->
 	
 	<!-- Plugin Added for Geolocation -->
-	<gap:plugin name="cordova-plugin-geolocation"  source="npm" version="1.0.1"/>
+	<gap:plugin name="cordova-plugin-geolocation"  source="npm" />
 	<!-- End Geolocation -->
 	<!--social sharing -->
 	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
