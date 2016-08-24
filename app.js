@@ -64751,8 +64751,7 @@ Ext.define('Ext.direct.Manager', {
                 top: '27%',
                 width: '60%',
                 component: {
-                    type: 'number',
-                    pattern: '^d{5}$'
+                    type: 'number'
                 },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
