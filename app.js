@@ -66930,9 +66930,9 @@ Ext.define('Ext.direct.Manager', {
         }, this);
         //store.filter('businessName',search);
         var myfilter = new Ext.util.Filter({
-                caseSensitive: false,
                 filterFn: function(rec) {
-                    return (rec.get('businessName').indexOf(search) > -1);
+                    var businessName = rec.get('businessName').toString().toLowerCase();
+                    return (businessName.indexOf(search.toLowerCase()) > -1);
                 }
             });
         store.filter(myfilter);
