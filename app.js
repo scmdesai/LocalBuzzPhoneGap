@@ -64999,7 +64999,7 @@ Ext.define('Ext.direct.Manager', {
         });
     },
     onZipcodeLookUp1MouseDown: function(textfield, e, eOpts) {
-        var code = textfield.getValue();
+        var code = e.browserEvent.keyCode;
         if (!(code >= 48 && code <= 57) && !(code >= 97 && code <= 105) && code !== 46 && code !== 8) {
             e.stopEvent();
         }

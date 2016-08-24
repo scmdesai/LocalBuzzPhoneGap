@@ -108,7 +108,7 @@ var app = {
 		 
 		 
 		StatusBar.overlaysWebView(false);
-		navigator.splashscreen.hide();
+		
         
         
     
