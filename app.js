@@ -64939,12 +64939,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
-        if (textfield.getValue().toNumber().isNumber()) {
-            console.log('NUmber');
+        if (postalCode.match('^[0-9]{5}?$')) {
+            console.log(postalCode);
         } else {
-            console.log('Invalid NUmber');
+            console.log('Invalid');
         }
-        console.log(postalCode);
         var store = Ext.getStore('MyDealsStore');
         var userLocationStore = Ext.getStore('UserLocation');
         var stores = [];
