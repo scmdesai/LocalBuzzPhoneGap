@@ -64876,11 +64876,6 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#zipcodeLookUp1'
             },
             {
-                fn: 'onZipcodeLookUp1MouseDown',
-                event: 'mousedown',
-                delegate: '#zipcodeLookUp1'
-            },
-            {
                 fn: 'onFormpanelInitialize',
                 event: 'initialize'
             }
@@ -64944,6 +64939,11 @@ Ext.define('Ext.direct.Manager', {
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
+        if (textfield.getValue().toNumber().isNumber()) {
+            console.log('NUmber');
+        } else {
+            console.log('Invalid NUmber');
+        }
         console.log(postalCode);
         var store = Ext.getStore('MyDealsStore');
         var userLocationStore = Ext.getStore('UserLocation');
@@ -64997,12 +64997,6 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
-    },
-    onZipcodeLookUp1MouseDown: function(textfield, e, eOpts) {
-        var code = e.browserEvent.keyCode;
-        if (!(code >= 48 && code <= 57) && !(code >= 97 && code <= 105) && code !== 46 && code !== 8) {
-            e.stopEvent();
-        }
     },
     onFormpanelInitialize: function(component, eOpts) {
         if (Ext.os.is('Android')) {
