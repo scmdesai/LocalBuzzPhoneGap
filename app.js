@@ -64939,7 +64939,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
-        if (postalCode.match('^[0-9]{5}?$')) {
+        if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
         } else {
             console.log('Invalid');
