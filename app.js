@@ -60003,6 +60003,178 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
+ * The Number field creates an HTML5 number input and is usually created inside a form. Because it creates an HTML
+ * number input field, most browsers will show a specialized virtual keyboard for entering numbers. The Number field
+ * only accepts numerical input and also provides additional spinner UI that increases or decreases the current value
+ * by a configured {@link #stepValue step value}. Here's how we might use one in a form:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'How old are you?',
+ *                 items: [
+ *                     {
+ *                         xtype: 'numberfield',
+ *                         label: 'Age',
+ *                         minValue: 18,
+ *                         maxValue: 150,
+ *                         name: 'age'
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * Or on its own, outside of a form:
+ *
+ *     Ext.create('Ext.field.Number', {
+ *         label: 'Age',
+ *         value: '26'
+ *     });
+ *
+ * ## minValue, maxValue and stepValue
+ *
+ * The {@link #minValue} and {@link #maxValue} configurations are self-explanatory and simply constrain the value
+ * entered to the range specified by the configured min and max values. The other option exposed by this component
+ * is {@link #stepValue}, which enables you to set how much the value changes every time the up and down spinners
+ * are tapped on. For example, to create a salary field that ticks up and down by $1,000 each tap we can do this:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'Are you rich yet?',
+ *                 items: [
+ *                     {
+ *                         xtype: 'numberfield',
+ *                         label: 'Salary',
+ *                         value: 30000,
+ *                         minValue: 25000,
+ *                         maxValue: 50000,
+ *                         stepValue: 1000
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * This creates a field that starts with a value of $30,000, steps up and down in $1,000 increments and will not go
+ * beneath $25,000 or above $50,000.
+ *
+ * Because number field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
+ * fields provide, including getting and setting the value at runtime, validations and various events that are fired as
+ * the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional functionality
+ * available.
+ *
+ * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
+ */
+(Ext.cmd.derive('Ext.field.Number', Ext.field.Text, {
+    alternateClassName: 'Ext.form.Number',
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        component: {
+            type: 'number'
+        },
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        ui: 'number'
+    },
+    proxyConfig: {
+        /**
+         * @cfg {Number} minValue The minimum value that this Number field can accept
+         * @accessor
+         */
+        minValue: null,
+        /**
+         * @cfg {Number} maxValue The maximum value that this Number field can accept
+         * @accessor
+         */
+        maxValue: null,
+        /**
+         * @cfg {Number} stepValue The amount by which the field is incremented or decremented each time the spinner is tapped.
+         * Defaults to undefined, which means that the field goes up or down by 1 each time the spinner is tapped
+         * @accessor
+         */
+        stepValue: null
+    },
+    applyPlaceHolder: function(value) {
+        // Android 4.1 & lower require a hack for placeholder text in number fields when using the Stock Browser
+        // details here https://code.google.com/p/android/issues/detail?id=24626
+        this._enableNumericPlaceHolderHack = ((!Ext.feature.has.NumericInputPlaceHolder) && (!Ext.isEmpty(value)));
+        return value;
+    },
+    onFocus: function(e) {
+        if (this._enableNumericPlaceHolderHack) {
+            this.getComponent().input.dom.setAttribute("type", "number");
+        }
+        Ext.field.Text.prototype.onFocus.apply(this, arguments);
+    },
+    onBlur: function(e) {
+        if (this._enableNumericPlaceHolderHack) {
+            this.getComponent().input.dom.setAttribute("type", "text");
+        }
+        Ext.field.Text.prototype.onBlur.apply(this, arguments);
+    },
+    doInitValue: function() {
+        var value = this.getInitialConfig().value;
+        if (value) {
+            value = this.applyValue(value);
+        }
+        this.originalValue = value;
+    },
+    applyValue: function(value) {
+        var minValue = this.getMinValue(),
+            maxValue = this.getMaxValue();
+        if (Ext.isNumber(minValue) && Ext.isNumber(value)) {
+            value = Math.max(value, minValue);
+        }
+        if (Ext.isNumber(maxValue) && Ext.isNumber(value)) {
+            value = Math.min(value, maxValue);
+        }
+        value = parseFloat(value);
+        return (isNaN(value)) ? '' : value;
+    },
+    getValue: function() {
+        var value = parseFloat((arguments.callee.$previous || Ext.field.Text.prototype.getValue).call(this), 10);
+        return (isNaN(value)) ? null : value;
+    },
+    doClearIconTap: function(me, e) {
+        me.getComponent().setValue('');
+        me.getValue();
+        me.hideClearIcon();
+    }
+}, 0, [
+    "numberfield"
+], [
+    "component",
+    "field",
+    "textfield",
+    "numberfield"
+], {
+    "component": true,
+    "field": true,
+    "textfield": true,
+    "numberfield": true
+}, [
+    "widget.numberfield"
+], 0, [
+    Ext.field,
+    'Number',
+    Ext.form,
+    'Number'
+], 0));
+
+/**
  * The Form panel presents a set of form fields and provides convenient ways to load and save data. Usually a form
  * panel just contains the set of fields you want to display, ordered inside the items configuration like this:
  *
@@ -64567,6 +64739,25 @@ Ext.define('Ext.direct.Manager', {
                 maxLength: 5
             },
             {
+                xtype: 'numberfield',
+                cls: 'searchfield',
+                height: '9vh',
+                id: 'zipcodeLookUp1',
+                itemId: 'zipcodeLookUp1',
+                left: '18%',
+                padding: '5 5 5 5',
+                style: 'border:1px solid black',
+                top: '27%',
+                width: '60%',
+                component: {
+                    type: 'number',
+                    pattern: '^d{5}$'
+                },
+                clearIcon: false,
+                name: 'zipcodeLookUp',
+                maxLength: 5
+            },
+            {
                 xtype: 'button',
                 handler: function(button, e) {
                     var userLocationStore = Ext.getStore('UserLocation');
@@ -64674,6 +64865,15 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onZipcodeLookUpAction',
                 event: 'action',
                 delegate: '#zipcodeLookUp'
+            },
+            {
+                fn: 'onZipcodeLookUpAction1',
+                event: 'action',
+                delegate: '#zipcodeLookUp1'
+            },
+            {
+                fn: 'onFormpanelInitialize',
+                event: 'initialize'
             }
         ]
     },
@@ -64732,6 +64932,69 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
+    },
+    onZipcodeLookUpAction1: function(textfield, e, eOpts) {
+        var postalCode = textfield.getValue();
+        console.log(postalCode);
+        var store = Ext.getStore('MyDealsStore');
+        var userLocationStore = Ext.getStore('UserLocation');
+        var stores = [];
+        var latitude;
+        var longitude;
+        var storesNearBy = Ext.getStore('StoreCalculateDistances');
+        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            latitude = json.results[0].geometry.location.lat;
+            longitude = json.results[0].geometry.location.lng;
+            //userLocationStore.removeAt(0);
+            console.log(latitude, longitude);
+            userLocationStore.add({
+                'latitude': latitude.toString(),
+                'longitude': longitude.toString()
+            });
+            console.log('Store count is : ' + userLocationStore.getAllCount());
+            // Ext.Viewport.getActiveItem().destroy();
+            var view = Ext.Viewport.add({
+                    xtype: 'Main'
+                });
+            Ext.Viewport.setActiveItem(view);
+            var store1 = Ext.getStore('MyJsonPStore');
+            store1.load();
+            store1.clearFilter();
+            store1.filterBy(function(record) {
+                var address = record.get('address');
+                var customerId;
+                $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    store.clearFilter();
+                    store.load();
+                    var store12 = Ext.getStore('StoreCalculateDistances');
+                    Ext.Array.erase(stores, 0, stores.length);
+                    store12.each(function(record) {
+                        Ext.Array.include(stores, record.get('customerId'));
+                    });
+                    // console.log(stores.length);
+                    store.filterBy(function(record) {
+                        return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                    }, this);
+                    var distance = json.rows[0].elements[0].distance.value;
+                    // console.log(record.get('businessName') + distance);
+                    if (distance <= 50000) {
+                        storesNearBy.add({
+                            'customerId': record.get('customerId')
+                        });
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            });
+        });
+    },
+    onFormpanelInitialize: function(component, eOpts) {
+        if (Ext.os.is('Android')) {
+            Ext.getCmp('zipcodeLookUp1').destroy();
+        } else {
+            Ext.getCmp('zipcodeLookUp').destroy();
+        }
     }
 }, 0, 0, [
     "component",
@@ -65547,7 +65810,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('LocalBuzz.view.List', Ext.dataview.List, {
     config: {
         disableSelection: true,
-        emptyText: '<h4 class="emptyText">Find stores registed with Local Buzz here!</h4>',
+        emptyText: '<h4 class="emptyText">Find stores registered with Local Buzz here!</h4>',
         store: 'MyJsonPStore',
         grouped: true,
         itemTpl: [
