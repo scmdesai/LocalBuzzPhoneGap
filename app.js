@@ -64729,12 +64729,13 @@ Ext.define('Ext.direct.Manager', {
                 top: '27%',
                 width: '60%',
                 component: {
-                    type: 'number',
-                    pattern: '[0-9]'
+                    type: 'tel',
+                    pattern: '^d{5}$'
                 },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
-                maxLength: 5
+                maxLength: 5,
+                minValue: 0
             },
             {
                 xtype: 'button',
