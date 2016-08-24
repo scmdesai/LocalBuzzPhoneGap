@@ -64737,7 +64737,7 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 name: 'zipcodeLookUp',
                 maxLength: 5,
-                placeHolder: 'Enter zipcode'
+                placeHolder: ' Enter 5 digit zipcode'
             },
             {
                 xtype: 'numberfield',
