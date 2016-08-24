@@ -64736,7 +64736,8 @@ Ext.define('Ext.direct.Manager', {
                 },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
-                maxLength: 5
+                maxLength: 5,
+                placeHolder: 'Enter zipcode'
             },
             {
                 xtype: 'numberfield',
@@ -64755,7 +64756,10 @@ Ext.define('Ext.direct.Manager', {
                 },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
-                maxLength: 5
+                maxLength: 5,
+                placeHolder: 'Enter zipcode',
+                maxValue: 99999,
+                minValue: 0
             },
             {
                 xtype: 'button',
@@ -64867,8 +64871,18 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#zipcodeLookUp'
             },
             {
+                fn: 'onZipcodeLookUpKeyup',
+                event: 'keyup',
+                delegate: '#zipcodeLookUp'
+            },
+            {
                 fn: 'onZipcodeLookUpAction1',
                 event: 'action',
+                delegate: '#zipcodeLookUp1'
+            },
+            {
+                fn: 'onZipcodeLookUp1Keyup',
+                event: 'keyup',
                 delegate: '#zipcodeLookUp1'
             },
             {
@@ -64933,6 +64947,12 @@ Ext.define('Ext.direct.Manager', {
             });
         });
     },
+    onZipcodeLookUpKeyup: function(textfield, e, eOpts) {
+        var code = e.browserEvent.keyCode;
+        if (!(code >= 48 && code <= 57) && !(code >= 97 && code <= 105) && code !== 46 && code !== 8) {
+            e.stopEvent();
+        }
+    },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
         console.log(postalCode);
@@ -64988,6 +65008,12 @@ Ext.define('Ext.direct.Manager', {
                 });
             });
         });
+    },
+    onZipcodeLookUp1Keyup: function(textfield, e, eOpts) {
+        var code = e.browserEvent.keyCode;
+        if (!(code >= 48 && code <= 57) && !(code >= 97 && code <= 105) && code !== 46 && code !== 8) {
+            e.stopEvent();
+        }
     },
     onFormpanelInitialize: function(component, eOpts) {
         if (Ext.os.is('Android')) {
