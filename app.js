@@ -64751,7 +64751,7 @@ Ext.define('Ext.direct.Manager', {
                 top: '27%',
                 width: '60%',
                 component: {
-                    type: 'tel',
+                    type: 'number',
                     pattern: '^d{5}$'
                 },
                 clearIcon: false,
