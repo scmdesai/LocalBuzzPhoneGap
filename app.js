@@ -65482,15 +65482,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'storeImage',
                 itemId: 'storeImage',
                 left: '2%',
-                width: '100%',
-                listeners: [
-                    {
-                        fn: function(element, eOpts) {
-                            element.setHtml('<img src = "' + record.get('pictureURL') + '" style="height:40vh;width:95%;margin-left:5px;margin-top:2px;"/>');
-                        },
-                        event: 'painted'
-                    }
-                ]
+                width: '100%'
             },
             {
                 xtype: 'textfield',
@@ -65761,7 +65753,9 @@ Ext.define('Ext.direct.Manager', {
             }
             //console.log(customerId + isFavorite );
             this.down('#nameTxt').setHtml(name);
-            this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:40vh;width:95%;margin-left:5px;margin-top:2px;"/>');
+            if (record.get('pictureURL')) {
+                this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:40vh;width:95%;margin-left:5px;margin-top:2px;"/>');
+            }
             // console.log(store.getData());
             if (isFavorite === true) {
                 this.down('#favbutton').setCls('fill-star');
