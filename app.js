@@ -64883,7 +64883,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
-        if (postalCode.isNumeric()) {
+        if (postalCode.isNumber()) {
             console.log(postalCode);
             var store = Ext.getStore('MyDealsStore');
             var userLocationStore = Ext.getStore('UserLocation');
@@ -64944,7 +64944,7 @@ Ext.define('Ext.direct.Manager', {
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
         console.log(postalCode);
-        if (postalCode.isNumeric()) {
+        if (postalCode.isNumber()) {
             var store = Ext.getStore('MyDealsStore');
             var userLocationStore = Ext.getStore('UserLocation');
             var stores = [];
