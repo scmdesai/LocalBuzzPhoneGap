@@ -64756,7 +64756,7 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 name: 'zipcodeLookUp',
                 maxLength: 5,
-                placeHolder: 'Enter zipcode',
+                placeHolder: '    Enter 5 digit zipcode',
                 minValue: 0
             },
             {
@@ -65482,7 +65482,15 @@ Ext.define('Ext.direct.Manager', {
                 id: 'storeImage',
                 itemId: 'storeImage',
                 left: '2%',
-                width: '100%'
+                width: '100%',
+                listeners: [
+                    {
+                        fn: function(element, eOpts) {
+                            element.setHtml('<img src = "' + record.get('pictureURL') + '" style="height:40vh;width:95%;margin-left:5px;margin-top:2px;"/>');
+                        },
+                        event: 'painted'
+                    }
+                ]
             },
             {
                 xtype: 'textfield',
@@ -67169,6 +67177,7 @@ Ext.define('Ext.direct.Manager', {
 
                                             }*/
                             var view;
+                            var localStore = Ext.get('LocalStore');
                             if (Ext.Viewport.getComponent('Info')) {
                                 view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
                                 view.setRecord(record);
