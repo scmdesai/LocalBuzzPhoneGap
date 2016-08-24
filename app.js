@@ -64728,6 +64728,10 @@ Ext.define('Ext.direct.Manager', {
                 style: 'border:1px solid black',
                 top: '27%',
                 width: '60%',
+                component: {
+                    type: 'number',
+                    pattern: '[0-9]'
+                },
                 clearIcon: false,
                 name: 'zipcodeLookUp',
                 maxLength: 5
