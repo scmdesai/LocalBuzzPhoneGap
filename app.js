@@ -65998,15 +65998,26 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.add(info);
         Ext.Viewport.setActiveItem(info);
         //console.log(info);
+        var customerId = record.get('customerId');
         var storeName = Ext.getStore('MyJsonPStore');
         var store = Ext.getStore('MyDealsStore');
-        store.clearFilter();
-        storeName.clearFilter();
-        store.load();
-        store.filter('customerId', record.get('customerId'));
-        storeName.filter('customerId', record.get('customerId'));
-        store.filter('dealStatus', 'Active');
+        storeName.load({
+            params: {
+                customerId: customerId
+            }
+        });
+        store.load({
+            params: {
+                customerId: customerId
+            }
+        });
     },
+    //store.clearFilter();
+    //storeName.clearFilter();
+    //store.load();
+    //store.filter('customerId',record.get('customerId'));
+    //storeName.filter('customerId',record.get('customerId'));
+    //store.filter('dealStatus','Active');
     onInfoBackBtnTapHome: function(button, e, eOpts) {
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter();
@@ -66133,10 +66144,15 @@ Ext.define('Ext.direct.Manager', {
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
         Ext.Viewport.getActiveItem().destroy();
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter();
+        //ds.clearFilter() ;
         var dealRecord = this.getContactinfo().getRecord();
         var customerId = dealRecord.get('customerId');
-        ds.filter('customerId', customerId);
+        //ds.filter('customerId', customerId);
+        ds.load({
+            params: {
+                customerId: customerId
+            }
+        });
         var customerData = ds.getData().getAt(0);
         var info = this.getContactinfo();
         info.setRecord(customerData);
@@ -66144,7 +66160,11 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.setActiveItem(info);
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
-        store.load();
+        store.load({
+            params: {
+                customerId: customerId
+            }
+        });
     },
     onFavoritesActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('UserPreferences');
@@ -66224,7 +66244,12 @@ Ext.define('Ext.direct.Manager', {
     onDealBackBtn1Tap: function(button, e, eOpts) {
         Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
-        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+    }
+}, 0, 0, 0, 0, 0, 0, [
+    LocalBuzz.controller,
+    'LocalBuzz'
+], 0));
+/*var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter() ;
         var dealRecord = this.getContactinfo().getRecord() ;
         var customerId = dealRecord.get('customerId');
@@ -66234,14 +66259,9 @@ Ext.define('Ext.direct.Manager', {
         info.setRecord(customerData);
         ds.clearFilter() ;
         Ext.Viewport.setActiveItem(info);*/
-        var store = Ext.StoreManager.lookup('MyDealsStore');
-        //store.clearFilter();
-        store.load();
-    }
-}, 0, 0, 0, 0, 0, 0, [
-    LocalBuzz.controller,
-    'LocalBuzz'
-], 0));
+//var store = Ext.StoreManager.lookup('MyDealsStore');
+//store.clearFilter();
+//store.load();
 
 /*
  * File: app/view/Picture.js
@@ -67666,10 +67686,9 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
-        store.load();
-    },
+    onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
+    //var store = Ext.getStore('MyDealsStore');
+    //store.load();
     //Ext.Viewport.getActiveItem().destroy();
     //store.filter('dealStatus','Active');
     //var date = new Date();
@@ -67704,10 +67723,7 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    onDealsPanelPainted: function(element, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
-        store.load();
-    }
+    onDealsPanelPainted: function(element, eOpts) {}
 }, 0, [
     "DealsPanel"
 ], [
@@ -67726,6 +67742,8 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'DealsPanel'
 ], 0));
+//var store = Ext.getStore('MyDealsStore');
+//store.load();
 
 /*
  * File: app/view/DealsPanel1.js
