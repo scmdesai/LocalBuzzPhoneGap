@@ -64557,7 +64557,9 @@ Ext.define('Ext.direct.Manager', {
         store.each(function(rec) {
             customerIds.push(rec.get('customerId'));
         });
-        console.log(customerIds.length);
+        dealParams = customerIds.join();
+        console.log(dealParams);
+        var dealStore = Ext.getStore('MyDealsStore');
     }
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
