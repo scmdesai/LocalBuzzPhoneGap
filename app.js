@@ -66472,20 +66472,7 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
-        store.clearFilter();
-        store.load();
-        var store1 = Ext.getStore('StoreCalculateDistances');
-        var stores = [];
-        store1.each(function(record) {
-            Ext.Array.include(stores, record.get('customerId'));
-        });
-        console.log(stores.length);
-        store.filterBy(function(record) {
-            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-        }, this);
-    }
+    onLatestbuzzPainted: function(element, eOpts) {}
 }, 0, [
     "latestbuzz"
 ], [
@@ -66504,6 +66491,18 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'LatestBuzz'
 ], 0));
+/* var store = Ext.getStore('MyDealsStore');
+                store.clearFilter();
+                store.load();
+                var store1 = Ext.getStore('StoreCalculateDistances');
+                var stores = [];
+                store1.each(function(record) {
+                    Ext.Array.include(stores, record.get('customerId'));
+                });
+                console.log(stores.length);
+                store.filterBy(function(record) {
+                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                }, this);*/
 
 /*
  * File: app/view/FavoriteView.js
@@ -66871,20 +66870,25 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
-        // store.clearFilter();
-        var store1 = Ext.getStore('StoreCalculateDistances');
-        var stores = [];
-        var params = [];
-        store1.each(function(record) {
-            Ext.Array.include(stores, record.get('customerId'));
-        });
-        console.log(stores.length);
-        store.filterBy(function(record) {
-            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-        }, this);
-    },
+    onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
+    /* var store = Ext.getStore('MyDealsStore');
+               // store.clearFilter();
+
+                var store1 = Ext.getStore('StoreCalculateDistances');
+                var stores = [];
+                var params = [];
+                store1.each(function(record) {
+                    Ext.Array.include(stores, record.get('customerId'));
+
+
+                });
+                console.log(stores.length);
+
+
+
+                store.filterBy(function(record) {
+                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                }, this);*/
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
