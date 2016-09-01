@@ -68141,9 +68141,6 @@ Ext.application({
     name: 'LocalBuzz',
     launch: function() {
         var postalCode;
-        var store = Ext.getStore('MyDealsStore');
-        store.clearFilter();
-        store.load();
         Ext.util.Format.empty = function(value, defaultValue) {
             return !Ext.isEmpty(value) ? value : defaultValue;
         };
@@ -68216,6 +68213,53 @@ Ext.application({
                 }
             }
         }
+        document.addEventListener('onResume', function() {
+            console.log('App resumed');
+            //Load stores ios user entered zipcode
+            if (Ext.getCmp('zipcodeLookUp1').getValue()) {
+                var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
+                var store = Ext.getStore('MyJsonPStore');
+                store.load({
+                    params: {
+                        zipcode: postalCode,
+                        distance: 50000
+                    }
+                });
+            }
+            //Load stores android user entered zipcode
+            else if (Ext.getCmp('zipcodeLookUp').getValue()) {
+                var postalCode1 = Ext.getCmp('zipcodeLookUp').getValue();
+                var store = Ext.getStore('MyJsonPStore');
+                store.load({
+                    params: {
+                        zipcode: postalCode1,
+                        distance: 50000
+                    }
+                });
+            } else // Either devices use current location used
+            {
+                navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+                    //load stores
+                    var store = Ext.getStore('MyJsonPStore');
+                    var dealStore = Ext.getStore('MyDealsStore');
+                    var customerIds;
+                    store.load({
+                        params: {
+                            latitude: latitude,
+                            longitude: longitude,
+                            distance: 50000
+                        }
+                    });
+                }, onError, {
+                    timeout: 5000
+                });
+            }
+            function onError() {
+                Ext.Msg.alert('Location service is disabled', 'Allow Local Buzz to access your location', null, null);
+            }
+        });
         Ext.create('LocalBuzz.view.WelcomeScreen', {
             fullscreen: true
         });
