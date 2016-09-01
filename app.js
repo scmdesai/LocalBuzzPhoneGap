@@ -65039,9 +65039,6 @@ Ext.define('Ext.direct.Manager', {
                             } else {
                                 Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                                 var store = Ext.getStore('MyJsonPStore');
-                                store.clearFilter();
-                                var dealStore = Ext.getStore('MyDealsStore');
-                                dealStore.clearFilter();
                             }
                         },
                         centered: false,
@@ -65340,13 +65337,13 @@ Ext.define('Ext.direct.Manager', {
             var name = record.get('itemName');
             var businessName = record.get('businessName');
             this.down('#nameTxt1').setHtml(record.get('businessName'));
-            var store = Ext.getStore('MyJsonPStore');
-            var rec = store.findRecord('businessName', businessName);
-            Ext.getCmp('phoneNumber1').setValue(rec.get('phoneNumber'));
-            Ext.getCmp('website3').setValue(rec.get('websiteDisplayName'));
-            Ext.getCmp('website2').setValue(rec.get('website'));
-            Ext.getCmp('address1').setValue(rec.get('address'));
-            Ext.getCmp('email1').setValue(rec.get('emailAddress'));
+            //var store = Ext.getStore('MyJsonPStore');
+            //  var rec = store.findRecord('businessName', businessName);
+            Ext.getCmp('phoneNumber1').setValue(record.get('phoneNumber'));
+            Ext.getCmp('website3').setValue(record.get('websiteDisplayName'));
+            Ext.getCmp('website2').setValue(record.get('website'));
+            Ext.getCmp('address1').setValue(record.get('address'));
+            Ext.getCmp('email1').setValue(record.get('emailAddress'));
         }
     }
 }, 0, [
