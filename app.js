@@ -68217,7 +68217,7 @@ Ext.application({
                 }
             }
         }
-        document.addEventListener('onResume', function() {
+        document.addEventListener('resume', function() {
             console.log('App resumed');
             //Load stores ios user entered zipcode
             if (Ext.getCmp('zipcodeLookUp1').getValue()) {
