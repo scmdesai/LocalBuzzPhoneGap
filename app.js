@@ -64676,15 +64676,6 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
-                        //get customerIds of all stores
-                        store.each(function(record) {
-                            dealStoreParams = dealStoreParams + "," + record.get('customerId');
-                        });
-                        dealStore.load({
-                            params: {
-                                customerId: dealStoreParams
-                            }
-                        });
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
@@ -65006,7 +64997,7 @@ Ext.define('Ext.direct.Manager', {
         itemId: 'dealPicture',
         margin: '',
         padding: '5 5 5 5',
-        style: 'background:#fff;',
+        style: 'word-wrap:break-word;font-family:Arial;font-size:5.5vw',
         width: '100%',
         scrollable: true,
         tpl: [
@@ -65400,6 +65391,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         xtype: 'button',
                         cls: 'icon-back-button',
+                        height: '100%',
                         itemId: 'infoBackBtn',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
