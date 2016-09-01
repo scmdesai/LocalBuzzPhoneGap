@@ -64657,23 +64657,18 @@ Ext.define('Ext.direct.Manager', {
                             }
                         });
                         //get customerIds of all stores
+                        var view = Ext.Viewport.add({
+                                xtype: 'Main'
+                            });
+                        Ext.Viewport.setActiveItem(view);
                         store.each(function(record) {
-                            dealStoreParams.push(record.get('customerId'));
+                            dealStoreParams = dealStoreParams + "," + record.get('customerId');
                         });
-                        dealStoreParams.join(",");
                         dealStore.load({
                             params: {
                                 customerId: dealStoreParams
                             }
                         });
-                        var view = Ext.Viewport.add({
-                                xtype: 'Main'
-                            });
-                        Ext.Viewport.setActiveItem(view);
-                        var view = Ext.Viewport.add({
-                                xtype: 'Main'
-                            });
-                        Ext.Viewport.setActiveItem(view);
                     }, /*  var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('StoreCalculateDistances');
