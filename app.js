@@ -64664,7 +64664,7 @@ Ext.define('Ext.direct.Manager', {
                         store.each(function(record) {
                             dealStoreParams = record.get('customerId');
                         });
-                        console.log(dealStoreParams.toString());
+                        console.log(dealStoreParams);
                         dealStore.load({
                             params: {
                                 customerId: dealStoreParams
