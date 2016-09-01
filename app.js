@@ -64544,27 +64544,7 @@ Ext.define('Ext.direct.Manager', {
             reader: {
                 type: 'json'
             }
-        },
-        listeners: [
-            {
-                fn: 'onJsonpstoreLoad',
-                event: 'load',
-                order: 'after'
-            }
-        ]
-    },
-    onJsonpstoreLoad: function(store, records, successful, operation, eOpts) {
-        //get customerIds of all stores
-        var dealStore = Ext.getStore('MyDealsStore');
-        store.each(function(record) {
-            dealStoreParams = dealStoreParams + "," + record.get('customerId');
-        });
-        console.log('dealParams: ' + dealStoreParams);
-        dealStore.load({
-            params: {
-                customerId: dealStoreParams
-            }
-        });
+        }
     }
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
@@ -64676,6 +64656,20 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
+                        //get customerIds of all stores
+                        store.each(function(record) {
+                            dealStoreParams.push(record.get('customerId'));
+                        });
+                        dealStoreParams.join(",");
+                        dealStore.load({
+                            params: {
+                                customerId: dealStoreParams
+                            }
+                        });
+                        var view = Ext.Viewport.add({
+                                xtype: 'Main'
+                            });
+                        Ext.Viewport.setActiveItem(view);
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
@@ -64807,6 +64801,16 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
+            //get customerIds of all stores
+            store.each(function(record) {
+                dealStoreParams.push(record.get('customerId'));
+            });
+            dealStoreParams.join(",");
+            dealStore.load({
+                params: {
+                    customerId: dealStoreParams
+                }
+            });
             var view = Ext.Viewport.add({
                     xtype: 'Main'
                 });
@@ -64871,7 +64875,7 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
-            var dealStoreParams = null;
+            var dealStoreParams = [];
             var store = Ext.getStore('MyJsonPStore');
             var dealStore = Ext.getStore('MyDealsStore');
             store.load({
@@ -64882,8 +64886,9 @@ Ext.define('Ext.direct.Manager', {
             });
             //get customerIds of all stores
             store.each(function(record) {
-                dealStoreParams = dealStoreParams + "," + record.get('customerId');
+                dealStoreParams.push(record.get('customerId'));
             });
+            dealStoreParams.join(",");
             dealStore.load({
                 params: {
                     customerId: dealStoreParams
