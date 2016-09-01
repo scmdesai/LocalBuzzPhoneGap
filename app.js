@@ -66700,30 +66700,34 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             document.getElementById('searchfield').blur();
-                            var UserLocationStore = Ext.getStore('UserLocation');
+                        },
+                        /*var UserLocationStore = Ext.getStore('UserLocation');
                             var latitude = UserLocationStore.getAt(0).get('latitude');
                             var longitude = UserLocationStore.getAt(0).get('longitude');
                             var zipcode = UserLocationStore.getAt(0).get('zipcode');
                             //load stores
                             var store = Ext.getStore('MyJsonPStore');
                             var dealStore = Ext.getStore('MyDealsStore');
-                            if (latitude && longitude) {
+                            if(latitude && longitude){
                                 store.load({
                                     params: {
                                         latitude: latitude,
-                                        longitude: longitude,
-                                        distance: 50000
-                                    }
-                                });
-                            } else {
-                                store.load({
-                                    params: {
-                                        zipcode: postalCode,
-                                        distance: 50000
+                                        longitude:longitude,
+                                        distance:50000
+
                                     }
                                 });
                             }
-                        },
+                            else{
+                                store.load({
+                                    params: {
+                                        zipcode: postalCode,
+                                        distance:50000
+
+                                    }
+                                });
+
+                            }*/
                         /*Ext.getStore('MyJsonPStore').clearFilter();
                             Ext.getStore('MyDealsStore').clearFilter();
                             var storeName = Ext.getStore('MyJsonPStore').load();
