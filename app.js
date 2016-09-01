@@ -66962,8 +66962,8 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
-    /* var store = Ext.getStore('MyDealsStore');
+    onLatestBuzzActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
+        /* var store = Ext.getStore('MyDealsStore');
                // store.clearFilter();
 
                 var store1 = Ext.getStore('StoreCalculateDistances');
@@ -66981,6 +66981,31 @@ Ext.define('Ext.direct.Manager', {
                 store.filterBy(function(record) {
                     return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                 }, this);*/
+        var UserLocationStore = Ext.getStore('UserLocation');
+        var latitude = UserLocationStore.getAt(0).get('latitude');
+        var longitude = UserLocationStore.getAt(0).get('longitude');
+        var zipcode = UserLocationStore.getAt(0).get('zipcode');
+        //load stores
+        var store = Ext.getStore('MyJsonPStore');
+        store.clearFilter();
+        var dealStore = Ext.getStore('MyDealsStore');
+        if (latitude && longitude) {
+            store.load({
+                params: {
+                    latitude: latitude,
+                    longitude: longitude,
+                    distance: 50000
+                }
+            });
+        } else {
+            store.load({
+                params: {
+                    zipcode: postalCode,
+                    distance: 50000
+                }
+            });
+        }
+    },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
         var store = Ext.getStore('MyJsonPStore');
