@@ -66959,11 +66959,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
-            },
-            {
-                fn: 'onBuzzNearMeDeactivate',
-                event: 'deactivate',
-                delegate: '#BuzzNearMe'
             }
         ]
     },
@@ -67206,300 +67201,26 @@ Ext.define('Ext.direct.Manager', {
                 }
             }
         } else {
+            var userLocation = Ext.getStore('UserLocation');
+            var lat = userLocation.getAt(0).get('latitude');
+            var long = userLocation.getAt(0).get('longitude');
+            Ext.getCmp('mymap').setMapCenter({
+                latitude: lat,
+                longitude: long
+            });
+            map.mapTypeControl = false;
+            var store = Ext.getStore('MyJsonPStore');
             if (Ext.getCmp('zipcodeLookUp1').getValue()) {
                 console.log(Ext.getCmp('zipcodeLookUp1').getValue());
-                var userLocation = Ext.getStore('UserLocation');
-                var lat = userLocation.getAt(0).get('latitude');
-                var long = userLocation.getAt(0).get('longitude');
                 var zipcode = userLocation.getAt(0).get('zipcode');
                 console.log(zipcode);
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                map.mapTypeControl = false;
-                var store = Ext.getStore('MyJsonPStore');
                 store.load({
                     params: {
                         zipcode: zipcode,
                         distance: 50000
                     }
                 });
-                var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-                var check_if_markers_visible = false;
-                store.each(function(record) {
-                    var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
-                        mapMarkerPositionStore.add({
-                            'lat': lat,
-                            'long': long
-                        });
-                    });
-                });
-                $('#mymap').on('click', 'a', function(e) {
-                    e.preventDefault();
-                    window.open($(this).attr('href'), '_system', 'location=yes');
-                });
-                var icons = {
-                        "0": {
-                            icon: 'resources/img/car.png'
-                        },
-                        "1": {
-                            icon: 'resources/img/supermarket.png'
-                        },
-                        "2": {
-                            icon: 'resources/img/barber.png'
-                        },
-                        "3": {
-                            icon: 'resources/img/restaurant.png'
-                        },
-                        "4": {
-                            icon: 'resources/img/museum_industry.png'
-                        },
-                        "5": {
-                            icon: 'resources/img/museum_art.png'
-                        },
-                        "6": {
-                            icon: 'resources/img/daycare.png'
-                        },
-                        "7": {
-                            icon: 'resources/img/flag-export.png'
-                        }
-                    };
-                function addMarker(feature, businessName, m, record) {
-                    var ds = Ext.getStore('MyDealsStore');
-                    var customerId = record.get('customerId');
-                    ds.load({
-                        params: {
-                            customerId: customerId
-                        }
-                    });
-                    var count = ds.getCount();
-                    var category;
-                    if (feature === 'Automotive') {
-                        category = 0;
-                    } else if (feature === 'Shopping') {
-                        category = 1;
-                    } else if (feature === 'Salon & Spa') {
-                        category = 2;
-                    } else if (feature === 'Food & Dining') {
-                        category = 3;
-                    } else if (feature === 'Services') {
-                        category = 4;
-                    } else if (feature === 'Arts') {
-                        category = 5;
-                    } else if (feature === 'Education') {
-                        category = 6;
-                    } else {
-                        category = 7;
-                    }
-                    var marker = new google.maps.Marker({
-                            position: m,
-                            map: gmap,
-                            icon: icons[category].icon
-                        });
-                    var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
-                    addInfoWindow(marker, content, record, businessName);
-                }
-                function addInfoWindow(marker, content, record, businessName) {
-                    google.maps.event.addListener(marker, 'mousedown', function() {
-                        if (infoWindow) {
-                            infoWindow.close();
-                        }
-                        infoWindow = new google.maps.InfoWindow({
-                            content: content
-                        });
-                        infoWindow.open(gmap, marker);
-                        infoWindow.setContent(content);
-                        console.log('Marker clicked ' + record.get('customerId'));
-                        google.maps.event.addListener(infoWindow, 'domready', function() {
-                            document.getElementById('labelStore').addEventListener('mousedown', function() {
-                                var view;
-                                var localStore = Ext.get('LocalStore');
-                                if (Ext.Viewport.getComponent('Info')) {
-                                    view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-                                    view.setRecord(record);
-                                } else {
-                                    view = Ext.Viewport.add({
-                                        xtype: 'contactinfo'
-                                    });
-                                    view.setRecord(record);
-                                    Ext.Viewport.setActiveItem(view);
-                                }
-                            });
-                            google.maps.event.addListener(gmap, 'click', function() {
-                                if (infoWindow) {
-                                    infoWindow.close();
-                                }
-                            });
-                        });
-                    });
-                }
-            }
-        }
-    },
-    onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        if (Ext.os.is('Android')) {
-            /* Ext.getStore('MyJsonPStore').clearFilter();
-                Ext.getStore('MyJsonPStore').load();*/
-            var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-            if (Ext.getCmp('zipcodeLookUp').getValue()) {
-                //var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-                //console.log(postalCode);*/
-                console.log('zipcode is :' + Ext.getCmp('zipcodeLookUp').getValue());
-                /* $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat;
-                    long = json.results[0].geometry.location.lng;
-                    Ext.getCmp('mymap').setMapCenter({
-                        latitude: lat,
-                        longitude: long
-                    });*/
-                var userLocation = Ext.getStore('UserLocation');
-                var lat;
-                var long;
-                var zipcode;
-                lat = userLocation.getAt(0).get('latitude');
-                long = userLocation.getAt(0).get('longitude');
-                zipcode = userLocation.getAt(0).get('zipcode');
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                /*  var store = Ext.getStore('MyJsonPStore');
-                        store.clearFilter();
-                        var store1 = Ext.getStore('StoreCalculateDistances');
-                        var stores = [];
-                        store1.each(function(record) {
-                            //stores.push(record.get('customerId'));
-                            Ext.Array.include(stores, record.get('customerId'));
-                        });
-                        store.filterBy(function(record) {
-                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                        }, this);*/
-                var store = Ext.getStore('MyJsonPStore');
-                store.load({
-                    params: {
-                        zipcode: zipcode,
-                        distance: 50000
-                    }
-                });
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
-            } else //});
-            // });
-            {
-                var userLocation = Ext.getStore('UserLocation');
-                var lat;
-                var long;
-                var zipcode;
-                lat = userLocation.getAt(0).get('latitude');
-                long = userLocation.getAt(0).get('longitude');
-                zipcode = userLocation.getAt(0).get('zipcode');
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                /*  var store = Ext.getStore('MyJsonPStore');
-                        store.clearFilter();
-                        var store1 = Ext.getStore('StoreCalculateDistances');
-                        var stores = [];
-                        store1.each(function(record) {
-                            //stores.push(record.get('customerId'));
-                            Ext.Array.include(stores, record.get('customerId'));
-                        });
-                        store.filterBy(function(record) {
-                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                        }, this);*/
-                var store = Ext.getStore('MyJsonPStore');
-                store.load({
-                    params: {
-                        latitude: lat,
-                        longitude: long,
-                        distance: 50000
-                    }
-                });
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
-            }
-        } else {
-            Ext.getStore('MyJsonPStore').clearFilter();
-            Ext.getStore('MyJsonPStore').load();
-            var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
-            if (Ext.getCmp('zipcodeLookUp1').getValue()) {
-                //  var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
-                //console.log(postalCode);
-                console.log('zipcode is :' + Ext.getCmp('zipcodeLookUp1').getValue());
-                /* $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    lat = json.results[0].geometry.location.lat;
-                    long = json.results[0].geometry.location.lng;
-                    Ext.getCmp('mymap').setMapCenter({
-                        latitude: lat,
-                        longitude: long
-                    });*/
-                var userLocation = Ext.getStore('UserLocation');
-                var lat;
-                var long;
-                var zipcode;
-                lat = userLocation.getAt(0).get('latitude');
-                long = userLocation.getAt(0).get('longitude');
-                zipcode = userLocation.getAt(0).get('zipcode');
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                /*  var store = Ext.getStore('MyJsonPStore');
-                        store.clearFilter();
-                        var store1 = Ext.getStore('StoreCalculateDistances');
-                        var stores = [];
-                        store1.each(function(record) {
-                            //stores.push(record.get('customerId'));
-                            Ext.Array.include(stores, record.get('customerId'));
-                        });
-                        store.filterBy(function(record) {
-                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                        }, this);*/
-                var store = Ext.getStore('MyJsonPStore');
-                store.load({
-                    params: {
-                        zipcode: zipcode,
-                        distance: 50000
-                    }
-                });
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
             } else {
-                var userLocation = Ext.getStore('UserLocation');
-                var lat;
-                var long;
-                var zipcode;
-                lat = userLocation.getAt(0).get('latitude');
-                long = userLocation.getAt(0).get('longitude');
-                zipcode = userLocation.getAt(0).get('zipcode');
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: lat,
-                    longitude: long
-                });
-                /*  var store = Ext.getStore('MyJsonPStore');
-                        store.clearFilter();
-                        var store1 = Ext.getStore('StoreCalculateDistances');
-                        var stores = [];
-                        store1.each(function(record) {
-                            //stores.push(record.get('customerId'));
-                            Ext.Array.include(stores, record.get('customerId'));
-                        });
-                        store.filterBy(function(record) {
-                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                        }, this);*/
-                var store = Ext.getStore('MyJsonPStore');
                 store.load({
                     params: {
                         latitude: lat,
@@ -67507,13 +67228,126 @@ Ext.define('Ext.direct.Manager', {
                         distance: 50000
                     }
                 });
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+            }
+            var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+            var check_if_markers_visible = false;
+            store.each(function(record) {
+                var address = record.get('address');
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = json.results[0].geometry.location.lat;
+                    long = json.results[0].geometry.location.lng;
+                    //console.log(lat,long);
+                    var m = new google.maps.LatLng(lat, long);
+                    //businessName = record.get('businessName');
+                    addMarker(record.get('category'), record.get('businessName'), m, record);
+                    mapMarkerPositionStore.add({
+                        'lat': lat,
+                        'long': long
+                    });
+                });
+            });
+            $('#mymap').on('click', 'a', function(e) {
+                e.preventDefault();
+                window.open($(this).attr('href'), '_system', 'location=yes');
+            });
+            var icons = {
+                    "0": {
+                        icon: 'resources/img/car.png'
+                    },
+                    "1": {
+                        icon: 'resources/img/supermarket.png'
+                    },
+                    "2": {
+                        icon: 'resources/img/barber.png'
+                    },
+                    "3": {
+                        icon: 'resources/img/restaurant.png'
+                    },
+                    "4": {
+                        icon: 'resources/img/museum_industry.png'
+                    },
+                    "5": {
+                        icon: 'resources/img/museum_art.png'
+                    },
+                    "6": {
+                        icon: 'resources/img/daycare.png'
+                    },
+                    "7": {
+                        icon: 'resources/img/flag-export.png'
+                    }
+                };
+            function addMarker(feature, businessName, m, record) {
+                var ds = Ext.getStore('MyDealsStore');
+                var customerId = record.get('customerId');
+                ds.load({
+                    params: {
+                        customerId: customerId
+                    }
+                });
+                var count = ds.getCount();
+                var category;
+                if (feature === 'Automotive') {
+                    category = 0;
+                } else if (feature === 'Shopping') {
+                    category = 1;
+                } else if (feature === 'Salon & Spa') {
+                    category = 2;
+                } else if (feature === 'Food & Dining') {
+                    category = 3;
+                } else if (feature === 'Services') {
+                    category = 4;
+                } else if (feature === 'Arts') {
+                    category = 5;
+                } else if (feature === 'Education') {
+                    category = 6;
+                } else {
+                    category = 7;
                 }
+                var marker = new google.maps.Marker({
+                        position: m,
+                        map: gmap,
+                        icon: icons[category].icon
+                    });
+                var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
+                addInfoWindow(marker, content, record, businessName);
+            }
+            function addInfoWindow(marker, content, record, businessName) {
+                google.maps.event.addListener(marker, 'mousedown', function() {
+                    if (infoWindow) {
+                        infoWindow.close();
+                    }
+                    infoWindow = new google.maps.InfoWindow({
+                        content: content
+                    });
+                    infoWindow.open(gmap, marker);
+                    infoWindow.setContent(content);
+                    console.log('Marker clicked ' + record.get('customerId'));
+                    google.maps.event.addListener(infoWindow, 'domready', function() {
+                        document.getElementById('labelStore').addEventListener('mousedown', function() {
+                            var view;
+                            var localStore = Ext.get('LocalStore');
+                            if (Ext.Viewport.getComponent('Info')) {
+                                view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                                view.setRecord(record);
+                            } else {
+                                view = Ext.Viewport.add({
+                                    xtype: 'contactinfo'
+                                });
+                                view.setRecord(record);
+                                Ext.Viewport.setActiveItem(view);
+                            }
+                        });
+                        google.maps.event.addListener(gmap, 'click', function() {
+                            if (infoWindow) {
+                                infoWindow.close();
+                            }
+                        });
+                    });
+                });
             }
         }
     },
-    onBuzzNearMeDeactivate: function(oldActiveItem, container, newActiveItem, eOpts) {}
+    onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {}
 }, 0, [
     "Main"
 ], [
@@ -67532,10 +67366,141 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'Main'
 ], 0));
-/* Ext.getCmp('mymap').hide();
-            Ext.getCmp('locationOffText').show();
-            Ext.getCmp('lookUpZipcode').show();
-            Ext.getCmp('lookUpZipcode').setValue('');*/
+/*     if(Ext.os.is('Android')){
+                var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+                if (Ext.getCmp('zipcodeLookUp').getValue()) {
+
+
+                    console.log('zipcode is :'+Ext.getCmp('zipcodeLookUp').getValue());
+
+                    var userLocation = Ext.getStore('UserLocation');
+                    var lat;
+                    var long;
+                    var zipcode;
+                   lat = userLocation.getAt(0).get('latitude');
+                    long = userLocation.getAt(0).get('longitude');
+                    zipcode = userLocation.getAt(0).get('zipcode');
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+
+
+
+                        var store = Ext.getStore('MyJsonPStore');
+                        store.load({
+                            params: {
+                                zipcode: zipcode,
+                                distance:50000
+
+                             }
+                        });
+
+                        if (store.getCount() === 0) {
+                            Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+                        }
+
+
+
+
+                }
+                else {
+                    var userLocation = Ext.getStore('UserLocation');
+                    var lat;
+                    var long;
+                    var zipcode;
+                   lat = userLocation.getAt(0).get('latitude');
+                    long = userLocation.getAt(0).get('longitude');
+                    zipcode = userLocation.getAt(0).get('zipcode');
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+
+
+
+                        var store = Ext.getStore('MyJsonPStore');
+                        store.load({
+                            params: {
+                                latitude: lat,
+                                longitude:long,
+                                distance:50000
+
+                             }
+                        });
+
+                        if (store.getCount() === 0) {
+                            Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+                        }
+
+                }
+                                     }
+        else {
+             Ext.getStore('MyJsonPStore').clearFilter();
+                Ext.getStore('MyJsonPStore').load();
+                var mapMarkerPositionStore = Ext.getStore('MapMarkerPositionStore');
+                if (Ext.getCmp('zipcodeLookUp1').getValue()) {
+
+                   var userLocation = Ext.getStore('UserLocation');
+                   var lat;
+                   var long;
+                   var zipcode;
+                   lat = userLocation.getAt(0).get('latitude');
+                    long = userLocation.getAt(0).get('longitude');
+                    zipcode = userLocation.getAt(0).get('zipcode');
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+
+
+
+                        var store = Ext.getStore('MyJsonPStore');
+                        store.load({
+                            params: {
+                                zipcode: zipcode,
+                                distance:50000
+
+                             }
+                        });
+
+                        if (store.getCount() === 0) {
+                            Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+                        }
+
+
+                }
+                else {
+                    var userLocation = Ext.getStore('UserLocation');
+                    var lat;
+                    var long;
+                    var zipcode;
+                   lat = userLocation.getAt(0).get('latitude');
+                    long = userLocation.getAt(0).get('longitude');
+                    zipcode = userLocation.getAt(0).get('zipcode');
+                    Ext.getCmp('mymap').setMapCenter({
+                        latitude: lat,
+                        longitude: long
+                    });
+
+
+
+                        var store = Ext.getStore('MyJsonPStore');
+                        store.load({
+                            params: {
+                                latitude: lat,
+                                longitude:long,
+                                distance:50000
+
+                             }
+                        });
+
+                        if (store.getCount() === 0) {
+                            Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+                        }
+
+                }
+        }*/
 
 /*
  * File: app/view/DealsPanel.js
