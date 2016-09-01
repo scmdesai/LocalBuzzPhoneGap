@@ -64886,33 +64886,24 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
-            var userLocationStore = Ext.getStore('UserLocation');
-            userLocationStore.removeAll();
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                latitude = json.results[0].geometry.location.lat;
-                longitude = json.results[0].geometry.location.lng;
-                //userLocationStore.removeAt(0);
-                console.log(latitude, longitude);
-                userLocationStore.add({
-                    'latitude': latitude.toString(),
-                    'longitude': longitude.toString()
-                });
-                userLocationStore.add({
-                    'zipcode': postalCode
-                });
-                var store = Ext.getStore('MyJsonPStore');
-                var dealStore = Ext.getStore('MyDealsStore');
-                store.load({
-                    params: {
-                        zipcode: zipcode,
-                        distance: 50000
-                    }
-                });
-                var view = Ext.Viewport.add({
-                        xtype: 'Main'
-                    });
-                Ext.Viewport.setActiveItem(view);
+            var dealStoreParams = null;
+            var store = Ext.getStore('MyJsonPStore');
+            var dealStore = Ext.getStore('MyDealsStore');
+            store.load({
+                params: {
+                    zipcode: postalCode,
+                    distance: 50000
+                }
             });
+            var userLocationStore = Ext.getStore('UserLocation');
+            userLocationStore.removeAt(0);
+            userLocationStore.add({
+                'zipcode': postalCode
+            });
+            var view = Ext.Viewport.add({
+                    xtype: 'Main'
+                });
+            Ext.Viewport.setActiveItem(view);
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
@@ -67072,14 +67063,6 @@ Ext.define('Ext.direct.Manager', {
         var latitude, longitude;
         if (Ext.os.is('Android')) {
             if (Ext.getCmp('zipcodeLookUp').getValue()) {
-                /* navigator.geolocation.getCurrentPosition(function showPosition(position){
-                            lat = position.coords.latitude;
-                            long = position.coords.longitude;
-                            Ext.getCmp('mymap').setMapCenter({
-                                latitude: lat,
-                                longitude: long
-                            });
-                           });*/
                 var userLocation = Ext.getStore('UserLocation');
                 lat = userLocation.getAt(0).get('latitude');
                 long = userLocation.getAt(0).get('longitude');
