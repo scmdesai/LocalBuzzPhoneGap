@@ -64624,13 +64624,13 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'textfield',
                 cls: 'searchfield',
-                height: '9vh',
+                height: '11vh',
                 id: 'zipcodeLookUp',
                 itemId: 'zipcodeLookUp',
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black',
-                top: '27%',
+                top: '32%',
                 width: '60%',
                 component: {
                     xtype: 'input',
@@ -64646,13 +64646,13 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'numberfield',
                 cls: 'searchfield',
-                height: '9vh',
+                height: '11vh',
                 id: 'zipcodeLookUp1',
                 itemId: 'zipcodeLookUp1',
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black',
-                top: '27%',
+                top: '32%',
                 width: '60%',
                 component: {
                     type: 'number'
@@ -64660,7 +64660,7 @@ Ext.define('Ext.direct.Manager', {
                 clearIcon: false,
                 name: 'zipcodeLookUp',
                 maxLength: 5,
-                placeHolder: '    Enter 5 digit zipcode',
+                placeHolder: '   Enter 5 digit zipcode',
                 minValue: 0
             },
             {
@@ -64745,7 +64745,7 @@ Ext.define('Ext.direct.Manager', {
                     }
                 },
                 height: '9vh',
-                left: '20%',
+                left: '18%',
                 style: 'font-size:5vw',
                 top: '1%',
                 ui: 'action',
@@ -64757,7 +64757,7 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 docked: 'top',
-                height: '',
+                height: '30%',
                 html: '<br><div style="text-align:center;"><h3 style="color:#00529D"><b>Welcome to Local Buzz</h3><br><h5 style="color:#00529D">Find the Latest Buzz around you!</h3></div>',
                 id: 'nameTxt4',
                 itemId: 'nameTxt2',
@@ -64771,8 +64771,10 @@ Ext.define('Ext.direct.Manager', {
                 html: '<div  style="text-align:center;"><br><h2 style="color:#00529D">OR</h2><br><br><br></div>',
                 id: 'nameTxt5',
                 itemId: 'nameTxt3',
+                left: '35%',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                styleHtmlContent: true
+                styleHtmlContent: true,
+                top: '4vh'
             },
             {
                 xtype: 'button',
@@ -65073,11 +65075,12 @@ Ext.define('Ext.direct.Manager', {
                         padding: '0 5 25 5',
                         style: 'font-family:Arial;',
                         styleHtmlContent: true,
-                        ui: 'plain'
+                        ui: 'plain',
+                        width: '5vh'
                     },
                     {
                         xtype: 'spacer',
-                        width: 70
+                        maxWidth: '30vh'
                     },
                     {
                         xtype: 'component',
@@ -65132,10 +65135,10 @@ Ext.define('Ext.direct.Manager', {
                 html: '<p style="font-size:2.3vw;"> Click on picture to enlarge</p>',
                 id: 'nameTxt3',
                 itemId: 'nameTxt3',
-                left: '40%',
+                left: '35%',
                 margin: '10 5 5 5',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                top: '43%',
+                top: '45%',
                 width: '65%'
             },
             {
@@ -65394,7 +65397,7 @@ Ext.define('Ext.direct.Manager', {
         hideOnMaskTap: false,
         layout: 'vbox',
         modal: false,
-        scrollable: false,
+        scrollable: 'vertical',
         enableSubmissionForm: false,
         items: [
             {
@@ -65451,7 +65454,7 @@ Ext.define('Ext.direct.Manager', {
                 id: 'storeImage',
                 itemId: 'storeImage',
                 left: '2%',
-                width: '100%'
+                width: '96%'
             },
             {
                 xtype: 'textfield',
@@ -65461,15 +65464,15 @@ Ext.define('Ext.direct.Manager', {
                 ],
                 disabled: false,
                 docked: 'bottom',
-                height: '10vh',
+                height: '11vh',
                 hidden: false,
                 id: 'website1',
                 itemId: 'website1',
-                margin: '0 5 0 5',
+                margin: '5 5 5 5',
                 minHeight: '',
                 style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
                 styleHtmlContent: true,
-                top: '73%',
+                top: '75%',
                 width: '95%',
                 clearIcon: false,
                 name: 'websiteDisplayName',
@@ -65494,10 +65497,10 @@ Ext.define('Ext.direct.Manager', {
                     'customfield2'
                 ],
                 docked: 'bottom',
-                height: '10vh',
+                height: '11vh',
                 id: 'email',
                 itemId: 'email',
-                margin: '0 5 0 5',
+                margin: '5 5 5 5',
                 style: 'font-size:4.5vw;font-family: arial',
                 styleHtmlContent: true,
                 top: '63%',
@@ -65541,12 +65544,12 @@ Ext.define('Ext.direct.Manager', {
                 ],
                 disabled: false,
                 docked: 'bottom',
-                height: '10vh',
+                height: '11vh',
                 hidden: false,
                 html: '',
                 id: 'phoneNumber',
                 itemId: 'phoneNumber',
-                margin: '0 5 0 5',
+                margin: '5 5 5 5',
                 padding: '15 10 10 10',
                 style: 'font-size:4.5vw;font-family: arial',
                 styleHtmlContent: true,
@@ -65640,11 +65643,10 @@ Ext.define('Ext.direct.Manager', {
                 height: '9vh',
                 id: 'address',
                 itemId: 'address',
-                margin: '0 0 0 5',
                 padding: '10 5 0 5',
-                style: 'font-size:4.2vw;font-family:Arial;brder:none!important',
+                style: 'font-size:4.2vw;font-family:Arial;border-top:none',
                 styleHtmlContent: true,
-                top: '85%',
+                top: '88%',
                 width: '95%',
                 clearIcon: false,
                 name: 'address',
@@ -65792,6 +65794,8 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('LocalBuzz.view.List', Ext.dataview.List, {
     config: {
+        cls: 'tpl-l0uxnqjl',
+        height: '100%',
         disableSelection: true,
         emptyText: '<h4 class="emptyText">Find stores registered with Local Buzz here!</h4>',
         store: 'MyJsonPStore',
