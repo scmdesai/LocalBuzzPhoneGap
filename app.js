@@ -64659,7 +64659,9 @@ Ext.define('Ext.direct.Manager', {
                         //get customerIds of all stores
                         store.each(function(record) {
                             customerIds = record.data.customerId + ",";
+                            console.log('customerId is : ' + customerIds);
                         });
+                        console.log('List of customerId is : ' + customerIds);
                         dealStore.load({
                             params: {
                                 customerId: customerIds
