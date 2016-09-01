@@ -66240,28 +66240,35 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('UserPreferences');
         var records = [];
         var ds = Ext.getStore('MyJsonPStore');
-        //ds.clearFilter();
-        var UserLocationStore = Ext.getStore('UserLocation');
+        ds.clearFilter();
+        var dealStore = Ext.getStore('MyDealsStore');
+        dealStore.clearFilter();
+        /*var UserLocationStore = Ext.getStore('UserLocation');
         var latitude = UserLocationStore.getAt(0).get('latitude');
         var longitude = UserLocationStore.getAt(0).get('longitude');
         var zipcode = UserLocationStore.getAt(0).get('zipcode');
         //load stores
-        if (latitude && longitude) {
+
+           if(latitude && longitude){
             ds.load({
                 params: {
                     latitude: latitude,
-                    longitude: longitude,
-                    distance: 50000
+                    longitude:longitude,
+                    distance:50000
+
                 }
             });
-        } else {
+           }
+        else{
             ds.load({
                 params: {
                     zipcode: postalCode,
-                    distance: 50000
-                }
-            });
-        }
+                    distance:50000
+
+                 }
+                });
+
+        }*/
         store.each(function(rec) {
             if (rec.get('isFavorite') === true) {
                 records.push(rec.get('customerId'));
@@ -66788,28 +66795,35 @@ Ext.define('Ext.direct.Manager', {
                             var store = Ext.getStore('UserPreferences');
                             var records = [];
                             var ds = Ext.getStore('MyJsonPStore');
-                            //ds.clearFilter();
-                            var UserLocationStore = Ext.getStore('UserLocation');
+                            ds.clearFilter();
+                            var dealStore = Ext.getStore('MyDealsStore');
+                            dealStore.clearFilter();
+                            /*var UserLocationStore = Ext.getStore('UserLocation');
                             var latitude = UserLocationStore.getAt(0).get('latitude');
                             var longitude = UserLocationStore.getAt(0).get('longitude');
                             var zipcode = UserLocationStore.getAt(0).get('zipcode');
                             //load stores
-                            if (latitude && longitude) {
+
+                            if(latitude && longitude){
                                 ds.load({
                                     params: {
                                         latitude: latitude,
-                                        longitude: longitude,
-                                        distance: 50000
-                                    }
-                                });
-                            } else {
-                                ds.load({
-                                    params: {
-                                        zipcode: postalCode,
-                                        distance: 50000
+                                        longitude:longitude,
+                                        distance:50000
+
                                     }
                                 });
                             }
+                            else{
+                                ds.load({
+                                    params: {
+                                        zipcode: postalCode,
+                                        distance:50000
+
+                                    }
+                                });
+
+                            }*/
                             store.each(function(rec) {
                                 if (rec.get('isFavorite') === true) {
                                     records.push(rec.get('customerId'));
