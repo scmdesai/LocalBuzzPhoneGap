@@ -64555,9 +64555,9 @@ Ext.define('Ext.direct.Manager', {
     onJsonpstoreLoad: function(store, records, successful, operation, eOpts) {
         var customerIds = [];
         store.each(function(rec) {
-            customerIds.concat(rec.get('customerId'));
+            customerIds.push(rec.get('customerId'));
         });
-        console.log(customerIds);
+        console.log(customerIds.length);
     }
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
