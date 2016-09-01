@@ -64652,7 +64652,8 @@ Ext.define('Ext.direct.Manager', {
                         store.load({
                             params: {
                                 latitude: latitude,
-                                longitude: longitude
+                                longitude: longitude,
+                                distance: 50000
                             }
                         });
                         //get customerIds of all stores
@@ -64791,7 +64792,8 @@ Ext.define('Ext.direct.Manager', {
             var dealStore = Ext.getStore('MyDealsStore');
             store.load({
                 params: {
-                    zipcode: postalCode
+                    zipcode: postalCode,
+                    distance: 50000
                 }
             });
             //get customerIds of all stores
@@ -64872,7 +64874,8 @@ Ext.define('Ext.direct.Manager', {
             var dealStore = Ext.getStore('MyDealsStore');
             store.load({
                 params: {
-                    zipcode: postalCode
+                    zipcode: postalCode,
+                    distance: 50000
                 }
             });
             //get customerIds of all stores
