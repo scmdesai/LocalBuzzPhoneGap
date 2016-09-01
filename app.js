@@ -66723,6 +66723,10 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             document.getElementById('searchfield').blur();
+                            var store = Ext.getStore('MyJsonPStore');
+                            store.clearFilter();
+                            var dealStore = Ext.getStore('MyDealsStore');
+                            dealStore.clearFilter();
                         },
                         /*var UserLocationStore = Ext.getStore('UserLocation');
                             var latitude = UserLocationStore.getAt(0).get('latitude');
@@ -67040,10 +67044,10 @@ Ext.define('Ext.direct.Manager', {
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         document.getElementById('searchfield').blur();
-        var UserLocationStore = Ext.getStore('UserLocation');
+        /*var UserLocationStore = Ext.getStore('UserLocation');
         var latitude = UserLocationStore.getAt(0).get('latitude');
         var longitude = UserLocationStore.getAt(0).get('longitude');
-        var zipcode = UserLocationStore.getAt(0).get('zipcode');
+        var zipcode = UserLocationStore.getAt(0).get('zipcode');*/
         //load stores
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
@@ -67101,6 +67105,10 @@ Ext.define('Ext.direct.Manager', {
         var lat, long;
         var infoWindow;
         var latitude, longitude;
+        var store = Ext.getStore('MyJsonPStore');
+        store.clearFilter();
+        var dealStore = Ext.getStore('MyDealsStore');
+        dealStore.clearFilter();
         if (Ext.os.is('Android')) {
             if (Ext.getCmp('zipcodeLookUp').getValue()) {
                 var userLocation = Ext.getStore('UserLocation');
