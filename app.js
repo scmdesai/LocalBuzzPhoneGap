@@ -66068,9 +66068,9 @@ Ext.define('Ext.direct.Manager', {
         Ext.Viewport.setActiveItem(info);
         //console.log(info);
         var customerId = record.get('customerId');
-        var storeName = Ext.getStore('MyJsonPStore');
+        //var storeName = Ext.getStore('MyJsonPStore');
         var store = Ext.getStore('MyDealsStore');
-        storeName.load({
+        store.load({
             params: {
                 customerId: customerId
             }
@@ -67007,6 +67007,7 @@ Ext.define('Ext.direct.Manager', {
         var zipcode = UserLocationStore.getAt(0).get('zipcode');
         //load stores
         var store = Ext.getStore('MyJsonPStore');
+        store.clearFilter();
         var dealStore = Ext.getStore('MyDealsStore');
         if (latitude && longitude) {
             store.load({
