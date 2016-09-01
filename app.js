@@ -64557,6 +64557,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onJsonpstoreLoad: function(store, records, successful, operation, eOpts) {
         var customerIds = [];
+        dealParams = null;
         Ext.Array.erase(customerIds, 0, customerIds.length);
         store.each(function(rec) {
             Ext.Array.include(customerIds, rec.get('customerId'));
