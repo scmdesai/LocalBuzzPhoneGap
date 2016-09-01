@@ -66086,11 +66086,12 @@ Ext.define('Ext.direct.Manager', {
     //storeName.filter('customerId',record.get('customerId'));
     //store.filter('dealStatus','Active');
     onInfoBackBtnTapHome: function(button, e, eOpts) {
-        var ds = Ext.StoreManager.lookup('MyJsonPStore');
-        ds.clearFilter();
+        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
+        ds.clearFilter() ;
+
         var store = Ext.StoreManager.lookup('MyDealsStore');
-        store.clearFilter();
-        //Ext.Viewport.setActiveItem(0);
+        store.clearFilter() ;
+        //Ext.Viewport.setActiveItem(0);*/
         Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
     },
