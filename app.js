@@ -66693,7 +66693,32 @@ Ext.define('Ext.direct.Manager', {
                 ],
                 listeners: [
                     {
-                        fn: function(element, eOpts) {},
+                        fn: function(element, eOpts) {
+                            document.getElementById('searchfield').blur();
+                            var UserLocationStore = Ext.getStore('UserLocation');
+                            var latitude = UserLocationStore.getAt(0).get('latitude');
+                            var longitude = UserLocationStore.getAt(0).get('longitude');
+                            var zipcode = UserLocationStore.getAt(0).get('zipcode');
+                            //load stores
+                            var store = Ext.getStore('MyJsonPStore');
+                            var dealStore = Ext.getStore('MyDealsStore');
+                            if (latitude && longitude) {
+                                store.load({
+                                    params: {
+                                        latitude: latitude,
+                                        longitude: longitude,
+                                        distance: 50000
+                                    }
+                                });
+                            } else {
+                                store.load({
+                                    params: {
+                                        zipcode: postalCode,
+                                        distance: 50000
+                                    }
+                                });
+                            }
+                        },
                         /*Ext.getStore('MyJsonPStore').clearFilter();
                             Ext.getStore('MyDealsStore').clearFilter();
                             var storeName = Ext.getStore('MyJsonPStore').load();
@@ -66750,64 +66775,43 @@ Ext.define('Ext.direct.Manager', {
                 ],
                 listeners: [
                     {
-                        fn: function(element, eOpts) {},
-                        /*var store = Ext.getStore('UserPreferences');
-
-                            var records= [];
-
+                        fn: function(element, eOpts) {
+                            var store = Ext.getStore('UserPreferences');
+                            var records = [];
                             var ds = Ext.getStore('MyJsonPStore');
                             //ds.clearFilter();
-
                             var UserLocationStore = Ext.getStore('UserLocation');
                             var latitude = UserLocationStore.getAt(0).get('latitude');
                             var longitude = UserLocationStore.getAt(0).get('longitude');
                             var zipcode = UserLocationStore.getAt(0).get('zipcode');
                             //load stores
-
-                            if(latitude && longitude){
+                            if (latitude && longitude) {
                                 ds.load({
                                     params: {
                                         latitude: latitude,
-                                        longitude:longitude,
-                                        distance:50000
-
+                                        longitude: longitude,
+                                        distance: 50000
                                     }
                                 });
-                            }
-                            else{
+                            } else {
                                 ds.load({
                                     params: {
                                         zipcode: postalCode,
-                                        distance:50000
-
+                                        distance: 50000
                                     }
                                 });
-
                             }
-
-                            store.each(function(rec)
-                            {
-
-
-
-                                if(rec.get('isFavorite')===true) {
-
+                            store.each(function(rec) {
+                                if (rec.get('isFavorite') === true) {
                                     records.push(rec.get('customerId'));
-
-
+                                } else {
+                                    Ext.Array.remove(records, rec.get('customerId'));
                                 }
-                                else {
-                                    Ext.Array.remove(records,rec.get('customerId'));
-                                }
-
-
-
                             });
-
-                            ds.filterBy(function(record){
+                            ds.filterBy(function(record) {
                                 return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
-
-                            }, this);*/
+                            }, this);
+                        },
                         event: 'painted'
                     }
                 ]
