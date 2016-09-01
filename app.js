@@ -66073,11 +66073,6 @@ Ext.define('Ext.direct.Manager', {
                 customerId: customerId
             }
         });
-        store.load({
-            params: {
-                customerId: customerId
-            }
-        });
     },
     //store.clearFilter();
     //storeName.clearFilter();
