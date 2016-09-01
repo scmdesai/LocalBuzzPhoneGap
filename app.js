@@ -66207,29 +66207,33 @@ Ext.define('Ext.direct.Manager', {
         store.filter('dealStatus', 'Active');
 
         //Ext.Viewport.setActiveItem('contactinfo') ;*/
-        Ext.Viewport.getActiveItem().destroy();
+        /*Ext.Viewport.getActiveItem().destroy();
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
         //ds.clearFilter() ;
-        var dealRecord = this.getContactinfo().getRecord();
+        var dealRecord = this.getContactinfo().getRecord() ;
         var customerId = dealRecord.get('customerId');
         //ds.filter('customerId', customerId);
         ds.load({
             params: {
-                customerId: customerId
-            }
+        		customerId: customerId
+
+        	}
         });
-        var customerData = ds.getData().getAt(0);
+        var customerData = ds.getData().getAt(0) ;
         var info = this.getContactinfo();
         info.setRecord(customerData);
-        ds.clearFilter();
+        ds.clearFilter() ;
         Ext.Viewport.setActiveItem(info);
+
         var store = Ext.StoreManager.lookup('MyDealsStore');
         //store.clearFilter();
         store.load({
             params: {
-                customerId: customerId
-            }
-        });
+        		customerId: customerId
+
+        	}
+        });*/
+        Ext.Viewport.getActiveItem().destroy();
     },
     onFavoritesActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         var store = Ext.getStore('UserPreferences');
