@@ -66981,30 +66981,10 @@ Ext.define('Ext.direct.Manager', {
                 store.filterBy(function(record) {
                     return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
                 }, this);*/
-        var UserLocationStore = Ext.getStore('UserLocation');
-        var latitude = UserLocationStore.getAt(0).get('latitude');
-        var longitude = UserLocationStore.getAt(0).get('longitude');
-        var zipcode = UserLocationStore.getAt(0).get('zipcode');
-        //load stores
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         var dealStore = Ext.getStore('MyDealsStore');
-        if (latitude && longitude) {
-            store.load({
-                params: {
-                    latitude: latitude,
-                    longitude: longitude,
-                    distance: 50000
-                }
-            });
-        } else {
-            store.load({
-                params: {
-                    zipcode: postalCode,
-                    distance: 50000
-                }
-            });
-        }
+        dealStore.clearFilter();
     },
     onSearchfieldKeyup: function(textfield, e, eOpts) {
         var search = textfield.getValue();
@@ -67038,23 +67018,28 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('MyJsonPStore');
         store.clearFilter();
         var dealStore = Ext.getStore('MyDealsStore');
-        if (latitude && longitude) {
+        dealStore.clearFilter();
+    },
+    /*if(latitude && longitude){
             store.load({
                 params: {
                     latitude: latitude,
-                    longitude: longitude,
-                    distance: 50000
+                    longitude:longitude,
+                    distance:50000
+
                 }
             });
-        } else {
+           }
+        else{
             store.load({
                 params: {
                     zipcode: postalCode,
-                    distance: 50000
-                }
-            });
-        }
-    },
+                    distance:50000
+
+                 }
+                });
+
+        }*/
     /*document.getElementById('searchfield').blur();
         Ext.getStore('MyDealsStore').clearFilter();
          var store = Ext.getStore('MyJsonPStore');
