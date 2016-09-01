@@ -64662,7 +64662,7 @@ Ext.define('Ext.direct.Manager', {
                             });
                         Ext.Viewport.setActiveItem(view);
                         store.each(function(record) {
-                            dealStoreParams = dealStoreParams + "," + record.get('customerId');
+                            dealStoreParams = record.get('customerId');
                         });
                         dealStore.load({
                             params: {
