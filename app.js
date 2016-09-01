@@ -64887,7 +64887,7 @@ Ext.define('Ext.direct.Manager', {
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
             var userLocationStore = Ext.getStore('UserLocation');
-            userLocationStore.removeAt(0);
+            userLocationStore.removeAll();
             userLocationStore.add({
                 'zipcode': postalCode
             });
@@ -67207,10 +67207,12 @@ Ext.define('Ext.direct.Manager', {
             }
         } else {
             if (Ext.getCmp('zipcodeLookUp1').getValue()) {
+                console.log(Ext.getCmp('zipcodeLookUp1').getValue());
                 var userLocation = Ext.getStore('UserLocation');
-                lat = userLocation.getAt(0).get('latitude');
-                long = userLocation.getAt(0).get('longitude');
-                zipcode = userLocation.getAt(0).get('zipcode');
+                var lat = userLocation.getAt(0).get('latitude');
+                var long = userLocation.getAt(0).get('longitude');
+                var zipcode = userLocation.getAt(0).get('zipcode');
+                console.log(zipcode);
                 Ext.getCmp('mymap').setMapCenter({
                     latitude: lat,
                     longitude: long
