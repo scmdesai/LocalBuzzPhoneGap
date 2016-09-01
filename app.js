@@ -64560,6 +64560,11 @@ Ext.define('Ext.direct.Manager', {
         dealParams = customerIds.join();
         console.log(dealParams);
         var dealStore = Ext.getStore('MyDealsStore');
+        dealStore.load({
+            params: {
+                customerId: dealParams
+            }
+        });
     }
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
@@ -64803,16 +64808,6 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
-            //get customerIds of all stores
-            store.each(function(record) {
-                dealStoreParams.push(record.get('customerId'));
-            });
-            dealStoreParams.join(",");
-            dealStore.load({
-                params: {
-                    customerId: dealStoreParams
-                }
-            });
             var view = Ext.Viewport.add({
                     xtype: 'Main'
                 });
@@ -64884,16 +64879,6 @@ Ext.define('Ext.direct.Manager', {
                 params: {
                     zipcode: postalCode,
                     distance: 50000
-                }
-            });
-            //get customerIds of all stores
-            store.each(function(record) {
-                dealStoreParams.push(record.get('customerId'));
-            });
-            dealStoreParams.join(",");
-            dealStore.load({
-                params: {
-                    customerId: dealStoreParams
                 }
             });
             var view = Ext.Viewport.add({
