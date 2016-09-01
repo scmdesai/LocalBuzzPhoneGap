@@ -64559,7 +64559,7 @@ Ext.define('Ext.direct.Manager', {
         var customerIds = [];
         Ext.Array.erase(customerIds, 0, customerIds.length);
         store.each(function(rec) {
-            customerIds.push(rec.get('customerId'));
+            Ext.Array.include(customerIds, rec.get('customerId'));
         });
         dealParams = customerIds.join();
         console.log(dealParams);
