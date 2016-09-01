@@ -65740,6 +65740,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         allowDeselect: true,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
+        selectedCls: 'list-item-selected',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,
