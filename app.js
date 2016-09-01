@@ -65746,13 +65746,8 @@ Ext.define('Ext.direct.Manager', {
                  dealName = dealsData.get('dealName');
             }*/
         var ds = Ext.StoreManager.lookup('MyDealsStore');
-        //ds.clearFilter() ;
-        //ds.filter('customerId', customerId);
-        ds.load({
-            params: {
-                customerId: customerId
-            }
-        });
+        ds.clearFilter();
+        ds.filter('customerId', customerId);
     }
 }, 0, [
     "contactinfo"
@@ -65774,6 +65769,12 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'Info'
 ], 0));
+/*ds.load({
+            params: {
+        		customerId: customerId
+
+        	}
+        });*/
 
 /*
  * File: app/view/List.js
@@ -66069,16 +66070,17 @@ Ext.define('Ext.direct.Manager', {
         info.setRecord(record);
         Ext.Viewport.add(info);
         Ext.Viewport.setActiveItem(info);
-        //console.log(info);
-        var customerId = record.get('customerId');
-        //var storeName = Ext.getStore('MyJsonPStore');
-        var store = Ext.getStore('MyDealsStore');
+    },
+    //console.log(info);
+    //var customerId = record.get('customerId');
+    //var storeName = Ext.getStore('MyJsonPStore');
+    /*var store = Ext.getStore('MyDealsStore');
         store.load({
             params: {
-                customerId: customerId
-            }
-        });
-    },
+        		customerId: customerId
+
+        	}
+        });*/
     //store.clearFilter();
     //storeName.clearFilter();
     //store.load();
@@ -67973,10 +67975,9 @@ Ext.define('Ext.direct.Manager', {
             }
         ]
     },
-    onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
-        store.load();
-    },
+    onPanelActivate: function(newActiveItem, container, oldActiveItem, eOpts) {},
+    //var store = Ext.getStore('MyDealsStore');
+    //store.load();
     //Ext.Viewport.getActiveItem().destroy();
     //store.filter('dealStatus','Active');
     //var date = new Date();
@@ -68011,10 +68012,7 @@ Ext.define('Ext.direct.Manager', {
 
 
         //store.clearFilter();*/
-    onDealsPanel1Painted: function(element, eOpts) {
-        var store = Ext.getStore('MyDealsStore');
-        store.load();
-    }
+    onDealsPanel1Painted: function(element, eOpts) {}
 }, 0, [
     "DealsPanel1"
 ], [
@@ -68033,6 +68031,8 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'DealsPanel1'
 ], 0));
+//var store = Ext.getStore('MyDealsStore');
+//store.load();
 
 /*
  * File: app/view/DealImage.js
