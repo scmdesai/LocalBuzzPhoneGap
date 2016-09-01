@@ -64648,7 +64648,7 @@ Ext.define('Ext.direct.Manager', {
                         //load stores
                         var store = Ext.getStore('MyJsonPStore');
                         var dealStore = Ext.getStore('MyDealsStore');
-                        var dealStoreParams = null;
+                        var dealStoreParams;
                         store.load({
                             params: {
                                 latitude: latitude,
@@ -64664,6 +64664,7 @@ Ext.define('Ext.direct.Manager', {
                         store.each(function(record) {
                             dealStoreParams = record.get('customerId');
                         });
+                        console.log(dealStoreParams.toString());
                         dealStore.load({
                             params: {
                                 customerId: dealStoreParams
