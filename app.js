@@ -64544,7 +64544,18 @@ Ext.define('Ext.direct.Manager', {
             reader: {
                 type: 'json'
             }
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonpstoreLoad',
+                event: 'load'
+            }
+        ]
+    },
+    onJsonpstoreLoad: function(store, records, successful, operation, eOpts) {
+        store.each(function(rec) {
+            console.log(rec.get('customerId'));
+        });
     }
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
@@ -64657,16 +64668,6 @@ Ext.define('Ext.direct.Manager', {
                             }
                         });
                         //get customerIds of all stores
-                        store.each(function(record) {
-                            customerIds = record.data.customerId + ",";
-                            console.log('customerId is : ' + customerIds);
-                        });
-                        console.log('List of customerId is : ' + customerIds);
-                        dealStore.load({
-                            params: {
-                                customerId: customerIds
-                            }
-                        });
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
