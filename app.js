@@ -64362,6 +64362,9 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 name: 'longitude'
+            },
+            {
+                name: 'zipcode'
             }
         ]
     }
@@ -64661,7 +64664,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    //var userLocationStore = Ext.getStore('UserLocation');
+                    var userLocationStore = Ext.getStore('UserLocation');
                     navigator.geolocation.getCurrentPosition(function showPosition(position) {
                         latitude = position.coords.latitude;
                         longitude = position.coords.longitude;
@@ -64676,7 +64679,11 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
-                        //get customerIds of all stores
+                        userLocationStore.removeAll();
+                        userLocationStore.add({
+                            'latitude': latitude.toString(),
+                            'longitude': longitude.toString()
+                        });
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
@@ -64808,6 +64815,11 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
+            var userLocationStore = Ext.getStore('UserLocation');
+            userLocationStore.removeAt(0);
+            userLocationStore.add({
+                'zipcode': postalCode
+            });
             var view = Ext.Viewport.add({
                     xtype: 'Main'
                 });
@@ -64872,6 +64884,11 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
+            var userLocationStore = Ext.getStore('UserLocation');
+            userLocationStore.removeAt(0);
+            userLocationStore.add({
+                'zipcode': postalCode
+            });
             var dealStoreParams = [];
             var store = Ext.getStore('MyJsonPStore');
             var dealStore = Ext.getStore('MyDealsStore');
@@ -66220,8 +66237,28 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('UserPreferences');
         var records = [];
         var ds = Ext.getStore('MyJsonPStore');
-        ds.clearFilter();
-        //store.clearFilter();
+        //ds.clearFilter();
+        var UserLocationStore = Ext.getStore('UserLocation');
+        var latitude = UserLocationStore.getAt(0).get('latitude');
+        var longitude = UserLocationStore.getAt(0).get('longitude');
+        var zipcode = UserLocationStore.getAt(0).get('zipcode');
+        //load stores
+        if (latitude && longitude) {
+            ds.load({
+                params: {
+                    latitude: latitude,
+                    longitude: longitude,
+                    distance: 50000
+                }
+            });
+        } else {
+            ds.load({
+                params: {
+                    zipcode: postalCode,
+                    distance: 50000
+                }
+            });
+        }
         store.each(function(rec) {
             if (rec.get('isFavorite') === true) {
                 records.push(rec.get('customerId'));
@@ -66658,24 +66695,33 @@ Ext.define('Ext.direct.Manager', {
                 ],
                 listeners: [
                     {
-                        fn: function(element, eOpts) {
-                            Ext.getStore('MyJsonPStore').clearFilter();
+                        fn: function(element, eOpts) {},
+                        /*Ext.getStore('MyJsonPStore').clearFilter();
                             Ext.getStore('MyDealsStore').clearFilter();
                             var storeName = Ext.getStore('MyJsonPStore').load();
                             var store = Ext.getStore('MyDealsStore');
                             store.clearFilter();
                             store.load();
+
+
                             var store1 = Ext.getStore('StoreCalculateDistances');
+
                             var stores = [];
-                            store1.each(function(record) {
-                                //stores.push(record.get('customerId'));
-                                Ext.Array.include(stores, record.get('customerId'));
-                            });
-                            console.log(stores.length);
-                            storeName.filterBy(function(record) {
-                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                            }, this);
-                        },
+
+
+
+                            store1.each(function(record){
+                            //stores.push(record.get('customerId'));
+                            Ext.Array.include(stores,record.get('customerId'));
+
+
+                        });
+                        console.log(stores.length);
+
+                        storeName.filterBy(function(record){
+                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+
+                        }, this);*/
                         event: 'painted'
                     }
                 ]
@@ -66706,22 +66752,64 @@ Ext.define('Ext.direct.Manager', {
                 ],
                 listeners: [
                     {
-                        fn: function(element, eOpts) {
-                            var store = Ext.getStore('UserPreferences');
-                            var records = [];
+                        fn: function(element, eOpts) {},
+                        /*var store = Ext.getStore('UserPreferences');
+
+                            var records= [];
+
                             var ds = Ext.getStore('MyJsonPStore');
-                            ds.clearFilter();
-                            store.each(function(rec) {
-                                if (rec.get('isFavorite') === true) {
+                            //ds.clearFilter();
+
+                            var UserLocationStore = Ext.getStore('UserLocation');
+                            var latitude = UserLocationStore.getAt(0).get('latitude');
+                            var longitude = UserLocationStore.getAt(0).get('longitude');
+                            var zipcode = UserLocationStore.getAt(0).get('zipcode');
+                            //load stores
+
+                            if(latitude && longitude){
+                                ds.load({
+                                    params: {
+                                        latitude: latitude,
+                                        longitude:longitude,
+                                        distance:50000
+
+                                    }
+                                });
+                            }
+                            else{
+                                ds.load({
+                                    params: {
+                                        zipcode: postalCode,
+                                        distance:50000
+
+                                    }
+                                });
+
+                            }
+
+                            store.each(function(rec)
+                            {
+
+
+
+                                if(rec.get('isFavorite')===true) {
+
                                     records.push(rec.get('customerId'));
-                                } else {
-                                    Ext.Array.remove(records, rec.get('customerId'));
+
+
                                 }
+                                else {
+                                    Ext.Array.remove(records,rec.get('customerId'));
+                                }
+
+
+
                             });
-                            ds.filterBy(function(record) {
+
+                            ds.filterBy(function(record){
                                 return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
-                            }, this);
-                        },
+
+                            }, this);*/
                         event: 'painted'
                     }
                 ]
@@ -66911,20 +66999,57 @@ Ext.define('Ext.direct.Manager', {
     },
     onSearchBusinessActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
         document.getElementById('searchfield').blur();
-        Ext.getStore('MyDealsStore').clearFilter();
+        var UserLocationStore = Ext.getStore('UserLocation');
+        var latitude = UserLocationStore.getAt(0).get('latitude');
+        var longitude = UserLocationStore.getAt(0).get('longitude');
+        var zipcode = UserLocationStore.getAt(0).get('zipcode');
+        //load stores
         var store = Ext.getStore('MyJsonPStore');
+        var dealStore = Ext.getStore('MyDealsStore');
+        if (latitude && longitude) {
+            store.load({
+                params: {
+                    latitude: latitude,
+                    longitude: longitude,
+                    distance: 50000
+                }
+            });
+        } else {
+            store.load({
+                params: {
+                    zipcode: postalCode,
+                    distance: 50000
+                }
+            });
+        }
+    },
+    /*document.getElementById('searchfield').blur();
+        Ext.getStore('MyDealsStore').clearFilter();
+         var store = Ext.getStore('MyJsonPStore');
+
+
         store.clearFilter();
+
+
+
         var store1 = Ext.getStore('StoreCalculateDistances');
+
         var stores = [];
-        store1.each(function(record) {
+
+
+
+        store1.each(function(record){
             //stores.push(record.get('customerId'));
             console.log(record.get('customerId'));
-            Ext.Array.include(stores, record.get('customerId'));
+            Ext.Array.include(stores,record.get('customerId'));
+
+
         });
-        store.filterBy(function(record) {
+
+        store.filterBy(function(record){
             return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-        }, this);
-    },
+
+        }, this);*/
     onMyMapRender: function(map, gmap, eOpts) {
         var lat, long;
         var infoWindow;
