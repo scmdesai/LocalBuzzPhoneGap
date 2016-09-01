@@ -64648,7 +64648,7 @@ Ext.define('Ext.direct.Manager', {
                         //load stores
                         var store = Ext.getStore('MyJsonPStore');
                         var dealStore = Ext.getStore('MyDealsStore');
-                        var dealStoreParams;
+                        var customerIds;
                         store.load({
                             params: {
                                 latitude: latitude,
@@ -64657,19 +64657,18 @@ Ext.define('Ext.direct.Manager', {
                             }
                         });
                         //get customerIds of all stores
+                        store.each(function(record) {
+                            customerIds = record.data.customerId + ",";
+                        });
+                        dealStore.load({
+                            params: {
+                                customerId: customerIds
+                            }
+                        });
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
                             });
                         Ext.Viewport.setActiveItem(view);
-                        store.each(function(record) {
-                            dealStoreParams = record.get('customerId');
-                        });
-                        console.log(dealStoreParams);
-                        dealStore.load({
-                            params: {
-                                customerId: dealStoreParams
-                            }
-                        });
                     }, /*  var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('StoreCalculateDistances');
