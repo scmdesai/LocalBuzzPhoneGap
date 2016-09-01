@@ -64888,15 +64888,24 @@ Ext.define('Ext.direct.Manager', {
             console.log(postalCode);
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAll();
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                latitude = json.results[0].geometry.location.lat;
+                longitude = json.results[0].geometry.location.lng;
+                //userLocationStore.removeAt(0);
+                console.log(latitude, longitude);
+                userLocationStore.add({
+                    'latitude': latitude.toString(),
+                    'longitude': longitude.toString()
+                });
+            });
             userLocationStore.add({
                 'zipcode': postalCode
             });
-            var dealStoreParams = [];
             var store = Ext.getStore('MyJsonPStore');
             var dealStore = Ext.getStore('MyDealsStore');
             store.load({
                 params: {
-                    zipcode: postalCode,
+                    zipcode: zipcode,
                     distance: 50000
                 }
             });
@@ -67278,12 +67287,9 @@ Ext.define('Ext.direct.Manager', {
                 };
             function addMarker(feature, businessName, m, record) {
                 var ds = Ext.getStore('MyDealsStore');
+                ds.clearFilter();
                 var customerId = record.get('customerId');
-                ds.load({
-                    params: {
-                        customerId: customerId
-                    }
-                });
+                ds.filter('customerId', customerId);
                 var count = ds.getCount();
                 var category;
                 if (feature === 'Automotive') {
