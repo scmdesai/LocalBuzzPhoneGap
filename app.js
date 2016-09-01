@@ -67320,6 +67320,7 @@ Ext.define('Ext.direct.Manager', {
             }
         } else {
             if (Ext.getCmp('zipcodeLookUp1').getValue()) {
+                var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
                 $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
                     latitude = json.results[0].geometry.location.lat;
                     longitude = json.results[0].geometry.location.lng;
