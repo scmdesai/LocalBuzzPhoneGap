@@ -65038,6 +65038,10 @@ Ext.define('Ext.direct.Manager', {
                                 Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('DealsPanel'));
                             } else {
                                 Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
+                                var store = Ext.getStore('MyJsonPStore');
+                                store.clearFilter();
+                                var dealStore = Ext.getStore('MyDealsStore');
+                                dealStore.clearFilter();
                             }
                         },
                         centered: false,
