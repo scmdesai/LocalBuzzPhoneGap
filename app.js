@@ -64479,11 +64479,13 @@ Ext.define('Ext.direct.Manager', {
         dealParams = customerIds.join();
         console.log(dealParams);
         var dealStore = Ext.getStore('MyDealsStore');
-        dealStore.load({
-            params: {
-                customerId: dealParams
-            }
-        });
+        if (dealParams) {
+            dealStore.load({
+                params: {
+                    customerId: dealParams
+                }
+            });
+        }
     }
 }, 0, 0, 0, 0, [
     "store.MyJsonPStore"
