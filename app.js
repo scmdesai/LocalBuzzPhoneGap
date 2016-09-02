@@ -66661,9 +66661,9 @@ Ext.define('Ext.direct.Manager', {
             //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             console.log('Latitude from DB: ' + record.get('latitude'));
             console.log('Longitude from DB: ' + record.get('longitude'));
-            lat = parseFloat(record.get('latitude'));
+            lat = parseDouble(record.get('latitude'));
             //json.results[0].geometry.location.lat;
-            long = parseFloat(record.get('longitude'));
+            long = parseDouble(record.get('longitude'));
             //json.results[0].geometry.location.lng;
             console.log(lat, long);
             var m = new google.maps.LatLng(lat, long);
