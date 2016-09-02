@@ -66614,6 +66614,13 @@ Ext.define('Ext.direct.Manager', {
 
         }, this);*/
     onMyMapRender: function(map, gmap, eOpts) {
+        var lat, long;
+        var infoWindow;
+        var latitude, longitude;
+        var store = Ext.getStore('MyJsonPStore');
+        store.clearFilter();
+        var dealStore = Ext.getStore('MyDealsStore');
+        dealStore.clearFilter();
         var userLocation = Ext.getStore('UserLocation');
         latitude = userLocation.getAt(0).get('latitude');
         longitude = userLocation.getAt(0).get('longitude');
