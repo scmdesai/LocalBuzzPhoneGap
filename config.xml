@@ -43,7 +43,7 @@
 	<!-- Comment out the console plugin as it is causing issues on Android -->
     <!-- <gap:plugin name="cordova-plugin-console" source="npm" version="1.0.1" /> -->
     <plugin name="cordova-plugin-contacts" source="npm"  />
-    <plugin name="cordova-plugin-device" source="npm"  />
+    <plugin name="cordova-plugin-device" source="npm" />
     <plugin name="cordova-plugin-device-motion" source="npm"  />
     <plugin name="cordova-plugin-device-orientation" source="npm"  />
     <plugin name="cordova-plugin-dialogs" source="npm"  />
