@@ -65266,20 +65266,11 @@ Ext.define('Ext.direct.Manager', {
             }
             // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
             this.down('#favbutton')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
-        }
-        //this.down('contactpic').setData(record.data);
-        /* var ds = Ext.StoreManager.lookup('MyDealsStore');
-            ds.clearFilter() ;
+            //this.down('contactpic').setData(record.data);
+            var ds = Ext.StoreManager.lookup('MyDealsStore');
+            ds.clearFilter();
             ds.filter('customerId', customerId);
-            this.down('listofdeals').setData(ds.getData()) ;*/
-        /*dealsData  = ds.getData().getAt(0);
-            var dealName = 'No Deals';
-            if(dealsData) {
-                 dealName = dealsData.get('dealName');
-            }*/
-        var ds = Ext.StoreManager.lookup('MyDealsStore');
-        ds.clearFilter();
-        ds.filter('customerId', customerId);
+        }
     }
 }, 0, [
     "contactinfo"
@@ -65301,12 +65292,6 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'Info'
 ], 0));
-/*ds.load({
-            params: {
-        		customerId: customerId
-
-        	}
-        });*/
 
 /*
  * File: app/view/List.js
