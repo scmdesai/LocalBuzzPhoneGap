@@ -64420,6 +64420,7 @@ Ext.define('Ext.direct.Manager', {
                     var jsonArea = JSON.parse(body);
                     var latitude = jsonArea.postalCodes[0].lat;
                     var longitude = jsonArea.postalCodes[0].lng;
+                    console.log(latitude + "," + longitude);
                     userLocationStore.add({
                         'latitude': latitude,
                         'longitude': longitude
