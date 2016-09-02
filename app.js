@@ -65959,7 +65959,6 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
-        deferEmptyText: false,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
         store: 'MyDealsStore',
         itemTpl: [
@@ -66336,35 +66335,6 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             var store = Ext.getStore('UserPreferences');
                             var records = [];
-                            var ds = Ext.getStore('MyJsonPStore');
-                            var dealStore = Ext.getStore('MyDealsStore');
-                            dealStore.clearFilter();
-                            /*var UserLocationStore = Ext.getStore('UserLocation');
-                            var latitude = UserLocationStore.getAt(0).get('latitude');
-                            var longitude = UserLocationStore.getAt(0).get('longitude');
-                            var zipcode = UserLocationStore.getAt(0).get('zipcode');
-                            //load stores
-
-                            if(latitude && longitude){
-                                ds.load({
-                                    params: {
-                                        latitude: latitude,
-                                        longitude:longitude,
-                                        distance:50000
-
-                                    }
-                                });
-                            }
-                            else{
-                                ds.load({
-                                    params: {
-                                        zipcode: postalCode,
-                                        distance:50000
-
-                                    }
-                                });
-
-                            }*/
                             store.each(function(rec) {
                                 if (rec.get('isFavorite') === true) {
                                     records.push(rec.get('customerId'));
@@ -66372,6 +66342,9 @@ Ext.define('Ext.direct.Manager', {
                                     Ext.Array.remove(records, rec.get('customerId'));
                                 }
                             });
+                            var ds = Ext.getStore('MyJsonPStore');
+                            var dealStore = Ext.getStore('MyDealsStore');
+                            dealStore.clearFilter();
                             ds.clearFilter();
                             ds.filterBy(function(record) {
                                 return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
