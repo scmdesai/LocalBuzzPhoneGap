@@ -64336,23 +64336,28 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
-            var store = Ext.getStore('MyJsonPStore');
-            var dealStore = Ext.getStore('MyDealsStore');
-            store.load({
-                params: {
-                    zipcode: postalCode,
-                    distance: 50000
-                }
-            });
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
-            userLocationStore.add({
-                'zipcode': postalCode
-            });
-            var view = Ext.Viewport.add({
-                    xtype: 'Main'
+            $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=" + postalCode + "&country=US&username=1234_5678", function(json) {
+                var latitude = (json.postalCodes[0].lat).toString();
+                var longitude = (json.postalCodes[0].lng).toString();
+                console.log(latitude + "," + longitude);
+                userLocationStore.add({
+                    'latitude': latitude,
+                    'longitude': longitude
                 });
-            Ext.Viewport.setActiveItem(view);
+                var store = Ext.getStore('MyJsonPStore');
+                store.load({
+                    params: {
+                        latitude: latitude,
+                        longitude: longitude
+                    }
+                });
+                var view = Ext.Viewport.add({
+                        xtype: 'Main'
+                    });
+                Ext.Viewport.setActiveItem(view);
+            });
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
@@ -64430,11 +64435,11 @@ Ext.define('Ext.direct.Manager', {
                         longitude: longitude
                     }
                 });
+                var view = Ext.Viewport.add({
+                        xtype: 'Main'
+                    });
+                Ext.Viewport.setActiveItem(view);
             });
-            var view = Ext.Viewport.add({
-                    xtype: 'Main'
-                });
-            Ext.Viewport.setActiveItem(view);
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
