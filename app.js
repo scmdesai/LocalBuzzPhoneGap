@@ -65455,7 +65455,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                // console.log(Ext.getCmp('phoneNumber').getValue());
+                                console.log(Ext.getCmp('phoneNumber').getValue());
                                 var numberToDial = Ext.getCmp('phoneNumber').getValue();
                                 window.location = 'tel:' + numberToDial;
                             });
@@ -65548,6 +65548,7 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
+                                console.log('Address button tapped');
                                 var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
                                 var url;
                                 if (Ext.os.is('Android')) {
@@ -66336,6 +66337,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
+        deferEmptyText: false,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
         store: 'MyDealsStore',
         itemTpl: [
@@ -66557,7 +66559,8 @@ Ext.define('Ext.direct.Manager', {
                         html: '<h1 style=" color:#00529D;font-size:8vw;text-align:center;padding-top:10px">Local Buzz</h1>'
                     },
                     {
-                        xtype: 'latestbuzz'
+                        xtype: 'latestbuzz',
+                        styleHtmlContent: false
                     }
                 ]
             },
