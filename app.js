@@ -66657,6 +66657,8 @@ Ext.define('Ext.direct.Manager', {
         store.each(function(record) {
             //var address = record.get('address');
             //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            console.log('Latitude from DB: ' + record.get('latitude'));
+            console.log('Longitude from DB: ' + record.get('longitude'));
             lat = parseFloat(record.get('latitude'));
             //json.results[0].geometry.location.lat;
             long = parseFloat(record.get('longitude'));
