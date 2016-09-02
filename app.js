@@ -63790,6 +63790,12 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 name: 'distance'
+            },
+            {
+                name: 'latitude'
+            },
+            {
+                name: 'longitude'
             }
         ]
     }
@@ -66655,7 +66661,7 @@ Ext.define('Ext.direct.Manager', {
             //json.results[0].geometry.location.lat;
             long = parseFloat(record.get('longitude'));
             //json.results[0].geometry.location.lng;
-            //console.log(lat,long);
+            console.log(lat, long);
             var m = new google.maps.LatLng(lat, long);
             //businessName = record.get('businessName');
             addMarker(record.get('category'), record.get('businessName'), m, record);
