@@ -64102,6 +64102,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onJsonpstoreLoad: function(store, records, successful, operation, eOpts) {
+        Ext.get('loadmask').hide();
         var customerIds = [];
         var dealParams = null;
         Ext.Array.erase(customerIds, 0, customerIds.length);
@@ -65997,6 +65998,10 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzPainted',
                 event: 'painted'
+            },
+            {
+                fn: 'onLatestbuzz1Initialize',
+                event: 'initialize'
             }
         ]
     },
@@ -66042,7 +66047,26 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {}
+    onLatestbuzzPainted: function(element, eOpts) {},
+    /* var store = Ext.getStore('MyDealsStore');
+                store.clearFilter();
+                store.load();
+                var store1 = Ext.getStore('StoreCalculateDistances');
+                var stores = [];
+                store1.each(function(record) {
+                    Ext.Array.include(stores, record.get('customerId'));
+                });
+                console.log(stores.length);
+                store.filterBy(function(record) {
+                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                }, this);*/
+    onLatestbuzz1Initialize: function(component, eOpts) {
+        var myMask = new Ext.LoadMask(Ext.getBody(), {
+                msg: "Loading Latest Buzz"
+            });
+        myMask.setItemId('loadmask');
+        myMask.show();
+    }
 }, 0, [
     "latestbuzz"
 ], [
@@ -66061,18 +66085,6 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'LatestBuzz'
 ], 0));
-/* var store = Ext.getStore('MyDealsStore');
-                store.clearFilter();
-                store.load();
-                var store1 = Ext.getStore('StoreCalculateDistances');
-                var stores = [];
-                store1.each(function(record) {
-                    Ext.Array.include(stores, record.get('customerId'));
-                });
-                console.log(stores.length);
-                store.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);*/
 
 /*
  * File: app/view/FavoriteView.js
