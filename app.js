@@ -64102,7 +64102,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onJsonpstoreLoad: function(store, records, successful, operation, eOpts) {
-        Ext.get('loadmask').hide();
+        //Ext.get('loadmask').hide();
         var customerIds = [];
         var dealParams = null;
         Ext.Array.erase(customerIds, 0, customerIds.length);
