@@ -63790,6 +63790,12 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 name: 'distance'
+            },
+            {
+                name: 'latitude'
+            },
+            {
+                name: 'longitude'
             }
         ]
     }
@@ -66683,15 +66689,17 @@ Ext.define('Ext.direct.Manager', {
                     var check_if_markers_visible = false;
                     store.each(function(record) {
                         var address = record.get('address');
-                        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                            lat = json.results[0].geometry.location.lat;
-                            long = json.results[0].geometry.location.lng;
-                            //console.log(lat,long);
-                            var m = new google.maps.LatLng(lat, long);
-                            //businessName = record.get('businessName');
-                            addMarker(record.get('category'), record.get('businessName'), m, record);
-                        });
+                        //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                        lat = record.get('latitude');
+                        //json.results[0].geometry.location.lat;
+                        long = record.get('longitude');
+                        //json.results[0].geometry.location.lng;
+                        //console.log(lat,long);
+                        var m = new google.maps.LatLng(lat, long);
+                        //businessName = record.get('businessName');
+                        addMarker(record.get('category'), record.get('businessName'), m, record);
                     });
+                    // });
                     // This is to handle the Google maps T&C on the map to open in the same window
                     $('#mymap').on('click', 'a', function(e) {
                         e.preventDefault();
@@ -66819,15 +66827,17 @@ Ext.define('Ext.direct.Manager', {
                 var check_if_markers_visible = false;
                 store.each(function(record) {
                     var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
-                    });
+                    //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = record.get('latitude');
+                    //json.results[0].geometry.location.lat;
+                    long = record.get('longitude');
+                    //json.results[0].geometry.location.lng;
+                    //console.log(lat,long);
+                    var m = new google.maps.LatLng(lat, long);
+                    //businessName = record.get('businessName');
+                    addMarker(record.get('category'), record.get('businessName'), m, record);
                 });
+                // });
                 $('#mymap').on('click', 'a', function(e) {
                     e.preventDefault();
                     window.open($(this).attr('href'), '_system', 'location=yes');
@@ -66969,15 +66979,17 @@ Ext.define('Ext.direct.Manager', {
                     var check_if_markers_visible = false;
                     store.each(function(record) {
                         var address = record.get('address');
-                        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                            lat = json.results[0].geometry.location.lat;
-                            long = json.results[0].geometry.location.lng;
-                            //console.log(lat,long);
-                            var m = new google.maps.LatLng(lat, long);
-                            //businessName = record.get('businessName');
-                            addMarker(record.get('category'), record.get('businessName'), m, record);
-                        });
+                        //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                        lat = record.get('latitude');
+                        //json.results[0].geometry.location.lat;
+                        long = record.get('longitude');
+                        //json.results[0].geometry.location.lng;
+                        //console.log(lat,long);
+                        var m = new google.maps.LatLng(lat, long);
+                        //businessName = record.get('businessName');
+                        addMarker(record.get('category'), record.get('businessName'), m, record);
                     });
+                    // });
                     $('#mymap').on('click', 'a', function(e) {
                         e.preventDefault();
                         window.open($(this).attr('href'), '_system', 'location=yes');
@@ -67103,15 +67115,17 @@ Ext.define('Ext.direct.Manager', {
                 var check_if_markers_visible = false;
                 store.each(function(record) {
                     var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
-                    });
+                    //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    lat = record.get('latitude');
+                    //json.results[0].geometry.location.lat;
+                    long = record.get('longitude');
+                    //json.results[0].geometry.location.lng;
+                    //console.log(lat,long);
+                    var m = new google.maps.LatLng(lat, long);
+                    //businessName = record.get('businessName');
+                    addMarker(record.get('category'), record.get('businessName'), m, record);
                 });
+                // });
                 $('#mymap').on('click', 'a', function(e) {
                     e.preventDefault();
                     window.open($(this).attr('href'), '_system', 'location=yes');
