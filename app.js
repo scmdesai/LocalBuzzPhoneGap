@@ -64413,30 +64413,30 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
+            var userLocationStore = Ext.getStore('UserLocation');
+            userLocationStore.removeAt(0);
             $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=" + postalCode + "&country=US&maxRows=1&username=1234_5678", function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var jsonArea = JSON.parse(body);
                     var latitude = jsonArea.postalCodes[0].lat;
                     var longitude = jsonArea.postalCodes[0].lng;
-                    var store = Ext.getStore('MyJsonPStore');
-                    store.load({
-                        params: {
-                            latitude: latitude,
-                            longitude: longitude
-                        }
-                    });
-                    var userLocationStore = Ext.getStore('UserLocation');
-                    userLocationStore.removeAt(0);
                     userLocationStore.add({
                         'latitude': latitude,
                         'longitude': longitude
                     });
-                    var view = Ext.Viewport.add({
-                            xtype: 'Main'
-                        });
-                    Ext.Viewport.setActiveItem(view);
                 }
             });
+            var store = Ext.getStore('MyJsonPStore');
+            store.load({
+                params: {
+                    latitude: latitude,
+                    longitude: longitude
+                }
+            });
+            var view = Ext.Viewport.add({
+                    xtype: 'Main'
+                });
+            Ext.Viewport.setActiveItem(view);
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
