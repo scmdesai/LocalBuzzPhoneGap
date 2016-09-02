@@ -66649,16 +66649,18 @@ Ext.define('Ext.direct.Manager', {
         //place markers on map
         var check_if_markers_visible = false;
         store.each(function(record) {
-            var address = record.get('address');
-            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                lat = json.results[0].geometry.location.lat;
-                long = json.results[0].geometry.location.lng;
-                //console.log(lat,long);
-                var m = new google.maps.LatLng(lat, long);
-                //businessName = record.get('businessName');
-                addMarker(record.get('category'), record.get('businessName'), m, record);
-            });
+            //var address = record.get('address');
+            //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+            lat = parseFloat(record.get('latitude'));
+            //json.results[0].geometry.location.lat;
+            long = parseFloat(record.get('longitude'));
+            //json.results[0].geometry.location.lng;
+            //console.log(lat,long);
+            var m = new google.maps.LatLng(lat, long);
+            //businessName = record.get('businessName');
+            addMarker(record.get('category'), record.get('businessName'), m, record);
         });
+        // });
         $('#mymap').on('click', 'a', function(e) {
             e.preventDefault();
             window.open($(this).attr('href'), '_system', 'location=yes');
