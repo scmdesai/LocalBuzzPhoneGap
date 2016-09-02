@@ -67699,10 +67699,11 @@ Ext.application({
                 } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel') {
                     Ext.Viewport.getActiveItem().destroy();
                     Ext.Viewport.setActiveItem(2);
-                    var store1 = Ext.StoreManager.lookup('MyDealsStore');
-                    //store.clearFilter();
-                    store1.load();
-                } else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
+                }
+                //var store1 = Ext.StoreManager.lookup('MyDealsStore');
+                //store.clearFilter();
+                //store1.load();
+                else if (Ext.Viewport.getActiveItem().getItemId() === 'DealsPanel1') {
                     console.log('DealsPanel1');
                     Ext.Viewport.getActiveItem().destroy();
                     Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
