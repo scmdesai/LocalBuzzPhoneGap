@@ -66728,7 +66728,7 @@ Ext.define('Ext.direct.Manager', {
         }
         function addInfoWindow(marker, content, record, businessName) {
             google.maps.event.addListener(marker, 'mousedown', function() {
-                cnsole.log('marker clicked');
+                console.log('marker clicked');
                 if (infoWindow) {
                     infoWindow.close();
                 }
