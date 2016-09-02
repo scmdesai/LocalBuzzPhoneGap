@@ -64293,12 +64293,13 @@ Ext.define('Ext.direct.Manager', {
                 cls: 'contact-name',
                 disabled: true,
                 height: '0%',
-                html: '<div  style="text-align:bottom;"><br><h3 style="color:#00529D"><br>OR</h3><br><br><br></div>',
+                html: '<div  style="text-align:top;"><h3 style="color:#00529D">OR</h3></div>',
                 id: 'nameTxt5',
                 itemId: 'nameTxt3',
                 left: '35%',
                 style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                styleHtmlContent: true
+                styleHtmlContent: true,
+                top: '15%'
             },
             {
                 xtype: 'button',
