@@ -64195,6 +64195,10 @@ Ext.define('Ext.direct.Manager', {
                     navigator.geolocation.getCurrentPosition(function showPosition(position) {
                         latitude = position.coords.latitude;
                         longitude = position.coords.longitude;
+                        var myMask = new Ext.LoadMask(Ext.getBody(), {
+                                msg: "Loading Latest Buzz"
+                            });
+                        myMask.show();
                         //load stores
                         var store = Ext.getStore('MyJsonPStore');
                         var dealStore = Ext.getStore('MyDealsStore');
@@ -64206,6 +64210,7 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
+                        myMask.hide();
                         userLocationStore.removeAll();
                         userLocationStore.add({
                             'latitude': latitude.toString(),
@@ -64336,7 +64341,10 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
-            var dealStoreParams = null;
+            var myMask = new Ext.LoadMask(Ext.getBody(), {
+                    msg: "Loading Latest Buzz"
+                });
+            myMask.show();
             var store = Ext.getStore('MyJsonPStore');
             var dealStore = Ext.getStore('MyDealsStore');
             store.load({
@@ -64345,6 +64353,7 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
+            myMask.hide();
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
             userLocationStore.add({
@@ -64414,15 +64423,18 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
-            var dealStoreParams = null;
             var store = Ext.getStore('MyJsonPStore');
-            var dealStore = Ext.getStore('MyDealsStore');
+            var myMask = new Ext.LoadMask(Ext.getBody(), {
+                    msg: "Loading Latest Buzz"
+                });
+            myMask.show();
             store.load({
                 params: {
                     zipcode: postalCode,
                     distance: 50000
                 }
             });
+            myMask.hide();
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
             userLocationStore.add({
@@ -65960,6 +65972,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
+        deferEmptyText: false,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
         store: 'MyDealsStore',
         itemTpl: [
@@ -65998,10 +66011,6 @@ Ext.define('Ext.direct.Manager', {
             {
                 fn: 'onLatestbuzzPainted',
                 event: 'painted'
-            },
-            {
-                fn: 'onLatestbuzz1Initialize',
-                event: 'initialize'
             }
         ]
     },
@@ -66047,26 +66056,7 @@ Ext.define('Ext.direct.Manager', {
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
-    onLatestbuzzPainted: function(element, eOpts) {},
-    /* var store = Ext.getStore('MyDealsStore');
-                store.clearFilter();
-                store.load();
-                var store1 = Ext.getStore('StoreCalculateDistances');
-                var stores = [];
-                store1.each(function(record) {
-                    Ext.Array.include(stores, record.get('customerId'));
-                });
-                console.log(stores.length);
-                store.filterBy(function(record) {
-                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                }, this);*/
-    onLatestbuzz1Initialize: function(component, eOpts) {
-        var myMask = new Ext.LoadMask(Ext.getBody(), {
-                msg: "Loading Latest Buzz"
-            });
-        myMask.setItemId('loadmask');
-        myMask.show();
-    }
+    onLatestbuzzPainted: function(element, eOpts) {}
 }, 0, [
     "latestbuzz"
 ], [
@@ -66085,6 +66075,18 @@ Ext.define('Ext.direct.Manager', {
     LocalBuzz.view,
     'LatestBuzz'
 ], 0));
+/* var store = Ext.getStore('MyDealsStore');
+                store.clearFilter();
+                store.load();
+                var store1 = Ext.getStore('StoreCalculateDistances');
+                var stores = [];
+                store1.each(function(record) {
+                    Ext.Array.include(stores, record.get('customerId'));
+                });
+                console.log(stores.length);
+                store.filterBy(function(record) {
+                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                }, this);*/
 
 /*
  * File: app/view/FavoriteView.js
