@@ -65959,6 +65959,7 @@ Ext.define('Ext.direct.Manager', {
         styleHtmlContent: true,
         width: '100%',
         allowDeselect: true,
+        deferEmptyText: false,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
         store: 'MyDealsStore',
         itemTpl: [
