@@ -64423,13 +64423,13 @@ Ext.define('Ext.direct.Manager', {
                     'latitude': latitude,
                     'longitude': longitude
                 });
-            });
-            var store = Ext.getStore('MyJsonPStore');
-            store.load({
-                params: {
-                    latitude: latitude,
-                    longitude: longitude
-                }
+                var store = Ext.getStore('MyJsonPStore');
+                store.load({
+                    params: {
+                        latitude: latitude,
+                        longitude: longitude
+                    }
+                });
             });
             var view = Ext.Viewport.add({
                     xtype: 'Main'
