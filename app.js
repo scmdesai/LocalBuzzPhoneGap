@@ -65765,9 +65765,7 @@ Ext.define('Ext.direct.Manager', {
         var store = Ext.getStore('UserPreferences');
         var records = [];
         var ds = Ext.getStore('MyJsonPStore');
-        ds.clearFilter();
         var dealStore = Ext.getStore('MyDealsStore');
-        dealStore.clearFilter();
         /*var UserLocationStore = Ext.getStore('UserLocation');
         var latitude = UserLocationStore.getAt(0).get('latitude');
         var longitude = UserLocationStore.getAt(0).get('longitude');
@@ -65801,6 +65799,8 @@ Ext.define('Ext.direct.Manager', {
                 Ext.Array.remove(records, rec.get('customerId'));
             }
         });
+        ds.clearFilter();
+        dealStore.clearFilter();
         ds.filterBy(function(record) {
             return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
         }, this);
