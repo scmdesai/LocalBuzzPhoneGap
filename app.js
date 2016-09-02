@@ -64195,10 +64195,6 @@ Ext.define('Ext.direct.Manager', {
                     navigator.geolocation.getCurrentPosition(function showPosition(position) {
                         latitude = position.coords.latitude;
                         longitude = position.coords.longitude;
-                        var myMask = new Ext.LoadMask(Ext.getBody(), {
-                                msg: "Loading Latest Buzz"
-                            });
-                        myMask.show();
                         //load stores
                         var store = Ext.getStore('MyJsonPStore');
                         var dealStore = Ext.getStore('MyDealsStore');
@@ -64219,7 +64215,6 @@ Ext.define('Ext.direct.Manager', {
                                 xtype: 'Main'
                             });
                         Ext.Viewport.setActiveItem(view);
-                        myMask.destroy();
                     }, /*  var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('StoreCalculateDistances');
@@ -64341,10 +64336,6 @@ Ext.define('Ext.direct.Manager', {
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
-            var myMask = new Ext.LoadMask(Ext.getBody(), {
-                    msg: "Loading Latest Buzz"
-                });
-            myMask.show();
             var store = Ext.getStore('MyJsonPStore');
             var dealStore = Ext.getStore('MyDealsStore');
             store.load({
@@ -64362,7 +64353,6 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'Main'
                 });
             Ext.Viewport.setActiveItem(view);
-            myMask.destroy();
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
@@ -64424,10 +64414,6 @@ Ext.define('Ext.direct.Manager', {
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
             var store = Ext.getStore('MyJsonPStore');
-            var myMask = new Ext.LoadMask(Ext.getBody(), {
-                    msg: "Loading Latest Buzz"
-                });
-            myMask.show();
             store.load({
                 params: {
                     zipcode: postalCode,
@@ -64443,7 +64429,6 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'Main'
                 });
             Ext.Viewport.setActiveItem(view);
-            myMask.destroy();
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
