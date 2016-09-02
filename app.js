@@ -66728,7 +66728,7 @@ Ext.define('Ext.direct.Manager', {
         }
         function addInfoWindow(marker, content, record, businessName) {
             google.maps.event.addListener(marker, 'mousedown', function() {
-                console.log('marker clicked');
+                console.log('Marker clicked ' + record.get('customerId'));
                 if (infoWindow) {
                     infoWindow.close();
                 }
@@ -66737,7 +66737,6 @@ Ext.define('Ext.direct.Manager', {
                 });
                 infoWindow.open(gmap, marker);
                 infoWindow.setContent(content);
-                console.log('Marker clicked ' + record.get('customerId'));
                 google.maps.event.addListener(infoWindow, 'domready', function() {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         var view;
