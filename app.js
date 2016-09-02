@@ -64210,7 +64210,6 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
-                        myMask.destroy();
                         userLocationStore.removeAll();
                         userLocationStore.add({
                             'latitude': latitude.toString(),
@@ -64220,6 +64219,7 @@ Ext.define('Ext.direct.Manager', {
                                 xtype: 'Main'
                             });
                         Ext.Viewport.setActiveItem(view);
+                        myMask.destroy();
                     }, /*  var store = Ext.getStore('MyDealsStore');
                         var stores = [];
                         var storesNearBy = Ext.getStore('StoreCalculateDistances');
@@ -64353,7 +64353,6 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
-            myMask.destroy();
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
             userLocationStore.add({
@@ -64363,6 +64362,7 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'Main'
                 });
             Ext.Viewport.setActiveItem(view);
+            myMask.destroy();
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
@@ -64434,7 +64434,6 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
-            myMask.destroy();
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
             userLocationStore.add({
@@ -64444,6 +64443,7 @@ Ext.define('Ext.direct.Manager', {
                     xtype: 'Main'
                 });
             Ext.Viewport.setActiveItem(view);
+            myMask.destroy();
         } else /* var store = Ext.getStore('MyDealsStore');
                 var userLocationStore = Ext.getStore('UserLocation');
                 var stores = [];
