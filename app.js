@@ -64210,7 +64210,7 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
-                        myMask.hide();
+                        myMask.destroy();
                         userLocationStore.removeAll();
                         userLocationStore.add({
                             'latitude': latitude.toString(),
@@ -64353,7 +64353,7 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
-            myMask.hide();
+            myMask.destroy();
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
             userLocationStore.add({
@@ -64434,7 +64434,7 @@ Ext.define('Ext.direct.Manager', {
                     distance: 50000
                 }
             });
-            myMask.hide();
+            myMask.destroy();
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
             userLocationStore.add({
