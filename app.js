@@ -66609,30 +66609,18 @@ Ext.define('Ext.direct.Manager', {
 
         }, this);*/
     onMyMapRender: function(map, gmap, eOpts) {
-        var lat, long;
-        var infoWindow;
-        var latitude, longitude;
-        var store = Ext.getStore('MyJsonPStore');
-        store.clearFilter();
-        var dealStore = Ext.getStore('MyDealsStore');
-        dealStore.clearFilter();
-        if (Ext.os.is('Android')) {
-            //If user has entered zipcode
-            if (Ext.getCmp('zipcodeLookUp').getValue()) {
-                //Get Postal Code and find out coords
-                var postalCode = Ext.getCmp('zipcodeLookUp').getValue();
-                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    latitude = json.results[0].geometry.location.lat;
-                    longitude = json.results[0].geometry.location.lng;
-                    console.log(latitude, longitude);
-                    //adjust the center of the map based on coords
-                    Ext.getCmp('mymap').setMapCenter({
-                        latitude: latitude,
-                        longitude: longitude
-                    });
-                    map.mapTypeControl = false;
-                    //var store = Ext.getStore('MyJsonPStore');
-                    /*store.load({
+        var userLocation = Ext.getStore('UserLocation');
+        latitude = userLocation.getAt(0).get('latitude');
+        longitude = userLocation.getAt(0).get('longitude');
+        //userLocationStore.removeAt(0);
+        console.log(latitude, longitude);
+        Ext.getCmp('mymap').setMapCenter({
+            latitude: latitude,
+            longitude: longitude
+        });
+        map.mapTypeControl = false;
+        //var store = Ext.getStore('MyJsonPStore');
+        /*store.load({
         			params: {
                         latitude: latitude,
                         longitude: longitude,
@@ -66640,554 +66628,135 @@ Ext.define('Ext.direct.Manager', {
 
                     }
                 });*/
-                    //Check if the store count is zero
-                    if (store.getCount() === 0) {
-                        Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                    }
-                    //store.clearFilter();
-                    //Add markers on the map for the stores
-                    var check_if_markers_visible = false;
-                    store.each(function(record) {
-                        var address = record.get('address');
-                        $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                            lat = json.results[0].geometry.location.lat;
-                            long = json.results[0].geometry.location.lng;
-                            //console.log(lat,long);
-                            var m = new google.maps.LatLng(lat, long);
-                            //businessName = record.get('businessName');
-                            addMarker(record.get('category'), record.get('businessName'), m, record);
-                        });
-                    });
-                    // This is to handle the Google maps T&C on the map to open in the same window
-                    $('#mymap').on('click', 'a', function(e) {
-                        e.preventDefault();
-                        window.open($(this).attr('href'), '_system', 'location=yes');
-                    });
-                    //place marker icons on the map
-                    var icons = {
-                            "0": {
-                                icon: 'resources/img/car.png'
-                            },
-                            "1": {
-                                icon: 'resources/img/supermarket.png'
-                            },
-                            "2": {
-                                icon: 'resources/img/barber.png'
-                            },
-                            "3": {
-                                icon: 'resources/img/restaurant.png'
-                            },
-                            "4": {
-                                icon: 'resources/img/museum_industry.png'
-                            },
-                            "5": {
-                                icon: 'resources/img/museum_art.png'
-                            },
-                            "6": {
-                                icon: 'resources/img/daycare.png'
-                            },
-                            "7": {
-                                icon: 'resources/img/flag-export.png'
-                            }
-                        };
-                    function addMarker(feature, businessName, m, record) {
-                        var ds = Ext.getStore('MyDealsStore');
-                        ds.clearFilter();
-                        ds.filter('customerId', record.get('customerId'));
-                        // ds.load();
-                        //ds.filter('dealStatus', 'Active');
-                        var count = ds.getCount();
-                        var category;
-                        if (feature === 'Automotive') {
-                            category = 0;
-                        } else if (feature === 'Shopping') {
-                            category = 1;
-                        } else if (feature === 'Salon & Spa') {
-                            category = 2;
-                        } else if (feature === 'Food & Dining') {
-                            category = 3;
-                        } else if (feature === 'Services') {
-                            category = 4;
-                        } else if (feature === 'Arts') {
-                            category = 5;
-                        } else if (feature === 'Education') {
-                            category = 6;
+        //Check if the store count is zero
+        if (store.getCount() === 0) {
+            Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
+        }
+        //store.clearFilter();
+        //Add markers on the map for the stores
+        var check_if_markers_visible = false;
+        store.each(function(record) {
+            var address = record.get('address');
+            $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                lat = json.results[0].geometry.location.lat;
+                long = json.results[0].geometry.location.lng;
+                //console.log(lat,long);
+                var m = new google.maps.LatLng(lat, long);
+                //businessName = record.get('businessName');
+                addMarker(record.get('category'), record.get('businessName'), m, record);
+            });
+        });
+        // This is to handle the Google maps T&C on the map to open in the same window
+        $('#mymap').on('click', 'a', function(e) {
+            e.preventDefault();
+            window.open($(this).attr('href'), '_system', 'location=yes');
+        });
+        //place marker icons on the map
+        var icons = {
+                "0": {
+                    icon: 'resources/img/car.png'
+                },
+                "1": {
+                    icon: 'resources/img/supermarket.png'
+                },
+                "2": {
+                    icon: 'resources/img/barber.png'
+                },
+                "3": {
+                    icon: 'resources/img/restaurant.png'
+                },
+                "4": {
+                    icon: 'resources/img/museum_industry.png'
+                },
+                "5": {
+                    icon: 'resources/img/museum_art.png'
+                },
+                "6": {
+                    icon: 'resources/img/daycare.png'
+                },
+                "7": {
+                    icon: 'resources/img/flag-export.png'
+                }
+            };
+        function addMarker(feature, businessName, m, record) {
+            var ds = Ext.getStore('MyDealsStore');
+            ds.clearFilter();
+            ds.filter('customerId', record.get('customerId'));
+            // ds.load();
+            //ds.filter('dealStatus', 'Active');
+            var count = ds.getCount();
+            var category;
+            if (feature === 'Automotive') {
+                category = 0;
+            } else if (feature === 'Shopping') {
+                category = 1;
+            } else if (feature === 'Salon & Spa') {
+                category = 2;
+            } else if (feature === 'Food & Dining') {
+                category = 3;
+            } else if (feature === 'Services') {
+                category = 4;
+            } else if (feature === 'Arts') {
+                category = 5;
+            } else if (feature === 'Education') {
+                category = 6;
+            } else {
+                category = 7;
+            }
+            /* var marker = new MarkerWithLabel ({
+                                            position: m,
+                                            map: gmap,
+                                            draggable: false,
+                                            animation: google.maps.Animation.DROP,
+                                            icon: icons[category].icon,
+                                            labelContent: count.toString(),
+                                            labelAnchor: new google.maps.Point(-10, 50),
+                                            labelClass: "labels",
+                                            labelStyle: {opacity: 1.0}
+
+
+
+                                        });*/
+            var marker = new google.maps.Marker({
+                    position: m,
+                    map: gmap,
+                    icon: icons[category].icon
+                });
+            var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
+            addInfoWindow(marker, content, record, businessName);
+        }
+        function addInfoWindow(marker, content, record, businessName) {
+            google.maps.event.addListener(marker, 'mousedown', function() {
+                if (infoWindow) {
+                    infoWindow.close();
+                }
+                infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
+                infoWindow.open(gmap, marker);
+                infoWindow.setContent(content);
+                console.log('Marker clicked ' + record.get('customerId'));
+                google.maps.event.addListener(infoWindow, 'domready', function() {
+                    document.getElementById('labelStore').addEventListener('mousedown', function() {
+                        var view;
+                        if (Ext.Viewport.getComponent('Info')) {
+                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            view.setRecord(record);
                         } else {
-                            category = 7;
+                            view = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
+                            view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
                         }
-                        /* var marker = new MarkerWithLabel ({
-                                            position: m,
-                                            map: gmap,
-                                            draggable: false,
-                                            animation: google.maps.Animation.DROP,
-                                            icon: icons[category].icon,
-                                            labelContent: count.toString(),
-                                            labelAnchor: new google.maps.Point(-10, 50),
-                                            labelClass: "labels",
-                                            labelStyle: {opacity: 1.0}
-
-
-
-                                        });*/
-                        var marker = new google.maps.Marker({
-                                position: m,
-                                map: gmap,
-                                icon: icons[category].icon
-                            });
-                        var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
-                        addInfoWindow(marker, content, record, businessName);
-                    }
-                    function addInfoWindow(marker, content, record, businessName) {
-                        google.maps.event.addListener(marker, 'mousedown', function() {
-                            if (infoWindow) {
-                                infoWindow.close();
-                            }
-                            infoWindow = new google.maps.InfoWindow({
-                                content: content
-                            });
-                            infoWindow.open(gmap, marker);
-                            infoWindow.setContent(content);
-                            console.log('Marker clicked ' + record.get('customerId'));
-                            google.maps.event.addListener(infoWindow, 'domready', function() {
-                                document.getElementById('labelStore').addEventListener('mousedown', function() {
-                                    var view;
-                                    if (Ext.Viewport.getComponent('Info')) {
-                                        view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-                                        view.setRecord(record);
-                                    } else {
-                                        view = Ext.Viewport.add({
-                                            xtype: 'contactinfo'
-                                        });
-                                        view.setRecord(record);
-                                        Ext.Viewport.setActiveItem(view);
-                                    }
-                                });
-                                google.maps.event.addListener(gmap, 'click', function() {
-                                    if (infoWindow) {
-                                        infoWindow.close();
-                                    }
-                                });
-                            });
-                        });
-                    }
-                });
-            } else {
-                //Android user using location
-                var store = Ext.getStore('MyJsonPStore');
-                /*store.load({
-                    params: {
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance : 50000
-
-                    }
-                });*/
-                var check_if_markers_visible = false;
-                store.each(function(record) {
-                    var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
                     });
-                });
-                $('#mymap').on('click', 'a', function(e) {
-                    e.preventDefault();
-                    window.open($(this).attr('href'), '_system', 'location=yes');
-                });
-                var icons = {
-                        "0": {
-                            icon: 'resources/img/car.png'
-                        },
-                        "1": {
-                            icon: 'resources/img/supermarket.png'
-                        },
-                        "2": {
-                            icon: 'resources/img/barber.png'
-                        },
-                        "3": {
-                            icon: 'resources/img/restaurant.png'
-                        },
-                        "4": {
-                            icon: 'resources/img/museum_industry.png'
-                        },
-                        "5": {
-                            icon: 'resources/img/museum_art.png'
-                        },
-                        "6": {
-                            icon: 'resources/img/daycare.png'
-                        },
-                        "7": {
-                            icon: 'resources/img/flag-export.png'
-                        }
-                    };
-                function addMarker(feature, businessName, m, record) {
-                    var ds = Ext.getStore('MyDealsStore');
-                    ds.clearFilter();
-                    ds.filter('customerId', record.get('customerId'));
-                    ds.load();
-                    ds.filter('dealStatus', 'Active');
-                    var count = ds.getCount();
-                    var category;
-                    if (feature === 'Automotive') {
-                        category = 0;
-                    } else if (feature === 'Shopping') {
-                        category = 1;
-                    } else if (feature === 'Salon & Spa') {
-                        category = 2;
-                    } else if (feature === 'Food & Dining') {
-                        category = 3;
-                    } else if (feature === 'Services') {
-                        category = 4;
-                    } else if (feature === 'Arts') {
-                        category = 5;
-                    } else if (feature === 'Education') {
-                        category = 6;
-                    } else {
-                        category = 7;
-                    }
-                    /* var marker = new MarkerWithLabel ({
-                                            position: m,
-                                            map: gmap,
-                                            draggable: false,
-                                            animation: google.maps.Animation.DROP,
-                                            icon: icons[category].icon,
-                                            labelContent: count.toString(),
-                                            labelAnchor: new google.maps.Point(-10, 50),
-                                            labelClass: "labels",
-                                            labelStyle: {opacity: 1.0}
-
-
-
-                                        });*/
-                    var marker = new google.maps.Marker({
-                            position: m,
-                            map: gmap,
-                            icon: icons[category].icon
-                        });
-                    var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
-                    addInfoWindow(marker, content, record, businessName);
-                }
-                function addInfoWindow(marker, content, record, businessName) {
-                    google.maps.event.addListener(marker, 'mousedown', function() {
+                    google.maps.event.addListener(gmap, 'click', function() {
                         if (infoWindow) {
                             infoWindow.close();
                         }
-                        infoWindow = new google.maps.InfoWindow({
-                            content: content
-                        });
-                        infoWindow.open(gmap, marker);
-                        infoWindow.setContent(content);
-                        console.log('Marker clicked ' + record.get('customerId'));
-                        google.maps.event.addListener(infoWindow, 'domready', function() {
-                            document.getElementById('labelStore').addEventListener('mousedown', function() {
-                                var view;
-                                if (Ext.Viewport.getComponent('Info')) {
-                                    view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-                                    view.setRecord(record);
-                                } else {
-                                    view = Ext.Viewport.add({
-                                        xtype: 'contactinfo'
-                                    });
-                                    view.setRecord(record);
-                                    Ext.Viewport.setActiveItem(view);
-                                }
-                            });
-                            google.maps.event.addListener(gmap, 'click', function() {
-                                if (infoWindow) {
-                                    infoWindow.close();
-                                }
-                            });
-                        });
-                    });
-                }
-            }
-        } else {
-            //iOS user entered zipcode
-            if (Ext.getCmp('zipcodeLookUp1').getValue()) {
-                var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
-                var userLocation = Ext.getStore('UserLocation');
-                latitude = userLocation.getAt(0).get('latitude');
-                longitude = userLocation.getAt(0).get('longitude');
-                //userLocationStore.removeAt(0);
-                console.log(latitude, longitude);
-                Ext.getCmp('mymap').setMapCenter({
-                    latitude: latitude,
-                    longitude: longitude
-                });
-                map.mapTypeControl = false;
-                //var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
-                var store = Ext.getStore('MyJsonPStore');
-                store.load({
-                    params: {
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance: 50000
-                    }
-                });
-                if (store.getCount() === 0) {
-                    Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-                }
-                //store.clearFilter();
-                var check_if_markers_visible = false;
-                store.each(function(record) {
-                    var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
                     });
                 });
-                $('#mymap').on('click', 'a', function(e) {
-                    e.preventDefault();
-                    window.open($(this).attr('href'), '_system', 'location=yes');
-                });
-                var icons = {
-                        "0": {
-                            icon: 'resources/img/car.png'
-                        },
-                        "1": {
-                            icon: 'resources/img/supermarket.png'
-                        },
-                        "2": {
-                            icon: 'resources/img/barber.png'
-                        },
-                        "3": {
-                            icon: 'resources/img/restaurant.png'
-                        },
-                        "4": {
-                            icon: 'resources/img/museum_industry.png'
-                        },
-                        "5": {
-                            icon: 'resources/img/museum_art.png'
-                        },
-                        "6": {
-                            icon: 'resources/img/daycare.png'
-                        },
-                        "7": {
-                            icon: 'resources/img/flag-export.png'
-                        }
-                    };
-                function addMarker(feature, businessName, m, record) {
-                    var ds = Ext.getStore('MyDealsStore');
-                    ds.clearFilter();
-                    ds.filter('customerId', record.get('customerId'));
-                    // ds.load();
-                    //ds.filter('dealStatus', 'Active');
-                    var count = ds.getCount();
-                    var category;
-                    if (feature === 'Automotive') {
-                        category = 0;
-                    } else if (feature === 'Shopping') {
-                        category = 1;
-                    } else if (feature === 'Salon & Spa') {
-                        category = 2;
-                    } else if (feature === 'Food & Dining') {
-                        category = 3;
-                    } else if (feature === 'Services') {
-                        category = 4;
-                    } else if (feature === 'Arts') {
-                        category = 5;
-                    } else if (feature === 'Education') {
-                        category = 6;
-                    } else {
-                        category = 7;
-                    }
-                    /* var marker = new MarkerWithLabel ({
-                                            position: m,
-                                            map: gmap,
-                                            draggable: false,
-                                            animation: google.maps.Animation.DROP,
-                                            icon: icons[category].icon,
-                                            labelContent: count.toString(),
-                                            labelAnchor: new google.maps.Point(-10, 50),
-                                            labelClass: "labels",
-                                            labelStyle: {opacity: 1.0}
-
-
-
-                                        });*/
-                    var marker = new google.maps.Marker({
-                            position: m,
-                            map: gmap,
-                            icon: icons[category].icon
-                        });
-                    var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
-                    addInfoWindow(marker, content, record, businessName);
-                }
-                function addInfoWindow(marker, content, record, businessName) {
-                    google.maps.event.addListener(marker, 'mousedown', function() {
-                        if (infoWindow) {
-                            infoWindow.close();
-                        }
-                        infoWindow = new google.maps.InfoWindow({
-                            content: content
-                        });
-                        infoWindow.open(gmap, marker);
-                        infoWindow.setContent(content);
-                        console.log('Marker clicked ' + record.get('customerId'));
-                        google.maps.event.addListener(infoWindow, 'domready', function() {
-                            document.getElementById('labelStore').addEventListener('mousedown', function() {
-                                var view;
-                                if (Ext.Viewport.getComponent('Info')) {
-                                    view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-                                    view.setRecord(record);
-                                } else {
-                                    view = Ext.Viewport.add({
-                                        xtype: 'contactinfo'
-                                    });
-                                    view.setRecord(record);
-                                    Ext.Viewport.setActiveItem(view);
-                                }
-                            });
-                            google.maps.event.addListener(gmap, 'click', function() {
-                                if (infoWindow) {
-                                    infoWindow.close();
-                                }
-                            });
-                        });
-                    });
-                }
-            } else {
-                //iOS using current location
-                var store = Ext.getStore('MyJsonPStore');
-                /*store.load({
-                    params: {
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance : 50000
-
-                    }
-                });*/
-                var check_if_markers_visible = false;
-                store.each(function(record) {
-                    var address = record.get('address');
-                    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                        lat = json.results[0].geometry.location.lat;
-                        long = json.results[0].geometry.location.lng;
-                        //console.log(lat,long);
-                        var m = new google.maps.LatLng(lat, long);
-                        //businessName = record.get('businessName');
-                        addMarker(record.get('category'), record.get('businessName'), m, record);
-                    });
-                });
-                $('#mymap').on('click', 'a', function(e) {
-                    e.preventDefault();
-                    window.open($(this).attr('href'), '_system', 'location=yes');
-                });
-                var icons = {
-                        "0": {
-                            icon: 'resources/img/car.png'
-                        },
-                        "1": {
-                            icon: 'resources/img/supermarket.png'
-                        },
-                        "2": {
-                            icon: 'resources/img/barber.png'
-                        },
-                        "3": {
-                            icon: 'resources/img/restaurant.png'
-                        },
-                        "4": {
-                            icon: 'resources/img/museum_industry.png'
-                        },
-                        "5": {
-                            icon: 'resources/img/museum_art.png'
-                        },
-                        "6": {
-                            icon: 'resources/img/daycare.png'
-                        },
-                        "7": {
-                            icon: 'resources/img/flag-export.png'
-                        }
-                    };
-                function addMarker(feature, businessName, m, record) {
-                    var ds = Ext.getStore('MyDealsStore');
-                    ds.clearFilter();
-                    ds.filter('customerId', record.get('customerId'));
-                    //ds.load();
-                    //ds.filter('dealStatus', 'Active');
-                    var count = ds.getCount();
-                    var category;
-                    if (feature === 'Automotive') {
-                        category = 0;
-                    } else if (feature === 'Shopping') {
-                        category = 1;
-                    } else if (feature === 'Salon & Spa') {
-                        category = 2;
-                    } else if (feature === 'Food & Dining') {
-                        category = 3;
-                    } else if (feature === 'Services') {
-                        category = 4;
-                    } else if (feature === 'Arts') {
-                        category = 5;
-                    } else if (feature === 'Education') {
-                        category = 6;
-                    } else {
-                        category = 7;
-                    }
-                    /* var marker = new MarkerWithLabel ({
-                                            position: m,
-                                            map: gmap,
-                                            draggable: false,
-                                            animation: google.maps.Animation.DROP,
-                                            icon: icons[category].icon,
-                                            labelContent: count.toString(),
-                                            labelAnchor: new google.maps.Point(-10, 50),
-                                            labelClass: "labels",
-                                            labelStyle: {opacity: 1.0}
-
-
-
-                                        });*/
-                    var marker = new google.maps.Marker({
-                            position: m,
-                            map: gmap,
-                            icon: icons[category].icon
-                        });
-                    var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
-                    addInfoWindow(marker, content, record, businessName);
-                }
-                function addInfoWindow(marker, content, record, businessName) {
-                    google.maps.event.addListener(marker, 'mousedown', function() {
-                        if (infoWindow) {
-                            infoWindow.close();
-                        }
-                        infoWindow = new google.maps.InfoWindow({
-                            content: content
-                        });
-                        infoWindow.open(gmap, marker);
-                        infoWindow.setContent(content);
-                        console.log('Marker clicked ' + record.get('customerId'));
-                        google.maps.event.addListener(infoWindow, 'domready', function() {
-                            document.getElementById('labelStore').addEventListener('mousedown', function() {
-                                var view;
-                                if (Ext.Viewport.getComponent('Info')) {
-                                    view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
-                                    view.setRecord(record);
-                                } else {
-                                    view = Ext.Viewport.add({
-                                        xtype: 'contactinfo'
-                                    });
-                                    view.setRecord(record);
-                                    Ext.Viewport.setActiveItem(view);
-                                }
-                            });
-                            google.maps.event.addListener(gmap, 'click', function() {
-                                if (infoWindow) {
-                                    infoWindow.close();
-                                }
-                            });
-                        });
-                    });
-                }
-            }
+            });
         }
     },
     onBuzzNearMeActivate: function(newActiveItem, container, oldActiveItem, eOpts) {
