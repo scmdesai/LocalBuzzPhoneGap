@@ -66624,21 +66624,19 @@ Ext.define('Ext.direct.Manager', {
             longitude: longitude
         });
         map.mapTypeControl = false;
-        //var store = Ext.getStore('MyJsonPStore');
-        /*store.load({
-        			params: {
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance : 50000
-
-                    }
-                });*/
-        //Check if the store count is zero
+        //var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
+        var store = Ext.getStore('MyJsonPStore');
+        store.load({
+            params: {
+                latitude: latitude,
+                longitude: longitude,
+                distance: 50000
+            }
+        });
         if (store.getCount() === 0) {
             Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
         }
         //store.clearFilter();
-        //Add markers on the map for the stores
         var check_if_markers_visible = false;
         store.each(function(record) {
             var address = record.get('address');
@@ -66651,12 +66649,10 @@ Ext.define('Ext.direct.Manager', {
                 addMarker(record.get('category'), record.get('businessName'), m, record);
             });
         });
-        // This is to handle the Google maps T&C on the map to open in the same window
         $('#mymap').on('click', 'a', function(e) {
             e.preventDefault();
             window.open($(this).attr('href'), '_system', 'location=yes');
         });
-        //place marker icons on the map
         var icons = {
                 "0": {
                     icon: 'resources/img/car.png'
