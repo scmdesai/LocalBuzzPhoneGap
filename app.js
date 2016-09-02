@@ -64415,17 +64415,15 @@ Ext.define('Ext.direct.Manager', {
             console.log(postalCode);
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
-            $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=" + postalCode + "&country=US&maxRows=1&username=1234_5678", function(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    var jsonArea = JSON.parse(body);
-                    var latitude = jsonArea.postalCodes[0].lat;
-                    var longitude = jsonArea.postalCodes[0].lng;
-                    console.log(latitude + "," + longitude);
-                    userLocationStore.add({
-                        'latitude': latitude,
-                        'longitude': longitude
-                    });
-                }
+            $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=" + postalCode + "&country=US&maxRows=1&username=1234_5678", function(body) {
+                var jsonArea = JSON.parse(body);
+                var latitude = jsonArea.postalCodes[0].lat;
+                var longitude = jsonArea.postalCodes[0].lng;
+                console.log(latitude + "," + longitude);
+                userLocationStore.add({
+                    'latitude': latitude,
+                    'longitude': longitude
+                });
             });
             var store = Ext.getStore('MyJsonPStore');
             store.load({
