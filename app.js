@@ -66652,10 +66652,12 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
         }
         //store.clearFilter();
+        console.log('Store count: ' + store.getCount());
         //place markers on map
         var check_if_markers_visible = false;
         store.each(function(record) {
-            //var address = record.get('address');
+            console.log('Business Name: ' + record.get('businessName'));
+            var address = record.get('address');
             //$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
             console.log('Latitude from DB: ' + record.get('latitude'));
             console.log('Longitude from DB: ' + record.get('longitude'));
