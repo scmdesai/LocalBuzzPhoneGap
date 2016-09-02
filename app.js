@@ -66626,6 +66626,7 @@ Ext.define('Ext.direct.Manager', {
         longitude = userLocation.getAt(0).get('longitude');
         //userLocationStore.removeAt(0);
         console.log(latitude, longitude);
+        //set center of map
         Ext.getCmp('mymap').setMapCenter({
             latitude: latitude,
             longitude: longitude
@@ -66633,17 +66634,19 @@ Ext.define('Ext.direct.Manager', {
         map.mapTypeControl = false;
         //var postalCode = Ext.getCmp('zipcodeLookUp1').getValue();
         var store = Ext.getStore('MyJsonPStore');
-        store.load({
-            params: {
-                latitude: latitude,
-                longitude: longitude,
-                distance: 50000
-            }
-        });
+        /* store.load({
+                        params: {
+                            latitude: latitude,
+                            longitude: longitude,
+                            distance : 50000
+
+                        }
+                    });*/
         if (store.getCount() === 0) {
             Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
         }
         //store.clearFilter();
+        //place markers on map
         var check_if_markers_visible = false;
         store.each(function(record) {
             var address = record.get('address');
@@ -66733,6 +66736,7 @@ Ext.define('Ext.direct.Manager', {
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
+        //click on marker event
         function addInfoWindow(marker, content, record, businessName) {
             google.maps.event.addListener(marker, 'mousedown', function() {
                 console.log('Marker clicked ' + record.get('customerId'));
