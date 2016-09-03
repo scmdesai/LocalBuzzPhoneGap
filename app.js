@@ -66589,24 +66589,25 @@ Ext.define('Ext.direct.Manager', {
             } else {
                 category = 8;
             }
-            var marker = new MarkerWithLabel({
+            /* var marker = new MarkerWithLabel ({
+                                            position: m,
+                                            map: gmap,
+                                            draggable: false,
+                                            animation: google.maps.Animation.DROP,
+                                            icon: icons[category].icon,
+                                            labelContent: count.toString(),
+                                            labelAnchor: new google.maps.Point(-10, 50),
+                                            labelClass: "labels",
+                                            labelStyle: {opacity: 1.0}
+
+
+
+                                        });*/
+            var marker = new google.maps.Marker({
                     position: m,
                     map: gmap,
-                    draggable: false,
-                    animation: google.maps.Animation.DROP,
-                    icon: icons[category].icon,
-                    labelContent: count.toString(),
-                    labelAnchor: new google.maps.Point(-10, 50),
-                    labelClass: "labels",
-                    labelStyle: {
-                        opacity: 1
-                    }
+                    icon: icons[category].icon
                 });
-            /* var marker = new google.maps.Marker({
-                            position: m,
-                            map: gmap,
-                            icon: icons[category].icon
-                        });*/
             var content = '<h4 id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
