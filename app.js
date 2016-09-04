@@ -66567,10 +66567,10 @@ Ext.define('Ext.direct.Manager', {
                     icon: 'resources/img/daycare.png'
                 },
                 "7": {
-                    icon: 'resources/img/flag-export.png'
+                    icon: 'resources/img/fitness.png'
                 },
                 "8": {
-                    icon: 'resources/img/fitness.png'
+                    icon: 'resources/img/flag-export.png'
                 }
             };
         function addMarker(feature, businessName, m, record) {
