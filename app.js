@@ -66640,11 +66640,13 @@ Ext.define('Ext.direct.Manager', {
                         var view;
                         if (Ext.Viewport.getComponent('Info')) {
                             view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            console.log('Info exists');
                             view.setRecord(record);
                         } else {
                             view = Ext.Viewport.add({
                                 xtype: 'contactinfo'
                             });
+                            console.log('Info does not exist');
                             view.setRecord(record);
                             Ext.Viewport.setActiveItem(view);
                         }
