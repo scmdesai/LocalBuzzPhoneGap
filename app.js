@@ -65867,7 +65867,7 @@ Ext.define('Ext.direct.Manager', {
                 } else {
                     //html = '<img style="width:100%;" src="'+res.URI+'">';
                     //document.body.innerHTML = html;
-                    window.plugins.socialsharing.share(null, 'Hi! Check out the Latest Buzz from LocalBuzz', res.URI, null);
+                    window.plugins.socialsharing.share(null, 'Hi! Check out this latest buzz from Local Buzz!', res.URI, null);
                 }
             }, 50);
             Ext.get('share').show();
@@ -66201,6 +66201,9 @@ Ext.define('Ext.direct.Manager', {
                             store.clearFilter();
                             var dealStore = Ext.getStore('MyDealsStore');
                             dealStore.clearFilter();
+                            if (dealStore.getCount() === 0) {
+                                Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
+                            }
                         },
                         event: 'painted'
                     }
