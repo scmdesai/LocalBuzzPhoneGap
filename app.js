@@ -64431,7 +64431,7 @@ Ext.define('Ext.direct.Manager', {
             console.log(postalCode);
             var userLocationStore = Ext.getStore('UserLocation');
             userLocationStore.removeAt(0);
-            $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?postalcode=" + postalCode + "&country=US&username=1234_5678", function(json) {
+            $.getJSON("http://api.geonames.org/postalCodeSearchJSON?postalcode=" + postalCode + "&maxRows=10&country=US&username=1234_5678", function(json) {
                 var latitude = (json.postalCodes[0].lat).toString();
                 var longitude = (json.postalCodes[0].lng).toString();
                 console.log(latitude + "," + longitude);
