@@ -64125,7 +64125,7 @@ Ext.define('Ext.direct.Manager', {
                 }
             });
         } else {
-            Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
+            Ext.getCmp('latestbuzz1').setHtml('<h3 class="emptyText">No active buzz at this time.</h3>');
         }
     }
 }, 0, 0, 0, 0, [
