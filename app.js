@@ -64589,7 +64589,9 @@ Ext.define('Ext.direct.Manager', {
                             } else {
                                 Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('tabbar'));
                                 var store = Ext.getStore('MyJsonPStore');
+                                var dealStore = Ext.getStore('MyDealsStore');
                                 store.clearFilter();
+                                dealStore.clearFilter();
                             }
                         },
                         centered: false,
