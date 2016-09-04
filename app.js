@@ -66639,9 +66639,13 @@ Ext.define('Ext.direct.Manager', {
                     document.getElementById('labelStore').addEventListener('mousedown', function() {
                         var view;
                         if (Ext.Viewport.getComponent('Info')) {
-                            view = Ext.Viewport.setActiveItem(Ext.Viewport.getComponent('Info'));
+                            Ext.Viewport.getComponent('Info').destroy();
                             console.log('Info exists');
+                            view = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
                             view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
                         } else {
                             view = Ext.Viewport.add({
                                 xtype: 'contactinfo'
