@@ -66201,6 +66201,7 @@ Ext.define('Ext.direct.Manager', {
                             store.clearFilter();
                             var dealStore = Ext.getStore('MyDealsStore');
                             dealStore.clearFilter();
+                            console.log(dealStore.getCount());
                             if (dealStore.getCount() === 0) {
                                 Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
                             }
