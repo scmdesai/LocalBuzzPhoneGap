@@ -66670,6 +66670,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onTabbarInitialize: function(component, eOpts) {
         var dealStore = Ext.getStore('MyDealsStore');
+        console.log(dealStore.getCount());
         if (dealStore.getCount() === 0) {
             Ext.getCmp('latestbuzz1').setEmptyText('No active buzz at this time');
         }
