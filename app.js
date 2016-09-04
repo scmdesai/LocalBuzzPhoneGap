@@ -64730,15 +64730,17 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
+                                if (Ext.getCmp('address1').getValue()) {
+                                    var queryString = encodeURIComponent(Ext.getCmp('address1').getValue());
+                                    var url;
+                                    if (Ext.os.is('Android')) {
+                                        url = 'geo:0,0?q=' + queryString;
+                                    } else {
+                                        url = 'maps:q=' + queryString;
+                                    }
+                                    //Ext.device.Device.openURL(url);
+                                    window.open(url, '_system');
                                 }
-                                //Ext.device.Device.openURL(url);
-                                window.open(url, '_system');
                             });
                         },
                         event: 'painted'
@@ -64805,15 +64807,17 @@ Ext.define('Ext.direct.Manager', {
                                 to:          Ext.getCmp('email').getValue(), // email addresses for TO field
                                 isHtml:    false, // indicats if the body is HTML or plain text
                                 });*/
-                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
-                                null, [
-                                    Ext.getCmp('email1').getValue()
-                                ], // TO: must be null or an array
-                                null, // CC: must be null or an array
-                                null, // BCC: must be null or an array
-                                null, // FILES: can be null, a string, or an array
-                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
-                                null);
+                                if (Ext.getCmp('email1').getValue()) {
+                                    window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+                                    null, [
+                                        Ext.getCmp('email1').getValue()
+                                    ], // TO: must be null or an array
+                                    null, // CC: must be null or an array
+                                    null, // BCC: must be null or an array
+                                    null, // FILES: can be null, a string, or an array
+                                    null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
+                                    null);
+                                }
                             });
                         },
                         // called when sh*t hits the fan
@@ -64847,7 +64851,9 @@ Ext.define('Ext.direct.Manager', {
                                 // console.log(Ext.getCmp('phoneNumber').getValue());
                                 var numberToDial = Ext.getCmp('phoneNumber1').getValue();
                                 //window.location = 'tel:'+ numberToDial ;
-                                window.open('tel:' + numberToDial, '_system');
+                                if (numberToDial) {
+                                    window.open('tel:' + numberToDial, '_system');
+                                }
                             });
                         },
                         event: 'painted'
@@ -65077,15 +65083,17 @@ Ext.define('Ext.direct.Manager', {
                                 to:          Ext.getCmp('email').getValue(), // email addresses for TO field
                                 isHtml:    false, // indicats if the body is HTML or plain text
                                 });*/
-                                window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
-                                null, [
-                                    Ext.getCmp('email').getValue()
-                                ], // TO: must be null or an array
-                                null, // CC: must be null or an array
-                                null, // BCC: must be null or an array
-                                null, // FILES: can be null, a string, or an array
-                                null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
-                                null);
+                                if (Ext.getCmp('email').getValue()) {
+                                    window.plugins.socialsharing.shareViaEmail(null, // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+                                    null, [
+                                        Ext.getCmp('email').getValue()
+                                    ], // TO: must be null or an array
+                                    null, // CC: must be null or an array
+                                    null, // BCC: must be null or an array
+                                    null, // FILES: can be null, a string, or an array
+                                    null, // called when sharing worked, but also when the user cancelled sharing via email (I've found no way to detect the difference)
+                                    null);
+                                }
                             });
                         },
                         // called when sh*t hits the fan
@@ -65123,7 +65131,9 @@ Ext.define('Ext.direct.Manager', {
                                 console.log(Ext.getCmp('phoneNumber').getValue());
                                 var numberToDial = Ext.getCmp('phoneNumber').getValue();
                                 // window.location = 'tel:'+ numberToDial ;
-                                window.open('tel:' + numberToDial, '_system');
+                                if (numberToDial) {
+                                    window.open('tel:' + numberToDial, '_system');
+                                }
                             });
                         },
                         event: 'painted'
@@ -65214,16 +65224,18 @@ Ext.define('Ext.direct.Manager', {
                     {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
-                                console.log('Address button tapped');
-                                var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
-                                var url;
-                                if (Ext.os.is('Android')) {
-                                    url = 'geo:0,0?q=' + queryString;
-                                } else {
-                                    url = 'maps:q=' + queryString;
+                                if (Ext.getCmp('address').getValue()) {
+                                    console.log('Address button tapped');
+                                    var queryString = encodeURIComponent(Ext.getCmp('address').getValue());
+                                    var url;
+                                    if (Ext.os.is('Android')) {
+                                        url = 'geo:0,0?q=' + queryString;
+                                    } else {
+                                        url = 'maps:q=' + queryString;
+                                    }
+                                    //Ext.device.Device.openURL(url);
+                                    window.open(url, '_system');
                                 }
-                                //Ext.device.Device.openURL(url);
-                                window.open(url, '_system');
                             });
                         },
                         event: 'painted'
