@@ -64124,6 +64124,8 @@ Ext.define('Ext.direct.Manager', {
                     customerId: dealParams
                 }
             });
+        } else {
+            Ext.getCmp('latestbuzz1').setHtml('<h3 class="emptyText">No active buzz at this time.</h3>');
         }
     }
 }, 0, 0, 0, 0, [
@@ -66467,10 +66469,6 @@ Ext.define('Ext.direct.Manager', {
                 fn: 'onBuzzNearMeActivate',
                 event: 'activate',
                 delegate: '#BuzzNearMe'
-            },
-            {
-                fn: 'onTabbarInitialize',
-                event: 'initialize'
             }
         ]
     },
@@ -66666,13 +66664,6 @@ Ext.define('Ext.direct.Manager', {
         store.clearFilter();
         if (store.getCount() === 0) {
             Ext.Msg.alert('No Buzz found', 'Please check back later', null, null);
-        }
-    },
-    onTabbarInitialize: function(component, eOpts) {
-        var dealStore = Ext.getStore('MyDealsStore');
-        console.log(dealStore.getCount());
-        if (dealStore.getCount() === 0) {
-            Ext.getCmp('latestbuzz1').setEmptyText('No active buzz at this time');
         }
     }
 }, 0, [
