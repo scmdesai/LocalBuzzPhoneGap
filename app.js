@@ -64282,7 +64282,7 @@ Ext.define('Ext.direct.Manager', {
                     }
                 },
                 height: '9vh',
-                left: '18%',
+                left: '20%',
                 style: 'font-size:5vw',
                 top: '1%',
                 ui: 'action',
