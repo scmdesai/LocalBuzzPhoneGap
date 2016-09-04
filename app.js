@@ -64212,6 +64212,9 @@ Ext.define('Ext.direct.Manager', {
                                 distance: 50000
                             }
                         });
+                        if (dealStore.getCount() === 0) {
+                            Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
+                        }
                         userLocationStore.removeAll();
                         var view = Ext.Viewport.add({
                                 xtype: 'Main'
@@ -64364,6 +64367,10 @@ Ext.define('Ext.direct.Manager', {
                         distance: 50000
                     }
                 });
+                var dealStore = Ext.getStore('MyDealsStore');
+                if (dealStore.getCount() === 0) {
+                    Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
+                }
                 var view = Ext.Viewport.add({
                         xtype: 'Main'
                     });
@@ -64447,6 +64454,10 @@ Ext.define('Ext.direct.Manager', {
                         distance: 50000
                     }
                 });
+                var dealStore = Ext.getStore('MyDealsStore');
+                if (dealStore.getCount() === 0) {
+                    Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
+                }
                 var view = Ext.Viewport.add({
                         xtype: 'Main'
                     });
@@ -66201,10 +66212,6 @@ Ext.define('Ext.direct.Manager', {
                             store.clearFilter();
                             var dealStore = Ext.getStore('MyDealsStore');
                             dealStore.clearFilter();
-                            console.log(dealStore.getCount());
-                            if (dealStore.getCount() === 0) {
-                                Ext.getCmp('latestbuzz1').setEmptyText('<h3 class="emptyText">No active buzz at this time.</h3>');
-                            }
                         },
                         event: 'painted'
                     }
