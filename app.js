@@ -64769,7 +64769,9 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
                                 var url = Ext.getCmp('website2').getValue();
-                                window.open(url, '_system', 'location=yes');
+                                if (url) {
+                                    window.open(url, '_system', 'location=yes');
+                                }
                             });
                         },
                         event: 'painted'
@@ -65036,7 +65038,9 @@ Ext.define('Ext.direct.Manager', {
                         fn: function(element, eOpts) {
                             element.addListener('tap', function() {
                                 var url = Ext.getCmp('website').getValue();
-                                window.open(url, '_system', 'location=yes');
+                                if (url) {
+                                    window.open(url, '_system', 'location=yes');
+                                }
                             });
                         },
                         event: 'painted'
