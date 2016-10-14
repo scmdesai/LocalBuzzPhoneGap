@@ -64953,28 +64953,28 @@ Ext.define('Ext.direct.Manager', {
             if (record.get('phoneNumber')) {
                 this.down('#phoneNumber1').setValue(record.get('phoneNumber'));
                 //this.down('#phoneNumber').setText(record.get('phoneNumber'));
-                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw;text-decoration:none!important">' + record.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
+                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw;text-decoration:none!important">' + record.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
             } else {
-                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
+                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
             }
             if (record.get('emailAddress')) {
                 this.down('#email1').setValue(record.get('emailAddress'));
-                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw">' + record.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
+                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw">' + record.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
             } else {
-                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
+                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
             }
             if (record.get('websiteDisplayName')) {
                 this.down('#website121').setValue(record.get('websiteDisplayName'));
-                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
+                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
                 this.down('#website12').setValue(record.get('website'));
             } else {
-                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
+                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
             }
             if (record.get('address')) {
                 this.down('#address1').setValue(record.get('address'));
-                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:4vw;white-spacing:normal;word-break:break-all;">' + record.get('address') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
+                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw;white-spacing:normal;word-break:break-all;">' + record.get('address') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
             } else {
-                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
+                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
             }
             // console.log(store.getData());
             if (isFavorite === true) {
