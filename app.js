@@ -62624,12 +62624,8 @@ function() {
         }
     },
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
-        var myScroll = new IScroll('#welcomeScreen', {
-                scrollX: true,
-                scrollY: true,
-                mouseWheel: true,
-                wheelAction: 'zoom'
-            });
+        var height = Ext.Viewport.getHeight();
+        window.scrollBy(0, height * 0.32);
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
@@ -65613,7 +65609,6 @@ Ext.application({
             scrollable: true
         },
         scrollable: true,
-        preventPanning: false,
         xclass: 'Ext.viewport.Viewport'
     },
     flagCurrentLocation: false,
