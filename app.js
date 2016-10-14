@@ -64346,7 +64346,7 @@ function() {
             //store.filter('businessName', businessName);
             var rec = store.findRecord('businessName', businessName);
             //var rec = store.getAt(0);
-            this.down('#nameTxt8').setHtml('<h5 style="font-family:Arial"><b>About ' + businessName + '</b></h5>');
+            this.down('#nameTxt8').setHtml('<h5 style="font-family:Arial;font-size:5vw"><b>About ' + businessName + '</b></h5>');
         }
     }
 }, 0, [
