@@ -64443,8 +64443,12 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
+        Ext.Msg.alert('Focus', null, null, null);
         var myScroll = new IScroll('#welcomeScreen', {
-                scrollY: true
+                scrollX: true,
+                scrollY: true,
+                mouseWheel: true,
+                wheelAction: 'zoom'
             });
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
