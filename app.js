@@ -62624,7 +62624,8 @@ function() {
         }
     },
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
-        var height = Ext.Viewport.getHeight();
+        var height = window.innerHeight;
+        console.log(height);
         window.scrollBy(0, height * 0.32);
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
