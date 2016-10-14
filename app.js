@@ -62333,6 +62333,7 @@ function() {
  */
 (Ext.cmd.derive('LocalBuzz.view.WelcomeScreen', Ext.Panel, {
     config: {
+        height: '90%',
         id: 'welcomeScreen',
         itemId: 'welcomeScreen',
         style: 'background-image:url(resources/img/whitetexture.png);',
@@ -62624,9 +62625,6 @@ function() {
         }
     },
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
-        var height = window.innerHeight;
-        console.log(height);
-        window.scrollBy(0, height * 0.32);
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
