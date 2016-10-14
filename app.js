@@ -64964,8 +64964,10 @@ Ext.define('Ext.direct.Manager', {
             }
             if (record.get('websiteDisplayName')) {
                 this.down('#website121').setValue(record.get('websiteDisplayName'));
-                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:1em">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important">></span>');
+                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:1em">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
                 this.down('#website12').setValue(record.get('website'));
+            } else {
+                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:1em;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important"></span>');
             }
             if (record.get('address')) {
                 this.down('#address1').setValue(record.get('address'));
