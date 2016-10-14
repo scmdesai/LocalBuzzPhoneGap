@@ -66552,7 +66552,8 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'toolbarCls',
                         docked: 'top',
                         html: '<p id="titlebar" style="color:#00529D;font-size:8vw;font-family:Arial">Local Buzz</p>',
-                        padding: '5 0 0 0 '
+                        padding: '5 0 0 0 ',
+                        style: 'background:none;'
                     },
                     {
                         xtype: 'latestbuzz'
