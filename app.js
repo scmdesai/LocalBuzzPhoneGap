@@ -64155,6 +64155,8 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('LocalBuzz.view.WelcomeScreen', Ext.form.Panel, {
     config: {
+        id: 'welcomeScreen',
+        itemId: 'welcomeScreen',
         style: 'background-image:url(resources/img/whitetexture.png);',
         styleHtmlContent: true,
         layout: 'fit',
@@ -64342,6 +64344,11 @@ Ext.define('Ext.direct.Manager', {
                 delegate: '#zipcodeLookUp'
             },
             {
+                fn: 'onZipcodeLookUpFocus',
+                event: 'focus',
+                delegate: '#zipcodeLookUp'
+            },
+            {
                 fn: 'onZipcodeLookUpAction1',
                 event: 'action',
                 delegate: '#zipcodeLookUp1'
@@ -64434,6 +64441,11 @@ Ext.define('Ext.direct.Manager', {
         {
             Ext.Msg.alert('Error', 'Please enter valid zipcode', null, null);
         }
+    },
+    onZipcodeLookUpFocus: function(textfield, e, eOpts) {
+        var myScroll = new IScroll('#welcomeScreen', {
+                scrollY: true
+            });
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
