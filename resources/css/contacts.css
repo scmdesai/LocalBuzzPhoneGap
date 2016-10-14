@@ -26,8 +26,9 @@ $list-header-bg-color: $base-color;
 }
 
 .toolbarCls {
-    background:white !important;
+    background:url(resources/img/whitetexture.png);
     border-bottom:1px solid #C0C0C0 !important;
+    
 }
 
 .emptyText {
@@ -75,22 +76,24 @@ $list-header-bg-color: $base-color;
 
 
 .x-field {
-    border-bottom:2px groove #C0C0C0;
+   /* border-bottom:2px groove #C0C0C0;*/
+    background:url(resources/img/whitetexture.png);
     margin:5px 5px 5px 5px;
-    height:12vh;
+    height:7vh;
     font-weight:normal;
     text-align:center;
     vertical-align:middle;
     font-family:Arial;
-    font-size:4vw
-
-
+    font-size:0.7em;
+   
 
 
 
 
 
 }
+
+
 
 
 .customfield {
@@ -100,8 +103,8 @@ $list-header-bg-color: $base-color;
     font-weight:normal;
     vertical-align:middle;
     font-family:Arial;
-    font-size:4vw
-
+    font-size:4vw;
+    
 
 
 
@@ -120,6 +123,18 @@ $list-header-bg-color: $base-color;
     font-family:Arial;
     font-size:3vw;
     border-bottom:2px ridge #c0c0c0;
+    
+
+}
+
+.customfield2_input {
+
+    
+    font-weight:normal;
+    vertical-align:middle;
+    font-family:Arial;
+    font-size:3.5vw;
+    background:green;
 
 }
 
@@ -134,7 +149,7 @@ $list-header-bg-color: $base-color;
     font-size:4vw;
     border-bottom:none;   
 
-
+    
 
 
 
@@ -144,7 +159,7 @@ $list-header-bg-color: $base-color;
 
 
 .searchfield {
-    border-bottom:2px groove #C0C0C0;
+    
     margin:5px 5px 5px 5px;
     font-size:5vw;
     height:12vh;
@@ -153,7 +168,24 @@ $list-header-bg-color: $base-color;
     vertical-align:middle;
     font-family:Arial;
     border-radius:7px;
+    background-image:url(resources/img/whitetexture.png)!important no-repeat;
 
+
+
+
+
+
+}
+
+.searchfield1 {
+    
+   
+    font-size:5vw;
+    font-weight:normal;
+    text-align:center;
+    vertical-align:middle;
+    font-family:Arial;
+    background:url(resources/img/whitetexture.png);
 
 
 
@@ -175,13 +207,14 @@ $list-header-bg-color: $base-color;
 .list-item {
     overflow: hidden;
     white-space: normal;
+    word-wrap: break-word;
 }
 
 .list-item .photo {
     float: left;
     margin-right: 10px;
     width: 22vw;
-    height: 15vh;
+    height: 16vh;
 }
 
 .list-item h1 {
@@ -194,10 +227,42 @@ $list-header-bg-color: $base-color;
 
 /* photos */
 .photo {
-    border: 1px solid #999; 
+    /*border: 1px solid #999; */
     margin:5px 5px 5px 5px;
+    width: 20vw;
+    height: 18vh;
+    float: left;
+    background:none;
+    padding:5px 5px 5px 5px;
+
+}
+
+.photo1 {
+    /*border: 1px solid #999; */
+    margin:1vh 5px 4vh 5px;
+    width: 20vw;
+    height: 14vh;
+    float: left;
+    background:none;
+    padding:1vh 5px 1vh 5px;
+
+}
+
+.photo2 {
+    /*border: 1px solid #999; */
+    
+    margin-left: -10vw;
+   padding: 0;
+    width: 10vw;
+    height: 4vh;
+    background:none;
+    
+
 }
 
 
+#titlebar{
+    text-align:center;
+}
 
 
