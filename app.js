@@ -64157,6 +64157,8 @@ Ext.define('Ext.direct.Manager', {
     config: {
         style: 'background-image:url(resources/img/whitetexture.png);',
         styleHtmlContent: true,
+        layout: 'fit',
+        scrollable: true,
         items: [
             {
                 xtype: 'textfield',
