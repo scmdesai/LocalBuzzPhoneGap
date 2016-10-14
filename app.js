@@ -62626,7 +62626,8 @@ function() {
         }
     },
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
-        this.getParent().getScrollable().getScroller().scrollTo(0, 400);
+        var height = window.innerHeight;
+        this.getParent().getScrollable().getScroller().scrollTo(0, height * 0.32);
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
