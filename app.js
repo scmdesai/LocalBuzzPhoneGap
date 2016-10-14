@@ -64975,7 +64975,7 @@ Ext.define('Ext.direct.Manager', {
             }
             if (record.get('address')) {
                 this.down('#address1').setValue(record.get('address'));
-                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;">' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
                 this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
             }
