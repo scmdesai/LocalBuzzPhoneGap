@@ -64167,7 +64167,7 @@ Ext.define('Ext.direct.Manager', {
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
-                top: '32%',
+                top: '60%',
                 width: '60%',
                 component: {
                     xtype: 'input',
@@ -64190,7 +64190,7 @@ Ext.define('Ext.direct.Manager', {
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
-                top: '32%',
+                top: '60%',
                 width: '60%',
                 component: {
                     type: 'number'
