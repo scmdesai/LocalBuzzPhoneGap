@@ -64713,7 +64713,7 @@ Ext.define('Ext.direct.Manager', {
                         margin: '2 0 0 0',
                         padding: '5 5 10 5',
                         style: 'background:url(resources/img/whitetexture.png);',
-                        width: '98%',
+                        width: 'auto',
                         iconCls: 'icon-phone'
                     },
                     {
@@ -64741,7 +64741,7 @@ Ext.define('Ext.direct.Manager', {
                         margin: '5 0 0 0',
                         padding: '5 5 10 5',
                         style: 'background:url(resources/img/whitetexture.png);',
-                        width: '98%',
+                        width: 'auto',
                         iconCls: 'icon-email-white'
                     },
                     {
@@ -64761,7 +64761,7 @@ Ext.define('Ext.direct.Manager', {
                         margin: '5 0 0 0',
                         padding: '5 5 10 5',
                         style: 'background:url(resources/img/whitetexture.png);',
-                        width: '98%',
+                        width: 'auto',
                         iconCls: 'icon-globe-white'
                     },
                     {
@@ -64790,7 +64790,7 @@ Ext.define('Ext.direct.Manager', {
                         padding: '5 5 10 5',
                         style: 'background:url(resources/img/whitetexture.png);',
                         styleHtmlContent: true,
-                        width: '98%',
+                        width: 'auto',
                         iconCls: 'icon-location'
                     }
                 ]
