@@ -64166,7 +64166,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'zipcodeLookUp',
                 left: '18%',
                 padding: '5 5 5 5',
-                style: 'border:1px solid black',
+                style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
                 top: '32%',
                 width: '60%',
                 component: {
@@ -64972,7 +64972,7 @@ Ext.define('Ext.direct.Manager', {
             }
             if (record.get('address')) {
                 this.down('#address1').setValue(record.get('address'));
-                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:4vw;white-spacing:normal;word-break:break-all;">' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;white-spacing:normal;word-break:break-all;">' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
                 this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:4vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
             }
