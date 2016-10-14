@@ -62353,7 +62353,7 @@ function() {
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
-                top: '60%',
+                top: '32%',
                 width: '60%',
                 component: {
                     xtype: 'input',
@@ -62376,7 +62376,7 @@ function() {
                 left: '18%',
                 padding: '5 5 5 5',
                 style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
-                top: '60%',
+                top: '32%',
                 width: '60%',
                 component: {
                     type: 'number'
@@ -62531,6 +62531,11 @@ function() {
                 delegate: '#zipcodeLookUp'
             },
             {
+                fn: 'onZipcodeLookUpBlur',
+                event: 'blur',
+                delegate: '#zipcodeLookUp'
+            },
+            {
                 fn: 'onZipcodeLookUpAction1',
                 event: 'action',
                 delegate: '#zipcodeLookUp1'
@@ -62628,6 +62633,9 @@ function() {
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
         var height = window.innerHeight;
         this.getParent().getScrollable().getScroller().scrollTo(0, height * 0.32);
+    },
+    onZipcodeLookUpBlur: function(textfield, e, eOpts) {
+        this.getParent().getScrollable().getScroller().scrollTo(0, 0);
     },
     onZipcodeLookUpAction1: function(textfield, e, eOpts) {
         var postalCode = textfield.getValue();
