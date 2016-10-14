@@ -65613,7 +65613,6 @@ Ext.application({
             scrollable: true
         },
         scrollable: true,
-        preventPanning: false,
         xclass: 'Ext.viewport.Viewport'
     },
     flagCurrentLocation: false,
