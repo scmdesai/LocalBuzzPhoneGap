@@ -65170,7 +65170,7 @@ function() {
                     map: gmap,
                     icon: icons[category].icon
                 });
-            var content = '<h4 style="font-family:Arial" id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline;font-family:Arial">' + count + ' Active Buzz</label></div>';
+            var content = '<h4 style="font-family:Arial;font-size:4vw;" id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline;font-family:Arial">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
         //click on marker event
