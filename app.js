@@ -62333,7 +62333,7 @@ function() {
  */
 (Ext.cmd.derive('LocalBuzz.view.WelcomeScreen', Ext.Panel, {
     config: {
-        height: '90%',
+        height: '100%',
         id: 'welcomeScreen',
         itemId: 'welcomeScreen',
         style: 'background-image:url(resources/img/whitetexture.png);',
