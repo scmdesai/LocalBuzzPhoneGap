@@ -64443,7 +64443,6 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onZipcodeLookUpFocus: function(textfield, e, eOpts) {
-        Ext.Msg.alert('Focus', null, null, null);
         var myScroll = new IScroll('#welcomeScreen', {
                 scrollX: true,
                 scrollY: true,
