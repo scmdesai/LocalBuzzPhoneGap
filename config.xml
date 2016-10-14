@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.appsonmobile.localbuzz" version="1.0.2"  xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.appsonmobile.localbuzz" version="1.0.3"  xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Local Buzz                      </name>
     <description>
         Local Buzz App
@@ -11,7 +11,7 @@
 	<!-- End Amazon Mobile Analytics  -->
 	<preference name='phonegap-version' value='cli-6.3.0' />
 	<preference name="SplashScreen" value="screen" />
-    <!--<preference name="SplashScreenDelay" value="7000" />-->
+    <preference name="SplashScreenDelay" value="7000" />
     <preference name="permissions" value="none" />
 	<preference name="android-build-tool" value="gradle" />
     <preference name="orientation" value="portrait" />
@@ -37,25 +37,25 @@
 	
 	
 	<!-- New PhoneGap Plugins -->
-	<plugin name="cordova-plugin-battery-status" source="npm"  />
+	<!--<plugin name="cordova-plugin-battery-status" source="npm"  />-->
     <plugin name="cordova-plugin-camera" source="npm"  />
-    <plugin name="cordova-plugin-media-capture" source="npm"  />
+    <!--<plugin name="cordova-plugin-media-capture" source="npm"  />-->
 	<!-- Comment out the console plugin as it is causing issues on Android -->
     <!-- <gap:plugin name="cordova-plugin-console" source="npm" version="1.0.1" /> -->
-    <plugin name="cordova-plugin-contacts" source="npm"  />
-    <plugin name="cordova-plugin-device" source="npm"  />
-    <plugin name="cordova-plugin-device-motion" source="npm"  />
-    <plugin name="cordova-plugin-device-orientation" source="npm"  />
-    <plugin name="cordova-plugin-dialogs" source="npm"  />
-    <plugin name="cordova-plugin-file" source="npm"  />
-    <plugin name="cordova-plugin-file-transfer" source="npm"  />
+    <!--<plugin name="cordova-plugin-contacts" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-device" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-device-motion" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-device-orientation" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-dialogs" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-file" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-file-transfer" source="npm"  />-->
     <plugin name="cordova-plugin-geolocation" source="npm"  />
-    <plugin name="cordova-plugin-globalization" source="npm"  />
+    <!--<plugin name="cordova-plugin-globalization" source="npm"  />-->
     <plugin name="cordova-plugin-inappbrowser" source="npm"  />
-    <plugin name="cordova-plugin-media" source="npm"  />
-    <plugin name="cordova-plugin-network-information" source="npm"  />
+    <!--<plugin name="cordova-plugin-media" source="npm"  />-->
+    <!--<plugin name="cordova-plugin-network-information" source="npm"  />-->
     <plugin name="cordova-plugin-splashscreen" source="npm" />
-    <plugin name="cordova-plugin-vibration" source="npm"  />
+    <!--<plugin name="cordova-plugin-vibration" source="npm"  />-->
 	<plugin name="cordova-plugin-whitelist" source="npm"  />
 	<plugin name="cordova-plugin-statusbar" source="npm" />
 	
@@ -72,13 +72,13 @@
 	<!-- End Google Analytics -->
 	
 	<!-- Plugin Added for Geolocation -->
-	<plugin name="cordova-plugin-geolocation"  source="npm" />
+	<!--<plugin name="cordova-plugin-geolocation"  source="npm" />-->
 	<!-- End Geolocation -->
 	<!--social sharing -->
 	<plugin name="cordova-plugin-x-socialsharing" source="npm" />
 	
 	<!--email-->
-	<plugin name="cordova-plugin-email-composer"  source="npm" /> 
+	<!--<plugin name="cordova-plugin-email-composer"  source="npm" /> -->
 	
 	
 	<!--screenshot-->
