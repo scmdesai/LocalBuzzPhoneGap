@@ -62338,9 +62338,6 @@ function() {
         style: 'background-image:url(resources/img/whitetexture.png);',
         styleHtmlContent: true,
         scrollable: true,
-        tpl: [
-            '<div id="welcomeScreen"/>'
-        ],
         layout: {
             type: 'vbox',
             align: 'stretchmax'
