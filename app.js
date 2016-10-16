@@ -64715,7 +64715,7 @@ function() {
         itemTpl: [
             '',
             '<div class="w3-card-4 w3-display-container" style= "margin:5px 5px 5px 5px;padding:10px 5px 5px 20px;"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100px" height="120px" style="border:1px solid black;"/>',
-            '<div class="w3-container w3-text-black w3-left" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
+            '<div class="w3-container w3-text-black w3-left-align" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
             '    </div>',
             '',
             ''
