@@ -63275,7 +63275,6 @@ function() {
         styleHtmlContent: true,
         allowDeselect: true,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
-        itemCls: '',
         selectedCls: 'list-item-selected',
         store: 'MyDealsStore',
         onItemDisclosure: false,
@@ -64714,7 +64713,7 @@ function() {
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
-            '<div class="w3-row">',
+            '<div class="s6">',
             '<div class="w3-card-4 w3-display-container" style= "margin:5px 5px 5px 5px;padding:10px 5px 5px 20px;"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100px" height="120px" style="border:1px solid black;"/>',
             '<div class="w3-text-black w3-left-align" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
             '</div>',
