@@ -63149,9 +63149,9 @@ function() {
             }
             //console.log(customerId + isFavorite );
             var rec;
-            if (!record.get('phoneNumber')) {
-                rec = storeInfo.findRecord('customerId', customerId);
-            }
+            // if(!record.get('phoneNumber')) {
+            rec = storeInfo.findRecord('customerId', customerId);
+            //}
             this.down('#nameTxt').setHtml(name);
             if (record.get('pictureURL')) {
                 this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
