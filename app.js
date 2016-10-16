@@ -63152,7 +63152,6 @@ function() {
             if (!record.get('phoneNumber')) {
                 rec = storeInfo.findRecord('customerId', customerId);
             }
-            console.log(rec);
             this.down('#nameTxt').setHtml(name);
             if (record.get('pictureURL')) {
                 this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
@@ -63173,6 +63172,7 @@ function() {
                 //this.down('#phoneNumber').setText(record.get('phoneNumber'));
                 this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;text-decoration:none!important">' + record.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
+                console.log(rec);
                 if (rec.get('phoneNumber')) {
                     this.down('#phoneNumber1').setValue(rec.get('phoneNumber'));
                     this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;text-decoration:none!important">' + rec.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
