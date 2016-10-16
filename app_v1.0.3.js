@@ -63146,7 +63146,6 @@ function() {
                 });
             }
             //console.log(customerId + isFavorite );
-            console.log(record.get('phoneNumber'));
             this.down('#nameTxt').setHtml(name);
             if (record.get('pictureURL')) {
                 this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
