@@ -63146,7 +63146,9 @@ function() {
                 });
             }
             //console.log(customerId + isFavorite );
-            console.log(record.get('phoneNumber'));
+            if (record.get('phoneNumber')) {
+                console.log(record.get('phoneNumber'));
+            }
             this.down('#nameTxt').setHtml(name);
             if (record.get('pictureURL')) {
                 this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
@@ -63196,7 +63198,6 @@ function() {
             var ds = Ext.StoreManager.lookup('MyDealsStore');
             ds.clearFilter();
             ds.filter('customerId', customerId);
-            console.log(customerId + ' has ' + ds.getCount() + ' records');
         }
     }
 }, 0, [
@@ -63217,6 +63218,7 @@ function() {
     LocalBuzz.view,
     'Info'
 ], 0));
+// console.log(customerId + ' has ' + ds.getCount()+' records' );
 
 /*
  * File: app/view/ListOfDeals.js
