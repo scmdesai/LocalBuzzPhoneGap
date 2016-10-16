@@ -63132,6 +63132,7 @@ function() {
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
+            console.log(record);
             var name = record.get('businessName');
             var isFavorite = record.get('isFavorite');
             var customerId = record.get('customerId');
