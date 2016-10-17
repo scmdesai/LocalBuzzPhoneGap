@@ -63307,7 +63307,7 @@ function() {
             '<p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
             '    </div>',
             '<div>',
-            '<p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 0px 0px 5px;font-family:Arial">{dealDescription}</p>',
+            '<p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;font-family:Arial">{dealDescription}</p>',
             '',
             '',
             '</div>',
@@ -63907,7 +63907,6 @@ function() {
         style: 'background:url(resources/img/whitetexture.png);',
         styleHtmlContent: true,
         width: '100%',
-        scrollable: false,
         tpl: [
             '<!--<tpl if="dealImageURL">',
             '<div><img src="{dealImageURL}" style="margin: 0px 5px 0px 5px;height:250px;width:95%;border:none;"/></div>',
@@ -64460,7 +64459,7 @@ function() {
             '<p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
             '</div>',
             '<div>',
-            '<p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 0px 0px 5px;font-family:Arial">{dealDescription}</p>',
+            '<p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;font-family:Arial">{dealDescription}</p>',
             '',
             '',
             '</div>',
@@ -64713,10 +64712,10 @@ function() {
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
-            '<div class="s6">',
+            ' <div style="padding-right:10vw">',
             '<div class="w3-card-4 w3-display-container" style= "margin:5px 5px 5px 5px;padding:10px 5px 5px 20px;"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100px" height="120px" style="border:1px solid black;"/>',
             '<div class="w3-text-black w3-left-align" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
-            '</div>',
+            '',
             '',
             ''
         ]
@@ -65647,14 +65646,6 @@ function() {
 // @require @packageOverrides
 Ext.Loader.setConfig({});
 Ext.application({
-    viewport: {
-        docked: 'top',
-        defaults: {
-            scrollable: true
-        },
-        scrollable: true,
-        xclass: 'Ext.viewport.Viewport'
-    },
     flagCurrentLocation: false,
     models: [
         'Contact',
