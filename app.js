@@ -65703,7 +65703,7 @@ Ext.application({
             BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('100%');
             BackButtonPanel.setCls('backButtonPanel');
-            BackButtonPanel.addCls('w3-black');
+            //BackButtonPanel.addCls('w3-black');
             var intval = setInterval(function() {
                     exitApp = false;
                 }, 3000);
