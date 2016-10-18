@@ -62547,7 +62547,7 @@ function() {
         ]
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
-        //this.getParent().getScrollable().getScroller().scrollTo(0, 0);
+        this.getParent().getScrollable().getScroller().scrollTo(0, 0);
         console.log(textfield.getValue());
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
@@ -65647,6 +65647,11 @@ function() {
 // @require @packageOverrides
 Ext.Loader.setConfig({});
 Ext.application({
+    viewport: {
+        docked: 'top',
+        scrollable: true,
+        xclass: 'Ext.viewport.Viewport'
+    },
     flagCurrentLocation: false,
     models: [
         'Contact',
