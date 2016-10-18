@@ -65698,10 +65698,10 @@ Ext.application({
                 itemId: 'BackButtonPanel',
                 baseCls: 'x-box'
             });
-            //BackButtonPanel.setBottom('10%');
-            //BackButtonPanel.setLeft('35%');
-            //BackButtonPanel.setHeight('50px');
-            // BackButtonPanel.setWidth('100%');
+            BackButtonPanel.setBottom('10%');
+            BackButtonPanel.setLeft('35%');
+            BackButtonPanel.setHeight('50px');
+            //BackButtonPanel.setWidth('100%');
             //BackButtonPanel.setCls('backButtonPanel');
             BackButtonPanel.addCls('w3-black');
             BackButtonPanel.addCls('w3-display-bottommiddle');
