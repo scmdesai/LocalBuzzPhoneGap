@@ -65700,7 +65700,7 @@ Ext.application({
             });
             BackButtonPanel.setBottom('10%');
             BackButtonPanel.setLeft('35%');
-            BackButtonPanel.setHeight('50px');
+            //BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('100%');
             BackButtonPanel.setCls('backButtonPanel');
             //BackButtonPanel.addCls('w3-black');
