@@ -65696,7 +65696,7 @@ Ext.application({
                 html: 'Press again to exit',
                 id: 'BackButtonPanel',
                 itemId: 'BackButtonPanel',
-                baseCls: 'w3-display-container'
+                baseCls: 'x-box'
             });
             //BackButtonPanel.setBottom('10%');
             //BackButtonPanel.setLeft('35%');
