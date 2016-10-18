@@ -62298,7 +62298,7 @@ function() {
             Ext.Array.include(customerIds, rec.get('customerId'));
         });
         dealParams = customerIds.join();
-        //console.log(dealParams);
+        console.log(dealParams);
         var dealStore = Ext.getStore('MyDealsStore');
         if (customerIds.length > 0) {
             dealStore.load({
@@ -62547,7 +62547,7 @@ function() {
         ]
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
-        this.getParent().getScrollable().getScroller().scrollTo(0, 0);
+        //this.getParent().getScrollable().getScroller().scrollTo(0, 0);
         console.log(textfield.getValue());
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
