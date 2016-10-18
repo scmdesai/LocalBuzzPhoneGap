@@ -65696,13 +65696,15 @@ Ext.application({
                 html: 'Press again to exit',
                 id: 'BackButtonPanel',
                 itemId: 'BackButtonPanel',
-                baseCls: 'w3-display-container'
+                baseCls: 'w3-display-bottommiddle'
             });
-            BackButtonPanel.setBottom('10%');
-            BackButtonPanel.setLeft('35%');
+            //BackButtonPanel.setBottom('10%');
+            //BackButtonPanel.setLeft('35%');
             //BackButtonPanel.setHeight('50px');
             // BackButtonPanel.setWidth('100%');
             //BackButtonPanel.setCls('backButtonPanel');
+            BackButtonPanel.addCls('w3-black');
+            //BackButtonPanel.addCls('w3-center');
             var intval = setInterval(function() {
                     exitApp = false;
                 }, 3000);
