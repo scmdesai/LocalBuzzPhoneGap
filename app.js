@@ -62548,6 +62548,7 @@ function() {
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
         this.getParent().getScrollable().getScroller().scrollTo(0, 0);
+        console.log(textfield.getValue());
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
