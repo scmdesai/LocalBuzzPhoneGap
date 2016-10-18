@@ -65696,7 +65696,7 @@ Ext.application({
                 html: 'Press again to exit',
                 id: 'BackButtonPanel',
                 itemId: 'BackButtonPanel',
-                baseCls: 'w3-display-container'
+                baseCls: 'x-box'
             });
             BackButtonPanel.setBottom('10%');
             BackButtonPanel.setLeft('35%');
@@ -65704,7 +65704,6 @@ Ext.application({
             //BackButtonPanel.setWidth('100%');
             //BackButtonPanel.setCls('backButtonPanel');
             BackButtonPanel.addCls('w3-black');
-            BackButtonPanel.addCls('w3-display-bottommiddle');
             var intval = setInterval(function() {
                     exitApp = false;
                 }, 3000);
