@@ -62894,7 +62894,7 @@ function() {
                         style: 'font-family:Arial;font-size:5vw',
                         ui: 'confirm',
                         width: '98%',
-                        text: 'Get The Latest Buzz!'
+                        text: 'Get Latest Buzz!'
                     },
                     {
                         xtype: 'button',
