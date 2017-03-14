@@ -64316,40 +64316,6 @@ function() {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            var record = Ext.getStore('LocalStore').getAt(0);
-                            if (record.get('itemName')) {
-                                var itemName = record.get('itemName');
-                                var topicArn = "arn:aws:sns:us-west-2:861942316283:LocalBuzzMerchant" + record.get('customerId');
-                                Ext.Ajax.request({
-                                    method: 'POST',
-                                    url: "http://services.appsonmobile.com/deals/getOfferCode/" + itemName,
-                                    params: {
-                                        "CustomerId": record.get('customerId'),
-                                        "topicArn": topicArn,
-                                        "dealName": record.get('dealName')
-                                    },
-                                    success: function(response) {
-                                        //window.open(url, '_system', 'location=yes');
-                                        //console.log('Success');
-                                        //Ext.Msg.alert('Suceess',null,null,null);
-                                        Ext.Msg.alert(null, response.msg);
-                                    },
-                                    failure: function(response) {
-                                        //window.open(url, '_system', 'location=yes');
-                                        Ext.Msg.alert('Failure', null, null, null);
-                                        console.log('Failure');
-                                    }
-                                });
-                            }
-                        },
-                        height: '8vh',
-                        margin: '10 5 0 5',
-                        ui: 'action',
-                        text: 'Redeem offer'
-                    },
-                    {
-                        xtype: 'button',
                         height: '8vh',
                         id: 'nameTxt8',
                         itemId: 'nameTxt8',
@@ -64481,11 +64447,7 @@ function() {
             '<div class= "dateValidity" > {dealStartDate} - {dealEndDate}</div></tpl>',
             '-->',
             '<!--<div style="border:2px dotted #c0c0c0;padding:1px 5px 5px 5px;margin:0px 5px 5px 5px;"/>-->',
-            '',
-            ' <div class="w3-header w3-display-topright w3-container ribbon"  >Test</div>',
-            '<div class=" w3-card-4 w3-padding"  >',
-            '   ',
-            '',
+            '<div class="w3-card-4"  >',
             '    <tpl if= "dealImageURL">',
             '        <img class="photo" src="{dealImageURL}"  />',
             '        <tpl else>',
@@ -64493,8 +64455,6 @@ function() {
             '        </tpl>',
             '',
             '        <div class="w3-container">',
-            '            ',
-            '            ',
             '            <p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
             '            <p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
             '            <p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
@@ -64507,9 +64467,8 @@ function() {
             '        <tpl if= "dealImageURL">',
             '            <tpl else>',
             '                <br>',
-            '                ',
             '            </tpl>',
-            '',
+            '            </div>',
             '',
             '',
             '',
