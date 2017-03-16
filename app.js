@@ -64320,6 +64320,8 @@ function() {
                             var record = Ext.getStore('LocalStore').getAt(0);
                             if (record.get('itemName')) {
                                 var itemName = record.get('itemName');
+                                var deviceId = window.device.uuid;
+                                console.log(uuid);
                                 var topicArn = "arn:aws:sns:us-west-2:861942316283:LocalBuzzMerchant" + record.get('customerId');
                                 Ext.Ajax.request({
                                     method: 'POST',
