@@ -64688,7 +64688,7 @@ function() {
                             var record = Ext.getStore('LocalStore').getAt(0);
                             if (record.get('itemName')) {
                                 var itemName = record.get('itemName');
-                                var deviceId = Ext.device.Device.uuid;
+                                var deviceId = Ext.device.Device.uuid + '-' + itemName;
                                 var topicArn = "arn:aws:sns:us-west-2:861942316283:LocalBuzzMerchant" + record.get('customerId');
                                 Ext.Ajax.request({
                                     method: 'POST',
@@ -64707,7 +64707,7 @@ function() {
                                     },
                                     failure: function(response) {
                                         //window.open(url, '_system', 'location=yes');
-                                        Ext.Msg.alert('Failure', null, null, null);
+                                        Ext.Msg.alert('Failure', "Offer already reedemed", null, null);
                                         console.log('Failure');
                                     }
                                 });
