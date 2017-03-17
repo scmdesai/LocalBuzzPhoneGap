@@ -63994,7 +63994,7 @@ function() {
                 var zipcode = userLocationStore.getAt(0).get('zipcode');
                 var latitude = userLocationStore.getAt(0).get('latitude');
                 var longitude = userLocationStore.getAt(0).get('longitude');
-                console.log('LatestBuzz View Analytics' + latitude + "," + longitude + "," + zipcode);
+                // console.log('LatestBuzz View Analytics' + latitude + "," + longitude+","+ zipcode);
                 // api call for postal code and track event
                 //  $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                 //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
@@ -64005,7 +64005,7 @@ function() {
         // });
         {
             //geolocation not happening
-            console.log("Gelocation not working");
+            //console.log("Gelocation not working");
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
@@ -64699,15 +64699,22 @@ function() {
                                         "dealName": record.get('dealName'),
                                         "deviceId": deviceId
                                     },
-                                    success: function(response) {
+                                    success: function(response, msg) {
                                         //window.open(url, '_system', 'location=yes');
-                                        //console.log('Success');
-                                        //Ext.Msg.alert('Suceess',null,null,null);
-                                        Ext.Msg.alert(null, response.msg);
+                                        console.log(response.responseText);
+                                        var data = Ext.JSON.decode(response.responseText.trim());
+                                        if (data.msg.toString().match('ConditionalCheckFailed:')) {
+                                            Ext.Msg.alert(null, 'Offer already redeemed', null, null);
+                                        } else {
+                                            Ext.Msg.alert('Error!', 'Please try again', null, null);
+                                        }
                                     },
+                                    //Ext.Msg.alert('Success',null,null,null);
                                     failure: function(response) {
                                         //window.open(url, '_system', 'location=yes');
-                                        Ext.Msg.alert('Failure', "Offer already reedemed", null, null);
+                                        //Ext.Msg.alert('Failure','Offer already reedemed',null,null);
+                                        var data = Ext.JSON.decode(response.responseText.trim());
+                                        Ext.Msg.alert(data.msg, null, null, null);
                                         console.log('Failure');
                                     }
                                 });
