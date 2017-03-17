@@ -64705,8 +64705,10 @@ function() {
                                         var data = Ext.JSON.decode(response.responseText.trim());
                                         if (data.msg.toString().match('ConditionalCheckFailed:')) {
                                             Ext.Msg.alert(null, 'Offer already redeemed', null, null);
-                                        } else {
+                                        } else if (data.msg.toString().match('MultipleValidationErrors:')) {
                                             Ext.Msg.alert('Error!', 'Please try again', null, null);
+                                        } else {
+                                            Ext.Msg.alert(null, data.msg, null, null);
                                         }
                                     },
                                     //Ext.Msg.alert('Success',null,null,null);
