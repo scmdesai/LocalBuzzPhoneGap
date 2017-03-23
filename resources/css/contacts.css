@@ -26,9 +26,9 @@ $list-header-bg-color: $base-color;
 }
 
 .toolbarCls {
-    background:url(resources/img/whitetexture.png);
+    background:white!important;
     border-bottom:1px solid #C0C0C0 !important;
-    
+
 }
 
 .emptyText {
@@ -39,7 +39,7 @@ $list-header-bg-color: $base-color;
     vertical-align:middle !important;
     top: 50px !important;
     left:20px !important;
-    font-family:Arial !important;
+
     font-size:4vw !important;
 }
 
@@ -48,7 +48,7 @@ $list-header-bg-color: $base-color;
     font-size:2.5vw;
     font-style:italics;
     font-weight:normal;
-    font-family:'Arial';
+
     margin:5px 5px 5px 0px;
 
 }
@@ -76,16 +76,16 @@ $list-header-bg-color: $base-color;
 
 
 .x-field {
-   /* border-bottom:2px groove #C0C0C0;*/
+    /* border-bottom:2px groove #C0C0C0;*/
     background:url(resources/img/whitetexture.png);
     margin:5px 5px 5px 5px;
     height:7vh;
     font-weight:normal;
     text-align:center;
     vertical-align:middle;
-    font-family:Arial;
+
     font-size:0.7em;
-   
+
 
 
 
@@ -102,9 +102,9 @@ $list-header-bg-color: $base-color;
     height:12vh;
     font-weight:normal;
     vertical-align:middle;
-    font-family:Arial;
+
     font-size:4vw;
-    
+
 
 
 
@@ -120,19 +120,19 @@ $list-header-bg-color: $base-color;
     height:9vh;
     font-weight:normal;
     vertical-align:middle;
-    font-family:Arial;
+
     font-size:3vw;
     border-bottom:2px ridge #c0c0c0;
-    
+
 
 }
 
 .customfield2_input {
 
-    
+
     font-weight:normal;
     vertical-align:middle;
-    font-family:Arial;
+
     font-size:3.5vw;
     background:green;
 
@@ -145,11 +145,11 @@ $list-header-bg-color: $base-color;
     font-weight:normal;
     text-align:center;
     vertical-align:middle;
-    font-family:Arial;
+
     font-size:4vw;
     border-bottom:none;   
 
-    
+
 
 
 
@@ -159,16 +159,16 @@ $list-header-bg-color: $base-color;
 
 
 .searchfield {
-    
+
     margin:5px 5px 5px 5px;
     font-size:5vw;
     height:12vh;
     font-weight:normal;
     text-align:center;
     vertical-align:middle;
-    font-family:Arial;
+
     border-radius:7px;
-    background-image:url(resources/img/whitetexture.png)!important no-repeat;
+    background:white;
 
 
 
@@ -178,14 +178,14 @@ $list-header-bg-color: $base-color;
 }
 
 .searchfield1 {
-    
-   
+
+
     font-size:5vw;
     font-weight:normal;
     text-align:center;
     vertical-align:middle;
-    font-family:Arial;
-    background:url(resources/img/whitetexture.png);
+
+    background:white;
 
 
 
@@ -229,8 +229,8 @@ $list-header-bg-color: $base-color;
 .photo {
     /*border: 1px solid #999; */
     margin:5px 5px 5px 5px;
-    width: 20vw;
-    height: 18vh;
+    width: 5%;
+    height: 5%;
     float: left;
     background:none;
     padding:5px 5px 5px 5px;
@@ -240,8 +240,7 @@ $list-header-bg-color: $base-color;
 .photo1 {
     /*border: 1px solid #999; */
     margin:1vh 5px 4vh 5px;
-    width: 20vw;
-    height: 14vh;
+
     float: left;
     background:none;
     padding:1vh 5px 1vh 5px;
@@ -250,17 +249,65 @@ $list-header-bg-color: $base-color;
 
 .photo2 {
     /*border: 1px solid #999; */
-    
+
     margin-left: -10vw;
-   padding: 0;
+    padding: 0;
     width: 10vw;
     height: 4vh;
     background:none;
-    
+
 
 }
 
+.ribbon {
+    background-color: #a00;  
+    margin: auto;
+    -webkit-transform: rotate(45deg);  
+    -moz-transform: rotate(45deg);  
+    -ms-transform: rotate(45deg);  
+    -o-transform: rotate(45deg);  
+    transform: rotate(45deg);
+    border: 1px solid #faa;  
+    color: #fff;  
+    font: bold 100% 'Helvetica Neue', Helvetica, Arial, sans-serif;   
+    text-align: center;  
+    text-decoration: none;  
+    /* for creating shadow */ 
+    background-color: #a00;  
+    overflow: hidden;  
+    /*white-space: nowrap;  
+    /* top left corner */ 
+    margin: 20px 0px 0px 0px; 
 
+    float:right;  
+    display:block;
+    /*position: absolute; 
+    right: 0px;  
+    top: 0px;  
+    */
+}
+
+.ribbon:before, .ribbon:after {
+    border-color: #444444;
+    border-style: solid;
+    border-width: 0;
+    border-top-width: 15px; /* This sets the height of the curls, making it half the width to angle the curls more. */
+    content: ''; /* Tells the browser to actually generate the pseudo element */
+    position: absolute;
+}
+
+.ribbon:before {
+    /* Position the :before element to the left and below the ribbon element */
+    left: 0;
+    bottom: -15px; /* Equal to the height of the curl */
+    border-left: 30px solid transparent; /* Makes the curl slant right */
+}
+.ribbon:after {
+    /* Position the :after element to the right and below the ribbon element */
+    right: 0;
+    bottom: -15px; /* Equal to the height of the curl */
+    border-right: 30px solid transparent; /* Makes the curl slant left */
+}
 #titlebar{
     text-align:center;
 }
