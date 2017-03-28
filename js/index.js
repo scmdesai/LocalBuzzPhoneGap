@@ -32,7 +32,15 @@ var app = {
 		 try{
 		 
 		 window.analytics.startTrackerWithId('UA-67469655-6');
-		 var push = PushNotification.init({
+		 
+		 var userLocation = navigator.geolocation.getCurrentPosition(function(position){
+		 var latitude = position.coords.latitude;
+		 var longitude = position.coords.longitude;
+		 var postalcode;
+		 $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+		        postalcode = json.postalCodes[0].postalCode;
+				console.log('User Location is: ' + postalcode);
+				var push = PushNotification.init({
             "android": {
                 "senderID": "226322216862"
             },
@@ -44,16 +52,6 @@ var app = {
 			}, 
             "windows": {} 
         });
-		 
-		 var userLocation = navigator.geolocation.getCurrentPosition(function(position){
-		 var latitude = position.coords.latitude;
-		 var longitude = position.coords.longitude;
-		 var postalcode;
-		 
-		 $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-		        postalcode = json.postalCodes[0].postalCode;
-				console.log('User Location is: ' + postalcode);
-				
 		
 		    push.on('registration', function(data) {
             console.log("registration event: " + data.registrationId);
@@ -158,7 +156,6 @@ var app = {
 			var data = '{"deviceType":"'+device.platform+'","registrationID":"'+data.registrationId+'"}';
 			xhr.send(data);
         });
-
         push.on('notification', function(data) {
         	console.log("notification event received");
 			// data.message, 
@@ -174,7 +171,6 @@ var app = {
 			// data.additionalData 
 			console.log("Notification additionalData is: " + data.additionalData) ;
         });
-
         push.on('error', function(e) {
             console.log("Error received");
 			console.log("Error Message is: " + e.message) ;				
