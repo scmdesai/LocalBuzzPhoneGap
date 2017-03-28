@@ -13,7 +13,6 @@ if (!Ext.dataview.element) Ext.dataview.element = {};
 if (!Ext.device) Ext.device = {};
 if (!Ext.device.camera) Ext.device.camera = {};
 if (!Ext.device.communicator) Ext.device.communicator = {};
-if (!Ext.device.device) Ext.device.device = {};
 if (!Ext.dom) Ext.dom = {};
 if (!Ext.env) Ext.env = {};
 if (!Ext.event) Ext.event = {};
@@ -56014,373 +56013,6 @@ function() {
     'Camera'
 ], 0));
 
-/**
- * @private
- */
-(Ext.cmd.derive('Ext.device.device.Abstract', Ext.Base, {
-    /**
-     * @event schemeupdate
-     * Event which is fired when your Sencha Native packaged application is opened from another application using a custom URL scheme.
-     * 
-     * This event will only fire if the application was already open (in other words; `onReady` was already fired). This means you should check
-     * if {@link Ext.device.Device#scheme} is set in your Application `launch`/`onReady` method, and perform any needed changes for that URL (if defined).
-     * Then listen to this event for future changed.
-     *
-     * ## Example
-     *
-     *     Ext.application({
-     *         name: 'Sencha',
-     *         requires: ['Ext.device.Device'],
-     *         launch: function() {
-     *             if (Ext.device.Device.scheme) {
-     *                 // the application was opened via another application. Do something:
-     *                 console.log('Applicaton opened via another application: ' + Ext.device.Device.scheme.url);
-     *             }
-     *
-     *             // Listen for future changes
-     *             Ext.device.Device.on('schemeupdate', function(device, scheme) {
-     *                 // the application was launched, closed, and then launched another from another application
-     *                 // this means onReady wont be called again ('cause the application is already running in the 
-     *                 // background) - but this event will be fired
-     *                 console.log('Applicated reopened via another application: ' + scheme.url);
-     *             }, this);
-     *         }
-     *     });
-     *
-     * __Note:__ This currently only works with the Sencha Native Packager. If you attempt to listen to this event when packaged with
-     * PhoneGap or simply in the browser, it will never fire.**
-     * 
-     * @param {Ext.device.Device} this The instance of Ext.device.Device
-     * @param {Object/Boolean} scheme The scheme information, if opened via another application
-     * @param {String} scheme.url The URL that was opened, if this application was opened via another application. Example: `sencha:`
-     * @param {String} scheme.sourceApplication The source application that opened this application. Example: `com.apple.safari`.
-     */
-    /**
-     * @property {String} name
-     * Returns the name of the current device. If the current device does not have a name (for example, in a browser), it will
-     * default to `not available`.
-     *
-     *     alert('Device name: ' + Ext.device.Device.name);
-     */
-    name: 'not available',
-    /**
-     * @property {String} uuid
-     * Returns a unique identifier for the current device. If the current device does not have a unique identifier (for example,
-     * in a browser), it will default to `anonymous`.
-     *
-     *     alert('Device UUID: ' + Ext.device.Device.uuid);
-     */
-    uuid: 'anonymous',
-    /**
-     * @property {String} platform
-     * The current platform the device is running on.
-     *
-     *     alert('Device platform: ' + Ext.device.Device.platform);
-     */
-    platform: Ext.os.name,
-    /**
-     * @property {Object/Boolean} scheme
-     * 
-     */
-    scheme: false,
-    /**
-     * Opens a specified URL. The URL can contain a custom URL Scheme for another app or service:
-     *
-     *     // Safari
-     *     Ext.device.Device.openURL('http://sencha.com');
-     *
-     *     // Telephone
-     *     Ext.device.Device.openURL('tel:6501231234');
-     *
-     *     // SMS with a default number
-     *     Ext.device.Device.openURL('sms:+12345678901');
-     *
-     *     // Email client
-     *     Ext.device.Device.openURL('mailto:rob@sencha.com');
-     *
-     * You can find a full list of available URL schemes here: [http://wiki.akosma.com/IPhone_URL_Schemes](http://wiki.akosma.com/IPhone_URL_Schemes).
-     *
-     * __Note:__ This currently only works with the Sencha Native Packager. Attempting to use this on PhoneGap, iOS Simulator
-     * or the browser will simply result in the current window location changing.**
-     *
-     * If successful, this will close the application (as another one opens).
-     * 
-     * @param {String} url The URL to open
-     */
-    openURL: function(url) {
-        window.location = url;
-    }
-}, 0, 0, 0, 0, 0, [
-    [
-        Ext.mixin.Observable.prototype.mixinId || Ext.mixin.Observable.$className,
-        Ext.mixin.Observable
-    ]
-], [
-    Ext.device.device,
-    'Abstract'
-], 0));
-
-/**
- * @private
- */
-(Ext.cmd.derive('Ext.device.device.Cordova', Ext.device.device.Abstract, {
-    alternateClassName: 'Ext.device.device.PhoneGap',
-    availableListeners: [
-        'pause',
-        'resume',
-        'backbutton',
-        'batterycritical',
-        'batterylow',
-        'batterystatus',
-        'menubutton',
-        'searchbutton',
-        'startcallbutton',
-        'endcallbutton',
-        'volumeupbutton',
-        'volumedownbutton'
-    ],
-    constructor: function() {
-        // We can't get the device details until the device is ready, so lets wait.
-        if (Ext.isReady) {
-            this.onReady();
-        } else {
-            Ext.onReady(this.onReady, this, {
-                single: true
-            });
-        }
-    },
-    /**
-     * @property {String} cordova
-     * Returns the version of Cordova running on the device.
-     *
-     *     alert('Device cordova: ' + Ext.device.Device.cordova);
-     */
-    /**
-     * @property {String} version
-     * Returns the operating system version.
-     *
-     *     alert('Device Version: ' + Ext.device.Device.version);
-     */
-    /**
-     * @property {String} model
-     * Returns the device's model name.
-     *
-     *     alert('Device Model: ' + Ext.device.Device.model);
-     */
-    /**
-     * @event pause
-     * Fires when the application goes into the background
-     */
-    /**
-     * @event resume
-     * Fires when the application goes into the foreground
-     */
-    /**
-     * @event batterycritical
-     * This event that fires when a Cordova application detects the percentage of battery 
-     * has reached the critical battery threshold.
-     */
-    /**
-     * @event batterylow
-     * This event that fires when a Cordova application detects the percentage of battery 
-     * has reached the low battery threshold.
-     */
-    /**
-     * @event batterystatus
-     * This event that fires when a Cordova application detects the percentage of battery 
-     * has changed by at least 1 percent.
-     */
-    /**
-     * @event backbutton
-     * This is an event that fires when the user presses the back button.
-     */
-    /**
-     * @event menubutton
-     * This is an event that fires when the user presses the menu button.
-     */
-    /**
-     * @event searchbutton
-     * This is an event that fires when the user presses the search button.
-     */
-    /**
-     * @event startcallbutton
-     * This is an event that fires when the user presses the start call button.
-     */
-    /**
-     * @event endcallbutton
-     * This is an event that fires when the user presses the end call button.
-     */
-    /**
-     * @event volumeupbutton
-     * This is an event that fires when the user presses the volume up button.
-     */
-    /**
-     * @event volumedownbutton
-     * This is an event that fires when the user presses the volume down button.
-     */
-    onReady: function() {
-        var me = this,
-            device = window.device;
-        me.name = device.name || device.model;
-        me.cordova = device.cordova;
-        me.platform = device.platform || Ext.os.name;
-        me.uuid = device.uuid;
-        me.version = device.version;
-        me.model = device.model;
-    },
-    doAddListener: function(name) {
-        if (!this.addedListeners) {
-            this.addedListeners = [];
-        }
-        if (this.availableListeners.indexOf(name) != -1 && this.addedListeners.indexOf(name) == -1) {
-            // Add the listeners
-            this.addedListeners.push(name);
-            document.addEventListener(name, function() {
-                me.fireEvent(name, me);
-            });
-        }
-        Ext.device.Device.mixins.observable.doAddListener.apply(Ext.device.Device.mixins.observable, arguments);
-    }
-}, 1, 0, 0, 0, 0, 0, [
-    Ext.device.device,
-    'Cordova',
-    Ext.device.device,
-    'PhoneGap'
-], 0));
-
-/**
- * @private
- */
-(Ext.cmd.derive('Ext.device.device.Sencha', Ext.device.device.Abstract, {
-    constructor: function() {
-        Ext.device.device.Abstract.prototype.constructor.apply(this, arguments);
-        this.name = device.name;
-        this.uuid = device.uuid;
-        this.platform = device.platformName || Ext.os.name;
-        this.scheme = Ext.device.Communicator.send({
-            command: 'OpenURL#getScheme',
-            sync: true
-        }) || false;
-        Ext.device.Communicator.send({
-            command: 'OpenURL#watch',
-            callbacks: {
-                callback: function(scheme) {
-                    this.scheme = scheme || false;
-                    this.fireEvent('schemeupdate', this, this.scheme);
-                }
-            },
-            scope: this
-        });
-    },
-    openURL: function(url) {
-        Ext.device.Communicator.send({
-            command: 'OpenURL#open',
-            url: url
-        });
-    }
-}, 1, 0, 0, 0, 0, 0, [
-    Ext.device.device,
-    'Sencha'
-], 0));
-
-/**
- * @private
- */
-(Ext.cmd.derive('Ext.device.device.Simulator', Ext.device.device.Abstract, {}, 0, 0, 0, 0, 0, 0, [
-    Ext.device.device,
-    'Simulator'
-], 0));
-
-/**
- * Provides a cross device way to get information about the device your application is running on. There are 3 different implementations:
- *
- * - Sencha Packager
- * - [Cordova](http://cordova.apache.org/docs/en/2.5.0/cordova_device_device.md.html#Device)
- * - Simulator
- *
- * ## Examples
- *
- * #### Device Information
- *
- * Getting the device information:
- *
- *     Ext.application({
- *         name: 'Sencha',
- *
- *         // Remember that the Ext.device.Device class *must* be required
- *         requires: ['Ext.device.Device'],
- *
- *         launch: function() {
- *             alert([
- *                 'Device name: ' + Ext.device.Device.name,
- *                 'Device platform: ' + Ext.device.Device.platform,
- *                 'Device UUID: ' + Ext.device.Device.uuid
- *             ].join('\n'));
- *         }
- *     });
- *
- * ### Custom Scheme URL
- *
- * Using custom scheme URL to application your application from other applications:
- *
- *     Ext.application({
- *         name: 'Sencha',
- *         requires: ['Ext.device.Device'],
- *         launch: function() {
- *             if (Ext.device.Device.scheme) {
- *                 // the application was opened via another application. Do something:
- *                 alert('Applicaton penned via another application: ' + Ext.device.Device.scheme.url);
- *             }
- *
- *             // Listen for future changes
- *             Ext.device.Device.on('schemeupdate', function(device, scheme) {
- *                 // the application was launched, closed, and then launched another from another application
- *                 // this means onReady wont be called again ('cause the application is already running in the 
- *                 // background) - but this event will be fired
- *                 alert('Applicated reopened via another application: ' + scheme.url);
- *             }, this);
- *         }
- *     });
- *
- * Of course, you must add the custom scheme URL you would like to use when packaging your application.
- * You can do this by setting the `URLScheme` property inside your `package.json` file (Sencha Native Packager configuration file):
- *
- *     {
- *         ...
- *         "URLScheme": "sencha",
- *         ...
- *     }
- *
- * You can change the available URL scheme.
- *
- * You can then test it by packaging and installing the application onto a device/iOS Simulator, opening Safari and typing: `sencha:testing`.
- * The application will launch and it will `alert` the URL you specified.
- *
- * **PLEASE NOTE: This currently only works with the Sencha Native Packager. If you attempt to listen to this event when packaged with
- * PhoneGap or simply in the browser, it will not function.**
- *
- * For more information regarding Native APIs, please review our [Native APIs guide](../../../packaging/native_apis.html).
- *
- * @mixins Ext.device.device.Abstract
- */
-(Ext.cmd.derive('Ext.device.Device', Ext.Base, {
-    singleton: true,
-    constructor: function() {
-        var browserEnv = Ext.browser.is;
-        if (browserEnv.WebView) {
-            if (browserEnv.Cordova) {
-                return Ext.create('Ext.device.device.Cordova');
-            } else if (browserEnv.Sencha) {
-                return Ext.create('Ext.device.device.Sencha');
-            }
-        }
-        return Ext.create('Ext.device.device.Simulator');
-    }
-}, 1, 0, 0, 0, 0, 0, [
-    Ext.device,
-    'Device'
-], 0));
-
 // Using @mixins to include all members of Ext.event.Touch
 // into here to keep documentation simpler
 /**
@@ -62666,7 +62298,7 @@ function() {
             Ext.Array.include(customerIds, rec.get('customerId'));
         });
         dealParams = customerIds.join();
-        console.log(dealParams);
+        //console.log(dealParams);
         var dealStore = Ext.getStore('MyDealsStore');
         if (customerIds.length > 0) {
             dealStore.load({
@@ -62916,7 +62548,6 @@ function() {
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
         this.getParent().getScrollable().getScroller().scrollTo(0, 0);
-        console.log(textfield.getValue());
         var postalCode = textfield.getValue();
         if (postalCode.toString().match('^[0-9]{5}?$')) {
             console.log(postalCode);
@@ -63263,7 +62894,7 @@ function() {
                         style: 'font-family:Arial;font-size:5vw',
                         ui: 'confirm',
                         width: '98%',
-                        text: 'Get Latest Buzz!'
+                        text: 'Get The Latest Buzz!'
                     },
                     {
                         xtype: 'button',
@@ -63501,13 +63132,11 @@ function() {
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
-            console.log(record);
             var name = record.get('businessName');
             var isFavorite = record.get('isFavorite');
             var customerId = record.get('customerId');
             var businessInfo = record.get('businessInfo');
             //console.log(businessInfo);
-            var storeInfo = Ext.getStore('MyJsonPStore');
             var store = Ext.getStore('UserPreferences');
             if (store.getAllCount() !== 0) {
                 store.each(function(rec) {
@@ -63517,72 +63146,40 @@ function() {
                 });
             }
             //console.log(customerId + isFavorite );
-            var rec;
-            // if(!record.get('phoneNumber')) {
-            rec = storeInfo.findRecord('customerId', customerId);
-            //}
             this.down('#nameTxt').setHtml(name);
             if (record.get('pictureURL')) {
                 this.down('#storeImage').setHtml('<img src = "' + record.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
-            } else {
-                this.down('#storeImage').setHtml('<img src = "' + rec.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
             }
             if (record.get('businessInfo')) {
                 this.down('#businessInfo').setHtml('<div style="overflow:scroll!important;font-family:Arial">' + businessInfo + '</div>');
             } else {
-                if (rec.get('businessInfo')) {
-                    this.down('#businessInfo').setHtml('<div style="overflow:scroll!important;font-family:Arial">' + rec.get('businessInfo') + '</div>');
-                } else {
-                    Ext.getCmp('businessInfo').hide();
-                }
+                Ext.getCmp('businessInfo').hide();
             }
             if (record.get('phoneNumber')) {
                 this.down('#phoneNumber1').setValue(record.get('phoneNumber'));
                 //this.down('#phoneNumber').setText(record.get('phoneNumber'));
                 this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;text-decoration:none!important">' + record.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
-                console.log(rec);
-                if (rec.get('phoneNumber')) {
-                    this.down('#phoneNumber1').setValue(rec.get('phoneNumber'));
-                    this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;text-decoration:none!important">' + rec.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
-                } else {
-                    this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
-                }
+                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
             }
             if (record.get('emailAddress')) {
                 this.down('#email1').setValue(record.get('emailAddress'));
                 this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + record.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
-                if (rec.get('emailAddress')) {
-                    this.down('#email1').setValue(rec.get('emailAddress'));
-                    this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + rec.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
-                } else {
-                    this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
-                }
+                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
             }
             if (record.get('websiteDisplayName')) {
                 this.down('#website121').setValue(record.get('websiteDisplayName'));
                 this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
                 this.down('#website12').setValue(record.get('website'));
             } else {
-                if (rec.get('websiteDisplayName')) {
-                    this.down('#website121').setValue(rec.get('websiteDisplayName'));
-                    this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + rec.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
-                    this.down('#website12').setValue(rec.get('website'));
-                } else {
-                    this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
-                }
+                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
             }
             if (record.get('address')) {
                 this.down('#address1').setValue(record.get('address'));
                 this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
-                if (rec.get('address')) {
-                    this.down('#address1').setValue(rec.get('address'));
-                    this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + rec.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
-                } else {
-                    this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
-                }
+                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
             }
             // console.log(store.getData());
             if (isFavorite === true) {
@@ -63598,6 +63195,7 @@ function() {
             var ds = Ext.StoreManager.lookup('MyDealsStore');
             ds.clearFilter();
             ds.filter('customerId', customerId);
+            console.log(customerId + ' has ' + ds.getCount() + ' records');
         }
     }
 }, 0, [
@@ -63618,7 +63216,6 @@ function() {
     LocalBuzz.view,
     'Info'
 ], 0));
-// console.log(customerId + ' has ' + ds.getCount()+' records' );
 
 /*
  * File: app/view/ListOfDeals.js
@@ -63664,27 +63261,27 @@ function() {
             '<div class= "dateValidity" > {dealStartDate} - {dealEndDate}</div></tpl>',
             '-->',
             '<!--<div style="border:2px dotted #c0c0c0;padding:1px 5px 5px 5px;margin:0px 5px 5px 5px;"/>-->',
-            '<div class="w3-card-4">',
-            '    <tpl if= "dealImageURL">',
-            '        <img class="photo" src="{dealImageURL}"  />',
-            '        <tpl else>',
-            '            <img class="photo" src="resources/img/localbuzzicon.png" />',
-            '        </tpl> ',
-            '        <div class="w3-container">',
-            '            <p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
-            '            <p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
-            '            <p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
-            '        </div>',
-            '        <div>',
-            '            <p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;font-family:Arial">{dealDescription}</p>',
+            ' <div class="w3-card-4">',
+            '<tpl if= "dealImageURL">',
+            '<img class="photo" src="{dealImageURL}"  />',
+            '<tpl else>',
+            '<img class="photo" src="resources/img/localbuzzicon.png" />',
+            '</tpl> ',
+            ' <div class="w3-container">',
+            '<p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
+            '<p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
+            '<p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
+            '    </div>',
+            '<div>',
+            '<p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 0px 0px 5px;font-family:Arial">{dealDescription}</p>',
             '',
             '',
-            '        </div>',
-            '        <tpl if= "dealImageURL">',
-            '            <tpl else>',
-            '                <br>',
-            '            </tpl>',
-            '            </div>',
+            '</div>',
+            '<tpl if= "dealImageURL">',
+            '<tpl else>',
+            '<br>',
+            '</tpl>',
+            '</div>',
             '',
             '',
             '',
@@ -63994,7 +63591,7 @@ function() {
                 var zipcode = userLocationStore.getAt(0).get('zipcode');
                 var latitude = userLocationStore.getAt(0).get('latitude');
                 var longitude = userLocationStore.getAt(0).get('longitude');
-                // console.log('LatestBuzz View Analytics' + latitude + "," + longitude+","+ zipcode);
+                console.log('LatestBuzz View Analytics' + latitude + "," + longitude + "," + zipcode);
                 // api call for postal code and track event
                 //  $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                 //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
@@ -64005,7 +63602,7 @@ function() {
         // });
         {
             //geolocation not happening
-            //console.log("Gelocation not working");
+            console.log("Gelocation not working");
             analytics.trackEvent(record.get('dealName'), 'DealClick', 'Unknown');
         }
     },
@@ -64276,6 +63873,7 @@ function() {
         style: 'background:url(resources/img/whitetexture.png);',
         styleHtmlContent: true,
         width: '100%',
+        scrollable: false,
         tpl: [
             '<!--<tpl if="dealImageURL">',
             '<div><img src="{dealImageURL}" style="margin: 0px 5px 0px 5px;height:250px;width:95%;border:none;"/></div>',
@@ -64684,51 +64282,6 @@ function() {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            var record = Ext.getStore('LocalStore').getAt(0);
-                            if (record.get('itemName')) {
-                                var itemName = record.get('itemName');
-                                var deviceId = Ext.device.Device.uuid + '-' + itemName;
-                                var topicArn = "arn:aws:sns:us-west-2:861942316283:LocalBuzzMerchant" + record.get('customerId');
-                                Ext.Ajax.request({
-                                    method: 'POST',
-                                    url: "http://services.appsonmobile.com/deals/getOfferCode/" + itemName,
-                                    params: {
-                                        "CustomerId": record.get('customerId'),
-                                        "topicArn": topicArn,
-                                        "dealName": record.get('dealName'),
-                                        "deviceId": deviceId
-                                    },
-                                    success: function(response, msg) {
-                                        //window.open(url, '_system', 'location=yes');
-                                        console.log(response.responseText);
-                                        var data = Ext.JSON.decode(response.responseText.trim());
-                                        if (data.msg.toString().match('ConditionalCheckFailed:')) {
-                                            Ext.Msg.alert(null, 'Offer already redeemed', null, null);
-                                        } else if (data.msg.toString().match('MultipleValidationErrors:')) {
-                                            Ext.Msg.alert('Error!', 'Please try again', null, null);
-                                        } else {
-                                            Ext.Msg.alert(null, data.msg, null, null);
-                                        }
-                                    },
-                                    //Ext.Msg.alert('Success',null,null,null);
-                                    failure: function(response) {
-                                        //window.open(url, '_system', 'location=yes');
-                                        //Ext.Msg.alert('Failure','Offer already reedemed',null,null);
-                                        var data = Ext.JSON.decode(response.responseText.trim());
-                                        Ext.Msg.alert(data.msg, null, null, null);
-                                        console.log('Failure');
-                                    }
-                                });
-                            }
-                        },
-                        height: '8vh',
-                        margin: '10 5 0 5',
-                        ui: 'action',
-                        text: 'Redeem offer'
-                    },
-                    {
-                        xtype: 'button',
                         height: '8vh',
                         id: 'nameTxt8',
                         itemId: 'nameTxt8',
@@ -64860,35 +64413,28 @@ function() {
             '<div class= "dateValidity" > {dealStartDate} - {dealEndDate}</div></tpl>',
             '-->',
             '<!--<div style="border:2px dotted #c0c0c0;padding:1px 5px 5px 5px;margin:0px 5px 5px 5px;"/>-->',
-            '',
-            ' <div class="w3-header w3-display-topright w3-container ribbon"  >Test</div>',
-            '<div class=" w3-card-4 w3-padding"  >',
-            '   ',
-            '',
-            '    <tpl if= "dealImageURL">',
-            '        <img class="photo" src="{dealImageURL}"  />',
-            '        <tpl else>',
-            '            <img  class="photo1" src="resources/img/localbuzzicon.png" />',
-            '        </tpl>',
-            '',
-            '        <div class="w3-container">',
-            '            ',
-            '            ',
-            '            <p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
-            '            <p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
-            '            <p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
-            '        </div>',
-            '        <div>',
-            '            <p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;font-family:Arial">{dealDescription}</p>',
+            '<div class="w3-card-4"  >',
+            '<tpl if= "dealImageURL">',
+            '<img class="photo" src="{dealImageURL}"  />',
+            '<tpl else>',
+            '<img  class="photo1" src="resources/img/localbuzzicon.png" />',
+            '</tpl>',
+            ' ',
+            ' <div class="w3-container">',
+            '<p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
+            '<p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
+            '<p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
+            '</div>',
+            '<div>',
+            '<p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 0px 0px 5px;font-family:Arial">{dealDescription}</p>',
             '',
             '',
-            '        </div>',
-            '        <tpl if= "dealImageURL">',
-            '            <tpl else>',
-            '                <br>',
-            '                ',
-            '            </tpl>',
-            '',
+            '</div>',
+            '<tpl if= "dealImageURL">',
+            '<tpl else>',
+            '<br>',
+            '</tpl>',
+            '</div>',
             '',
             '',
             '',
@@ -65133,10 +64679,10 @@ function() {
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
-            '<div style="padding-left:10px;padding-right:10px:padding-top:5px;">',
-            '    <div class="w3-card-4 w3-display-container" style= "margin:5px 5px 5px 5px;padding:10px 5px 5px 20px;"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100px" height="120px" style="border:1px solid black;"/>',
-            '        <div class="w3-text-black w3-left-align" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
             '',
+            '<div class="w3-card-4 w3-display-container" style= "margin:5px 5px 5px 5px;padding:10px 5px 5px 20px;"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100px" height="120px" style="border:1px solid black;"/>',
+            '<div class="w3-container w3-text-black" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
+            '    </div>',
             '',
             ''
         ]
@@ -66069,6 +65615,9 @@ Ext.Loader.setConfig({});
 Ext.application({
     viewport: {
         docked: 'top',
+        defaults: {
+            scrollable: true
+        },
         scrollable: true,
         xclass: 'Ext.viewport.Viewport'
     },
@@ -66129,7 +65678,6 @@ Ext.application({
             //BackButtonPanel.setHeight('50px');
             BackButtonPanel.setWidth('100%');
             BackButtonPanel.setCls('backButtonPanel');
-            //BackButtonPanel.addCls('w3-black');
             var intval = setInterval(function() {
                     exitApp = false;
                 }, 3000);
