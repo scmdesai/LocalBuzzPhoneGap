@@ -62427,6 +62427,9 @@ function() {
             },
             {
                 name: 'dealImageURL'
+            },
+            {
+                name: 'dealType'
             }
         ]
     }
@@ -62702,192 +62705,27 @@ function() {
 (Ext.cmd.derive('LocalBuzz.view.WelcomeScreen', Ext.Panel, {
     config: {
         height: '100%',
+        hidden: true,
         id: 'welcomeScreen',
         itemId: 'welcomeScreen',
-        style: 'background-image:url(resources/img/whitetexture.png);',
+        style: 'background:#fff',
         styleHtmlContent: true,
-        scrollable: true,
+        scrollable: false,
         layout: {
-            type: 'vbox',
-            align: 'stretchmax'
+            type: 'hbox',
+            align: 'stretchmax',
+            pack: 'center'
         },
-        items: [
-            {
-                xtype: 'textfield',
-                cls: 'searchfield',
-                height: '11vh',
-                id: 'zipcodeLookUp',
-                itemId: 'zipcodeLookUp',
-                left: '18%',
-                padding: '5 5 5 5',
-                style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
-                top: '32%',
-                width: '60%',
-                component: {
-                    xtype: 'input',
-                    type: 'text',
-                    fastFocus: true,
-                    pattern: '^d{5}$'
-                },
-                clearIcon: false,
-                inputCls: 'searchfield1',
-                name: 'zipcodeLookUp',
-                maxLength: 5,
-                placeHolder: ' Enter 5 digit zipcode'
-            },
-            {
-                xtype: 'numberfield',
-                cls: 'searchfield',
-                height: '11vh',
-                id: 'zipcodeLookUp1',
-                itemId: 'zipcodeLookUp1',
-                left: '18%',
-                padding: '5 5 5 5',
-                style: 'border:1px solid black;background-image:url(resources/img/whitetexture.png);',
-                top: '32%',
-                width: '60%',
-                component: {
-                    type: 'number'
-                },
-                clearIcon: false,
-                inputCls: 'searchfield1',
-                name: 'zipcodeLookUp',
-                maxLength: 5,
-                placeHolder: 'Enter 5 digit zipcode',
-                minValue: 0
-            },
-            {
-                xtype: 'button',
-                handler: function(button, e) {
-                    var userLocationStore = Ext.getStore('UserLocation');
-                    navigator.geolocation.getCurrentPosition(function showPosition(position) {
-                        latitude = position.coords.latitude;
-                        longitude = position.coords.longitude;
-                        //load stores
-                        var store = Ext.getStore('MyJsonPStore');
-                        var dealStore = Ext.getStore('MyDealsStore');
-                        var customerIds;
-                        store.load({
-                            params: {
-                                latitude: latitude,
-                                longitude: longitude,
-                                distance: 50000
-                            }
-                        });
-                        userLocationStore.removeAll();
-                        var view = Ext.Viewport.add({
-                                xtype: 'Main'
-                            });
-                        Ext.Viewport.setActiveItem(view);
-                        $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
-                            var zipcode = json.postalCodes[0].postalCode;
-                            userLocationStore.add({
-                                'latitude': latitude.toString(),
-                                'longitude': longitude.toString(),
-                                'zipcode': zipcode
-                            });
-                        });
-                    }, /*  var store = Ext.getStore('MyDealsStore');
-                        var stores = [];
-                        var storesNearBy = Ext.getStore('StoreCalculateDistances');
-                        //userLocationStore.removeAt(0);
-                        userLocationStore.add({
-                            'latitude': latitude.toString(),
-                            'longitude': longitude.toString()
-                        });
-
-                        // Ext.Viewport.getActiveItem().destroy();
-                        var view = Ext.Viewport.add({
-                            xtype: 'Main'
-                        });
-                        Ext.Viewport.setActiveItem(view);
-                        var store1 = Ext.getStore('MyJsonPStore');
-                        store1.load();
-                        store1.clearFilter();
-                        store1.filterBy(function(record) {
-                            var address = record.get('address');
-                            var customerId;
-                            $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                                store.clearFilter();
-                                store.load();
-                                var store12 = Ext.getStore('StoreCalculateDistances');
-                                Ext.Array.erase(stores, 0, stores.length);
-                                store12.each(function(record) {
-                                    Ext.Array.include(stores, record.get('customerId'));
-                                });
-                                var rec = userLocationStore.getAllCount();
-                                console.log('Store count' + rec);
-                                console.log(stores.length);
-                                store.filterBy(function(record) {
-                                    return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                                }, this);
-                                var distance = json.rows[0].elements[0].distance.value;
-                                console.log(record.get('businessName') + distance);
-                                if (distance <= 50000) /*40234*/
-                    /* {
-                                storesNearBy.add({
-                                'customerId': record.get('customerId')
-                                });
-                                return true;
-                                } else {
-                                return false;
-                                }
-                                });
-                                });*/
-                    onError, {
-                        timeout: 5000
-                    });
-                    function onError() {
-                        Ext.Msg.alert('Location service is disabled', 'Allow Local Buzz to access your location', null, null);
-                    }
-                },
-                height: '9vh',
-                left: '20%',
-                style: 'font-size:5vw',
-                top: '1%',
-                ui: 'action',
-                width: '60%',
-                text: 'Use Current Location'
-            },
-            {
-                xtype: 'component',
-                cls: 'contact-name',
-                disabled: true,
-                docked: 'top',
-                height: '30%',
-                html: '<br><div style="font-family:Arial;text-align:center;"><h3 style="color:#00529D"><b>Welcome to Local Buzz</h3><br><h5 style="color:#00529D">Find the Latest Buzz around you!</h3></div>',
-                id: 'nameTxt4',
-                itemId: 'nameTxt2',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw;color:#00529D!important;',
-                styleHtmlContent: true
-            },
-            {
-                xtype: 'component',
-                cls: 'contact-name',
-                disabled: true,
-                height: '0%',
-                html: '<div  style="text-align:top;"><h3 style="color:#00529D">OR</h3></div>',
-                id: 'nameTxt5',
-                itemId: 'nameTxt3',
-                left: '35%',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:6vw',
-                styleHtmlContent: true,
-                top: '15%'
-            },
-            {
-                xtype: 'button',
-                docked: 'top',
-                height: '7%',
-                hidden: true,
-                margin: '0 5 0 15',
-                style: 'font-family:Arial;font-size:5vw',
-                top: '45%',
-                ui: 'confirm',
-                width: '90%',
-                text: 'Get The Latest Buzz!'
-            }
-        ],
         listeners: [
+            {
+                fn: 'onFormpanelInitialize',
+                event: 'initialize'
+            },
+            {
+                fn: 'onZipcodeLookUpAction1',
+                event: 'action',
+                delegate: '#zipcodeLookUp1'
+            },
             {
                 fn: 'onZipcodeLookUpAction',
                 event: 'action',
@@ -62902,17 +62740,295 @@ function() {
                 fn: 'onZipcodeLookUpBlur',
                 event: 'blur',
                 delegate: '#zipcodeLookUp'
+            }
+        ],
+        items: [
+            {
+                xtype: 'textareafield',
+                cls: 'welcomeMsg',
+                docked: 'top',
+                height: '5em',
+                padding: '5 0 0 0',
+                style: 'font-size:2.5vh',
+                width: '98%',
+                clearIcon: false,
+                inputCls: 'welcomeMsg',
+                labelWidth: '0%',
+                labelWrap: true,
+                value: 'Welcome to Local Buzz',
+                readOnly: true
             },
             {
-                fn: 'onZipcodeLookUpAction1',
-                event: 'action',
-                delegate: '#zipcodeLookUp1'
+                xtype: 'textareafield',
+                cls: 'welcomeMsg',
+                docked: 'top',
+                height: '5em',
+                style: 'font-size:2vh;vertical-align:top',
+                width: '98%',
+                clearIcon: false,
+                inputCls: 'welcomeMsg',
+                labelWidth: '0%',
+                labelWrap: true,
+                value: 'Find the Latest Buzz around you!',
+                readOnly: true
             },
             {
-                fn: 'onFormpanelInitialize',
-                event: 'initialize'
+                xtype: 'container',
+                docked: 'top',
+                height: '80%',
+                hidden: false,
+                width: '100%',
+                scrollable: false,
+                layout: {
+                    type: 'hbox',
+                    align: 'start'
+                },
+                items: [
+                    {
+                        xtype: 'button',
+                        handler: function(button, e) {
+                            var userLocationStore = Ext.getStore('UserLocation');
+                            navigator.geolocation.getCurrentPosition(function showPosition(position) {
+                                latitude = position.coords.latitude;
+                                longitude = position.coords.longitude;
+                                //load stores
+                                var store = Ext.getStore('MyJsonPStore');
+                                var dealStore = Ext.getStore('MyDealsStore');
+                                var customerIds;
+                                store.load({
+                                    params: {
+                                        latitude: latitude,
+                                        longitude: longitude,
+                                        distance: 50000
+                                    }
+                                });
+                                userLocationStore.removeAll();
+                                var view = Ext.Viewport.add({
+                                        xtype: 'Main'
+                                    });
+                                Ext.Viewport.setActiveItem(view);
+                                $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
+                                    var zipcode = json.postalCodes[0].postalCode;
+                                    userLocationStore.add({
+                                        'latitude': latitude.toString(),
+                                        'longitude': longitude.toString(),
+                                        'zipcode': zipcode
+                                    });
+                                });
+                            }, /*  var store = Ext.getStore('MyDealsStore');
+                                var stores = [];
+                                var storesNearBy = Ext.getStore('StoreCalculateDistances');
+                                //userLocationStore.removeAt(0);
+                                userLocationStore.add({
+                                    'latitude': latitude.toString(),
+                                    'longitude': longitude.toString()
+                                });
+
+                                // Ext.Viewport.getActiveItem().destroy();
+                                var view = Ext.Viewport.add({
+                                    xtype: 'Main'
+                                });
+                                Ext.Viewport.setActiveItem(view);
+                                var store1 = Ext.getStore('MyJsonPStore');
+                                store1.load();
+                                store1.clearFilter();
+                                store1.filterBy(function(record) {
+                                    var address = record.get('address');
+                                    var customerId;
+                                    $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                                        store.clearFilter();
+                                        store.load();
+                                        var store12 = Ext.getStore('StoreCalculateDistances');
+                                        Ext.Array.erase(stores, 0, stores.length);
+                                        store12.each(function(record) {
+                                            Ext.Array.include(stores, record.get('customerId'));
+                                        });
+                                        var rec = userLocationStore.getAllCount();
+                                        console.log('Store count' + rec);
+                                        console.log(stores.length);
+                                        store.filterBy(function(record) {
+                                            return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                                        }, this);
+                                        var distance = json.rows[0].elements[0].distance.value;
+                                        console.log(record.get('businessName') + distance);
+                                        if (distance <= 50000) /*40234*/
+                            /* {
+                                        storesNearBy.add({
+                                        'customerId': record.get('customerId')
+                                        });
+                                        return true;
+                                        } else {
+                                        return false;
+                                        }
+                                        });
+                                        });*/
+                            onError, {
+                                timeout: 5000
+                            });
+                            function onError() {
+                                Ext.Msg.alert('Location service is disabled', 'Allow Local Buzz to access your location', null, null);
+                            }
+                        },
+                        height: '10vh',
+                        hidden: false,
+                        left: '10vw',
+                        margin: '0 0 50vh 0',
+                        style: 'font-size:3vh;font-family:Helvetica;',
+                        styleHtmlContent: true,
+                        ui: 'action',
+                        width: '80vw',
+                        text: 'Use Current Location'
+                    },
+                    {
+                        xtype: 'numberfield',
+                        cls: 'searchfield',
+                        height: '12vh',
+                        id: 'zipcodeLookUp1',
+                        itemId: 'zipcodeLookUp1',
+                        left: '10vw',
+                        margin: '20vh 0 0 0',
+                        padding: '10 0 0 0',
+                        style: 'border:1px solid black;background:white;font-size:3vh;font-family:Helvetica;',
+                        width: '80vw',
+                        component: {
+                            type: 'number'
+                        },
+                        clearIcon: false,
+                        inputCls: 'searchfield1',
+                        name: 'zipcodeLookUp',
+                        maxLength: 5,
+                        placeHolder: 'Enter 5 digit zipcode'
+                    },
+                    {
+                        xtype: 'textfield',
+                        cls: 'searchfield',
+                        height: '12vh',
+                        hidden: false,
+                        id: 'zipcodeLookUp',
+                        itemId: 'zipcodeLookUp',
+                        left: '10vw',
+                        margin: '20vh 0 0 0',
+                        padding: '10 0 0 0',
+                        style: 'border:1px solid black;background:white;font-size:3vh;font-family:Helvetica;',
+                        width: '80vw',
+                        component: {
+                            xtype: 'input',
+                            type: 'text',
+                            fastFocus: true,
+                            pattern: '^d{5}$'
+                        },
+                        clearIcon: false,
+                        inputCls: 'searchfield1',
+                        name: 'zipcodeLookUp',
+                        maxLength: 5,
+                        placeHolder: ' Enter 5 digit zipcode'
+                    },
+                    {
+                        xtype: 'textareafield',
+                        cls: 'welcomeMsg',
+                        padding: '5vh 0 0 0',
+                        style: 'font-size:3vh;vertical-align:top',
+                        width: '98%',
+                        clearIcon: false,
+                        inputCls: 'welcomeMsg',
+                        labelWidth: '0%',
+                        labelWrap: true,
+                        value: 'OR',
+                        readOnly: true
+                    }
+                ]
             }
         ]
+    },
+    onFormpanelInitialize: function(component, eOpts) {
+        if (Ext.os.is('Android')) {
+            Ext.getCmp('zipcodeLookUp1').destroy();
+        } else {
+            Ext.getCmp('zipcodeLookUp').destroy();
+        }
+    },
+    onZipcodeLookUpAction1: function(textfield, e, eOpts) {
+        var postalCode = textfield.getValue();
+        if (postalCode.toString().match('^[0-9]{5}?$')) {
+            console.log(postalCode);
+            var userLocationStore = Ext.getStore('UserLocation');
+            userLocationStore.removeAt(0);
+            $.getJSON("http://api.geonames.org/postalCodeSearchJSON?postalcode=" + postalCode + "&maxRows=10&country=US&username=1234_5678", function(json) {
+                var latitude = (json.postalCodes[0].lat).toString();
+                var longitude = (json.postalCodes[0].lng).toString();
+                console.log(latitude + "," + longitude);
+                userLocationStore.add({
+                    'latitude': latitude,
+                    'longitude': longitude
+                });
+                var store = Ext.getStore('MyJsonPStore');
+                store.load({
+                    params: {
+                        latitude: latitude,
+                        longitude: longitude,
+                        distance: 50000
+                    }
+                });
+                var view = Ext.Viewport.add({
+                        xtype: 'Main'
+                    });
+                Ext.Viewport.setActiveItem(view);
+            });
+        } else /* var store = Ext.getStore('MyDealsStore');
+                var userLocationStore = Ext.getStore('UserLocation');
+                var stores = [];
+                var latitude;
+                var longitude;
+                var storesNearBy = Ext.getStore('StoreCalculateDistances');
+                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                    latitude = json.results[0].geometry.location.lat;
+                    longitude = json.results[0].geometry.location.lng;
+                    //userLocationStore.removeAt(0);
+                    console.log(latitude, longitude);
+                    userLocationStore.add({
+                        'latitude': latitude.toString(),
+                        'longitude': longitude.toString()
+                    });
+                    console.log('Store count is : ' + userLocationStore.getAllCount());
+                    // Ext.Viewport.getActiveItem().destroy();
+                    var view = Ext.Viewport.add({
+                            xtype: 'Main'
+                        });
+                    Ext.Viewport.setActiveItem(view);
+                    var store1 = Ext.getStore('MyJsonPStore');
+                    store1.load();
+                    store1.clearFilter();
+                    store1.filterBy(function(record) {
+                        var address = record.get('address');
+                        var customerId;
+                        $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
+                            store.clearFilter();
+                            store.load();
+                            var store12 = Ext.getStore('StoreCalculateDistances');
+                            Ext.Array.erase(stores, 0, stores.length);
+                            store12.each(function(record) {
+                                Ext.Array.include(stores, record.get('customerId'));
+                            });
+                           // console.log(stores.length);
+                            store.filterBy(function(record) {
+                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
+                            }, this);
+                            var distance = json.rows[0].elements[0].distance.value;
+                           // console.log(record.get('businessName') + distance);
+                            if (distance <= 50000) {
+                                storesNearBy.add({
+                                    'customerId': record.get('customerId')
+                                });
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        });
+                    });
+                });*/
+        {
+            Ext.Msg.alert('Error', 'Please enter valid zipcode', null, null);
+        }
     },
     onZipcodeLookUpAction: function(textfield, e, eOpts) {
         this.getParent().getScrollable().getScroller().scrollTo(0, 0);
@@ -63005,96 +63121,6 @@ function() {
     },
     onZipcodeLookUpBlur: function(textfield, e, eOpts) {
         this.getParent().getScrollable().getScroller().scrollTo(0, 0);
-    },
-    onZipcodeLookUpAction1: function(textfield, e, eOpts) {
-        var postalCode = textfield.getValue();
-        if (postalCode.toString().match('^[0-9]{5}?$')) {
-            console.log(postalCode);
-            var userLocationStore = Ext.getStore('UserLocation');
-            userLocationStore.removeAt(0);
-            $.getJSON("http://api.geonames.org/postalCodeSearchJSON?postalcode=" + postalCode + "&maxRows=10&country=US&username=1234_5678", function(json) {
-                var latitude = (json.postalCodes[0].lat).toString();
-                var longitude = (json.postalCodes[0].lng).toString();
-                console.log(latitude + "," + longitude);
-                userLocationStore.add({
-                    'latitude': latitude,
-                    'longitude': longitude
-                });
-                var store = Ext.getStore('MyJsonPStore');
-                store.load({
-                    params: {
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance: 50000
-                    }
-                });
-                var view = Ext.Viewport.add({
-                        xtype: 'Main'
-                    });
-                Ext.Viewport.setActiveItem(view);
-            });
-        } else /* var store = Ext.getStore('MyDealsStore');
-                var userLocationStore = Ext.getStore('UserLocation');
-                var stores = [];
-                var latitude;
-                var longitude;
-                var storesNearBy = Ext.getStore('StoreCalculateDistances');
-                $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + postalCode + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                    latitude = json.results[0].geometry.location.lat;
-                    longitude = json.results[0].geometry.location.lng;
-                    //userLocationStore.removeAt(0);
-                    console.log(latitude, longitude);
-                    userLocationStore.add({
-                        'latitude': latitude.toString(),
-                        'longitude': longitude.toString()
-                    });
-                    console.log('Store count is : ' + userLocationStore.getAllCount());
-                    // Ext.Viewport.getActiveItem().destroy();
-                    var view = Ext.Viewport.add({
-                            xtype: 'Main'
-                        });
-                    Ext.Viewport.setActiveItem(view);
-                    var store1 = Ext.getStore('MyJsonPStore');
-                    store1.load();
-                    store1.clearFilter();
-                    store1.filterBy(function(record) {
-                        var address = record.get('address');
-                        var customerId;
-                        $.getJSON("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + latitude + "," + longitude + "&destinations=" + address + "&key=AIzaSyDHFtBdpwHNSJ2Pu0HpRK1ce5uHCSGHKXM", function(json) {
-                            store.clearFilter();
-                            store.load();
-                            var store12 = Ext.getStore('StoreCalculateDistances');
-                            Ext.Array.erase(stores, 0, stores.length);
-                            store12.each(function(record) {
-                                Ext.Array.include(stores, record.get('customerId'));
-                            });
-                           // console.log(stores.length);
-                            store.filterBy(function(record) {
-                                return Ext.Array.indexOf(stores, record.get('customerId')) !== -1;
-                            }, this);
-                            var distance = json.rows[0].elements[0].distance.value;
-                           // console.log(record.get('businessName') + distance);
-                            if (distance <= 50000) {
-                                storesNearBy.add({
-                                    'customerId': record.get('customerId')
-                                });
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        });
-                    });
-                });*/
-        {
-            Ext.Msg.alert('Error', 'Please enter valid zipcode', null, null);
-        }
-    },
-    onFormpanelInitialize: function(component, eOpts) {
-        if (Ext.os.is('Android')) {
-            Ext.getCmp('zipcodeLookUp1').destroy();
-        } else {
-            Ext.getCmp('zipcodeLookUp').destroy();
-        }
     }
 }, 0, 0, [
     "component",
@@ -63129,7 +63155,7 @@ function() {
         height: '100%',
         id: 'Info',
         itemId: 'Info',
-        style: 'border:1px solid #00529D;background:url(resources/img/whitetexture.png);',
+        style: 'border:1px solid #00529D;background:white',
         styleHtmlContent: true,
         layout: 'fit',
         items: [
@@ -63138,16 +63164,16 @@ function() {
                 cls: 'toolbarCls',
                 docked: 'top',
                 hidden: false,
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 items: [
                     {
                         xtype: 'button',
                         cls: 'icon-back-button',
-                        height: '100%',
+                        height: '7vh',
                         hidden: false,
                         itemId: 'infoBackBtn',
-                        minHeight: '100%',
-                        style: 'font-family:Arial;',
+                        margin: '5 0 0 0',
+                        minHeight: '8vh',
                         styleHtmlContent: true,
                         ui: 'plain',
                         listeners: [
@@ -63179,7 +63205,7 @@ function() {
                         id: 'nameTxt',
                         itemId: 'nameTxt',
                         padding: '0 0 0 15',
-                        style: 'word-wrap:break-word;font-family:Arial;font-size:5.5vw',
+                        style: 'word-wrap:break-word;font-size:5.5vw',
                         width: '65%'
                     }
                 ]
@@ -63200,7 +63226,7 @@ function() {
                 itemId: 'businessInfo',
                 margin: '5 5 5 5',
                 padding: '2 2 2 2',
-                style: 'font-size:1em;background:url(resources/img/whitetexture.png);',
+                style: 'font-size:1em;background:white',
                 styleHtmlContent: true,
                 width: '98%',
                 layout: 'fit',
@@ -63260,7 +63286,7 @@ function() {
                         height: '8vh',
                         hidden: false,
                         margin: '5 0 5 0',
-                        style: 'font-family:Arial;font-size:5vw',
+                        style: 'font-size:5vw',
                         ui: 'confirm',
                         width: '98%',
                         text: 'Get Latest Buzz!'
@@ -63283,7 +63309,7 @@ function() {
                         itemId: 'phoneNumber',
                         margin: '2 0 0 0',
                         padding: '5 5 10 5',
-                        style: 'background:url(resources/img/whitetexture.png);',
+                        style: 'background:white',
                         styleHtmlContent: true,
                         width: 'auto',
                         iconCls: 'icon-phone'
@@ -63312,7 +63338,7 @@ function() {
                         itemId: 'email',
                         margin: '5 0 0 0',
                         padding: '5 5 10 5',
-                        style: 'background:url(resources/img/whitetexture.png);',
+                        style: 'background:white',
                         styleHtmlContent: true,
                         width: 'auto',
                         iconCls: 'icon-email-white'
@@ -63333,7 +63359,7 @@ function() {
                         itemId: 'website1',
                         margin: '5 0 0 0',
                         padding: '5 5 10 5',
-                        style: 'background:url(resources/img/whitetexture.png);',
+                        style: 'background:white',
                         styleHtmlContent: true,
                         width: 'auto',
                         iconCls: 'icon-globe-white'
@@ -63362,7 +63388,7 @@ function() {
                         itemId: 'address',
                         margin: '5 0 0 0',
                         padding: '5 5 10 5',
-                        style: 'background:url(resources/img/whitetexture.png);',
+                        style: 'background:white',
                         styleHtmlContent: true,
                         width: 'auto',
                         iconCls: 'icon-location'
@@ -63377,7 +63403,7 @@ function() {
                 id: 'website12',
                 itemId: 'website12',
                 margin: '0 15 0 15',
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 styleHtmlContent: true,
                 clearIcon: false,
                 name: 'website',
@@ -63394,7 +63420,7 @@ function() {
                 itemId: 'website121',
                 margin: '5 5 5 5',
                 minHeight: '',
-                style: 'color:black;text-decoration:underline;font-family:Arial;font-size:4.5vw',
+                style: 'color:black;text-decoration:underline;font-size:4.5vw',
                 styleHtmlContent: true,
                 top: '72vh',
                 width: '95%',
@@ -63528,10 +63554,10 @@ function() {
                 this.down('#storeImage').setHtml('<img src = "' + rec.get('pictureURL') + '" style="height:35vh;width:100%;"/>');
             }
             if (record.get('businessInfo')) {
-                this.down('#businessInfo').setHtml('<div style="overflow:scroll!important;font-family:Arial">' + businessInfo + '</div>');
+                this.down('#businessInfo').setHtml('<div style="overflow:scroll!important;">' + businessInfo + '</div>');
             } else {
                 if (rec.get('businessInfo')) {
-                    this.down('#businessInfo').setHtml('<div style="overflow:scroll!important;font-family:Arial">' + rec.get('businessInfo') + '</div>');
+                    this.down('#businessInfo').setHtml('<div style="overflow:scroll!important;">' + rec.get('businessInfo') + '</div>');
                 } else {
                     Ext.getCmp('businessInfo').hide();
                 }
@@ -63539,49 +63565,49 @@ function() {
             if (record.get('phoneNumber')) {
                 this.down('#phoneNumber1').setValue(record.get('phoneNumber'));
                 //this.down('#phoneNumber').setText(record.get('phoneNumber'));
-                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;text-decoration:none!important">' + record.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw;text-decoration:none!important">' + record.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw"></span>');
             } else {
                 console.log(rec);
                 if (rec.get('phoneNumber')) {
                     this.down('#phoneNumber1').setValue(rec.get('phoneNumber'));
-                    this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;text-decoration:none!important">' + rec.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                    this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw;text-decoration:none!important">' + rec.get('phoneNumber') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw"></span>');
                 } else {
-                    this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
+                    this.down('#phoneNumber').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
                 }
             }
             if (record.get('emailAddress')) {
                 this.down('#email1').setValue(record.get('emailAddress'));
-                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + record.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw">' + record.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
                 if (rec.get('emailAddress')) {
                     this.down('#email1').setValue(rec.get('emailAddress'));
-                    this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + rec.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                    this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw">' + rec.get('emailAddress') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
                 } else {
-                    this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
+                    this.down('#email').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
                 }
             }
             if (record.get('websiteDisplayName')) {
                 this.down('#website121').setValue(record.get('websiteDisplayName'));
-                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw">' + record.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw"></span>');
                 this.down('#website12').setValue(record.get('website'));
             } else {
                 if (rec.get('websiteDisplayName')) {
                     this.down('#website121').setValue(rec.get('websiteDisplayName'));
-                    this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw">' + rec.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                    this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw">' + rec.get('websiteDisplayName') + '</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw"></span>');
                     this.down('#website12').setValue(rec.get('website'));
                 } else {
-                    this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
+                    this.down('#website1').setHtml('<span style="left:12vw;bottom:1vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
                 }
             }
             if (record.get('address')) {
                 this.down('#address1').setValue(record.get('address'));
-                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + record.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
             } else {
                 if (rec.get('address')) {
                     this.down('#address1').setValue(rec.get('address'));
-                    this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + rec.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
+                    this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.2vw;white-spacing:normal;word-break:break-all!important;"><br><br>' + rec.get('address') + '<br></span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:4vw">></span>');
                 } else {
-                    this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-family:Arial;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
+                    this.down('#address').setHtml('<span style="left:12vw;bottom:2vh;position:absolute;text-align: left;font-weight:normal!important;font-size:3.5vw;color:#c0c0c0;">Not Listed</span><span style="float:right;color:#2f4f4f;font-weight:bold!important;font-size:3vw"></span>');
                 }
             }
             // console.log(store.getData());
@@ -63636,11 +63662,13 @@ function() {
  */
 (Ext.cmd.derive('LocalBuzz.view.ListOfDeals', Ext.dataview.List, {
     config: {
+        centered: false,
+        cls: 'List_Screen',
         height: '100%',
         html: '',
         id: 'listofdeals',
         itemId: 'listofdeals',
-        style: 'background:url(resources/img/whitetexture.png);',
+        style: 'background:white',
         styleHtmlContent: true,
         allowDeselect: true,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
@@ -63671,12 +63699,12 @@ function() {
             '            <img class="photo" src="resources/img/localbuzzicon.png" />',
             '        </tpl> ',
             '        <div class="w3-container">',
-            '            <p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
-            '            <p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
-            '            <p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
+            '            <p style="font-size:100%;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;"><b>{dealName}</b></p>',
+            '            <p style="font-size:95%;text-align:left;padding:0px 5px 5px 5px;color:#e69500;"><b>{businessName}</b></p>',
+            '            <p style="font-size:80%;color:#00529D;text-align:left;padding:5px 5px 5px 5px;">{dealStartDate} - {dealEndDate}</p>',
             '        </div>',
             '        <div>',
-            '            <p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;font-family:Arial">{dealDescription}</p>',
+            '            <p style="font-size:90%;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;">{dealDescription}</p>',
             '',
             '',
             '        </div>',
@@ -63960,7 +63988,7 @@ function() {
         Ext.getStore('LocalStore').add(record);
         var pic;
         //var pic = Ext.Viewport.add({xtype:'dealpicture'});
-        //console.log(Ext.Viewport.getActiveItem().getItemId());
+        console.log(Ext.Viewport.getActiveItem().getItemId());
         if (Ext.Viewport.getComponent('dealPicture')) {
             pic = Ext.Viewport.getComponent('dealPicture');
         } else {
@@ -63994,7 +64022,7 @@ function() {
                 var zipcode = userLocationStore.getAt(0).get('zipcode');
                 var latitude = userLocationStore.getAt(0).get('latitude');
                 var longitude = userLocationStore.getAt(0).get('longitude');
-                // console.log('LatestBuzz View Analytics' + latitude + "," + longitude+","+ zipcode);
+                console.log('LatestBuzz View Analytics' + latitude + "," + longitude + "," + zipcode);
                 // api call for postal code and track event
                 //  $.getJSON("http://api.geonames.org/findNearbyPostalCodesJSON?lat=" + latitude + "&lng=" + longitude + "&username=1234_5678", function(json) {
                 //analytics.trackEvent(record.get('dealName'),DealClick', json.postalCodes[0].postalCode);
@@ -64218,7 +64246,7 @@ function() {
         height: '100%',
         margin: '5 5 5 5',
         padding: '5 5 5 5',
-        style: 'overflow: hidden;background: url(resources/img/whitetexture.png)',
+        style: 'overflow: hidden;background:white',
         styleHtmlContent: true,
         ui: '',
         scrollable: false,
@@ -64273,7 +64301,7 @@ function() {
         itemId: 'dealPicture',
         margin: '',
         padding: '5 5 5 5',
-        style: 'background:url(resources/img/whitetexture.png);',
+        style: 'background:white',
         styleHtmlContent: true,
         width: '100%',
         tpl: [
@@ -64294,7 +64322,7 @@ function() {
                 docked: 'top',
                 height: '8vh',
                 hidden: true,
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 items: [
                     {
                         xtype: 'component',
@@ -64306,7 +64334,7 @@ function() {
                         id: 'nameTxt1',
                         itemId: 'nameTxt1',
                         padding: '0 0 0 15',
-                        style: 'word-wrap:break-word;font-family:Arial;font-size:5.5vw',
+                        style: 'word-wrap:break-word;font-size:5.5vw',
                         width: '65%'
                     }
                 ]
@@ -64317,7 +64345,7 @@ function() {
                 docked: 'top',
                 hidden: false,
                 margin: '0 0 5 0',
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 items: [
                     {
                         xtype: 'button',
@@ -64338,16 +64366,14 @@ function() {
                         },
                         centered: false,
                         cls: 'icon-back-button',
-                        height: '100%',
+                        height: '7vh',
                         hidden: false,
                         id: 'dealpictureBackBtn',
                         itemId: 'dealpictureBackBtn',
                         margin: '5 0 0 0',
-                        minHeight: '100%',
-                        style: 'font-family:Arial',
+                        minHeight: '8vh',
                         styleHtmlContent: true,
                         ui: 'plain',
-                        text: '',
                         listeners: [
                             {
                                 fn: function(component, eOpts) {
@@ -64375,7 +64401,7 @@ function() {
                         id: 'nameTxt9',
                         itemId: 'nameTxt',
                         padding: '10 0 0 5',
-                        style: 'word-wrap:break-word;font-family:Arial;font-size:5.5vw',
+                        style: 'word-wrap:break-word;font-size:5.5vw',
                         width: '65%'
                     },
                     {
@@ -64400,7 +64426,7 @@ function() {
                 itemId: 'nameTxt6',
                 margin: '10 5 5 5',
                 padding: '0 0 0 5',
-                style: 'word-wrap:break-word;font-family:Arial;font-size:4.5vw;background:url(resources/img/whitetexture.png);color:green;',
+                style: 'word-wrap:break-word;font-size:4.5vw;color:green;',
                 width: '100%',
                 layout: 'fit'
             },
@@ -64418,7 +64444,7 @@ function() {
                 id: 'dealimage',
                 itemId: 'dealimage',
                 left: '2%',
-                style: 'color:#00529D;word-wrap:break-word;font-family:Arial;font-size:6vw;background:url(resources/img/whitetexture.png);',
+                style: 'color:#00529D;word-wrap:break-word;font-size:6vw;background:white',
                 width: '96vw',
                 listeners: [
                     {
@@ -64559,7 +64585,7 @@ function() {
                         itemId: 'nameTxt3',
                         margin: '10 5 5 5',
                         padding: '0 0 0 5',
-                        style: 'font-family:Arial;font-size:4vw;background:url(resources/img/whitetexture.png);color:black;font-weight:normal',
+                        style: 'font-size:4vw;background:white;color:black;font-weight:normal',
                         listeners: [
                             {
                                 fn: function(element, eOpts) {
@@ -64674,7 +64700,7 @@ function() {
                         id: 'nameTxt7',
                         itemId: 'nameTxt5',
                         margin: '10 5 5 5',
-                        style: 'font-family:Arial;font-size:3.5vw;background:url(resources/img/whitetexture.png);color:#00529D;'
+                        style: 'font-size:3.5vw;background:white;color:#00529D;'
                     },
                     {
                         xtype: 'container',
@@ -64701,14 +64727,14 @@ function() {
                                     },
                                     success: function(response, msg) {
                                         //window.open(url, '_system', 'location=yes');
-                                        console.log(response.responseText);
+                                        console.log(response.responseText.trim());
                                         var data = Ext.JSON.decode(response.responseText.trim());
                                         if (data.msg.toString().match('ConditionalCheckFailed:')) {
                                             Ext.Msg.alert(null, 'Offer already redeemed', null, null);
                                         } else if (data.msg.toString().match('MultipleValidationErrors:')) {
                                             Ext.Msg.alert('Error!', 'Please try again', null, null);
                                         } else {
-                                            Ext.Msg.alert(null, data.msg, null, null);
+                                            Ext.Msg.alert(null, data.msg, null);
                                         }
                                     },
                                     //Ext.Msg.alert('Success',null,null,null);
@@ -64723,6 +64749,8 @@ function() {
                             }
                         },
                         height: '8vh',
+                        id: 'redeemOffer',
+                        itemId: 'redeemOffer',
                         margin: '10 5 0 5',
                         ui: 'action',
                         text: 'Redeem offer'
@@ -64753,11 +64781,16 @@ function() {
             // this.down('#dealimage').setHtml('<div class="quote-container"><blockquote class="note yellow"><div style="font-size:6vw;">' + record.get('dealName') + '</div><div><img src="'+record.get('dealImageURL')+'" style="height:39vh;width:98%;display:inline;border:none;"/><p id="enlargebtn" class="icon-enlarge" style="background:none;position:absolute;bottom: 1.5em; right: 1.5em"></p></div><div style="font-size:4vw;">' + record.get('dealDescription') + '</div><div style="font-size:3vw;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div></blockquote></div>');
             this.down('#nameTxt3').show();
         } else {
-            this.down('#dealimage').setHtml('<div style="padding:5px 5px 5px 5px;" ><img src="resources/img/localbuzzicon.png" align="right" style="border:none;margin: 5px 5px 5px 5px;"/><div style="font-size:4.5vw;font-family:Arial;color:green;">' + record.get('dealName') + '</div><br><div style="font-size:3.5vw;font-family:Arial;color:black;">' + record.get('dealDescription') + '</div><br><div style="font-size:3.3vw;font-family:Arial;color:#00529D;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '<br></div><br></div>');
+            this.down('#dealimage').setHtml('<div style="padding:5px 5px 5px 5px;" ><img src="resources/img/localbuzzicon.png" align="right" style="border:none;margin: 5px 5px 5px 5px;"/><div style="font-size:4.5vw;color:green;">' + record.get('dealName') + '</div><br><div style="font-size:3.5vw;color:black;">' + record.get('dealDescription') + '</div><br><div style="font-size:3.3vw;color:#00529D;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '<br></div><br></div>');
             //this.down('#dealimage').setHtml('<div><img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/></div><br><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:4vw;">' + record.get('dealDescription') + '</div><br><div style="font-size:3vw;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div>');
             //this.down('#dealimage').setHtml('<div style="background:url(resources/img/buzz-background.png);width:98%;height:38vh"><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:4vw;">' + record.get('dealDescription') + '</div><br><div style="font-size:3vw;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div><div>');
             // this.down('#dealimage').setHtml('<div class="quote-container"><blockquote class="note yellow"><img src="resources/img/localbuzzicon.png" align="right" style="margin: 5px 5px 5px 5px"/><div style="font-size:6vw;">' + record.get('dealName') + '</div><br><br><div style="font-size:4vw;">' + record.get('dealDescription') + '</div><br><div style="font-size:3vw;">Valid ' + record.get('dealStartDate') + ' - ' + record.get('dealEndDate') + '</div></blockquote></div>');
             this.down('#nameTxt3').hide();
+        }
+        if (record.get('dealType') !== 'Deal') {
+            Ext.getCmp('redeemOffer').setHidden(true);
+        } else {
+            Ext.getCmp('redeemOffer').setHidden(false);
         }
         //Ext.getCmp('nameTxt8').show();
         Ext.getCmp('nameTxt8').element.addListener('tap', function() {
@@ -64793,7 +64826,7 @@ function() {
             //store.filter('businessName', businessName);
             var rec = store.findRecord('businessName', businessName);
             //var rec = store.getAt(0);
-            this.down('#nameTxt8').setHtml('<h5 style="font-family:Arial;font-size:5vw"><b>About ' + businessName + '</b></h5>');
+            this.down('#nameTxt8').setHtml('<h5 style="font-size:5vw"><b>About ' + businessName + '</b></h5>');
         }
     }
 }, 0, [
@@ -64837,10 +64870,9 @@ function() {
         html: '',
         id: 'latestbuzz',
         itemId: 'latestbuzz',
-        style: 'background:url(resources/img/whitetexture.png);',
+        style: 'background:white',
         allowDeselect: true,
         emptyText: '<h3 class="emptyText">No active buzz at this time.</h3>',
-        selectedCls: 'list-item-selected',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         useSimpleItems: false,
@@ -64861,9 +64893,9 @@ function() {
             '-->',
             '<!--<div style="border:2px dotted #c0c0c0;padding:1px 5px 5px 5px;margin:0px 5px 5px 5px;"/>-->',
             '',
-            ' <div class="w3-header w3-display-topright w3-container ribbon"  >Test</div>',
+            '<!--<div class="w3-header w3-display-topright w3-container ribbon "  >Test</div>-->',
             '<div class=" w3-card-4 w3-padding"  >',
-            '   ',
+            '',
             '',
             '    <tpl if= "dealImageURL">',
             '        <img class="photo" src="{dealImageURL}"  />',
@@ -64871,23 +64903,32 @@ function() {
             '            <img  class="photo1" src="resources/img/localbuzzicon.png" />',
             '        </tpl>',
             '',
-            '        <div class="w3-container">',
-            '            ',
-            '            ',
-            '            <p style="font-size:4.5vw;text-align:left;word-wrap: break-word;color:green;padding:5px 5px 5px 5px;font-family:Arial"><b>{dealName}</b></p>',
-            '            <p style="font-size:4vw;text-align:left;padding:0px 5px 5px 5px;color:#e69500;font-family:Arial"><b>{businessName}</b></p>',
-            '            <p style="font-size:2.8vw;color:#00529D;text-align:left;padding:5px 5px 5px 5px;font-family:Arial">{dealStartDate} - {dealEndDate}</p>',
-            '        </div>',
+            '',
+            '',
+            '',
+            '        <div style="font-size:90%;color:#b02a0f">{dealName}</div>',
+            '',
+            '        <div style="font-size:80%;" >{businessName}</div>',
+            '        <br>',
+            '',
+            '',
+            '',
             '        <div>',
-            '            <p style="font-size:3.2vw;text-align:left;word-break: break-word;padding:0px 5px 0px 5px;font-family:Arial">{dealDescription}</p>',
+            '            <p style="font-size:60%;">{dealDescription}</p>',
             '',
             '',
             '        </div>',
+            '        <!-- <span><input class="icon-heart-empty"  value="&#xf08a;" style="text-align:left;" />-->',
+            '        <span style="font-size:50%;color:grey">{dealStartDate} - {dealEndDate}</span>',
             '        <tpl if= "dealImageURL">',
             '            <tpl else>',
             '                <br>',
-            '                ',
+            '',
             '            </tpl>',
+            '',
+            '            <!--  <button type="button" id="heart-empty" class="icon-heart-empty" style="float:right;">/f08a</button> -->',
+            '',
+            '',
             '',
             '',
             '',
@@ -65080,13 +65121,13 @@ function() {
 (Ext.cmd.derive('LocalBuzz.view.List', Ext.dataview.List, {
     config: {
         height: '100%',
-        style: 'background:url(resources/img/whitetexture.png);',
+        style: 'background:white',
         disableSelection: true,
         emptyText: '<h4 class="emptyText">Find stores registered with Local Buzz here!</h4>',
         store: 'MyJsonPStore',
         grouped: true,
         itemTpl: [
-            '<div style="font-family:Arial;font-size:5vw">{businessName}</div>',
+            '<div style="font-size:5vw">{businessName}</div>',
             ''
         ]
     }
@@ -65128,14 +65169,14 @@ function() {
 (Ext.cmd.derive('LocalBuzz.view.FavoriteView', Ext.dataview.DataView, {
     config: {
         itemId: 'favoriteview',
-        style: 'background:url(resources/img/whitetexture.png);',
+        style: 'background:white',
         emptyText: '<h4 class="emptyText">You can see your favorite business here!</h4>',
         inline: true,
         store: 'MyJsonPStore',
         itemTpl: [
             '<div style="padding-left:10px;padding-right:10px:padding-top:5px;">',
             '    <div class="w3-card-4 w3-display-container" style= "margin:5px 5px 5px 5px;padding:10px 5px 5px 20px;"><img src="{pictureURL:empty(\'resources/img/defaultContactPic.png\')}" width="100px" height="120px" style="border:1px solid black;"/>',
-            '        <div class="w3-text-black w3-left-align" style="width:120px;word-break:break-word;font-size:0.7em;font-family:Arial;font-weight:normal">{businessName}</div>',
+            '        <div class="w3-text-black w3-left-align" style="width:120px;word-break:break-word;font-size:0.7em;font-weight:normal">{businessName}</div>',
             '',
             '',
             ''
@@ -65181,7 +65222,7 @@ function() {
         id: 'tabbar',
         itemId: 'tabbar',
         minHeight: '',
-        style: 'background:url(resources/img/whitetexture.png)',
+        style: 'background:white',
         modal: true,
         layout: {
             type: 'card',
@@ -65195,7 +65236,7 @@ function() {
                 iconCls: 'icon-localbuzzicon_latest',
                 id: 'LatestBuzz',
                 itemId: 'LatestBuzz',
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 ui: 'dark',
                 modal: false,
                 listeners: [
@@ -65214,7 +65255,7 @@ function() {
                         xtype: 'toolbar',
                         cls: 'toolbarCls',
                         docked: 'top',
-                        html: '<p id="titlebar" style="color:#00529D;font-size:8vw;font-family:Arial">Local Buzz</p>',
+                        html: '<p id="titlebar" style="color:#00529D;font-size:8vw">Local Buzz</p>',
                         padding: '5 0 0 0 ',
                         style: 'background:none;'
                     },
@@ -65229,7 +65270,8 @@ function() {
                 iconCls: 'icon-search',
                 id: 'SearchBusiness',
                 itemId: 'SearchBusiness',
-                style: 'background:url(resources/img/whitetexture.png);',
+                margin: '',
+                style: 'background:white',
                 ui: 'dark',
                 layout: 'hbox',
                 modal: true,
@@ -65238,7 +65280,7 @@ function() {
                         xtype: 'toolbar',
                         cls: 'toolbarCls',
                         docked: 'top',
-                        style: 'background:url(resources/img/whitetexture.png);',
+                        style: 'background:white',
                         items: [
                             {
                                 xtype: 'spacer',
@@ -65295,15 +65337,15 @@ function() {
                 height: '100%',
                 itemId: 'Favorites',
                 margin: '1 1 1 1',
-                style: 'background:url(resources/img/whitetexture.png);color:#00529D;',
+                style: 'background:white;',
                 modal: false,
                 items: [
                     {
                         xtype: 'toolbar',
                         cls: 'toolbarCls',
                         docked: 'top',
-                        html: '<h1 style=" color:#00529D;font-size:6vw;text-align:center;padding-top:10px;font-family:Arial">My Favorites</h1>',
-                        style: 'background:url(resources/img/whitetexture.png);color:#00529D;',
+                        html: '<h1 style=" color:#00529D;font-size:6vw;text-align:center;padding-top:10px;">My Favorites</h1>',
+                        style: 'background:white',
                         ui: 'plain'
                     },
                     {
@@ -65347,7 +65389,7 @@ function() {
                 itemId: 'BuzzNearMe',
                 margin: '1 1 1 1',
                 padding: '',
-                style: 'background: url(resources/img/whitetexture.png)',
+                style: 'background:white',
                 modal: false,
                 items: [
                     {
@@ -65433,17 +65475,17 @@ function() {
         tabBar: {
             cls: 'tabBarCls',
             docked: 'bottom',
-            height: '9vh',
+            height: '10vh',
             id: 'mytabbar',
             itemId: 'mytabbar',
+            margin: '5 5 5 5',
             padding: '5 5 5 5',
-            style: 'font-size:4vw;border-top:1px solid #c0c0c0;background:url(resources/img/whitetexture.png);',
+            style: 'font-size:4vw;border-top:1px solid #c0c0c0;background:white',
             ui: 'plain',
             modal: false,
             activeTab: 0,
             layout: {
                 type: 'hbox',
-                align: 'start',
                 pack: 'justify'
             }
         },
@@ -65624,7 +65666,7 @@ function() {
                     map: gmap,
                     icon: icons[category].icon
                 });
-            var content = '<h4 style="font-family:Arial;font-size:4vw;" id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline;font-family:Arial">' + count + ' Active Buzz</label></div>';
+            var content = '<h4 style="font-size:4vw;" id ="businessname">' + businessName + '</h4><div><label id="labelStore" style="color:green;font-size:4vw;text-decoration:underline;">' + count + ' Active Buzz</label></div>';
             addInfoWindow(marker, content, record, businessName);
         }
         //click on marker event
@@ -65721,13 +65763,15 @@ function() {
                 cls: 'toolbarCls',
                 docked: 'top',
                 height: '9vh',
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 items: [
                     {
                         xtype: 'button',
                         cls: 'icon-back-button',
+                        height: '7vh',
                         itemId: 'dealBackBtn',
-                        style: 'font-family:Arial;',
+                        margin: '5 0 0 0',
+                        minHeight: '8vh',
                         styleHtmlContent: true,
                         ui: 'plain',
                         listeners: [
@@ -65841,7 +65885,7 @@ function() {
         id: 'DealsPanel1',
         itemId: 'DealsPanel1',
         padding: '5 5 5 5',
-        style: 'background: url(resources/img/whitetexture.png)',
+        style: 'background:white',
         scrollable: false,
         layout: {
             type: 'vbox',
@@ -65857,12 +65901,11 @@ function() {
                     {
                         xtype: 'button',
                         cls: 'icon-back-button',
-                        height: '100%',
+                        height: '7vh',
                         itemId: 'dealBackBtn1',
-                        style: 'font-family:Arial;',
+                        minHeight: '8vh',
                         styleHtmlContent: true,
                         ui: 'plain',
-                        text: 'Back',
                         listeners: [
                             {
                                 fn: function(component, eOpts) {
@@ -65974,7 +66017,7 @@ function() {
         id: 'DealImage',
         itemId: 'DealImage',
         margin: '10 10 10 0',
-        style: 'border:1px solid #00529D;background:url(resources/img/whitetexture.png);',
+        style: 'border:1px solid #00529D;background:white',
         width: '95%',
         scrollable: true,
         tpl: [
@@ -65996,7 +66039,7 @@ function() {
                 xtype: 'toolbar',
                 cls: 'toolbarCls',
                 docked: 'top',
-                style: 'background:url(resources/img/whitetexture.png);',
+                style: 'background:white',
                 ui: 'plain',
                 items: [
                     {
